@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fedora Core Linux - Boot 2003</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- CRT Scanline Overlay -->
+    <div id="scanlines"></div>
+
+    <!-- Boot Screen -->
+    <div id="boot-screen">
+        <div class="fancy-box">
+            <div class="fancy-title">&nbsp;Fedora Core Linux&nbsp;</div>
+            <div class="fancy-body" id="boot-text">
+                BIOS Date 05/28/03 Fedora Core 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BIOS V09.00&nbsp;&nbsp;<br>
+                CPU: GenuineIntel SMP Level 6, Speed 2.4 GHz&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+                <span id="boot-count">0</span>/1024 MB RAM OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BIOS ROM = 65536K bytes<br><br>
+                Detecting IDE Drives ...<br>
+                &nbsp;IDE0 Master: Maxtor 6Y120P0&nbsp;&nbsp;120GB&nbsp;&nbsp;<br>
+                &nbsp;IDE1 Slave: Samsung CD-ROM 48X<br><br>
+                <span class="blink">_</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="hidden">
+        <div class="login-box">
+            <div class="login-logo-area">
+                <pre class="fedora-ascii-art" id="fedora-ascii"></pre>
+                <h2>Fedora Core Linux</h2>
+            </div>
+            <div class="login-form">
+                <p>Fedora Core 1 (Yarrow) - Kernel 2.4.28</p>
+                <label for="login-user">Username:</label>
+                <input type="text" id="login-user" value="root" autofocus>
+                <label for="login-pass">Password:</label>
+                <input type="password" id="login-pass" value="">
+                <button class="btn-login" onclick="doLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Area -->
+    <div id="desktop" class="hidden">
+
+        <!-- Desktop Icons -->
+        <div id="desktop-icons">
+            <div class="desktop-icon" onclick="openWindow('welcome')">
+                <div class="icon-img folder-icon">📁</div>
+                <span>Your Home</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('terminal')">
+                <div class="icon-img terminal-icon">🖥️</div>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('about')">
+                <div class="icon-img computer-icon">💻</div>
+                <span>My Computer</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('browser')">
+                <div class="icon-img browser-icon">🌐</div>
+                <span>Mozilla Firefox</span>
+            </div>
+            <div class="desktop-icon" onclick="openWindow('package-manager')">
+                <div class="icon-img package-icon">📦</div>
+                <span>RPM Package Mgr</span>
+            </div>
+            <div class="desktop-icon">
+                <div class="icon-img trash-icon">🗑️</div>
+                <span>Trash Can</span>
+            </div>
+        </div>
+
+        <!-- Welcome Window -->
+        <div id="win-welcome" class="window hidden" data-title="Fedora Core Linux - Welcome">
+            <div class="window-header" onmousedown="startDrag(event, 'win-welcome')">
+                <div class="window-icon">🐧</div>
+                <div class="window-title">Fedora Core Linux - Welcome</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize" onclick="minimizeWindow('welcome')">_</button>
+                    <button class="control-btn maximize" onclick="maximizeWindow('welcome')">[]</button>
+                    <button class="control-btn close" onclick="closeWindow('welcome')">X</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-body">
+                <pre class="ascii-art-header" id="fedora-ascii-main"></pre>
+                <h1 style="color: #c0392b; font-family: 'Courier New', monospace;">Welcome to Fedora Core Linux!</h1>
+
+                <div class="welcome-box">
+                    <p><strong>Fedora Core 1 "Yarrow"</strong> — The power of community-driven, open-source innovation.</p>
+                    <hr class="retro-hr">
+                    <p>This release features the latest in:</p>
+                    <ul class="feature-list">
+                        <li><strong>Linux Kernel 2.4.28</strong></li>
+                        <li><strong>GCC 3.3.1</strong></li>
+                        <li><strong>GNU Binutils 2.14</strong></li>
+                        <li><strong>Glibc 2.3.2</strong></li>
+                        <li><strong>XFree86 4.3</strong></li>
+                        <li><strong>KDE 3.1 / GNOME 2.4 (Beta)</strong></li>
+                    </ul>
+                </div>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">📋 System Requirements</h2>
+                <table class="retro-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Minimum</th>
+                            <th>Recommended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>CPU</td><td>Pentium III 500 MHz</td><td>Pentium IV 1.2 GHz+</td></tr>
+                        <tr><td>RAM</td><td>256 MB</td><td>512 MB or more</td></tr>
+                        <tr><td>HDD</td><td>4 GB</td><td>20 GB or more</td></tr>
+                        <tr><td>Video</td><td>VGA / SVGA</td><td>32-bit 16MB+</td></tr>
+                    </tbody>
+                </table>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">📰 What's New in Fedora Core</h2>
+                <div class="news-box">
+                    <p class="news-item"><span class="date">May 2004:</span> <strong>Fedora Core 1 "Yarrow"</strong> released — The first release under the Fedora project!</p>
+                    <p class="news-item"><span class="date">Nov 2003:</span> Red Hat announces transition from Red Hat Linux to Fedora + RHEL split.</p>
+                    <p class="news-item"><span class="date">Today:</span> You're running it. Let's go! 🚀</p>
+                </div>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">📦 Key Packages Included</h2>
+                <table class="retro-table">
+                    <thead>
+                        <tr><th>Package</th><th>Version</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>bash</td><td>2.05b-4</td><td>Bourne Again SHell — The standard Linux shell</td></tr>
+                        <tr><td>vim-enhanced</td><td>6.1-9</td><td>VIM - Vi IMproved, the hacker's text editor</td></tr>
+                        <tr><td>gcc</td><td>3.3.1-2</td><td>The GNU C Compiler — Build anything!</td></tr>
+                        <tr><td>python</td><td>2.2.3-15</td><td>Python scripting language for admins & devs</td></tr>
+                        <tr><td>sendmail</td><td>8.12.10-4</td><td>The ubiquitous Sendmail MTA</td></tr>
+                        <tr><td>apache</td><td>2.0.47-6</td><td>The Apache HTTP Server — powers the web</td></tr>
+                        <tr><td>mysql</td><td>4.0.15-3</td><td>The popular open-source relational DBMS</td></tr>
+                    </tbody>
+                </table>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">🔗 Community Resources</h2>
+                <ul class="link-list">
+                    <li><a href="#">http://www.fedora.us</a> — Fedora Project Homepage</li>
+                    <li><a href="#">http://www.redhat.com</a> — Red Hat, Inc.</li>
+                    <li><a href="#">http://www.linux.org</a> — The Linux Documentation Project</li>
+                    <li><a href="#">http://freshmeat.net</a> — FreshMeat (Free Software Directory)</li>
+                    <li><a href="#">http://slashdot.org</a> — Slashdot: News for Nerds</li>
+                </ul>
+
+                <div class="action-area">
+                    <button class="btn-primary" onclick="openWindow('terminal')">🖥️ Open Terminal</button>
+                    <button class="btn-secondary" onclick="window.open('http://www.fedora.us', '_blank')">📖 Read Docs</button>
+                </div>
+
+                <p class="version-note">Fedora Core 1 "Yarrow" | Build: November 6, 2003 | Kernel: 2.4.28-1.2115.nptelsg<br>
+                Built by the Fedora Project — <em>"Powered by Community"</em></p>
+            </div>
+        </div>
+
+        <!-- Terminal Window -->
+        <div id="win-terminal" class="window hidden window-dark" data-title="Terminal - [user@fedora ~]$" style="z-index: 10;">
+            <div class="window-header window-header-dark" onmousedown="startDrag(event, 'win-terminal')">
+                <div class="window-icon">🖥️</div>
+                <div class="window-title">Terminal - [user@fedora ~]$</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize" onclick="minimizeWindow('terminal')">_</button>
+                    <button class="control-btn maximize" onclick="maximizeWindow('terminal')">[]</button>
+                    <button class="control-btn close" onclick="closeWindow('terminal')">X</button>
+                </div>
+            </div>
+            <div class="window-body terminal-body">
+                <div id="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="prompt">[user@fedora ~]$&nbsp;</span>
+                    <input type="text" id="terminal-input" autofocus spellcheck="false" autocomplete="off">
+                </div>
+            </div>
+        </div>
+
+        <!-- My Computer Window -->
+        <div id="win-about" class="window hidden" data-title="My Computer - System Information">
+            <div class="window-header" onmousedown="startDrag(event, 'win-about')">
+                <div class="window-icon">💻</div>
+                <div class="window-title">My Computer - System Information</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize" onclick="minimizeWindow('about')">_</button>
+                    <button class="control-btn maximize" onclick="maximizeWindow('about')">[]</button>
+                    <button class="control-btn close" onclick="closeWindow('about')">X</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">💻 System Information</h2>
+                <pre class="sys-info" id="system-info"></pre>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">📊 Hardware Overview</h2>
+                <table class="retro-table">
+                    <thead><tr><th>Component</th><th>Detection Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>CPU: Intel Pentium IV 2.4GHz</td><td><span class="status-ok">✓ Detected (1024 MB RAM)</span></td></tr>
+                        <tr><td>HDD: Maxtor 6Y120P0</td><td><span class="status-ok">✓ Detected (120 GB)</span></td></tr>
+                        <tr><td>Video: NVIDIA GeForce4 MX 440</td><td><span class="status-ok">✓ Detected (64 MB)</span></td></tr>
+                        <tr><td>Sound: Creative Sound Blaster Live!</td><td><span class="status-ok">✓ Detected</span></td></tr>
+                        <tr><td>NIC: 3Com 3c905B TX Fast Ether</td><td><span class="status-ok">✓ Detected (10/100 Mbps)</span></td></tr>
+                        <tr><td>CDRW: Samsung SM-348E</td><td><span class="status-ok">✓ Detected (48x CD-ROM, 24x CD-R</span></td></tr>
+                    </tbody>
+                </table>
+
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">🖥️ Desktop Environment</h2>
+                <ul class="feature-list">
+                    <li><strong>Window Manager:</strong> GNOME Window Manager 2.4.0</li>
+                    <li><strong>Desktop Environment:</strong> GNOME 2.4 (Beta)</li>
+                    <li><strong>X Server:</strong> XFree86 4.3.0 (Release Date: 2003)</li>
+                    <li><strong>Display Resolution:</strong> 1024×768 @ 24-bit color</li>
+                    <li><strong>Font:</strong> Bitmap 75dpi / 100dpi, TrueType (Bitstream Vera)</li>
+                </ul>
+
+                <div class="action-area">
+                    <button class="btn-primary" onclick="openWindow('package-manager')">📦 Install Software</button>
+                    <button class="btn-secondary" onclick="openWindow('terminal')">🖥️ System Shell</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browser Window -->
+        <div id="win-browser" class="window hidden" data-title="Mozilla Firefox - fedora.us" style="z-index: 10;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-browser')">
+                <div class="window-icon">🌐</div>
+                <div class="window-title">Mozilla Firefox - http://www.fedora.us/</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize" onclick="minimizeWindow('browser')">_</button>
+                    <button class="control-btn maximize" onclick="maximizeWindow('browser')">[]</button>
+                    <button class="control-btn close" onclick="closeWindow('browser')">X</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Go</span>
+                <span class="menu-item">Bookmarks</span>
+                <span class="menu-item">Tools</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="browser-toolbar">
+                <button class="toolbar-btn" onclick="alert('Back')">&lt;</button>
+                <button class="toolbar-btn" onclick="alert('Forward')">&gt;</button>
+                <button class="toolbar-btn" onclick="alert('Reload')">⟳</button>
+                <span class="address-label">Address:</span>
+                <input type="text" class="address-bar" value="http://www.fedora.us/" readonly>
+            </div>
+            <div class="window-body browser-content">
+                <div class="browser-frame">
+                    <h1 style="font-family: 'Georgia', serif; color: #2c3e50;">Fedora Project</h1>
+                    <p class="browser-subtitle">A free operating system, built on Linux.</p>
+
+                    <hr class="retro-hr" style="border-top: 3px double #ccc;">
+
+                    <div class="browser-nav-links">
+                        <a href="#">[ Home ]</a>
+                        <a href="#">[ News ]</a>
+                        <a href="#">[ Download ]</a>
+                        <a href="#">[ Documentation ]</a>
+                        <a href="#">[ Community ]</a>
+                    </div>
+
+                    <h3 style="color: #8B0000; font-family: 'Courier New', monospace;">Fedora Core 1 — "Yarrow"</h3>
+                    <p>Fedora Core is a Linux distribution that provides a broad spectrum of free software, including the operating system itself, to users. Fedora Core includes only free and open-source software.</p>
+
+                    <blockquote style="border-left: 4px solid #c0392b; padding-left: 15px; margin: 20px 0; background: #fff8f0; padding: 15px;">
+                        "Fedora Core is designed to provide a stable and innovative platform for developers, system administrators, and users alike."
+                    </blockquote>
+
+                    <h3 style="color: #1e4a7a; font-family: 'Courier New', monospace;">Latest News</h3>
+                    <ul class="link-list">
+                        <li><strong>[2003-11-06]</strong> Fedora Core 1 "Yarrow" released — The new dawn of community-driven Linux!</li>
+                        <li><strong>[2004-05-08]</strong> Fedora Extras announced — Community-maintained packages.</li>
+                    </ul>
+
+                    <div class="browser-footer">
+                        <p>This page is rendered in your browser. Best viewed at 1024×768 with Netscape Navigator 7+ or Mozilla Firefox 0.9+</p>
+                        <p style="font-size: 11px;">© 2003-2004 Fedora Project · All rights reserved · Powered by Open Source</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Package Manager Window -->
+        <div id="win-package-manager" class="window hidden" data-title="RPM Package Manager">
+            <div class="window-header" onmousedown="startDrag(event, 'win-package-manager')">
+                <div class="window-icon">📦</div>
+                <div class="window-title">RPM Package Manager - Software Installation</div>
+                <div class="window-controls">
+                    <button class="control-btn minimize" onclick="minimizeWindow('package-manager')">_</button>
+                    <button class="control-btn maximize" onclick="maximizeWindow('package-manager')">[]</button>
+                    <button class="control-btn close" onclick="closeWindow('package-manager')">X</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2 style="font-family: 'Courier New', monospace; color: #1e4a7a;">📦 RPM Package Manager</h2>
+
+                <p><strong>RPM Package Manager (RPM)</strong> is the default package management system for Fedora Core Linux.</p>
+                <pre class="code-block">&nbsp;&nbsp;$ rpm -qa | head  # List installed packages
+&nbsp;&nbsp;bash-2.05b-4
+&nbsp;&nbsp;vim-enhanced-6.1-9
+&nbsp;&nbsp;gcc-3.3.1-2
+&nbsp;&nbsp;glibc-2.3.2-95.30
+&nbsp;&nbsp;kernel-2.4.28-1.2115.nptelsg
+
+&nbsp;&nbsp;$ rpm -qf /usr/bin/gcc  # Find which package owns a file
+&nbsp;&nbsp;gcc-3.3.1-2</pre>
+
+                <h3 style="font-family: 'Courier New', monospace;">Popular RPM Commands</h3>
+                <table class="retro-table">
+                    <thead><tr><th>Command</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>`rpm -ivh package.rpm`</td><td>Install a package with verbose progress</td></tr>
+                        <tr><td>`rpm -Uvh package.rpm`</td><td>Upgrade an existing package</td></tr>
+                        <tr><td>`rpm -e package`</td><td>Erase (uninstall) a package</td></tr>
+                        <tr><td>`rpm -qa`</td><td>List all installed packages</td></tr>
+                        <tr><td>`rpm -qi package`</td><td>Show info about an installed package</td></tr>
+                        <tr><td>`rpm -qf /path/to/file`</td><td>Find which package owns a file</td></tr>
+                    </tbody>
+                </table>
+
+                <h3 style="font-family: 'Courier New', monospace;">Available Software Categories</h3>
+                <table class="retro-table">
+                    <thead><tr><th>Category</th><th># Packages</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>🖥️ Development / Tools</td><td>1,247</td><td>GCC, Make, GDB, Python, Perl...</td></tr>
+                        <tr><td>🌐 Network / Internet</td><td>892</td><td>Apaceh, Sendmail, MySQL, OpenSSH...</td></tr>
+                        <tr><td>🎨 Graphics</td><td>315</td><td>GIMP, Inkscape, Scribus...</td></tr>
+                        <tr><td>🎵 Audio / Video</td><td>278</td><td>VLC, XMMS, Audacity...</td></tr>
+                        <tr><td>📝 Office</td><td>156</td><td>OpenOffice.org 1.1.x</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="action-area">
+                    <button class="btn-primary" onclick="alert('Searching for packages...')">🔍 Search Packages</button>
+                    <button class="btn-secondary" onclick="openWindow('terminal')">🖥️ Install via CLI</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="hidden">
+        <div class="start-menu-inner">
+            <div class="start-menu-header">Fedora Core Linux</div>
+            <ul class="start-menu-list">
+                <li onclick="openWindow('browser'); toggleStartMenu();"><span class="menu-icon">🌐</span> Web Browser (Firefox)</li>
+                <li onclick="openWindow('terminal'); toggleStartMenu();"><span class="menu-icon">🖥️</span> Terminal / Shell</li>
+                <li onclick="openWindow('package-manager'); toggleStartMenu();"><span class="menu-icon">📦</span> RPM Package Manager</li>
+                <li onclick="openWindow('about'); toggleStartMenu();"><span class="menu-icon">💻</span> System Info (My Computer)</li>
+                <li><span class="menu-icon">📁</span> File Manager</li>
+                <li><span class="menu-icon">📝</span> Text Editor (gedit)</li>
+                <hr class="start-separator">
+                <li onclick="openWindow('welcome'); toggleStartMenu();"><span class="menu-icon">❓</span> Documentation</li>
+                <li><span class="menu-icon">🔍</span> Find Files...</li>
+                <li><span class="menu-icon">⚙️</span> Preferences</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar" class="hidden">
+        <button id="start-button" onclick="toggleStartMenu()">Fedora</button>
+        <div id="taskbar-items">
+        </div>
+        <div id="system-tray">
+            <span class="tray-icon">🔊</span>
+            <span class="tray-icon">📶</span>
+            <span id="clock">12:00 PM</span>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
