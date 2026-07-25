@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>LibrixSoft — Credenciales</title>
+
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+
+    <!-- Google Fonts: Overpass -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --azul-oscuro: #3A5F8A;
+            --azul-medio: #5B85B5;
+            --azul-claro: #7BA3D0;
+            --blanco: #FFFFFF;
+            --azul-navy: #294172;
+        }
+
+        .reveal {
+            font-family: 'Overpass', sans-serif;
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-medio) 50%, var(--azul-claro) 100%);
+            color: var(--blanco);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Overpass', sans-serif;
+            text-transform: none;
+            color: var(--blanco);
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Fedora Style Typography Weights */
+        .reveal h1 { font-weight: 300; } /* Light for titles */
+        .reveal h2 { font-weight: 700; } /* Bold for section headers */
+        .reveal h3 { font-weight: 400; color: var(--azul-claro); }
+
+        .reveal p, .reveal li, .reveal blockquote {
+            font-weight: 400;
+            color: var(--blanco);
+        }
+
+        .reveal .slides section {
+            text-align: left;
+        }
+
+        /* Centered slides (for cover and closing) */
+        .reveal .slides section.center {
+            text-align: center;
+        }
+
+        .reveal .slides section.center h1,
+        .reveal .slides section.center h2,
+        .reveal .slides section.center h3 {
+            text-align: center;
+        }
+
+        /* Custom components */
+        .service-item {
+            margin-bottom: 20px;
+        }
+        .service-title {
+            font-weight: 700;
+            color: var(--blanco);
+            display: block;
+            font-size: 1.2em;
+        }
+        .service-desc {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.6em;
+            margin-top: 5px;
+        }
+
+        .footer-info {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 0.5em;
+            opacity: 0.6;
+        }
+
+        /* Highlight for numbers or icons */
+        .accent {
+            color: var(--azul-claro);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Portada -->
+            <section class="center">
+                <h1>CREDENCIALES <br>LibrixSoft</h1>
+                <h3>Desarrollo de software a la medida,<br>con talento senior</h3>
+                <p style="font-size: 0.6em; margin-top: 50px;">Reunión de discovery · librixsoft.com</p>
+            </section>
+
+            <!-- Slide 2: ¿Quiénes somos? -->
+            <section>
+                <h2 class="center">¿Quiénes somos?</h2>
+                <p>Somos una consultora de software boutique especializada en el diseño, desarrollo e implementación de soluciones tecnológicas a la medida.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.7em;">
+                    <div>
+                        <h3 style="font-size: 1em;">&lt; /&gt; Desarrollo a medida</h3>
+                        <p>Soluciones diseñadas específicamente para tus necesidades.</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1em;">{ } Células de desarrollo</h3>
+                        <p>Equipos dedicados y escalables que se integran a tu ritmo.</p>
+                    </div>
+                </div>
+                <p style="font-size: 0.7em; margin-top: 20px;"><strong class="accent">B2B Alianzas estratégicas:</strong> Estructura de capacidad elástica con especialistas.</p>
+            </section>
+
+            <!-- Slide 3: Nuestro equipo -->
+            <section>
+                <h2 class="center">Nuestro equipo</h2>
+                <p class="center" style="font-size: 0.8em;">Equipo core propio + red de aliados especializados</p>
+                <div style="margin-top: 40px;">
+                    <div class="service-item">
+                        <h3 style="font-size: 1.2em;">👨‍💻 7 Ingenieros Senior</h3>
+                        <p style="font-size: 0.7em;">Dedicados al desarrollo backend de alta complejidad y sistemas críticos.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3 style="font-size: 1.2em;">🎨 +100 diseñadores UX bajo demanda</h3>
+                        <p style="font-size: 0.7em;">Escalamos el diseño de experiencia de usuario según el compliance o necesidad.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Cómo trabajamos -->
+            <section>
+                <h2 class="center">Cómo trabajamos</h2>
+                <p class="center" style="font-size: 0.8em; margin-bottom: 30px;">Metodología Scrum: iteraciones cortas y entregas continuas</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.6em;">
+                    <div class="center"><strong class="accent">① Sprint Planning</strong><br>Definimos alcance y prioridades.</div>
+                    <div class="center"><strong class="accent">② Daily Stand-up</strong><br>Sincronización diaria del equipo.</div>
+                    <div class="center"><strong class="accent">③ Sprint Review</strong><br>Presentamos avances funcionales.</div>
+                    <div class="center"><strong class="accent">④ Retrospectiva</strong><br>Mejoramos el proceso continuamente.</div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Servicios Header -->
+            <section class="center">
+                <h2 style="font-size: 1.5em;">SERVICIOS 2026</h2>
+                <h1 style="font-size: 2.5em;">Software de alto impacto.</h1>
+                <p>Para empresas que no pueden fallar.</p>
+                <h3 style="margin-top: 40px; color: var(--blanco);">LibrixSoft</h3>
+            </section>
+
+            <!-- Slide 6: Nuestros Servicios -->
+            <section>
+                <h2 class="center">NUESTROS SERVICIOS</h2>
+                <div style="font-size: 0.7em;">
+                    <div class="service-item">
+                        <span class="service-title">🏗️ Arquitectura Enterprise Services</span>
+                        <span class="service-desc">Aplicaciones web/mobile, APIs y microservicios críticos.</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-title">🤖 Inteligencia Artificial — AI Software Development</span>
+                        <span class="service-desc">Automatización, copilotos y entrega técnica potenciada por IA.</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-title">🔒 Seguridad — AI CyberSecurity</span>
+                        <span class="service-desc">OWASP, hardening y seguridad integrada desde el diseño.</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-title">💳 Fintech — Digital Banking</span>
+                        <span class="service-desc">Wallets digitales, banca móvil y plataformas de pago seguras.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Por qué LibrixSoft -->
+            <section>
+                <h2 class="center">POR QUÉ LIBRIXSOFT</h2>
+                <div style="font-size: 0.6em;">
+                    <p><span class="accent">01 ·</span> Equipo hiper-especializado en soluciones enterprise</p>
+                    <div class="tech-tag">Java 21 · Spring Boot · Kafka · MongoDB · SQL Server</div>
+
+                    <p style="margin-top: 20px;"><span class="accent">02 ·</span> Acceso directo al equipo con criterio ejecutivo</p>
+                    <div class="tech-tag">Angular · React · TypeScript · JavaScript · Material UI</div>
+
+                    <p style="margin-top: 20px;"><span class="accent">03 ·</span> Cada proyecto diseñado para el problema real</p>
+                    <div class="tech-tag">Docker · Kubernetes · AWS · GCP · CI/CD · TDD</div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Expertise -->
+            <section>
+                <h2 class="center">EXPERTISE</h2>
+                <p class="center" style="font-size: 0.7em;">Experiencia real en banca, seguros y fintech.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.8em; margin-top: 20px;">
+                    <div class="center">🏦 BBVA — Banca</div>
+                    <div class="center">🛡️ GNP — Seguros</div>
+                    <div class="center">📊 Equifax — Finanzas</div>
+                    <div class="center">💸 Spin by OXXO — Fintech</div>
+                    <div class="center">🔑 Prisma — Pagos</div>
+                    <div class="center">🌐 Open Source</div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Cierre -->
+            <section class="center">
+                <h1 style="font-size: 2em;">¿LISTO PARA EMPEZAR?</h1>
+                <h3 style="font-weight: 400;">Construyamos algo que no falle.</h3>
+                <div style="font-size: 0.6em; margin-top: 40px;">
+                    <p><strong class="accent">Web:</strong> www.librixsoft.com</p>
+                    <p><strong class="accent">Email:</strong> hola@librixsoft.com</p>
+                    <p><strong class="accent">Ciudad:</strong> Ciudad de México</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            transition: 'slide',
+            mouseWheel: true
+        });
+    </script>
+</body>
+</html>
