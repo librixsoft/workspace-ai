@@ -124,6 +124,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Overpass','Inter',
 .about-feat-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:700;margin-bottom:.5vh;color:#fff}
 .about-feat-desc{font-size:clamp(.8rem,1vw,.92rem);color:rgba(255,255,255,.6);line-height:1.5;font-weight:300}
 
+/* ── Fullscreen button ── */
+.fs-btn{position:fixed;top:2vh;left:3vw;z-index:100;display:flex;align-items:center;gap:.6vw;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);border-radius:10px;padding:.7vh 1.4vw;cursor:pointer;color:#fff;font-family:'Overpass',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:1px;transition:all .3s ease;backdrop-filter:blur(6px);white-space:nowrap}
+.fs-btn:hover{background:rgba(255,255,255,.12);border-color:#7BA3D0;color:#fff}
+.fs-icon{font-size:1.1rem;display:flex;align-items:center;line-height:1}
+
 /* ── Navigation ── */
 .nav-bar{position:fixed;bottom:2vh;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:1vw;z-index:100}
 .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.3);cursor:pointer;transition:all .4s ease}
@@ -398,6 +403,10 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Overpass','Inter',
   <div class="arrow" id="prevBtn" onclick="changeSlide(-1)">‹</div>
   <div class="arrow" id="nextBtn" onclick="changeSlide(1)">›</div>
 </div>
+<button class="fs-btn" id="fsBtn" onclick="toggleFullscreen()">
+  <span class="fs-icon">⛶</span>
+  <span id="fsLabel">Pantalla Completa</span>
+</button>
 <div class="slide-counter" id="counter">01 / 09</div>
 <div class="nav-bar" id="dots"></div>
 
@@ -420,6 +429,19 @@ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')cha
 let touchStart=0;
 document.addEventListener('touchstart',e=>{touchStart=e.touches[0].clientX},{passive:true});
 document.addEventListener('touchend',e=>{const diff=e.changedTouches[0].clientX-touchStart;if(Math.abs(diff)>50){changeSlide(diff<0?1:-1)}},{passive:true});
+
+function toggleFullscreen(){
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen().catch(()=>{});
+  }else{
+    document.exitFullscreen();
+  }
+}
+document.addEventListener('fullscreenchange',()=>{
+  const inFS=!!document.fullscreenElement;
+  document.getElementById('fsLabel').textContent=inFS?'Salir de Pantalla Completa':'Pantalla Completa';
+  document.querySelector('.fs-icon').innerHTML=inFS?'⛶':'⛶';
+});
 
 // Particles
 for(let s=0;s<TOTAL;s++){
