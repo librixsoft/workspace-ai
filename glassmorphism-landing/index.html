@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlassFlow — Diseño que Trasciende</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-canvas">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="blob blob--4"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="glass-nav">
+    <a href="#" class="nav-logo">
+      <span class="logo-icon">◆</span> GlassFlow
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Características</a></li>
+      <li><a href="#pricing">Precios</a></li>
+      <li><a href="#testimonials">Testimonios</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="btn btn--ghost">Iniciar Sesión</a>
+      <a href="#" class="btn btn--primary">Comenzar Gratis</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="glass-badge hero-badge">
+        <span class="badge-dot"></span>
+        Nuevo: Integraciones con IA disponibles
+      </div>
+      <h1 class="hero-title">
+        Diseña interfaces
+        <span class="title-gradient">que brillan</span>
+        por sí solas
+      </h1>
+      <p class="hero-subtitle">
+        La plataforma todo-en-uno que combina diseño, prototipado y colaboración
+        en un entorno visual con transparencia cristalina. Crea experiencias
+        digitales que cautivan desde el primer pixel.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn--primary btn--lg">
+          Empezar Ahora
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#" class="btn btn--glass btn--lg">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="6,3 13,8 6,13" fill="currentColor"/></svg>
+          Ver Demo
+        </a>
+      </div>
+      <p class="hero-social">
+        <span>+12.000 diseñadores ya lo usan</span>
+        <div class="avatar-stack">
+          <span class="avatar" style="--i:1;background:#6C63FF">A</span>
+          <span class="avatar" style="--i:2;background:#FF6B8A">M</span>
+          <span class="avatar" style="--i:3;background:#4ECDC4">K</span>
+          <span class="avatar" style="--i:4;background:#FFD93D">R</span>
+          <span class="avatar" style="--i:5;background:#6C63FF">+</span>
+        </div>
+      </p>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+      <div class="glass-card hero-card card--1">
+        <div class="card-preview-header">
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+          <span class="preview-dot"></span>
+        </div>
+        <div class="card-preview-body">
+          <div class="preview-sidebar">
+            <div class="sidebar-item active"></div>
+            <div class="sidebar-item"></div>
+            <div class="sidebar-item"></div>
+            <div class="sidebar-item"></div>
+          </div>
+          <div class="preview-canvas">
+            <div class="canvas-block canvas-block--1"></div>
+            <div class="canvas-block canvas-block--2"></div>
+            <div class="canvas-block canvas-block--3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card hero-card card--2">
+        <div class="mini-chart">
+          <svg viewBox="0 0 100 40" fill="none">
+            <path d="M0 35 Q10 30 20 28 T40 20 T60 15 T80 8 L100 5" stroke="#6C63FF" stroke-width="2" fill="none"/>
+            <path d="M0 35 Q10 30 20 28 T40 20 T60 15 T80 8 L100 5 V40 H0Z" fill="url(#chartGrad)" opacity="0.3"/>
+            <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#6C63FF" stop-opacity="0"/></linearGradient></defs>
+          </svg>
+        </div>
+        <p class="mini-chart-label">Crecimiento mensual</p>
+        <span class="mini-chart-value">+47.2%</span>
+      </div>
+      <div class="glass-card hero-card card--3">
+        <div class="notification-icon">✓</div>
+        <p class="notification-text">Proyecto exportado<br/>exitosamente</p>
+        <span class="notification-time">hace 2 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <span class="glass-badge section-badge">Características</span>
+      <h2 class="section-title">Todo lo que necesitás,<br/><span class="title-gradient">nada que no</span></h2>
+      <p class="section-subtitle">Herramientas poderosas envueltas en una experiencia simple y elegante.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        </div>
+        <h3 class="feature-title">Diseño Modular</h3>
+        <p class="feature-desc">Componentes reutilizables que se adaptan a cualquier proyecto. Construí una vez, usá siempre.</p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--pink">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 class="feature-title">Rendimiento Instantáneo</h3>
+        <p class="feature-desc">Exportación optimizada con previsualización en tiempo real. Sin esperas, sin fricción.</p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--teal">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="feature-title">Colaboración en Vivo</h3>
+        <p class="feature-desc">Trabajá con tu equipo en tiempo real. Comentarios, menciones y versiones sincronizadas.</p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--yellow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3 class="feature-title">Personalizable</h3>
+        <p class="feature-desc">Temas, colores y layouts adaptables. Tu marca, tu estilo, tus reglas.</p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">Seguro por Defecto</h3>
+        <p class="feature-desc">Encriptación de extremo a extremo y cumplimiento GDPR. Tus datos, siempre protegidos.</p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="glass-card feature-card">
+        <div class="feature-icon icon--coral">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3 class="feature-title">IA Integrada</h3>
+        <p class="feature-desc">Sugerencias inteligentes de diseño, generación automática de layouts y copy asistido.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="section-header">
+      <span class="glass-badge section-badge">Precios</span>
+      <h2 class="section-title">Simple y<br/><span class="title-gradient">transparente</span></h2>
+      <p class="section-subtitle">Sin costos ocultos. Cancelá cuando quieras.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="glass-card pricing-card">
+        <h3 class="plan-name">Starter</h3>
+        <div class="plan-price">
+          <span class="price-currency">$0</span>
+          <span class="price-period">/mes</span>
+        </div>
+        <p class="plan-desc">Perfecto para explorar la plataforma.</p>
+        <ul class="plan-features">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> 3 proyectos</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> Componentes básicos</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> Exportación PNG</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> Comunidad</li>
+        </ul>
+        <a href="#" class="btn btn--glass btn--full">Comenzar Gratis</a>
+      </div>
+
+      <!-- Pro — Featured -->
+      <div class="glass-card pricing-card pricing-card--featured">
+        <span class="plan-popular">Más Popular</span>
+        <h3 class="plan-name">Pro</h3>
+        <div class="plan-price">
+          <span class="price-currency">$19</span>
+          <span class="price-period">/mes</span>
+        </div>
+        <p class="plan-desc">Para profesionales y equipos en crecimiento.</p>
+        <ul class="plan-features">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> Proyectos ilimitados</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> Todos los componentes</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> Exportación multi-formato</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> Colaboración en vivo</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> IA Asistente</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#fff" stroke-width="2" fill="none"/></svg> Soporte prioritario</li>
+        </ul>
+        <a href="#" class="btn btn--primary btn--full">Elegir Pro</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="glass-card pricing-card">
+        <h3 class="plan-name">Enterprise</h3>
+        <div class="plan-price">
+          <span class="price-currency">$49</span>
+          <span class="price-period">/mes</span>
+        </div>
+        <p class="plan-desc">Para organizaciones que necesitan control total.</p>
+        <ul class="plan-features">
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> Todo lo de Pro</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> SSO & SAML</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> SLA garantizado</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13.5 4.5L6 12l-3.5-3.5" stroke="#6C63FF" stroke-width="2" fill="none"/></svg> Admin Dashboard</li>
+        </ul>
+        <a href="#" class="btn btn--glass btn--full">Contactar Ventas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-header">
+      <span class="glass-badge section-badge">Testimonios</span>
+      <h2 class="section-title">Lo que dicen<br/><span class="title-gradient">nuestros usuarios</span></h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="glass-card testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"GlassFlow transformó completamente nuestro flujo de trabajo. La interfaz es intuitiva y los resultados son impresionantes."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar author-avatar--1">ML</span>
+          <div>
+            <p class="author-name">María López</p>
+            <p class="author-role">UX Lead en TechCorp</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"La colaboración en tiempo real es un game-changer. Nuestro equipo ahora produce 3x más diseños sin perder calidad."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar author-avatar--2">CR</span>
+          <div>
+            <p class="author-name">Carlos Ruiz</p>
+            <p class="author-role">Product Designer en StartupXYZ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"La IA integrada me ahorra horas de trabajo repetitivo. Es como tener un asistente de diseño que entiende mi estilo."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar author-avatar--3">AK</span>
+          <div>
+            <p class="author-name">Ana Kim</p>
+            <p class="author-role">Freelance Designer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="contact">
+    <div class="glass-card cta-card">
+      <h2 class="cta-title">¿Listo para brillar?</h2>
+      <p class="cta-desc">Unite a miles de diseñadores que ya están creando experiencias extraordinarias. Gratis para empezar, increíble en cada paso.</p>
+      <form class="cta-form" onsubmit="return false;">
+        <input type="email" placeholder="tu@email.com" class="glass-input" required />
+        <button type="submit" class="btn btn--primary btn--lg">Crear Cuenta Gratis</button>
+      </form>
+      <p class="cta-note">Sin tarjeta de crédito · Setup en 30 segundos</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo"><span class="logo-icon">◆</span> GlassFlow</a>
+        <p>Diseño transparente,<br/>resultados sólidos.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <a href="#">Características</a>
+        <a href="#">Precios</a>
+        <a href="#">Integraciones</a>
+        <a href="#">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Compañía</h4>
+        <a href="#">Sobre Nosotros</a>
+        <a href="#">Blog</a>
+        <a href="#">Carreras</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+        <a href="#">Licencias</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 GlassFlow. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="GitHub">⊙</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Dribbble">◉</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
