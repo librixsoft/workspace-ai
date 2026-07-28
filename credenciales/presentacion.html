@@ -24,7 +24,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-4{background:linear-gradient(150deg,#0F172A 0%,#1D4ED8 100%)}
 .slide-5{background:linear-gradient(180deg,#0F172A 0%,#1E3A5F 100%);text-align:center}
 .slide-6{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
-.slide-7{background:linear-gradient(155deg,#0F172A 0%,#1E40AF 100%)}
+.slide-7{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
 .slide-8{background:linear-gradient(140deg,#0F172A 0%,#1E3A5F 50%,#3B82F6 100%)}
 .slide-9{background:linear-gradient(170deg,#0F172A 0%,#2563EB 100%);text-align:center}
 
@@ -36,7 +36,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-4::after{background:radial-gradient(ellipse at 20% 90%,rgba(79,70,229,.05),transparent 50%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-5::after{background:radial-gradient(ellipse at 60% 40%,rgba(96,165,250,.03),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-6::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
-.slide-7::after{background:radial-gradient(ellipse at 50% 30%,rgba(59,130,246,.04),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-7::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-8::after{background:radial-gradient(ellipse at 55% 65%,rgba(79,70,229,.04),transparent 50%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-9::after{background:radial-gradient(ellipse at 80% 90%,rgba(37,99,235,.06),transparent 65%),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px)}
 
@@ -49,7 +49,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-4::before{width:700px;height:700px;background:#4F46E5;top:-15%;right:-10%}
 .slide-5::before{width:300px;height:300px;background:#93C5FD;bottom:-10%;left:10%}
 .slide-6::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
-.slide-7::before{width:380px;height:380px;background:#2563EB;top:-10%;right:-5%}
+.slide-7::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
 .slide-8::before{width:420px;height:420px;background:#3B82F6;bottom:-8%;left:8%}
 .slide-9::before{width:650px;height:650px;background:#2563EB;top:-12%;right:-10%}
 
@@ -138,17 +138,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .step-title{font-size:clamp(.9rem,1.2vw,1.1rem);font-weight:600;margin-bottom:.4vh;color:#fff}
 .step-desc{font-size:clamp(.75rem,.95vw,.88rem);color:rgba(255,255,255,.55);line-height:1.6;font-weight:400}
 
-/* ── Why Cards (slide 7) — KDE Plasma Glassmorphism White ── */
-.why-grid{display:flex;gap:2vw;margin-top:3vh;width:100%;max-width:1150px}
-.why-card{flex:1;background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:32px;backdrop-filter:blur(32px) saturate(1.1);transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeSlideUp .7s ease both}
-.why-card:nth-child(1){animation-delay:.15s}.why-card:nth-child(2){animation-delay:.3s}.why-card:nth-child(3){animation-delay:.45s}
-.why-card:hover{background:rgba(255,255,255,.88);border-color:#FFFFFF;transform:translateY(-4px) scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 0 1px rgba(59,130,246,.1)}
-.why-num{font-size:clamp(.7rem,1vw,.85rem);font-weight:500;color:#3B82F6;letter-spacing:.05em;margin-bottom:.8vh}
-.why-title{font-size:clamp(.9rem,1.2vw,1.05rem);font-weight:600;line-height:1.4;margin-bottom:1vh;color:#0F172A}
-.tech-tags{display:flex;flex-wrap:wrap;gap:.4vw}
-.tech-tag{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:8px;padding:.35vh .7vw;font-size:clamp(.65rem,.85vw,.78rem);color:#1E3A5F;font-weight:500;transition:all .3s ease}
-.tech-tag:hover{background:rgba(59,130,246,.15);border-color:#3B82F6;color:#2563EB}
-.why-footer{margin-top:2.5vh;text-align:center;font-size:clamp(.9rem,1.3vw,1.15rem);color:#3B82F6;font-weight:600;animation:fadeSlideUp .7s .6s ease both}
+/* ── Why Section (slide 7) — Based on slide 2 about-features style ── */
+.why-grid{display:flex;gap:3vw;width:100%;max-width:1050px;margin-top:2vh}
+.why-card{text-align:center;flex:1;background:none;border:none;padding:0;transition:none;animation:fadeSlideUp .7s ease both}
+.why-card:nth-child(1){animation-delay:.2s}.why-card:nth-child(2){animation-delay:.35s}.why-card:nth-child(3){animation-delay:.5s}
+.why-icon{font-size:2.2rem;margin-bottom:.6vh;display:block;filter:grayscale(.3)}
+.why-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:600;margin-bottom:.8vh;color:#fff;line-height:1.35}
+.why-techs{display:flex;flex-wrap:wrap;gap:.4vw;justify-content:center}
+.why-tech{font-size:clamp(.72rem,.88vw,.82rem);color:rgba(96,165,250,.85);font-weight:500;padding:.25vh .5vw;background:none;border:none}
 
 /* ── Clients (slide 8) — KDE Plasma Glassmorphism White ── */
 .clients-grid{display:flex;gap:2.5vw;margin-top:3vh;width:100%;max-width:1100px;flex-wrap:wrap;justify-content:center}
@@ -357,36 +354,29 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
   </div>
 </div>
 
-<!-- ═══════════ SLIDE 7 — POR QUÉ LIBRIXSOFT ═══════════ -->
+<!-- ═══════════ SLIDE 7 — POR QUÉ LIBRIXSOFT (Stack Tecnológico) ═══════════ -->
 <div class="slide slide-7" data-slide="6">
   <div class="grid-overlay"></div>
   <div class="particles" id="p6"></div>
-  <span class="slide-tag">Diferenciadores</span>
-  <h1 class="slide-title">Por qué LibrixSoft</h1>
+  <span class="slide-tag">Stack</span>
+  <h1 class="slide-title">Tecnología</h1>
   <div class="why-grid">
     <div class="why-card">
-      <div class="why-num">01 · Equipo hiper-especializado en soluciones enterprise</div>
-      <div class="tech-tags">
-        <span class="tech-tag">Java 1.6–21</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Spring MVC</span><span class="tech-tag">Spring AI</span>
-        <span class="tech-tag">JPA/Hibernate</span><span class="tech-tag">Kafka</span><span class="tech-tag">MongoDB</span><span class="tech-tag">SQL Server</span>
-      </div>
+      <span class="why-icon">⚙️</span>
+      <div class="why-title">Backend &amp; Enterprise</div>
+      <p class="why-desc">Java 21 · Spring Boot · Kafka · Hibernate · SQL Server · MongoDB</p>
     </div>
     <div class="why-card">
-      <div class="why-num">02 · Acceso directo al equipo con criterio ejecutivo</div>
-      <div class="tech-tags">
-        <span class="tech-tag">Angular</span><span class="tech-tag">React</span><span class="tech-tag">TypeScript</span><span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">HTML5</span><span class="tech-tag">CSS3</span><span class="tech-tag">Angular Material</span><span class="tech-tag">React Material</span>
-      </div>
+      <span class="why-icon">🖥️</span>
+      <div class="why-title">Frontend &amp; UI</div>
+      <p class="why-desc">Angular · React · TypeScript · JavaScript · HTML5 · CSS3 · Material Design</p>
     </div>
     <div class="why-card">
-      <div class="why-num">03 · Cada proyecto diseñado para el problema real</div>
-      <div class="tech-tags">
-        <span class="tech-tag">Docker</span><span class="tech-tag">Kubernetes</span><span class="tech-tag">SonarQube</span><span class="tech-tag">CI/CD</span>
-        <span class="tech-tag">GitHub/GitLab</span><span class="tech-tag">AWS</span><span class="tech-tag">GCP</span><span class="tech-tag">JUnit</span><span class="tech-tag">TDD</span><span class="tech-tag">Scrum</span>
-      </div>
+      <span class="why-icon">☁️</span>
+      <div class="why-title">DevOps &amp; Cloud</div>
+      <p class="why-desc">Docker · Kubernetes · AWS · GCP · CI/CD · SonarQube · TDD · Scrum</p>
     </div>
   </div>
-  <p class="why-footer">Código limpio, seguro y entregado con velocidad de boutique.</p>
 </div>
 
 <!-- ═══════════ SLIDE 8 — EXPERTISE / CLIENTES ═══════════ -->
