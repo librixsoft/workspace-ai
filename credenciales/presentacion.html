@@ -39,20 +39,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Breeze Sans','Ubun
 .slide-8::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 45% 35%,rgba(73,210,197,.08),transparent 50%);pointer-events:none;z-index:-1}
 .slide-9::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(49,204,229,.12),transparent 65%);pointer-events:none;z-index:-1}
 
-/* ── Decorative Elements ── */
-.slide::before{content:'';position:absolute;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none;z-index:-1}
+/* ── Decorative Elements — KDE Blur Orbs ── */
+.slide::before{content:'';position:absolute;border-radius:50%;filter:blur(120px);opacity:.2;pointer-events:none;z-index:-1}
 .slide-1::before{width:600px;height:600px;background:#31CCE5;top:-10%;right:-8%}
 .slide-2::before{width:500px;height:500px;background:#49D2C5;bottom:-10%;left:-5%}
-.slide-4::before{width:700px;height:700px;background:#2B7CD3;top:-15%;right:-10%}
+.slide-4::before{width:700px;height:700px;background:#3DAEEA;top:-15%;right:-10%}
 .slide-6::before{width:400px;height:400px;background:#31CCE5;bottom:10%;left:5%}
 
-/* Grid overlay */
-.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(49,204,229,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(49,204,229,.05) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+/* Grid overlay — KDE cian lines */
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(49,204,229,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(49,204,229,.06) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
 
-/* Floating particles */
-.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;width:4px;height:4px;background:rgba(49,204,229,.35);border-radius:50%;animation:floatUp linear infinite}
-@keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-20px) scale(1);opacity:0}}
+/* Floating particles — KDE cian bright */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.particle{position:absolute;width:3px;height:3px;background:rgba(49,204,229,.4);border-radius:50%;box-shadow:0 0 6px rgba(49,204,229,.2);animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-30px) scale(1.2);opacity:0}}
 
 /* ── Typography ── */
 .slide-tag{font-size:.85rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#31CCE5;margin-bottom:1.5vh;animation:fadeSlideDown .8s ease both}
@@ -60,10 +60,10 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Breeze Sans','Ubun
 .slide-subtitle{font-size:clamp(1.1rem,2vw,1.6rem);font-weight:400;color:rgba(255,255,255,.75);text-align:center;line-height:1.5;max-width:800px;margin-bottom:2vh;animation:fadeSlideDown .8s .3s ease both}
 .slide-divider{width:80px;height:3px;background:linear-gradient(90deg,#49D2C5,#31CCE5);border-radius:2px;margin:1.5vh 0;animation:fadeSlideDown .8s .25s ease both}
 
-/* ── Cards Grid (slide 6) ── */
+/* ── Cards Grid (slide 6) — KDE Glassmorphism ── */
 .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:2vh;width:100%;max-width:1100px;margin-top:2vh}
-.card{background:rgba(65,180,229,.06);border:1px solid rgba(49,204,229,.2);border-radius:16px;padding:2.5vw 2.5vw;backdrop-filter:blur(12px);transition:all .4s ease;animation:fadeSlideUp .7s ease both}
-.card:hover{background:rgba(65,180,229,.12);border-color:rgba(49,204,229,.35);transform:translateY(-4px);box-shadow:0 0 24px rgba(49,204,229,.12)}
+.card{background:rgba(49,204,229,.06);border:1px solid rgba(49,204,229,.18);border-radius:16px;padding:2.5vw 2.5vw;backdrop-filter:blur(14px) saturate(1.3);transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeSlideUp .7s ease both}
+.card:hover{background:rgba(49,204,229,.13);border-color:rgba(49,204,229,.4);transform:translateY(-5px);box-shadow:0 0 30px rgba(49,204,229,.18),inset 0 1px 0 rgba(49,204,229,.08)}
 .card:nth-child(1){animation-delay:.1s}.card:nth-child(2){animation-delay:.2s}
 .card:nth-child(3){animation-delay:.3s}.card:nth-child(4){animation-delay:.4s}
 .card-icon{font-size:2rem;margin-bottom:.8vh;display:block}
@@ -71,42 +71,43 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Breeze Sans','Ubun
 .card-title{font-size:clamp(1.1rem,1.6vw,1.4rem);font-weight:700;margin-bottom:.5vh;color:#fff}
 .card-desc{font-size:clamp(.85rem,1.2vw,1rem);color:rgba(255,255,255,.65);line-height:1.5;font-weight:400}
 
-/* ── Team Cards (slide 3) ── */
+/* ── Team Cards (slide 3) — KDE Glassmorphism ── */
 .team-grid{display:flex;gap:4vw;margin-top:3vh;width:100%;max-width:900px;justify-content:center}
-.team-card{flex:1;background:rgba(65,180,229,.06);border:1px solid rgba(49,204,229,.2);border-radius:20px;padding:3vw;text-align:center;backdrop-filter:blur(12px);transition:all .4s ease;animation:fadeSlideUp .7s ease both}
-.team-card:hover{background:rgba(65,180,229,.12);border-color:rgba(49,204,229,.35);transform:translateY(-4px);box-shadow:0 0 24px rgba(49,204,229,.1)}
+.team-card{flex:1;background:rgba(65,210,229,.05);border:1.5px solid rgba(65,210,229,.18);border-radius:20px;padding:3vw;text-align:center;backdrop-filter:blur(14px) saturate(1.3);transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeSlideUp .7s ease both}
+.team-card:hover{background:rgba(65,210,229,.12);border-color:#31CCE5;transform:translateY(-5px) scale(1.02);box-shadow:0 0 32px rgba(49,204,229,.2),inset 0 1px 0 rgba(65,210,229,.08)}
 .team-card:nth-child(1){animation-delay:.2s}.team-card:nth-child(2){animation-delay:.35s}
 .team-icon{font-size:3.5rem;margin-bottom:1vh;display:block}
 .team-number{font-size:clamp(2.5rem,4vw,3.8rem);font-weight:900;background:linear-gradient(135deg,#31CCE5,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6vh}
 .team-label{font-size:clamp(.85rem,1.2vw,1.05rem);color:rgba(255,255,255,.7);line-height:1.6;font-weight:400}
 
-/* ── Process Steps (slide 4) ── */
+/* ── Process Steps (slide 4) — KDE Glassmorphism ── */
 .steps{display:flex;gap:2.5vw;margin-top:3vh;width:100%;max-width:1100px;align-items:stretch}
-.step{flex:1;background:rgba(65,180,229,.06);border:1px solid rgba(49,204,229,.2);border-radius:16px;padding:2.5vw 1.8vw;text-align:center;position:relative;transition:all .4s ease;animation:fadeSlideUp .7s ease both}
-.step:hover{background:rgba(65,180,229,.12);border-color:#31CCE5;transform:translateY(-6px);box-shadow:0 0 24px rgba(49,204,229,.1)}
+.step{flex:1;background:rgba(61,174,234,.06);border:1.5px solid rgba(61,174,234,.2);border-radius:14px;padding:2.5vw 1.8vw;text-align:center;position:relative;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeSlideUp .7s ease both}
+.step:hover{background:rgba(61,174,234,.14);border-color:#3DAEEA;transform:translateY(-6px) scale(1.025);box-shadow:0 0 28px rgba(61,174,234,.2),inset 0 1px 0 rgba(61,174,234,.08)}
 .step:nth-child(1){animation-delay:.1s}.step:nth-child(2){animation-delay:.2s}
 .step:nth-child(3){animation-delay:.3s}.step:nth-child(4){animation-delay:.4s}
-.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2B7CD3,#3DAEEA);border:2px solid #31CCE5;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;margin:0 auto 1vh;color:#fff}
+.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#2B7CD3,#3DAEEA);border:2.5px solid rgba(49,204,229,.6);display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:800;margin:0 auto 1vh;color:#fff;box-shadow:0 0 16px rgba(49,204,229,.2)}
 .step-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:700;margin-bottom:.6vh}
 .step-desc{font-size:clamp(.78rem,1vw,.92rem);color:rgba(255,255,255,.6);line-height:1.5;font-weight:400}
 
-/* ── Why Cards (slide 7) ── */
+/* ── Why Cards (slide 7) — KDE Glassmorphism ── */
 .why-grid{display:flex;gap:2vw;margin-top:3vh;width:100%;max-width:1150px}
-.why-card{flex:1;background:rgba(65,180,229,.06);border:1px solid rgba(49,204,229,.2);border-radius:16px;padding:2.2vw 2vw;transition:all .4s ease;animation:fadeSlideUp .7s ease both}
+.why-card{flex:1;background:rgba(49,210,197,.06);border:1.5px solid rgba(49,210,197,.2);border-radius:14px;padding:2.2vw 2vw;transition:all .4s cubic-bezier(.4,0,.2,1);animation:fadeSlideUp .7s ease both}
 .why-card:nth-child(1){animation-delay:.15s}.why-card:nth-child(2){animation-delay:.3s}.why-card:nth-child(3){animation-delay:.45s}
-.why-card:hover{background:rgba(65,180,229,.12);border-color:#31CCE5;transform:translateY(-4px);box-shadow:0 0 24px rgba(49,204,229,.1)}
+.why-card:hover{background:rgba(49,210,197,.13);border-color:#49D2C5;transform:translateY(-5px) scale(1.02);box-shadow:0 0 28px rgba(49,210,197,.18),inset 0 1px 0 rgba(49,210,197,.08)}
 .why-num{font-size:clamp(.7rem,1vw,.85rem);font-weight:700;color:#31CCE5;letter-spacing:2px;margin-bottom:.8vh}
 .why-title{font-size:clamp(.9rem,1.2vw,1.05rem);font-weight:700;line-height:1.4;margin-bottom:1vh}
 .tech-tags{display:flex;flex-wrap:wrap;gap:.4vw}
-.tech-tag{background:rgba(49,204,229,.1);border:1px solid rgba(49,204,229,.25);border-radius:6px;padding:.35vh .7vw;font-size:clamp(.65rem,.85vw,.78rem);color:rgba(255,255,255,.8);font-weight:500}
+.tech-tag{background:rgba(49,204,229,.1);border:1.5px solid rgba(49,204,229,.3);border-radius:8px;padding:.35vh .7vw;font-size:clamp(.65rem,.85vw,.78rem);color:rgba(255,255,255,.8);font-weight:500;transition:all .3s ease}
+.tech-tag:hover{background:rgba(49,204,229,.18);border-color:#31CCE5;color:#fff;box-shadow:0 0 12px rgba(49,204,229,.15)}
 .why-footer{margin-top:2.5vh;text-align:center;font-size:clamp(.9rem,1.3vw,1.15rem);color:#31CCE5;font-weight:600;animation:fadeSlideUp .7s .6s ease both}
 
-/* ── Clients (slide 8) ── */
+/* ── Clients (slide 8) — KDE Glassmorphism ── */
 .clients-grid{display:flex;gap:2.5vw;margin-top:3vh;width:100%;max-width:1100px;flex-wrap:wrap;justify-content:center}
-.client-chip{background:rgba(65,180,229,.06);border:1px solid rgba(49,204,229,.2);border-radius:14px;padding:1.8vw 2.5vw;text-align:center;transition:all .4s ease;display:flex;flex-direction:column;align-items:center;gap:.8vh;animation:fadeSlideUp .7s ease both}
+.client-chip{background:rgba(49,204,229,.06);border:1.5px solid rgba(49,204,229,.18);border-radius:16px;padding:1.8vw 2.5vw;text-align:center;transition:all .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;align-items:center;gap:.8vh;animation:fadeSlideUp .7s ease both}
 .client-chip:nth-child(1){animation-delay:.1s}.client-chip:nth-child(2){animation-delay:.15s}.client-chip:nth-child(3){animation-delay:.2s}
 .client-chip:nth-child(4){animation-delay:.25s}.client-chip:nth-child(5){animation-delay:.3s}.client-chip:nth-child(6){animation-delay:.35s}
-.client-chip:hover{background:rgba(65,180,229,.12);border-color:#31CCE5;transform:translateY(-4px) scale(1.03);box-shadow:0 0 24px rgba(49,204,229,.1)}
+.client-chip:hover{background:rgba(49,204,229,.14);border-color:#31CCE5;transform:translateY(-5px) scale(1.04);box-shadow:0 0 28px rgba(49,204,229,.18),inset 0 1px 0 rgba(49,204,229,.08)}
 .client-icon{font-size:2.8rem;display:block}
 .client-name{font-size:clamp(1rem,1.5vw,1.3rem);font-weight:700;color:#fff}
 .client-sector{font-size:clamp(.75rem,.95vw,.88rem);color:rgba(255,255,255,.55);font-weight:400}
@@ -138,25 +139,25 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Breeze Sans','Ubun
 .about-feat-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:700;margin-bottom:.5vh;color:#fff}
 .about-feat-desc{font-size:clamp(.8rem,1vw,.92rem);color:rgba(255,255,255,.6);line-height:1.5;font-weight:400}
 
-/* ── Fullscreen button ── */
-.fs-btn{position:fixed;top:2vh;left:3vw;z-index:100;display:flex;align-items:center;gap:.6vw;background:rgba(49,204,229,.08);border:1.5px solid rgba(49,204,229,.2);border-radius:10px;padding:.7vh 1.4vw;cursor:pointer;color:#fff;font-family:'Breeze Sans','Ubuntu','Noto Sans','Cantarell','Segoe UI',sans-serif;font-size:.82rem;font-weight:500;letter-spacing:1px;transition:all .3s ease;backdrop-filter:blur(10px);white-space:nowrap}
-.fs-btn:hover{background:rgba(49,204,229,.16);border-color:#31CCE5;color:#fff;box-shadow:0 0 16px rgba(49,204,229,.15)}
-.fs-icon{font-size:1.1rem;display:flex;align-items:center;line-height:1}
+/* ── Fullscreen button — KDE Glassmorphism ── */
+.fs-btn{position:fixed;top:2vh;left:3vw;z-index:100;display:flex;align-items:center;gap:.6vw;background:rgba(49,204,229,.1);border:1.5px solid rgba(49,204,229,.25);border-radius:12px;padding:.7vh 1.4vw;cursor:pointer;color:#fff;font-family:'Breeze Sans','Ubuntu','Noto Sans','Cantarell','Segoe UI',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:1px;transition:all .35s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(14px) saturate(1.3);white-space:nowrap}
+.fs-btn:hover{background:rgba(49,204,229,.18);border-color:#31CCE5;color:#fff;box-shadow:0 0 24px rgba(49,204,229,.2)}
 
-/* ── Navigation ── */
+/* ── Navigation — KDE Dots & Arrows ── */
 .nav-bar{position:fixed;bottom:2vh;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:1vw;z-index:100}
-.dot{width:12px;height:12px;border-radius:50%;background:rgba(49,204,229,.15);border:1.5px solid rgba(49,204,229,.3);cursor:pointer;transition:all .4s ease}
-.dot.active{background:#31CCE5;border-color:#31CCE5;width:36px;border-radius:6px;box-shadow:0 0 12px rgba(49,204,229,.4)}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(49,204,229,.12);border:1.5px solid rgba(49,204,229,.25);cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.dot.active{background:#31CCE5;border-color:#31CCE5;width:38px;border-radius:6px;box-shadow:0 0 18px rgba(49,204,229,.5)}
+
 .nav-arrows{position:fixed;top:50%;width:100%;display:flex;justify-content:space-between;padding:0 2vw;z-index:100;transform:translateY(-50%);pointer-events:none}
-.arrow{pointer-events:auto;width:56px;height:56px;border-radius:50%;background:rgba(49,204,229,.08);border:1.5px solid rgba(49,204,229,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease;color:#fff;font-size:1.4rem}
-.arrow:hover{background:rgba(49,204,229,.16);border-color:#31CCE5;box-shadow:0 0 16px rgba(49,204,229,.15)}
+.arrow{pointer-events:auto;width:56px;height:56px;border-radius:50%;background:rgba(49,204,229,.08);border:1.5px solid rgba(49,204,229,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);color:#fff;font-size:1.4rem}
+.arrow:hover{background:rgba(49,204,229,.18);border-color:#31CCE5;box-shadow:0 0 20px rgba(49,204,229,.2),inset 0 0 12px rgba(49,204,229,.06)}
 
 /* ── Slide counter ── */
-.slide-counter{position:fixed;top:2vh;right:3vw;z-index:100;font-size:.85rem;color:rgba(49,204,229,.5);font-weight:400;letter-spacing:2px}
+.slide-counter{position:fixed;top:2vh;right:3vw;z-index:100;font-size:.85rem;color:rgba(49,204,229,.5);font-weight:500;letter-spacing:2px}
 
-/* ── Logo placeholder (slide 1) ── */
-.logo-mark{width:90px;height:90px;border-radius:20px;background:linear-gradient(135deg,#2B7CD3,#3DAEEA);border:2px solid rgba(49,204,229,.3);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;margin-bottom:2.5vh;color:#fff;animation:fadeSlideDown .8s ease both,glow 3s ease-in-out infinite alternate}
-@keyframes glow{0%{box-shadow:0 0 20px rgba(49,204,229,.15)}100%{box-shadow:0 0 40px rgba(49,204,229,.3)}}
+/* ── Logo mark (slide 1) — KDE gradient + cyan glow ── */
+.logo-mark{width:96px;height:96px;border-radius:22px;background:linear-gradient(135deg,#3DAEEA,#2B7CD3);border:2.5px solid rgba(49,204,229,.35);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:900;margin-bottom:2.5vh;color:#fff;animation:fadeSlideDown .8s ease both,logoGlow 3s ease-in-out infinite alternate}
+@keyframes logoGlow{0%{box-shadow:0 0 24px rgba(49,204,229,.18),0 0 60px rgba(61,174,234,.08)}100%{box-shadow:0 0 48px rgba(49,204,229,.35),0 0 100px rgba(61,174,234,.12)}}
 
 /* ── Animations ── */
 @keyframes fadeSlideDown{from{opacity:0;transform:translateY(-25px)}to{opacity:1;transform:translateY(0)}}

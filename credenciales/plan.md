@@ -29,7 +29,7 @@ Cambiar toda la paleta del CSS a los colores oficiales Breeze:
 - Body text: font-weight 400 (no 300), más legible
 - Actualizar gradientes de texto en títulos a `#fff → #31CCE5`
 
-### [ ] 4. Rediseñar cards con glassmorphism KDE (opacidad marcada)
+### [x] 4. Rediseñar cards con glassmorphism KDE (opacidad marcada)
 - Todos los componentes tipo card/step/chip/why-card/team-card:
   - Background: `rgba(65, 180, 229, 0.06)` base
   - Border: `1px solid rgba(49, 204, 229, 0.2)`
@@ -37,35 +37,35 @@ Cambiar toda la paleta del CSS a los colores oficiales Breeze:
   - Hover: background sube a `rgba(65, 180, 229, 0.12)`, border a `rgba(49, 204, 229, 0.35)`
 - Agregar un glow sutil azul-cian en hover: box-shadow con rgba(49, 204, 229, 0.15)
 
-### [ ] 5. Rediseñar elementos decorativos (blur orbs, grid, particles)
+### [x] 5. Rediseñar elementos decorativos (blur orbs, grid, particles)
 - Blur orbs (::before): cambiar color a `#31CCE5` y `#3DAEEA`, aumentar opacidad de 0.12 a 0.18
 - Grid overlay: líneas a color cian con rgba(49, 204, 229, 0.06) — más visible pero sutil
 - Particles: color cambia de azul apagado a `rgba(49, 204, 229, 0.35)` — partículas cian brillantes
 
-### [ ] 6. Rediseñar navegación (dots, arrows, fullscreen button, counter)
+### [x] 6. Rediseñar navegación (dots, arrows, fullscreen button, counter)
 - Dots: fondo rgba(49, 204, 229, 0.15), activo color `#31CCE5` con glow
 - Arrow buttons: background rgba(49, 204, 229, 0.08), border rgba(49, 204, 229, 0.2)
 - Fullscreen button: glassmorphism KDE, fondo rgba(65, 180, 229, 0.1), backdrop-blur
 - Slide counter: color `rgba(49, 204, 229, 0.5)`
 
-### [ ] 7. Rediseñar logo mark y divider elements
+### [x] 7. Rediseñar logo mark y divider elements
 - Logo mark (slide 1): gradiente KDE de fondo `#3DAEEA → #2B7CD3`, border cian con glow
 - Glow animation: cambiar a color cian `rgba(49, 204, 229, ...)` 
 - Dividers/speed lines: gradiente `#49D2C5 → #31CCE5` (cyan → azul KDE)
 
-### [ ] 8. Rediseñar tech tags y elementos inline
+### [x] 8. Rediseñar tech tags y elementos inline
 - Tech tag pills: fondo rgba(49, 204, 229, 0.1), border `rgba(49, 204, 229, 0.25)`
 - Color de texto: `rgba(255, 255, 255, 0.8)`
 - Step numbers (círculos): gradiente KDE `#2B7CD3 → #3DAEEA`, border cian
 
-### [ ] 9. Testing visual en todas las slides
+### [x] 9. Testing visual en todas las slides
 - Abrir presentacion.html en navegador
 - Verificar cada slide (9 total) con el nuevo estilo KDE
 - Confirmar transiciones entre slides se ven coherentes
 - Validar responsive en mobile (768px breakpoint)
 - Probar navegación: flechas, dots, teclado, touch swipe
 
-### [ ] 10. Refinamiento final y optimización
+### [x] 10. Refinamiento final y optimización
 - Revisar que no queden colores antiguos (3A5F8A, 5B85B5, 7BA3D0, 294172)
 - Verificar contraste suficiente para accesibilidad
 - Smooth transitions entre modos de hover en todos los elementos interactivos
