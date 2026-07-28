@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de Alianza Estratégica | Librixsoft × [EMPRESA]</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8b0f0f;
+            --primary-light: #a51a1a;
+            --text-dark: #1a1a1a;
+            --text-muted: #58585b;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff; /* Background is white now as sections provide color */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Core Layout Component */
+        .content-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* Hero Section - Full Width Background */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin: 0;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        .hero .partner {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--primary);
+            margin: 25px 0;
+            font-weight: 600;
+        }
+
+        .hero p.subtitle {
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 25px auto 0;
+        }
+
+        .hero .meta {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Insights Section - Full Width Background */
+        .insights-section {
+            background-color: var(--bg-light);
+            padding: 60px 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+            color: var(--text-dark);
+        }
+
+        /* Standard Sections */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        /* Content Styles */
+        blockquote {
+            background: #fdf2f2;
+            border-left: 5px solid var(--primary);
+            padding: 30px;
+            margin: 35px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        blockquote p {
+            margin-bottom: 15px;
+        }
+
+        blockquote p:last-child { margin-bottom: 0; }
+
+        strong { color: var(--text-dark); }
+
+        /* Comparison Table */
+        .comparison-wrapper {
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 600px; /* Ensures it doesn't squash too much on small screens */
+        }
+
+        th {
+            background: #f8f9fa;
+            color: var(--primary);
+            padding: 20px;
+            text-align: center;
+            font-weight: 700;
+            border: 1px solid #dee2e6;
+        }
+
+        td {
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+
+        .col-center { text-align: center; }
+
+        /* List Styles (Checkmarks) */
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: var(--radius);
+        }
+
+        .benefit-icon {
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content strong {
+            display: block;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        /* Service List Grid */
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .service-item {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .service-item::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 12px;
+        }
+
+        /* Footer / Quote */
+        footer {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .quote-container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        footer blockquote {
+            font-style: italic;
+            border: none;
+            background: transparent;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: var(--text-muted);
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .signature a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            section { padding: 50px 0; }
+            .benefit-list { grid-template-columns: 1fr; }
+            .hero { padding: 60px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="content-inner">
+            <h1>Propuesta de Alianza Estratégica</h1>
+            <div class="partner">LIBRIXSOFT &times; [EMPRESA]</div>
+            <p class="subtitle">Ampliar la cartera de servicios Enterprise Services: capturando el valor completo del ciclo digital de sus clientes.</p>
+            <div class="meta">Preparado por Librixsoft | Julio 2026</div>
+        </div>
+    </header>
+
+    <!-- INSIGHTS (Full Width BG) -->
+    <div class="insights-section">
+        <div class="content-inner insights-grid">
+            <div class="card">
+                <h3>Su Fortaleza Hoy</h3>
+                <p>SEO y marketing digital sobre plataformas.</p>
+            </div>
+            <div class="card">
+                <h3>La Brecha</h3>
+                <p>Sus clientes enterprise ya confían en usted, pero el valor del desarrollo a medida se queda en la mesa.</p>
+            </div>
+            <div class="card">
+                <h3>La Oportunidad</h3>
+                <p>Sumar a Librixsoft como brazo técnico y vender high-ticket sin perder la relación comercial.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section>
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Auditoría Técnica: Diagnóstico de Infraestructura</h2>
+            </div>
+            <p>Actualmente, su ecosistema digital está construido sobre WordPress con Elementor (v4.1.4). Desde un punto de vista técnico, observamos lo siguiente:</p>
+            <blockquote>
+                <p><strong style="color: var(--primary);">■ Estado actual:</strong> uso de rutas tradicionales de gestión de contenidos y un enfoque de renderizado del lado del servidor.</p>
+                <p><strong style="color: var(--primary);">■ La realidad técnica:</strong> WordPress es una plataforma prefabricada, ideal para la agilidad de marketing, pero sin la estructura necesaria para soportar alta demanda transaccional o procesos críticos de negocio.</p>
+                <p><strong style="color: var(--primary);">■ Oportunidad de mercado:</strong> existe una brecha significativa entre las soluciones prefabricadas y los estándares que exigen los grandes corporativos. El mercado demanda plataformas robustas, estilo core bancario, con frameworks modernos y arquitecturas personalizadas.</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section style="background-color: var(--bg-light);">
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">Nuestra Propuesta de Valor</h2>
+            </div>
+            <p>Otras agencias de marketing líderes ya están evolucionando su modelo integrando fábricas de software como su frente de ingeniería. Librixsoft se integra como el brazo técnico para ejecutar plataformas de alta complejidad:</p>
+            <blockquote>
+                <p><strong style="color: var(--primary);">■ De lo prefabricado a lo personalizado:</strong> las plataformas que desarrollamos en Librixsoft son activos de alto valor, que justifican inversiones muy por encima del ticket promedio de una agencia convencional.</p>
+                <p><strong style="color: var(--primary);">■ Compliance y seguridad:</strong> implementamos estándares de grado bancario para competir por cuentas corporativas que requieren niveles de seguridad superiores.</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section>
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Lo que cambia para su agencia: Antes vs. Después</h2>
+            </div>
+            <div class="comparison-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MODELO ACTUAL</th>
+                            <th>MODELO PROPUESTO — ENTERPRISE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-center">Plataforma prefabricada, de bajo costo de mantenimiento.</td>
+                            <td class="col-center">Software a medida, arquitectura propia de alto valor.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-center">Ticket promedio baja complejidad.</td>
+                            <td class="col-center">Ticket enterprise, comparable a inversiones de core bancario.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-center">Servicio de SEO y marketing.</td>
+                            <td class="col-center">Portafolio ampliado: desarrollo, seguridad, cloud e infraestructura, DevOps.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-center">El cliente busca otro proveedor para lo técnico y ese valor se pierde.</td>
+                            <td class="col-center">Su agencia retiene la cuenta completa y factura ambos frentes.</td>
+                        </tr>
+                        <tr>
+                            <td class="col-center">Techo de crecimiento definido por el modelo prefabricado.</td>
+                            <td class="col-center">Escalamiento a cuentas corporativas con exigencias de compliance.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section style="background-color: var(--bg-light);">
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Modelo de Colaboración: Piloto de Crecimiento</h2>
+            </div>
+            <p>Proponemos un modelo de Alianza de Valor Recíproco:</p>
+            <blockquote>
+                <p><strong style="color: var(--primary);">■ Intercambio de servicios (fase piloto):</strong> para este primer proyecto, proponemos un intercambio directo de capacidades para validar la capacidad operativa sin fricción financiera inicial.</p>
+                <p><strong style="color: var(--primary);">■ Objetivo:</strong> demostrar el impacto directo en la mejora de la conversión y la robustidad técnica para su cliente.</p>
+                <p><strong style="color: var(--primary);">■ Evolución:</strong> una vez validado, transitaremos a un esquema de mutuo acuerdo o NDA por proyecto.</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- SECTION 5 (BENEFITS) -->
+    <section>
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Beneficios de la Alianza</h2>
+            </div>
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <div class="benefit-content">
+                        <strong>Multiplicación de rentabilidad</strong>
+                        <p>Escalar el ingreso por proyecto muy por encima del ticket promedio tradicional.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <div class="benefit-content">
+                        <strong>Expansión real de portafolio</strong>
+                        <p>Apps mobile, digital banking, infraestructura cloud y ciberseguridad.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <div class="benefit-content">
+                        <strong>Retención de cuentas grandes</strong>
+                        <p>Deje de ser solo un proveedor de marketing para ser el socio integral del negocio.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✓</span>
+                    <div class="benefit-content">
+                        <strong>Cero riesgo operativo</strong>
+                        <p>Librixsoft asume la responsabilidad técnica total. Usted no necesita contratar equipo propio.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5.1 (SERVICES) -->
+    <section style="background-color: var(--bg-light);">
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">5.1</div>
+                <h2 class="section-title">Nueva Cartera de Servicios High-Ticket</h2>
+            </div>
+            <p>Incorporación inmediata de soluciones de ingeniería avanzada a su catálogo:</p>
+            <ul class="service-list">
+                <li class="service-item">Desarrollo de plataformas web enterprise</li>
+                <li class="service-item">Desarrollo de aplicaciones mobile</li>
+                <li class="service-item">Software a medida</li>
+                <li class="service-item">Wallets digitales & Digital Banking</li>
+                <li class="service-item">Migración de sistemas legacy</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECTION 6 (MODELS) -->
+    <section>
+        <div class="content-inner">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">Esquema de Colaboración Comercial</h2>
+            </div>
+            <p>Estamos abiertos a estructurar la relación según su estrategia comercial:</p>
+            <div class="comparison-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Modelo de Subcontratación</th>
+                            <th>Modelo de Comisión por Referencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ustedes facturan directamente al cliente final, integrando a Librixsoft como su brazo técnico especializado.</td>
+                            <td>Ustedes refieren al cliente a Librixsoft y reciben una comisión por cada proyecto cerrado.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="content-inner">
+            <div class="quote-container">
+                <blockquote>
+                    “El mercado está evolucionando hacia modelos de integración total. Mientras WordPress es el punto de entrada para servicios básicos, las plataformas Enterprise son el destino donde reside la mayor rentabilidad.”
+                </blockquote>
+            </div>
+            <div class="signature">
+                <strong>Aníbal Gómez</strong><br>
+                Líder de Desarrollo | <a href="mailto:anibal@librixsoft.com">anibal@librixsoft.com</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
