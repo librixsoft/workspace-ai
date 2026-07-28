@@ -25,8 +25,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-5{background:linear-gradient(180deg,#0F172A 0%,#1E3A5F 100%);text-align:center}
 .slide-6{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
 .slide-7{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
-.slide-8{background:linear-gradient(140deg,#0F172A 0%,#1E3A5F 50%,#3B82F6 100%)}
-.slide-9{background:linear-gradient(170deg,#0F172A 0%,#2563EB 100%);text-align:center}
+.slide-8{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
+.slide-9{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%);text-align:center}
 
 /* ── Layered Backgrounds (KDE Plasma style) — radial overlays azules sutiles + patrón geométrico GNOME-like ── */
 .slide::after{content:'';position:absolute;inset:0;z-index:-1}
@@ -37,8 +37,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-5::after{background:radial-gradient(ellipse at 60% 40%,rgba(96,165,250,.03),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-6::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 .slide-7::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
-.slide-8::after{background:radial-gradient(ellipse at 55% 65%,rgba(79,70,229,.04),transparent 50%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
-.slide-9::after{background:radial-gradient(ellipse at 80% 90%,rgba(37,99,235,.06),transparent 65%),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px)}
+.slide-8::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-9::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
 
 /* ── Decorative Elements — KDE Blur Orbs (azules corporativos, muy sutiles) con flotación sutil ── */
 @keyframes orbFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-12px)}50%{transform:translate(-8px,-6px)}75%{transform:translate(-10px,10px)}}
@@ -50,8 +50,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .slide-5::before{width:300px;height:300px;background:#93C5FD;bottom:-10%;left:10%}
 .slide-6::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
 .slide-7::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
-.slide-8::before{width:420px;height:420px;background:#3B82F6;bottom:-8%;left:8%}
-.slide-9::before{width:650px;height:650px;background:#2563EB;top:-12%;right:-10%}
+.slide-8::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+.slide-9::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
 
 /* Grid overlay — casi invisible */
 .grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
@@ -147,21 +147,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 .why-techs{display:flex;flex-wrap:wrap;gap:.4vw;justify-content:center}
 .why-tech{font-size:clamp(.72rem,.88vw,.82rem);color:rgba(96,165,250,.85);font-weight:500;padding:.25vh .5vw;background:none;border:none}
 
-/* ── Clients (slide 8) — KDE Plasma Glassmorphism White ── */
-.clients-grid{display:flex;gap:2.5vw;margin-top:3vh;width:100%;max-width:1100px;flex-wrap:wrap;justify-content:center}
-.client-chip{background:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:32px;text-align:center;backdrop-filter:blur(32px) saturate(1.1);transition:all .4s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;align-items:center;gap:.8vh;animation:fadeSlideUp .7s ease both}
-.client-chip:nth-child(1){animation-delay:.1s}.client-chip:nth-child(2){animation-delay:.15s}.client-chip:nth-child(3){animation-delay:.2s}
-.client-chip:nth-child(4){animation-delay:.25s}.client-chip:nth-child(5){animation-delay:.3s}.client-chip:nth-child(6){animation-delay:.35s}
-.client-chip:hover{background:rgba(255,255,255,.88);border-color:#FFFFFF;transform:translateY(-4px) scale(1.04);box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 0 1px rgba(59,130,246,.1)}
-.client-icon{font-size:2.8rem;display:block}
-.client-name{font-size:clamp(1rem,1.5vw,1.3rem);font-weight:600;color:#0F172A}
-.client-sector{font-size:clamp(.75rem,.95vw,.88rem);color:rgba(15,23,42,.6);font-weight:400}
+/* ── Clients (slide 8) — Minimalist on dark bg ── */
+.clients-grid{display:flex;gap:3vw;width:100%;max-width:1100px;margin-top:2vh}
+.client-chip{text-align:center;flex:1;background:none;border:none;padding:0;display:flex;flex-direction:column;align-items:center;transition:none;animation:fadeSlideUp .7s ease both}
+.client-chip:nth-child(1){animation-delay:.1s}.client-chip:nth-child(2){animation-delay:.2s}.client-chip:nth-child(3){animation-delay:.3s}
+.client-chip:nth-child(4){animation-delay:.4s}.client-chip:nth-child(5){animation-delay:.5s}.client-chip:nth-child(6){animation-delay:.6s}
+.client-icon{font-size:2.2rem;margin-bottom:.5vh;display:block;filter:grayscale(.3)}
+.client-name{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:600;color:#fff;margin-bottom:.4vh}
+.client-sector{font-size:clamp(.78rem,.92vw,.88rem);color:rgba(255,255,255,.5);font-weight:400}
 
 /* ── CTA (slide 9) ── */
-.cta-title{font-size:clamp(2.5rem,5.5vw,5rem);font-weight:600;letter-spacing:-0.02em;background:linear-gradient(135deg,#fff,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5vh;animation:fadeSlideDown .8s ease both}
-.cta-subtitle{font-size:clamp(1.2rem,2vw,1.8rem);font-weight:400;color:rgba(255,255,255,.7);margin-bottom:3vh;animation:fadeSlideDown .8s .2s ease both}
+.cta-title{font-size:clamp(2.5rem,5.5vw,5rem);font-weight:600;letter-spacing:-.02em;color:#fff;margin-bottom:1.5vh;animation:fadeSlideDown .8s ease both}
+.cta-subtitle{font-size:clamp(1.1rem,2vw,1.7rem);font-weight:400;color:rgba(255,255,255,.65);margin-bottom:3vh;animation:fadeSlideDown .8s .2s ease both}
 .contact-list{display:flex;gap:4vw;margin-top:1vh;flex-wrap:wrap;justify-content:center;animation:fadeSlideUp .8s .4s ease both}
-.contact-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6vh}
+.contact-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6vh;background:none;border:none;padding:0}
 .contact-icon{font-size:2rem;display:block}
 .contact-label{font-size:.75rem;font-weight:500;color:#93C5FD;letter-spacing:.05em;text-transform:uppercase}
 .contact-value{font-size:clamp(1rem,1.4vw,1.3rem);color:#fff;font-weight:400;text-decoration:none}
@@ -384,8 +383,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
   <div class="grid-overlay"></div>
   <div class="particles" id="p7"></div>
   <span class="slide-tag">Trayectoria</span>
-  <h1 class="slide-title">Expertise</h1>
-  <p class="slide-subtitle">Experiencia. Presencia real en banca, seguros, fintech e industria.</p>
+  <h1 class="slide-title">Clientes</h1>
+  <p class="slide-subtitle">Experiencia real en banca, seguros, fintech e industria.</p>
   <div class="clients-grid">
     <div class="client-chip">
       <span class="client-icon">🏦</span>
@@ -424,9 +423,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-
 <div class="slide slide-9" data-slide="8">
   <div class="grid-overlay"></div>
   <div class="particles" id="p8"></div>
-  <h1 class="cta-title">¿LISTO PARA<br>EMPEZAR?</h1>
+  <h1 class="cta-title">¿LISTO PARA EMPEZAR?</h1>
   <p class="cta-subtitle">Construyamos algo que no falle.</p>
-  <div style="width:60px;height:3px;background:linear-gradient(90deg,#60A5FA,#3B82F6);border-radius:2px;margin-bottom:3vh;animation:fadeSlideUp .8s .3s ease both"></div>
   <div class="contact-list">
     <div class="contact-item">
       <span class="contact-icon">🌐</span>
