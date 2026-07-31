@@ -6,197 +6,224 @@
     <title>Propuesta de Alianza Estratégica | Librixsoft × [EMPRESA]</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8b0f0f;
-            --primary-light: #a51a1a;
-            --text-dark: #1a1a1a;
-            --text-muted: #58585b;
-            --bg-light: #f8f9fa;
+            --blue-800: #1a2e5e;
+            --blue-700: #1e3a6e;
+            --blue-600: #243f78;
+            --text-primary: #0d1b2a;
+            --text-secondary: #374151;
+            --text-muted: #6b7280;
             --white: #ffffff;
-            --shadow: 0 4px 20px rgba(0,0,0,0.08);
-            --radius: 12px;
+            --border-light: #e5e7eb;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: #ffffff; /* Background is white now as sections provide color */
-            margin: 0;
-            padding: 0;
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Core Layout Component */
         .content-inner {
-            max-width: 1000px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 0 25px;
+            padding: 0 32px;
         }
 
-        /* Hero Section - Full Width Background */
+        /* ── HERO ── */
         .hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-            color: var(--white);
-            padding: 100px 0;
+            background-color: var(--white);
+            color: var(--text-primary);
+            padding: 100px 0 80px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin: 0;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
+            font-size: clamp(2.5rem, 6vw, 3.8rem);
+            margin: 0 0 24px;
+            letter-spacing: -0.03em;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .hero .accent-line {
+            width: 60px;
+            height: 3px;
+            background-color: var(--blue-600);
+            margin: 0 auto 32px;
         }
 
         .hero .partner {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--primary);
-            margin: 25px 0;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            margin: 0 auto 20px;
             font-weight: 600;
+            color: var(--blue-700);
+            letter-spacing: 0.08em;
         }
 
         .hero p.subtitle {
-            font-style: italic;
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 25px auto 0;
+            font-size: clamp(1.15rem, 2.3vw, 1.35rem);
+            max-width: 640px;
+            margin: 0 auto 36px;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
         .hero .meta {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            opacity: 0.6;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
         }
 
-        /* Insights Section - Full Width Background */
+        /* ── INSIGHTS BAR ── */
         .insights-section {
-            background-color: var(--bg-light);
-            padding: 60px 0;
+            background-color: var(--white);
+            padding: 64px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
         }
 
         .insights-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0;
         }
 
         .card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border-top: 5px solid var(--primary);
-            transition: transform 0.3s ease;
+            padding: 32px 28px;
+            border-right: 1px solid var(--border-light);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+        .card:last-child { border-right: none; }
 
         .card h3 {
-            font-size: 1rem;
-            color: var(--primary);
+            font-size: 0.82rem;
+            color: var(--blue-600);
             margin-top: 0;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            font-weight: 600;
         }
 
         .card p {
             font-size: 1rem;
-            margin-bottom: 0;
-            color: var(--text-dark);
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
-        /* Standard Sections */
+        /* ── SECTIONS ── */
         section {
-            padding: 80px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 72px 0;
+            border-bottom: 1px solid var(--border-light);
         }
+
+        section:last-of-type { border-bottom: none; }
 
         .section-header {
             display: flex;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .section-number {
-            background: var(--primary);
+            background-color: var(--blue-600);
             color: var(--white);
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 20px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-right: 16px;
             flex-shrink: 0;
+            font-size: 1rem;
         }
 
         .section-title {
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
+            font-size: clamp(1.4rem, 3.2vw, 1.8rem);
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--text-primary);
             margin: 0;
+            letter-spacing: -0.02em;
         }
 
-        /* Content Styles */
+        /* ── BODY TEXT ── */
+        section p {
+            font-size: 1.08rem;
+            color: var(--text-secondary);
+            max-width: 780px;
+            margin-bottom: 24px;
+        }
+
+        strong { color: var(--text-primary); font-weight: 600; }
+
+        /* ── BLOCKQUOTE ── */
         blockquote {
-            background: #fdf2f2;
-            border-left: 5px solid var(--primary);
-            padding: 30px;
-            margin: 35px 0;
-            border-radius: 0 var(--radius) var(--radius) 0;
+            border-left: 2px solid var(--blue-700);
+            padding: 20px 28px;
+            margin: 28px 0;
+            background-color: var(--white);
         }
 
         blockquote p {
-            margin-bottom: 15px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.7;
         }
 
         blockquote p:last-child { margin-bottom: 0; }
 
-        strong { color: var(--text-dark); }
-
-        /* Comparison Table */
+        /* ── TABLES ── */
         .comparison-wrapper {
             overflow-x: auto;
-            margin: 40px 0;
+            margin: 32px 0;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             background: var(--white);
-            min-width: 600px; /* Ensures it doesn't squash too much on small screens */
+            min-width: 580px;
         }
 
         th {
-            background: #f8f9fa;
-            color: var(--primary);
-            padding: 20px;
+            background-color: var(--blue-600);
+            color: var(--white);
+            padding: 16px 24px;
             text-align: center;
-            font-weight: 700;
-            border: 1px solid #dee2e6;
+            font-weight: 600;
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
 
         td {
-            padding: 20px;
-            border: 1px solid #dee2e6;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-light);
             vertical-align: top;
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
+
+        tr:last-child td { border-bottom: none; }
 
         .col-center { text-align: center; }
 
-        /* List Styles (Checkmarks) */
+        /* ── BENEFIT LIST ── */
         .benefit-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
             padding: 0;
             list-style: none;
         }
@@ -204,91 +231,125 @@
         .benefit-item {
             display: flex;
             align-items: flex-start;
-            background: var(--bg-light);
-            padding: 25px;
-            border-radius: var(--radius);
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 24px;
+            border-radius: 6px;
         }
 
         .benefit-icon {
-            color: #28a745;
-            font-weight: bold;
-            margin-right: 15px;
-            font-size: 1.2rem;
+            color: var(--blue-600);
+            font-weight: 700;
+            margin-right: 14px;
+            font-size: 1rem;
             flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--blue-700);
+            border-radius: 50%;
         }
 
         .benefit-content strong {
             display: block;
-            font-size: 1.15rem;
-            margin-bottom: 6px;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
         }
 
-        /* Service List Grid */
+        .benefit-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── SERVICE LIST ── */
         .service-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
             padding: 0;
             list-style: none;
         }
 
         .service-item {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 15px 20px;
-            border-radius: 8px;
+            background-color: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 16px 22px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
 
         .service-item::before {
             content: "✓";
-            color: var(--primary);
-            font-weight: bold;
-            margin-right: 12px;
+            color: var(--blue-600);
+            font-weight: 700;
+            margin-right: 14px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid var(--blue-700);
+            border-radius: 50%;
+            font-size: 0.82rem;
+            flex-shrink: 0;
         }
 
-        /* Footer / Quote */
+        /* ── FOOTER ── */
         footer {
-            background: #f8f9fa;
-            padding: 80px 0;
+            background-color: var(--white);
+            padding: 48px 0;
             text-align: center;
-            border-top: 1px solid #eee;
         }
 
         .quote-container {
-            max-width: 750px;
-            margin: 0 auto;
+            max-width: 720px;
+            margin: 0 auto 24px;
         }
 
         footer blockquote {
             font-style: italic;
-            border: none;
-            background: transparent;
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            color: var(--text-muted);
+            border-left: 2px solid var(--blue-700);
+            background-color: transparent;
+            padding: 0 0 0 28px;
+            font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+            color: var(--text-secondary);
             margin: 0 auto;
-            padding: 0;
+            line-height: 1.8;
+        }
+
+        .divider-footer {
+            width: 40px;
+            height: 2px;
+            background-color: var(--blue-600);
+            margin: 16px auto;
         }
 
         .signature {
-            margin-top: 40px;
             font-size: 1rem;
-            color: var(--text-dark);
+            color: var(--text-secondary);
         }
 
         .signature a {
-            color: var(--primary);
+            color: var(--blue-600);
             text-decoration: none;
             font-weight: 600;
         }
 
-        /* Responsive Adjustments */
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            section { padding: 50px 0; }
+            section { padding: 48px 0; }
+            .hero { padding: 72px 0 56px; }
+            .insights-section { padding: 48px 0; }
+            .card { border-right: none; border-bottom: 1px solid var(--border-light); }
+            .card:last-child { border-bottom: none; }
             .benefit-list { grid-template-columns: 1fr; }
-            .hero { padding: 60px 0; }
         }
     </style>
 </head>
@@ -297,14 +358,16 @@
     <!-- HERO -->
     <header class="hero">
         <div class="content-inner">
+            <img src="logo.png" alt="Librixsoft Logo" style="max-width:220px;height:auto;margin-bottom:36px;">
             <h1>Propuesta de Alianza Estratégica</h1>
-            <div class="partner">LIBRIXSOFT &times; [EMPRESA]</div>
+            <div class="accent-line"></div>
+            <div class="partner">LIBRIXSOFT × [EMPRESA]</div>
             <p class="subtitle">Ampliar la cartera de servicios Enterprise Services: capturando el valor completo del ciclo digital de sus clientes.</p>
-            <div class="meta">Preparado por Librixsoft | Julio 2026</div>
+            <div class="meta">Preparado por Librixsoft · Julio 2026</div>
         </div>
     </header>
 
-    <!-- INSIGHTS (Full Width BG) -->
+    <!-- INSIGHTS -->
     <div class="insights-section">
         <div class="content-inner insights-grid">
             <div class="card">
@@ -331,15 +394,15 @@
             </div>
             <p>Actualmente, su ecosistema digital está construido sobre WordPress con Elementor (v4.1.4). Desde un punto de vista técnico, observamos lo siguiente:</p>
             <blockquote>
-                <p><strong style="color: var(--primary);">■ Estado actual:</strong> uso de rutas tradicionales de gestión de contenidos y un enfoque de renderizado del lado del servidor.</p>
-                <p><strong style="color: var(--primary);">■ La realidad técnica:</strong> WordPress es una plataforma prefabricada, ideal para la agilidad de marketing, pero sin la estructura necesaria para soportar alta demanda transaccional o procesos críticos de negocio.</p>
-                <p><strong style="color: var(--primary);">■ Oportunidad de mercado:</strong> existe una brecha significativa entre las soluciones prefabricadas y los estándares que exigen los grandes corporativos. El mercado demanda plataformas robustas, estilo core bancario, con frameworks modernos y arquitecturas personalizadas.</p>
+                <p><strong style="color: var(--blue-700);">■ Estado actual:</strong> uso de rutas tradicionales de gestión de contenidos y un enfoque de renderizado del lado del servidor.</p>
+                <p><strong style="color: var(--blue-700);">■ La realidad técnica:</strong> WordPress es una plataforma prefabricada, ideal para la agilidad de marketing, pero sin la estructura necesaria para soportar alta demanda transaccional o procesos críticos de negocio.</p>
+                <p><strong style="color: var(--blue-700);">■ Oportunidad de mercado:</strong> existe una brecha significativa entre las soluciones prefabricadas y los estándares que exigen los grandes corporativos. El mercado demanda plataformas robustas, estilo core bancario, con frameworks modernos y arquitecturas personalizadas.</p>
             </blockquote>
         </div>
     </section>
 
     <!-- SECTION 2 -->
-    <section style="background-color: var(--bg-light);">
+    <section>
         <div class="content-inner">
             <div class="section-header">
                 <div class="section-number">2</div>
@@ -347,8 +410,8 @@
             </div>
             <p>Otras agencias de marketing líderes ya están evolucionando su modelo integrando fábricas de software como su frente de ingeniería. Librixsoft se integra como el brazo técnico para ejecutar plataformas de alta complejidad:</p>
             <blockquote>
-                <p><strong style="color: var(--primary);">■ De lo prefabricado a lo personalizado:</strong> las plataformas que desarrollamos en Librixsoft son activos de alto valor, que justifican inversiones muy por encima del ticket promedio de una agencia convencional.</p>
-                <p><strong style="color: var(--primary);">■ Compliance y seguridad:</strong> implementamos estándares de grado bancario para competir por cuentas corporativas que requieren niveles de seguridad superiores.</p>
+                <p><strong style="color: var(--blue-700);">■ De lo prefabricado a lo personalizado:</strong> las plataformas que desarrollamos en Librixsoft son activos de alto valor, que justifican inversiones muy por encima del ticket promedio de una agencia convencional.</p>
+                <p><strong style="color: var(--blue-700);">■ Compliance y seguridad:</strong> implementamos estándares de grado bancario para competir por cuentas corporativas que requieren niveles de seguridad superiores.</p>
             </blockquote>
         </div>
     </section>
@@ -396,7 +459,7 @@
     </section>
 
     <!-- SECTION 4 -->
-    <section style="background-color: var(--bg-light);">
+    <section>
         <div class="content-inner">
             <div class="section-header">
                 <div class="section-number">4</div>
@@ -404,14 +467,14 @@
             </div>
             <p>Proponemos un modelo de Alianza de Valor Recíproco:</p>
             <blockquote>
-                <p><strong style="color: var(--primary);">■ Intercambio de servicios (fase piloto):</strong> para este primer proyecto, proponemos un intercambio directo de capacidades para validar la capacidad operativa sin fricción financiera inicial.</p>
-                <p><strong style="color: var(--primary);">■ Objetivo:</strong> demostrar el impacto directo en la mejora de la conversión y la robustidad técnica para su cliente.</p>
-                <p><strong style="color: var(--primary);">■ Evolución:</strong> una vez validado, transitaremos a un esquema de mutuo acuerdo o NDA por proyecto.</p>
+                <p><strong style="color: var(--blue-700);">■ Intercambio de servicios (fase piloto):</strong> para este primer proyecto, proponemos un intercambio directo de capacidades para validar la capacidad operativa sin fricción financiera inicial.</p>
+                <p><strong style="color: var(--blue-700);">■ Objetivo:</strong> demostrar el impacto directo en la mejora de la conversión y la robustez técnica para su cliente.</p>
+                <p><strong style="color: var(--blue-700);">■ Evolución:</strong> una vez validado, transitaremos a un esquema de mutuo acuerdo o NDA por proyecto.</p>
             </blockquote>
         </div>
     </section>
 
-    <!-- SECTION 5 (BENEFITS) -->
+    <!-- SECTION 5 -->
     <section>
         <div class="content-inner">
             <div class="section-header">
@@ -451,8 +514,8 @@
         </div>
     </section>
 
-    <!-- SECTION 5.1 (SERVICES) -->
-    <section style="background-color: var(--bg-light);">
+    <!-- SECTION 5.1 -->
+    <section>
         <div class="content-inner">
             <div class="section-header">
                 <div class="section-number">5.1</div>
@@ -469,7 +532,7 @@
         </div>
     </section>
 
-    <!-- SECTION 6 (MODELS) -->
+    <!-- SECTION 6 -->
     <section>
         <div class="content-inner">
             <div class="section-header">
@@ -501,9 +564,10 @@
         <div class="content-inner">
             <div class="quote-container">
                 <blockquote>
-                    “El mercado está evolucionando hacia modelos de integración total. Mientras WordPress es el punto de entrada para servicios básicos, las plataformas Enterprise son el destino donde reside la mayor rentabilidad.”
+                    "El mercado está evolucionando hacia modelos de integración total. Mientras WordPress es el punto de entrada para servicios básicos, las plataformas Enterprise son el destino donde reside la mayor rentabilidad."
                 </blockquote>
             </div>
+            <div class="divider-footer"></div>
             <div class="signature">
                 <strong>Aníbal Gómez</strong><br>
                 Líder de Desarrollo | <a href="mailto:anibal@librixsoft.com">anibal@librixsoft.com</a>
