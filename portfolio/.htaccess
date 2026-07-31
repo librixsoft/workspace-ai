@@ -1,0 +1,4 @@
+# Disable the framework's router for the portfolio directory
+<IfModule mod_rewrite.c>
+    RewriteEngine Off
+</IfModule>
