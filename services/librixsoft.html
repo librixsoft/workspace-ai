@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>LibrixSoft — Dossier de Servicios</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy-900: #0a1628;
+    --navy-700: #16305e;
+    --gray-400: #a3adba;
+    --gray-500: #6b7688;
+    --gray-600: #4b5567;
+    --gray-700: #313b4d;
+    --line: #d7dce3;
+    --line-soft: #e9ecf1;
+    --gold: #16305e;
+  }
+
+  html, body {
+    font-family: 'Liberation Sans', Arial, sans-serif;
+    color: var(--gray-700);
+    background: #ffffff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 210mm;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @page { size: A4; margin: 0; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ============ PAGE FRAME ============ */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: #ffffff;
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  .pad {
+    position: absolute;
+    top: 24mm; left: 20mm; right: 20mm; bottom: 18mm;
+  }
+
+  .folio {
+    position: absolute;
+    bottom: 10mm;
+    left: 20mm; right: 20mm;
+    display: table;
+    width: 170mm;
+    font-size: 7.3pt;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    border-top: 0.5pt solid var(--line-soft);
+    padding-top: 3.5mm;
+  }
+  .folio .l, .folio .r { display: table-cell; }
+  .folio .r { text-align: right; }
+
+  /* ============ SHARED TYPE ============ */
+  .kicker {
+    font-size: 8.3pt;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    color: #ff0000;
+    text-transform: uppercase;
+    padding-bottom: 3mm;
+    border-bottom: 0.6pt solid var(--navy-900);
+    display: inline-block;
+    margin-bottom: 9mm;
+  }
+  h1.title { font-size: 24pt; font-weight: 300; color: var(--navy-900); line-height: 1.22; margin-bottom: 4mm; letter-spacing: -0.2px; }
+  h1.title b { font-weight: 700; }
+  p.dek { font-size: 10.3pt; color: var(--gray-500); line-height: 1.6; max-width: 150mm; margin-bottom: 10mm; }
+
+  /* ============ COVER ============ */
+  .cover-frame {
+    position: absolute; top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: none;
+  }
+  .cover-mark {
+    position: absolute; top: 26mm; left: 20mm; right: 20mm;
+    display: table; width: 170mm;
+    font-size: 8.3pt; letter-spacing: 3px; color: var(--gray-400); text-transform: uppercase;
+  }
+  .cover-mark .l, .cover-mark .r { display: table-cell; }
+  .cover-mark .r { text-align: right; }
+  .cover-center {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  }
+  .cover-logo { max-width: 100mm; height: auto; }
+  .cover-slogan {
+    text-align: center;
+    font-size: 13pt;
+    font-weight: 300;
+    color: var(--navy-700);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6mm;
+  }
+  .cover-word {
+    font-size: 32pt; font-weight: 300; color: var(--navy-900); letter-spacing: -0.3px;
+    margin-bottom: 7mm;
+  }
+  .cover-word b { font-weight: 700; }
+  .cover-rule { width: 22mm; height: 1pt; background: var(--gold); margin-bottom: 7mm; }
+  .cover-sub {
+    font-size: 10pt; letter-spacing: 2.6px; text-transform: uppercase; color: var(--gray-500);
+    margin-bottom: 16mm;
+  }
+  .cover-claim { font-size: 18pt; font-weight: 300; color: var(--navy-900); line-height: 1.45; max-width: 145mm; }
+  .cover-claim b { font-weight: 700; }
+  .cover-footer {
+    position: absolute; left: 20mm; right: 20mm; bottom: 22mm;
+    display: table; width: 170mm;
+    border-top: 0.6pt solid var(--line);
+    padding-top: 6mm;
+    font-size: 8.6pt; color: var(--gray-500); letter-spacing: 0.5px;
+  }
+  .cover-footer .l, .cover-footer .r { display: table-cell; }
+  .cover-footer .r { text-align: right; }
+  .cover-footer strong { color: var(--navy-900); }
+
+  /* ============ INTRO / QUIENES SOMOS ============ */
+  .lede { font-size: 12.5pt; font-weight: 600; color: var(--navy-900); line-height: 1.55; margin-bottom: 8mm; max-width: 160mm; }
+  .body-copy p { font-size: 10.3pt; color: var(--gray-600); line-height: 1.75; margin-bottom: 5.5mm; max-width: 160mm; }
+  .body-copy strong { color: var(--navy-900); }
+
+  .stat-strip { display: table; width: 170mm; margin-top: 12mm; border-top: 0.6pt solid var(--navy-900); padding-top: 8mm; }
+  .stat-cell { display: table-cell; width: 33.3%; padding-right: 6mm; border-right: 0.5pt solid var(--line-soft); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-size: 20pt; font-weight: 300; color: var(--navy-900); }
+  .stat-num b { font-weight: 700; color: var(--gold); }
+  .stat-label { font-size: 8.3pt; color: var(--gray-500); letter-spacing: 0.4px; margin-top: 1.5mm; }
+
+  .quote-block {
+    margin-top: 10mm; padding: 7mm 0 0; border-top: 0.6pt solid var(--line);
+  }
+  .quote-block .lq-label { font-size: 8pt; font-weight: 700; letter-spacing: 1.4px; color: var(--gold); text-transform: uppercase; margin-bottom: 3mm; }
+  .quote-block .lq-body { font-size: 9.8pt; color: var(--gray-600); line-height: 1.6; }
+
+  /* ============ SERVICE CARDS ============ */
+  .card {
+    float: left; width: 82mm; margin-right: 6mm; margin-bottom: 7mm;
+    border-top: 0.6pt solid var(--navy-900); padding: 6mm 0 0;
+    height: 56mm;
+  }
+  .card:nth-child(2n) { margin-right: 0; }
+  .card .idx { font-size: 8pt; color: var(--gray-400); letter-spacing: 1px; margin-bottom: 4mm; }
+  .card h3 { font-size: 11.3pt; font-weight: 700; color: var(--navy-900); margin-bottom: 2.8mm; }
+  .card p { font-size: 9.3pt; color: var(--gray-600); line-height: 1.5; margin-bottom: 4mm; }
+
+  .mini-list { list-style: none; }
+  .mini-list li {
+    font-size: 8.8pt; color: var(--gray-600); line-height: 1.85;
+    padding-left: 4mm; position: relative;
+  }
+  .mini-list li::before {
+    content: "\2014";
+    position: absolute; left: 0; color: var(--gold); font-size: 8pt;
+  }
+  .mini-list.cols { columns: 2; column-gap: 6mm; }
+
+  .clearfix::after { content: ""; display: block; clear: both; }
+
+  /* ============ STACK BLOCKS ============ */
+  .stack-block { float: left; width: 82mm; margin-right: 6mm; margin-bottom: 8mm; }
+  .stack-block:nth-child(2n) { margin-right: 0; }
+  .stack-block h3 {
+    font-size: 11.3pt; font-weight: 700; color: var(--navy-900); margin-bottom: 4mm;
+    border-bottom: 0.6pt solid var(--navy-900); padding-bottom: 3mm;
+  }
+
+  /* ============ SECTORES ============ */
+  .sector-item { display: table; width: 170mm; margin-bottom: 8mm; table-layout: fixed; border-top: 0.6pt solid var(--line); padding-top: 6mm; }
+  .sector-number {
+    display: table-cell; width: 14mm; vertical-align: top;
+    font-size: 15pt; font-weight: 300; color: var(--gold); font-style: italic;
+  }
+  .sector-text { display: table-cell; vertical-align: top; padding-left: 4mm; }
+  .sector-text h3 { font-size: 11.3pt; font-weight: 700; color: var(--navy-900); margin-bottom: 1.5mm; }
+  .sector-text p { font-size: 9.6pt; color: var(--gray-600); line-height: 1.55; }
+  .sector-text strong { color: var(--navy-900); }
+
+  .subhead { font-size: 13.5pt; font-weight: 700; color: var(--navy-900); margin-bottom: 3mm; margin-top: 2mm; }
+  .subdek { font-size: 9.6pt; color: var(--gray-500); margin-bottom: 8mm; }
+
+  .why-card { float: left; width: 53mm; margin-right: 5.5mm; padding-top: 5mm; border-top: 0.6pt solid var(--navy-900); height: 36mm; }
+  .why-card:last-child { margin-right: 0; }
+  .why-card h3 { font-size: 10pt; font-weight: 700; color: var(--navy-900); margin-bottom: 2.5mm; }
+  .why-card p { font-size: 8.8pt; color: var(--gray-600); line-height: 1.5; }
+
+  /* ============ BACK COVER ============ */
+  .back-frame {
+    position: absolute; top: 14mm; left: 14mm; right: 14mm; bottom: 14mm;
+    border: none;
+  }
+  .back-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .back-kicker { font-size: 8.6pt; letter-spacing: 2.6px; color: var(--gold); text-transform: uppercase; margin-bottom: 9mm; }
+  .back-title { font-size: 22pt; font-weight: 300; color: var(--navy-900); line-height: 1.4; margin-bottom: 12mm; }
+  .back-title b { font-weight: 700; }
+  .back-contact { font-size: 10.5pt; color: var(--gray-600); line-height: 2.1; margin-bottom: 12mm; }
+  .back-contact strong { color: var(--navy-900); }
+  .btn {
+    display: inline-block; border: 0.7pt solid var(--navy-900); color: var(--navy-900); font-weight: 700;
+    font-size: 9.5pt; padding: 3.6mm 10mm; letter-spacing: 1.2px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<div class="page">
+  <div class="cover-frame"></div>
+  <div class="cover-mark"><div class="l">Dossier de Servicios</div><div class="r">2026</div></div>
+
+  <div class="cover-center">
+    <img class="cover-logo" src="images/image1.png" alt="LibrixSoft Logo">
+    <div class="cover-slogan">Software a medida</div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="l"><strong>LibrixSoft</strong> — Ingeniería de Software Senior</div>
+    <div class="r">librixsoft.com</div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — QUIENES SOMOS ============ -->
+<div class="page">
+  <div class="pad">
+    <span class="kicker">00 — Quiénes Somos</span>
+    <h1 class="title">Ingeniería senior,<br><b>sin traspasos ni atajos.</b></h1>
+
+    <div class="body-copy">
+      <p class="lede">En LibrixSoft somos un equipo de ingenieros seniores con más de 10 años resolviendo los desafíos técnicos más complejos.</p>
+      <p>Desde sistemas bancarios que procesan millones de transacciones hasta plataformas globales para marcas como <strong>Starbucks</strong> y <strong>BBVA</strong>, construimos software donde el margen de error no existe.</p>
+      <p><strong>Hoy la inteligencia artificial acelera los desarrollos, pero a costa de diseños genéricos</strong> basados en estadística y plantillas predecibles. Nuestro valor es justo lo contrario: arquitectura personalizada, diseño único y código que no podría generarse automáticamente. Porque cada proyecto es un negocio real con necesidades reales — y ninguna plantilla lo resuelve.</p>
+      <p><strong>No trabajamos con atajos.</strong> Cada solución se diseña desde cero: código limpio, decisiones de arquitectura deliberadas, y un equipo senior comprometido contigo desde el día uno — sin traspasos internos, sin tiempo de aprendizaje, solo resultados.</p>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-cell"><div class="stat-num">10<b>+</b></div><div class="stat-label">AÑOS DE EXPERIENCIA</div></div>
+      <div class="stat-cell"><div class="stat-num">6</div><div class="stat-label">LÍNEAS DE SERVICIO</div></div>
+      <div class="stat-cell"><div class="stat-num">2</div><div class="stat-label">SECTORES ESTRATÉGICOS</div></div>
+    </div>
+
+    <div class="quote-block">
+      <div class="lq-label">Trayectoria comprobada</div>
+      <div class="lq-body">Arquitectura entregada para Spin (OXXO), Prisma Bank, BBVA, Banorte, Equifax, GNP Seguros, HP y las plataformas globales de Alsea.</div>
+    </div>
+  </div>
+  <div class="folio"><div class="l">LibrixSoft — Dossier de Servicios</div><div class="r">02</div></div>
+</div>
+
+<!-- ============ PAGE 3 — SERVICIOS ============ -->
+<div class="page">
+  <div class="pad">
+    <span class="kicker">01 — Servicios</span>
+    <h1 class="title" style="font-size:20pt;">Nuestras <b>Capacidades</b></h1>
+    <p class="dek" style="margin-bottom:9mm;">Soluciones integrales de ingeniería para transformar y escalar tu negocio.</p>
+
+    <div class="clearfix">
+      <div class="card">
+        <div class="idx">01</div>
+        <h3>Desarrollo de Plataformas Web</h3>
+        <p>Aplicaciones empresariales robustas, escalables y de alto rendimiento con arquitecturas modernas.</p>
+        <ul class="mini-list"><li>Angular 17+</li><li>React</li><li>Spring Boot</li></ul>
+      </div>
+      <div class="card">
+        <div class="idx">02</div>
+        <h3>Desarrollo Móvil</h3>
+        <p>Aplicaciones nativas y multiplataforma para iOS y Android con experiencias fluidas.</p>
+        <ul class="mini-list"><li>React Native</li><li>Flutter</li><li>iOS / Android</li></ul>
+      </div>
+      <div class="card">
+        <div class="idx">03</div>
+        <h3>Digital Banking</h3>
+        <p>Plataformas bancarias digitales completas: core financiero, pasarelas de pago y billeteras.</p>
+        <ul class="mini-list"><li>Fintech</li><li>Pasarelas de pago</li><li>Core bancario</li></ul>
+      </div>
+      <div class="card">
+        <div class="idx">04</div>
+        <h3>Ciberseguridad</h3>
+        <p>Auditorías OWASP, hardening de infraestructura, cifrado y monitoreo continuo.</p>
+        <ul class="mini-list"><li>OWASP</li><li>SonarQube</li><li>Hardening</li></ul>
+      </div>
+      <div class="card">
+        <div class="idx">05</div>
+        <h3>Diseño UI/UX</h3>
+        <p>Experiencias centradas en datos: design systems, prototipado e investigación.</p>
+        <ul class="mini-list"><li>Design systems</li><li>Prototyping</li><li>User research</li></ul>
+      </div>
+      <div class="card">
+        <div class="idx">06</div>
+        <h3>DevOps &amp; Cloud</h3>
+        <p>Pipelines CI/CD, Kubernetes, infraestructura como código y monitorización 24/7.</p>
+        <ul class="mini-list"><li>Kubernetes</li><li>Docker</li><li>AWS / Azure / GCP</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><div class="l">LibrixSoft — Dossier de Servicios</div><div class="r">03</div></div>
+</div>
+
+<!-- ============ PAGE 4 — STACK ============ -->
+<div class="page">
+  <div class="pad">
+    <span class="kicker">02 — Stack Tecnológico</span>
+    <h1 class="title" style="font-size:20pt;">Tecnologías que <b>Dominamos</b></h1>
+    <p class="dek" style="margin-bottom:10mm;">Herramientas y plataformas de primer nivel para cada capa del desarrollo.</p>
+
+    <div class="clearfix">
+      <div class="stack-block">
+        <h3>Backend</h3>
+        <ul class="mini-list"><li>Java Enterprise</li><li>Spring Boot</li><li>Python</li><li>AWS Lambda</li><li>Bash</li></ul>
+      </div>
+      <div class="stack-block">
+        <h3>Frontend &amp; Móvil</h3>
+        <ul class="mini-list"><li>Angular 17+</li><li>React</li><li>Redux</li><li>Angular Material</li><li>React Native</li><li>Flutter</li></ul>
+      </div>
+      <div class="stack-block">
+        <h3>Datos &amp; Mensajería</h3>
+        <ul class="mini-list"><li>Oracle</li><li>SQL Server</li><li>MongoDB</li><li>JPA / Hibernate</li><li>Kafka</li></ul>
+      </div>
+      <div class="stack-block">
+        <h3>Nube &amp; DevOps</h3>
+        <ul class="mini-list cols"><li>AWS</li><li>Azure</li><li>GCP</li><li>Docker</li><li>Kubernetes</li><li>Jenkins</li><li>GitLab CI</li><li>GitHub Actions</li></ul>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:2mm;">
+      <div class="lq-label">Nota de ingeniería</div>
+      <div class="lq-body">Cada stack se selecciona según el problema de negocio — no imponemos una tecnología única para todos los clientes.</div>
+    </div>
+  </div>
+  <div class="folio"><div class="l">LibrixSoft — Dossier de Servicios</div><div class="r">04</div></div>
+</div>
+
+<!-- ============ PAGE 5 — SECTORES + POR QUÉ POD ============ -->
+<div class="page">
+  <div class="pad">
+    <span class="kicker">03 — Sectores</span>
+    <h1 class="title" style="font-size:20pt;">Experiencia Sectorial <b>Estratégica</b></h1>
+    <p class="dek" style="margin-bottom:8mm;">Trayectoria comprobada en entornos críticos y de altas transacciones.</p>
+
+    <div class="sector-item">
+      <div class="sector-number">F</div>
+      <div class="sector-text"><h3>Fintech &amp; Banca</h3><p>Arquitectura para <strong>Spin por OXXO</strong>, <strong>Prisma Bank (Argentina)</strong>, <strong>BBVA (Perú / México)</strong> y <strong>Banorte</strong>.</p></div>
+    </div>
+    <div class="sector-item">
+      <div class="sector-number">E</div>
+      <div class="sector-text"><h3>Empresarial &amp; Seguros</h3><p>Soluciones para <strong>Equifax (EE.UU.)</strong>, <strong>GNP Seguros</strong>, <strong>HP</strong> y plataformas globales de <strong>Alsea</strong> — Starbucks, Domino's y Burger King a nivel mundial.</p></div>
+    </div>
+
+    <div style="margin-top:13mm;">
+      <span class="kicker">04 — Modelo de Trabajo</span>
+      <div class="subhead">¿Por qué POD Especializado B2B?</div>
+      <div class="subdek">Un modelo de entrega ágil, liderado por seniores, diseñado para generar impacto.</div>
+
+      <div class="clearfix">
+        <div class="why-card"><h3>Involucramiento Senior Directo</h3><p>Arquitecto Senior dedicado como punto de contacto — sin traspasos ni tiempo de aprendizaje junior.</p></div>
+        <div class="why-card"><h3>Cero Sobrecarga Administrativa</h3><p>Modelo contractual C2C / B2B para tu empresa. Entrega pura de ingeniería.</p></div>
+        <div class="why-card"><h3>Impacto Inmediato</h3><p>Onboarding rápido y enfoque en resultados — desde el día uno, código listo para producción.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><div class="l">LibrixSoft — Dossier de Servicios</div><div class="r">05</div></div>
+</div>
+
+<!-- ============ PAGE 6 — BACK COVER / CTA ============ -->
+<div class="page">
+  <div class="back-frame"></div>
+  <div class="back-center">
+    <div class="back-kicker">Trabajemos Juntos</div>
+    <div class="back-title">Listos para sumarnos<br><b>a sus retos y crecer juntos.</b></div>
+    <div class="back-contact"><strong>Correo</strong> &nbsp; hola@librixsoft.com<br><strong>Web</strong> &nbsp;&nbsp;&nbsp; librixsoft.com</div>
+    <a class="btn" href="https://librixsoft.com/portfolio/">Ver Portfolio →</a>
+  </div>
+  <div class="folio"><div class="l">LibrixSoft</div><div class="r">06</div></div>
+</div>
+
+</body>
+</html>
