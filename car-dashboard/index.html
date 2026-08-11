@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUSTANG DARK HORSE — Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Rajdhani', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dashboard {
+    position: relative;
+    width: 1400px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, #1a1a1a 0%, #0d0d0d 60%, #050505 100%);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 80px rgba(0,0,0,0.9), inset 0 0 60px rgba(0,0,0,0.5);
+  }
+
+  /* === TEXTURE OVERLAY === */
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 4px),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.005) 2px, rgba(255,255,255,0.005) 4px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* === STEERING WHEEL === */
+  .steering-wheel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -48%);
+    width: 420px;
+    height: 420px;
+    z-index: 10;
+  }
+
+  .wheel-ring {
+    position: absolute;
+    inset: 0;
+    border: 18px solid #3a3a3a;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 0 4px #2a2a2a,
+      0 0 0 6px #1a1a1a,
+      inset 0 0 30px rgba(0,0,0,0.8),
+      0 4px 15px rgba(0,0,0,0.6);
+    background: transparent;
+  }
+
+  .wheel-ring::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid #555;
+  }
+
+  .wheel-inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, #2a2a2a 0%, #1a1a1a 70%, #111 100%);
+    border-radius: 50%;
+    box-shadow: 
+      inset 0 0 20px rgba(0,0,0,0.8),
+      0 0 0 3px #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+  }
+
+  .wheel-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #c0c0c0;
+    text-shadow: 0 0 10px rgba(192,192,192,0.3);
+    letter-spacing: 2px;
+  }
+
+  /* Wheel spokes */
+  .spoke {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 160px;
+    background: linear-gradient(90deg, #2a2a2a, #3d3d3d, #2a2a2a);
+    transform-origin: center top;
+    border-radius: 4px;
+    z-index: 5;
+  }
+
+  .spoke-left {
+    transform: translateX(-50%) rotate(150deg) translateY(-260px);
+  }
+
+  .spoke-right {
+    transform: translateX(-50%) rotate(30deg) translateY(-260px);
+  }
+
+  .spoke-bottom {
+    width: 80px;
+    height: 18px;
+    transform: translateX(-50%) translateY(90px);
+    border-radius: 4px;
+  }
+
+  /* === DASHBOARD GAUGES === */
+  .gauge-left, .gauge-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+
+  .gauge-left { left: 60px; }
+  .gauge-right { right: 60px; }
+
+  .gauge-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+
+  canvas.gauge-canvas {
+    width: 280px;
+    height: 280px;
+  }
+
+  /* === CENTER INFO PANEL (behind steering wheel) === */
+  .center-panel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    height: 260px;
+    z-index: 4;
+    background: radial-gradient(ellipse at center, #111 0%, #0a0a0a 100%);
+    border-radius: 20px;
+    border: 2px solid #333;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .center-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(60,60,60,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .center-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .center-gear {
+    font-family: 'Orbitron', monospace;
+    font-size: 72px;
+    font-weight: 900;
+    color: #e0e0e0;
+    text-shadow: 0 0 30px rgba(224,224,224,0.3);
+    line-height: 1;
+  }
+
+  .center-gear-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    color: #666;
+    letter-spacing: 8px;
+    margin-top: 4px;
+  }
+
+  /* === TOP BAR === */
+  .top-bar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    z-index: 15;
+  }
+
+  .top-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    color: #c0c0c0;
+    letter-spacing: 8px;
+    text-shadow: 0 0 15px rgba(192,192,192,0.4);
+  }
+
+  .top-logo span {
+    color: #e74c3c;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-left: 8px;
+  }
+
+  /* === BOTTOM BAR === */
+  .bottom-bar {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    z-index: 15;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .info-item {
+    text-align: center;
+  }
+
+  .info-label {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .info-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    color: #ccc;
+    font-weight: 700;
+  }
+
+  /* === SMALL GAUGES (fuel, temp, battery) === */
+  .small-gauges {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px;
+    z-index: 15;
+  }
+
+  .small-gauge {
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+
+  .small-gauge canvas {
+    width: 80px;
+    height: 80px;
+  }
+
+  .sg-value {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', monospace;
+    font-size: 12px;
+    color: #ccc;
+    font-weight: 700;
+  }
+
+  .sg-label {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: #555;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  /* === SIDE INDICATORS === */
+  .indicator {
+    position: absolute;
+    width: 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 15;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .indicator.active {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+
+  .indicator-left { left: 25%; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+  .indicator-right { right: 25%; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+  .arrow-up, .arrow-down {
+    width: 0; height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+  .arrow-up { border-bottom: 20px solid #666; }
+  .arrow-down { border-top: 20px solid #666; }
+
+  .indicator.active .arrow-up { border-bottom-color: #4ecdc4; filter: drop-shadow(0 0 5px #4ecdc4); }
+  .indicator.active .arrow-down { border-top-color: #e74c3c; filter: drop-shadow(0 0 5px #e74c3c); }
+
+  /* === BOOT ANIMATION === */
+  .boot-overlay {
+    position: absolute;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 1s ease;
+  }
+
+  .boot-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .horse-container {
+    position: relative;
+    width: 200px;
+    height: 120px;
+  }
+
+  .horse-svg {
+    width: 200px;
+    height: 120px;
+    opacity: 0;
+    animation: horseAppear 0.8s ease forwards 0.3s;
+  }
+
+  @keyframes horseAppear {
+    0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+    60% { opacity: 1; transform: scale(1.1) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .boot-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 32px;
+    font-weight: 900;
+    color: #c0c0c0;
+    letter-spacing: 12px;
+    margin-top: 20px;
+    opacity: 0;
+    animation: textFadeIn 0.6s ease forwards 1s;
+  }
+
+  .boot-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 8px;
+    margin-top: 8px;
+    opacity: 0;
+    animation: textFadeIn 0.6s ease forwards 1.3s;
+  }
+
+  @keyframes textFadeIn {
+    to { opacity: 1; }
+  }
+
+  /* === SPEED GLOW EFFECTS === */
+  .speed-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -48%);
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    transition: box-shadow 1s ease;
+  }
+
+  /* === RPM BAR === */
+  .rpm-bar {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 320px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    z-index: 15;
+    overflow: hidden;
+  }
+
+  .rpm-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #4ecdc4, #45b7d1, #f9ca24, #e74c3c);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(78,205,196,0.3);
+  }
+
+  .rpm-label {
+    position: absolute;
+    bottom: 148px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    color: #444;
+    letter-spacing: 3px;
+    z-index: 15;
+  }
+
+  /* === ODOMETER === */
+  .odometer {
+    position: absolute;
+    top: 80px;
+    right: 120px;
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    color: #555;
+    z-index: 15;
+    text-align: right;
+  }
+
+  .odometer span {
+    display: block;
+    font-size: 10px;
+    color: #333;
+    letter-spacing: 2px;
+  }
+
+  /* === TEMP GAUGE TOP LEFT === */
+  .temp-display {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+    z-index: 15;
+    text-align: center;
+  }
+
+  .temp-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 24px;
+    color: #ccc;
+    font-weight: 700;
+  }
+
+  .temp-unit {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .temp-label {
+    font-size: 9px;
+    color: #444;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  /* === DRIVE MODE SELECTOR === */
+  .drive-modes {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 20;
+  }
+
+  .mode-btn {
+    padding: 4px 14px;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #444;
+    background: rgba(30,30,30,0.8);
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mode-btn.active {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    background: rgba(231,76,60,0.1);
+    box-shadow: 0 0 15px rgba(231,76,60,0.2);
+  }
+
+  .mode-btn:hover {
+    color: #999;
+    border-color: #444;
+  }
+
+  /* === HOUR METERS === */
+  .side-display-left, .side-display-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    z-index: 15;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .side-display-left { left: 370px; }
+  .side-display-right { right: 370px; }
+
+  .sd-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .sd-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #555;
+  }
+
+  .sd-icon.active {
+    background: rgba(78,205,196,0.2);
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+    box-shadow: 0 0 8px rgba(78,205,196,0.3);
+  }
+
+  .sd-icon.warn {
+    background: rgba(231,76,60,0.2);
+    border-color: #e74c3c;
+    color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231,76,60,0.3);
+  }
+
+  .sd-text {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  /* === CONTROLS HINT === */
+  .controls-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 20px;
+    font-size: 9px;
+    color: #333;
+    z-index: 15;
+    letter-spacing: 1px;
+  }
+
+  /* === REV LIGHTS === */
+  .rev-lights {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    z-index: 20;
+  }
+
+  .rev-light {
+    width: 14px;
+    height: 8px;
+    border-radius: 3px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    transition: all 0.15s ease;
+  }
+
+  .rev-light.l1 { box-shadow: 0 0 4px rgba(39,174,96,0.3); }
+  .rev-light.l2 { box-shadow: 0 0 4px rgba(39,174,96,0.3); }
+  .rev-light.l3 { box-shadow: 0 0 4px rgba(241,196,36,0.3); }
+  .rev-light.l4 { box-shadow: 0 0 4px rgba(241,150,36,0.3); }
+  .rev-light.l5 { box-shadow: 0 0 4px rgba(231,76,60,0.3); }
+  .rev-light.l6 { box-shadow: 0 0 4px rgba(231,76,60,0.3); }
+  .rev-light.l7 { box-shadow: 0 0 4px rgba(231,76,60,0.5); }
+
+  .rev-light.on { transform: scale(1.2); border-color: transparent; }
+  .rev-light.l1.on { background: #27ae60; box-shadow: 0 0 12px rgba(39,174,96,0.8); }
+  .rev-light.l2.on { background: #2ecc71; box-shadow: 0 0 12px rgba(46,204,113,0.8); }
+  .rev-light.l3.on { background: #f1c40f; box-shadow: 0 0 12px rgba(241,196,15,0.8); }
+  .rev-light.l4.on { background: #f39c12; box-shadow: 0 0 12px rgba(243,156,18,0.8); }
+  .rev-light.l5.on { background: #e74c3c; box-shadow: 0 0 12px rgba(231,76,60,0.9); }
+  .rev-light.l6.on { background: #c0392b; box-shadow: 0 0 15px rgba(192,57,43,1); }
+  .rev-light.l7.on { background: #e74c3c; box-shadow: 0 0 20px rgba(231,76,60,1); animation: blink 0.2s infinite alternate; }
+
+  @keyframes blink {
+    to { opacity: 0.5; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <!-- BOOT ANIMATION -->
+  <div class="boot-overlay" id="bootOverlay">
+    <div class="horse-container">
+      <svg class="horse-svg" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mustang Horse SVG -->
+        <path d="M45,90 L50,65 L48,45 L55,30 L70,22 L85,18 L100,16 L115,18 L125,22 L130,30 L128,40 L120,45 L115,50 L118,60 L120,75 L118,90 L115,100" 
+              stroke="#c0c0c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M70,22 L65,15 L72,10 L80,14 L85,18" 
+              stroke="#c0c0c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M85,18 L90,12 L95,10 L100,16" 
+              stroke="#c0c0c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Body -->
+        <path d="M55,30 Q48,45 45,55 Q42,70 48,85 L52,95" 
+              stroke="#c0c0c0" stroke-width="2.5" fill="rgba(192,192,192,0.08)" stroke-linecap="round"/>
+        <path d="M55,30 Q60,35 70,40 L85,38 Q95,36 100,38" 
+              stroke="#c0c0c0" stroke-width="2.5" fill="rgba(192,192,192,0.05)" stroke-linecap="round"/>
+        <path d="M70,40 Q75,55 80,65 L82,80 Q83,90 80,100" 
+              stroke="#c0c0c0" stroke-width="2.5" fill="rgba(192,192,192,0.05)" stroke-linecap="round"/>
+        <path d="M100,38 Q110,45 118,60 L120,75 Q122,85 118,95" 
+              stroke="#c0c0c0" stroke-width="2.5" fill="rgba(192,192,192,0.05)" stroke-linecap="round"/>
+        <!-- Tail -->
+        <path d="M45,85 Q35,75 30,60 Q28,50 32,42" 
+              stroke="#c0c0c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Mane -->
+        <path d="M85,18 Q90,20 88,30 Q86,35 82,40" 
+              stroke="#e74c3c" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+        <!-- Eye -->
+        <circle cx="90" cy="25" r="2" fill="#c0c0c0"/>
+      </svg>
+    </div>
+    <div class="boot-text">MUSTANG</div>
+    <div class="boot-sub">DARK HORSE</div>
+  </div>
+
+  <!-- SPEED GLOW -->
+  <div class="speed-glow" id="speedGlow"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-logo">MUSTANG<span>DARK HORSE</span></div>
+  </div>
+
+  <!-- DRIVE MODES -->
+  <div class="drive-modes" id="driveModes">
+    <button class="mode-btn active" data-mode="normal">NORM</button>
+    <button class="mode-btn" data-mode="sport">SPORT</button>
+    <button class="mode-btn" data-mode="track">TRACK</button>
+    <button class="mode-btn" data-mode="drag">DRAG</button>
+  </div>
+
+  <!-- REV LIGHTS -->
+  <div class="rev-lights" id="revLights">
+    <div class="rev-light l1"></div>
+    <div class="rev-light l2"></div>
+    <div class="rev-light l3"></div>
+    <div class="rev-light l4"></div>
+    <div class="rev-light l5"></div>
+    <div class="rev-light l6"></div>
+    <div class="rev-light l7"></div>
+  </div>
+
+  <!-- LEFT GAUGE (Speedometer) -->
+  <div class="gauge-left">
+    <div class="gauge-container">
+      <canvas id="speedGauge" class="gauge-canvas" width="560" height="560"></canvas>
+    </div>
+  </div>
+
+  <!-- RIGHT GAUGE (Tachometer) -->
+  <div class="gauge-right">
+    <div class="gauge-container">
+      <canvas id="rpmGauge" class="gauge-canvas" width="560" height="560"></canvas>
+    </div>
+  </div>
+
+  <!-- CENTER PANEL -->
+  <div class="center-panel">
+    <div class="center-title">GEAR SELECTOR</div>
+    <div class="center-gear" id="gearDisplay">P</div>
+    <div class="center-gear-label">PARK</div>
+  </div>
+
+  <!-- STEERING WHEEL -->
+  <div class="steering-wheel">
+    <div class="wheel-ring"></div>
+    <div class="spoke spoke-left"></div>
+    <div class="spoke spoke-right"></div>
+    <div class="spoke spoke-bottom"></div>
+    <div class="wheel-inner">
+      <span class="wheel-logo">M</span>
+    </div>
+  </div>
+
+  <!-- ODOMETER -->
+  <div class="odometer">
+    <div id="odoValue">045,287 km</div>
+    <span>ODO</span>
+  </div>
+
+  <!-- TEMP DISPLAY -->
+  <div class="temp-display">
+    <div class="temp-value" id="tempVal">96<span class="temp-unit">°C</span></div>
+    <div class="temp-label">ENGINE TEMP</div>
+  </div>
+
+  <!-- RPM BAR -->
+  <div class="rpm-bar"><div class="rpm-fill" id="rpmFill"></div></div>
+  <div class="rpm-label">TACHOMETER</div>
+
+  <!-- SMALL GAUGES (Fuel, Battery, Oil) -->
+  <div class="small-gauges">
+    <div class="small-gauge">
+      <canvas id="fuelGauge" width="160" height="160"></canvas>
+      <div class="sg-value" id="fuelVal">78%</div>
+      <div class="sg-label">FUEL</div>
+    </div>
+    <div class="small-gauge">
+      <canvas id="batGauge" width="160" height="160"></canvas>
+      <div class="sg-value" id="batVal">12.6V</div>
+      <div class="sg-label">BATTERY</div>
+    </div>
+    <div class="small-gauge">
+      <canvas id="oilGauge" width="160" height="160"></canvas>
+      <div class="sg-value" id="oilVal">4.2</div>
+      <div class="sg-label">OIL PSI</div>
+    </div>
+  </div>
+
+  <!-- SIDE DISPLAYS -->
+  <div class="side-display-left">
+    <div class="sd-row"><div class="sd-icon active">✓</div><span class="sd-text">CRUISE ON</span></div>
+    <div class="sd-row"><div class="sd-icon warn">!</div><span class="sd-text">LOW FUEL</span></div>
+    <div class="sd-row"><div class="sd-icon">✓</div><span class="sd-text">ABS OK</span></div>
+  </div>
+
+  <div class="side-display-right">
+    <div class="sd-row"><div class="sd-icon active">✓</div><span class="sd-text">TRAC CTRL</span></div>
+    <div class="sd-row"><div class="sd-icon">○</div><span class="sd-text">HILL DESCENT</span></div>
+    <div class="sd-row"><div class="sd-icon active">✓</div><span class="sd-text">PARK ASSIST</span></div>
+  </div>
+
+  <!-- INDICATORS -->
+  <div class="indicator indicator-left" id="turnLeft" onclick="toggleIndicator('turnLeft')">
+    <svg width="30" height="60" viewBox="0 0 30 60">
+      <path d="M5,10 L25,30 L5,50" stroke="#888" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="indicator indicator-right" id="turnRight" onclick="toggleIndicator('turnRight')">
+    <svg width="30" height="60" viewBox="0 0 30 60">
+      <path d="M25,10 L5,30 L25,50" stroke="#888" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- CONTROLS HINT -->
+  <div class="controls-hint">← → ACCEL/BRAKE &nbsp;|&nbsp; SPACE = REV &nbsp;|&nbsp; G: SHIFT</div>
+</div>
+
+<script>
+// === STATE ===
+const state = {
+  speed: 0,        // km/h
+  rpm: 800,        // engine RPM
+  gear: 'P',
+  gears: ['R','N','1','2','3','4','5','6'],
+  gearIndex: 0,
+  throttle: 0,     // 0-1
+  brake: 0,        // 0-1
+  fuel: 78,
+  battery: 12.6,
+  oilPressure: 4.2,
+  temp: 96,
+  odo: 45287,
+  driveMode: 'normal',
+  revLightsOn: [],
+  turnSignalLeft: false,
+  turnSignalRight: false,
+};
+
+const MAX_SPEED = 320;
+const MAX_RPM = 8000;
+const IDLE_RPM = 800;
+const REDLINE = 7000;
+
+// === BOOT SEQUENCE ===
+setTimeout(() => {
+  document.getElementById('bootOverlay').classList.add('hidden');
+}, 2500);
+
+// === DRAW GAUGE (Arc Gauge) ===
+function drawGauge(canvasId, config) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+  const r = Math.min(cx, cy) - 30;
+
+  ctx.clearRect(0, 0, w, h);
+
+  const { startAngle, endAngle, maxValue, currentValue, unit, label, color, subColor } = config;
+
+  // Background arc
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, startAngle, endAngle, false);
+  ctx.strokeStyle = '#1a1a1a';
+  ctx.lineWidth = 24;
+  ctx.lineCap = 'butt';
+  ctx.stroke();
+
+  // Tick marks
+  const totalAngle = endAngle - startAngle;
+  const majorTicks = maxValue / (maxValue <= 10 ? 1 : maxValue <= 100 ? 5 : 20);
+  for (let i = 0; i <= maxValue; i++) {
+    const ratio = i / maxValue;
+    const angle = startAngle + totalAngle * ratio;
+    const isMajor = i % majorTicks === 0;
+    const tickLen = isMajor ? 18 : 10;
+
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(angle) * (r - 35), cy + Math.sin(angle) * (r - 35));
+    ctx.lineTo(cx + Math.cos(angle) * (r - 35 - tickLen), cy + Math.sin(angle) * (r - 35 - tickLen));
+    ctx.strokeStyle = isMajor ? '#888' : '#444';
+    ctx.lineWidth = isMajor ? 2.5 : 1;
+    ctx.stroke();
+
+    // Number labels for major ticks
+    if (isMajor && i > 0) {
+      const labelR = r - 35 - tickLen - 18;
+      ctx.save();
+      ctx.translate(cx + Math.cos(angle) * labelR, cy + Math.sin(angle) * labelR);
+      ctx.font = 'bold 26px Orbitron';
+      ctx.fillStyle = '#aaa';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(i.toString(), 0, 0);
+      ctx.restore();
+    }
+  }
+
+  // Value arc (colored)
+  const valueRatio = Math.min(currentValue / maxValue, 1);
+  const valueAngle = startAngle + totalAngle * valueRatio;
+
+  if (valueRatio > 0) {
+    const gradient = ctx.createLinearGradient(
+      cx + Math.cos(startAngle) * r, cy + Math.sin(startAngle) * r,
+      cx + Math.cos(valueAngle) * r, cy + Math.sin(valueAngle) * r
+    );
+    gradient.addColorStop(0, '#4ecdc4');
+    gradient.addColorStop(0.6, '#45b7d1');
+
+    if (subColor) {
+      gradient.addColorStop(Math.min(valueRatio, 0.8), subColor);
+      gradient.addColorStop(1, color || '#e74c3c');
+    } else {
+      gradient.addColorStop(1, color || '#ffffff');
+    }
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, startAngle, valueAngle, false);
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 24;
+    ctx.lineCap = 'butt';
+    ctx.stroke();
+
+    // Glow effect
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, startAngle, valueAngle, false);
+    ctx.strokeStyle = color ? color.replace(')', ',0.3)').replace('rgb', 'rgba') : 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 40;
+    ctx.stroke();
+  }
+
+  // Redline zone
+  const redStartRatio = REDLINE / MAX_RPM;
+  if (redStartRatio > 0 && canvasId === 'rpmGauge') {
+    const redAngle = startAngle + totalAngle * redStartRatio;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, redAngle, endAngle, false);
+    ctx.strokeStyle = 'rgba(231,76,60,0.15)';
+    ctx.lineWidth = 24;
+    ctx.stroke();
+  }
+
+  // Needle
+  const needleRatio = Math.min(currentValue / maxValue, 1);
+  const needleAngle = startAngle + totalAngle * needleRatio;
+  const needleLen = r - 60;
+
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(needleAngle);
+
+  // Needle shadow
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetX = 3;
+  ctx.shadowOffsetY = 3;
+
+  ctx.beginPath();
+  ctx.moveTo(-4, -10);
+  ctx.lineTo(needleLen, 0);
+  ctx.lineTo(-4, 10);
+  ctx.closePath();
+
+  const needleGrad = ctx.createLinearGradient(-20, 0, needleLen, 0);
+  needleGrad.addColorStop(0, '#555');
+  needleGrad.addColorStop(0.3, '#ccc');
+  needleGrad.addColorStop(1, valueRatio > 0.87 ? '#e74c3c' : '#e0e0e0');
+
+  ctx.fillStyle = needleGrad;
+  ctx.fill();
+  ctx.restore();
+
+  // Center cap
+  ctx.beginPath();
+  ctx.arc(cx, cy, 20, 0, Math.PI * 2);
+  const capGrad = ctx.createRadialGradient(cx, cy, 5, cx, cy, 20);
+  capGrad.addColorStop(0, '#444');
+  capGrad.addColorStop(1, '#222');
+  ctx.fillStyle = capGrad;
+  ctx.fill();
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Value text
+  const textY = cy + r * 0.38;
+  ctx.font = 'bold 48px Orbitron';
+  ctx.fillStyle = '#e0e0e0';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(Math.round(currentValue).toString(), cx, textY);
+
+  // Unit
+  if (unit) {
+    ctx.font = '20px Rajdhani';
+    ctx.fillStyle = '#666';
+    ctx.fillText(unit, cx, textY + 30);
+  }
+
+  // Label at bottom
+  if (label) {
+    ctx.font = '16px Orbitron';
+    ctx.fillStyle = '#444';
+    ctx.textAlign = 'center';
+    ctx.fillText(label.toUpperCase(), cx, cy + r * 0.55);
+  }
+}
+
+// === SMALL GAUGE (circular progress) ===
+function drawSmallGauge(canvasId, value, maxVal, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const cx = w / 2;
+  const cy = h / 2;
+  const r = 50;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Background
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI * 0.75, Math.PI * 0.75, false);
+  ctx.strokeStyle = '#1a1a1a';
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // Value arc
+  const ratio = Math.min(value / maxVal, 1);
+  const endA = -Math.PI * 0.75 + (Math.PI * 1.5) * ratio;
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI * 0.75, endA, false);
+  ctx.strokeStyle = color || '#4ecdc4';
+  ctx.lineWidth = 8;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // Glow
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI * 0.75, endA, false);
+  ctx.strokeStyle = color ? color + '44' : '#4ecdc444';
+  ctx.lineWidth = 16;
+  ctx.stroke();
+}
+
+// === REV LIGHTS ===
+function updateRevLights(rpm) {
+  const lights = document.querySelectorAll('.rev-light');
+  const ratios = [0.2, 0.35, 0.5, 0.6, 0.75, 0.87, REDLINE / MAX_RPM];
+  const rpmRatio = rpm / MAX_RPM;
+
+  lights.forEach((light, i) => {
+    if (rpmRatio >= ratios[i]) {
+      light.classList.add('on');
+    } else {
+      light.classList.remove('on');
+    }
+  });
+}
+
+// === RPM BAR FILL ===
+function updateRpmBar(rpm) {
+  const fill = document.getElementById('rpmFill');
+  const ratio = (rpm / MAX_RPM) * 100;
+  fill.style.width = Math.min(ratio, 100) + '%';
+}
+
+// === SPEED GLOW ===
+function updateSpeedGlow(speed) {
+  const glow = document.getElementById('speedGlow');
+  const intensity = speed / MAX_SPEED;
+  if (intensity < 0.3) {
+    glow.style.boxShadow = 'none';
+  } else if (intensity < 0.6) {
+    glow.style.boxShadow = `0 0 ${intensity * 40}px rgba(78,205,196,${intensity * 0.2})`;
+  } else if (intensity < 0.85) {
+    glow.style.boxShadow = `0 0 ${intensity * 60}px rgba(69,183,209,${intensity * 0.25})`;
+  } else {
+    glow.style.boxShadow = `0 0 ${intensity * 80}px rgba(231,76,60,${(intensity - 0.85) * 1.5})`;
+  }
+}
+
+// === GEAR DISPLAY ===
+function updateGearDisplay() {
+  document.getElementById('gearDisplay').textContent = state.gear;
+  const labels = { R: 'REVERSE', N: 'NEUTRAL', '1':'1ST','2':'2ND','3':'3RD','4':'4TH','5':'5TH','6':'6TH' };
+  document.querySelector('.center-gear-label').textContent = labels[state.gear] || '';
+}
+
+// === TOGGLE INDICATORS ===
+function toggleIndicator(id) {
+  const el = document.getElementById(id);
+  if (id === 'turnLeft') {
+    state.turnSignalLeft = !state.turnSignalLeft;
+    el.classList.toggle('active', state.turnSignalLeft);
+  } else {
+    state.turnSignalRight = !state.turnSignalRight;
+    el.classList.toggle('active', state.turnSignalRight);
+  }
+
+  // Blinking
+  const lightId = id === 'turnLeft' ? 'indicator-left' : 'indicator-right';
+}
+
+// === DRIVE MODES ===
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.driveMode = btn.dataset.mode;
+  });
+});
+
+// === KEYBOARD INPUT ===
+const keys = {};
+document.addEventListener('keydown', e => {
+  keys[e.code] = true;
+  if (e.code === 'Space') {
+    e.preventDefault();
+    // Rev engine
+    state.throttle = Math.min(state.throttle + 0.3, 1);
+  }
+  if (e.code === 'KeyG') {
+    // Shift gear
+    state.gearIndex = (state.gearIndex + 1) % state.gears.length;
+    state.gear = state.gears[state.gearIndex];
+    updateGearDisplay();
+  }
+});
+document.addEventListener('keyup', e => { keys[e.code] = false; });
+
+// === SIMULATION LOOP ===
+let lastTime = performance.now();
+
+function simulate(now) {
+  const dt = (now - lastTime) / 1000;
+  lastTime = now;
+
+  // Throttle input
+  if (keys['ArrowRight'] || keys['KeyD']) state.throttle += dt * 1.5;
+  else if (!keys['Space']) state.throttle *= Math.pow(0.02, dt);
+  state.throttle = Math.max(0, Math.min(1, state.throttle));
+
+  // Brake input
+  if (keys['ArrowLeft'] || keys['KeyA']) {
+    state.brake += dt * 3;
+    if (state.speed > 0) state.speed -= dt * 80;
+    state.speed = Math.max(0, state.speed);
+  } else {
+    state.brake *= Math.pow(0.02, dt);
+  }
+  state.brake = Math.max(0, Math.min(1, state.brake));
+
+  // Speed calculation
+  const modeMultiplier = { normal: 1, sport: 1.15, track: 1.3, drag: 1.4 };
+  const mult = modeMultiplier[state.driveMode] || 1;
+
+  if (state.gear === 'N' || state.gear === 'P') {
+    // No acceleration in neutral or park
+    state.speed *= Math.pow(0.95, dt);
+    state.speed = Math.max(0, state.speed);
+  } else {
+    const accel = state.throttle * 40 * mult;
+    const gearRatio = [1, 0.85, 0.65, 0.48, 0.37, 0.29, 0.23][Math.min(state.gearIndex - 1, 6)] || 0.85;
+
+    if (state.speed < MAX_SPEED * gearRatio) {
+      state.speed += accel * dt * Math.max(0, (MAX_SPEED * gearRatio - state.speed) / (MAX_SPEED * gearRatio));
+    }
+  }
+
+  // Engine braking
+  if (!keys['ArrowRight'] && !keys['KeyD']) {
+    state.speed *= Math.pow(0.997, dt);
+  }
+
+  // RPM calculation based on speed and gear
+  if (state.gear === 'P') {
+    state.rpm = IDLE_RPM;
+  } else if (state.gear === 'R' || state.gear === 'N') {
+    state.rpm = IDLE_RPM + state.throttle * 5000;
+  } else {
+    const speedRatio = Math.max(state.speed / (MAX_SPEED * [0.17,0.25,0.38,0.52,0.65,0.75][Math.min(state.gearIndex - 1, 5)] || 0.85), 0);
+    const targetRpm = IDLE_RPM + (state.throttle * MAX_RPM * 0.9);
+    state.rpm += (targetRpm - state.rpm) * dt * 3;
+
+    // Cap RPM by gear speed
+    const maxGearSpeed = MAX_SPEED * [0.17,0.25,0.38,0.52,0.65,0.75][Math.min(state.gearIndex - 1, 5)] || MAX_SPEED;
+    if (state.speed > maxGearSpeed) {
+      state.rpm = REDLINE + Math.floor(Math.random() * 300);
+    }
+  }
+
+  state.rpm = Math.max(IDLE_RPM, Math.min(MAX_RPM, state.rpm));
+
+  // Slight idle fluctuation
+  if (state.throttle < 0.01) {
+    state.rpm += Math.sin(now / 200) * 30;
+  }
+
+  // Fuel consumption
+  state.fuel -= state.throttle * dt * 0.02;
+  state.fuel = Math.max(0, state.fuel);
+
+  // Battery
+  state.battery = state.rpm > IDLE_RPM ? 14.2 : 12.6 - (state.throttle * 0.1);
+
+  // Oil pressure
+  state.oilPressure = 3 + (state.rpm / MAX_RPM) * 5;
+
+  // Temp fluctuation
+  state.temp += Math.sin(now / 5000) * 0.05;
+
+  // Odometer
+  state.odo += (state.speed * dt) / 1000;
+
+  // === UPDATE UI ===
+  drawGauge('speedGauge', {
+    startAngle: Math.PI * 0.75,
+    endAngle: Math.PI * 2.25,
+    maxValue: MAX_SPEED,
+    currentValue: state.speed,
+    unit: 'KM/H',
+    label: 'SPEEDOMETER',
+    color: '#e0e0e0',
+    subColor: null
+  });
+
+  drawGauge('rpmGauge', {
+    startAngle: Math.PI * 0.75,
+    endAngle: Math.PI * 2.25,
+    maxValue: MAX_RPM,
+    currentValue: state.rpm,
+    unit: 'RPM ×1000',
+    label: 'TACHOMETER',
+    color: '#e0e0e0',
+    subColor: null
+  });
+
+  drawSmallGauge('fuelGauge', state.fuel, 100, '#4ecdc4');
+  drawSmallGauge('batGauge', state.battery, 15, '#f9ca24');
+  drawSmallGauge('oilGauge', state.oilPressure, 8, '#e74c3c');
+
+  document.getElementById('fuelVal').textContent = Math.round(state.fuel) + '%';
+  document.getElementById('batVal').textContent = state.battery.toFixed(1) + 'V';
+  document.getElementById('oilVal').textContent = state.oilPressure.toFixed(1);
+  document.getElementById('tempVal').innerHTML = Math.round(state.temp) + '<span class="temp-unit">°C</span>';
+  document.getElementById('odoValue').textContent = Math.floor(state.odo).toLocaleString() + ' km';
+
+  updateRevLights(state.rpm);
+  updateRpmBar(state.rpm);
+  updateSpeedGlow(state.speed);
+
+  requestAnimationFrame(simulate);
+}
+
+// === START ===
+updateGearDisplay();
+requestAnimationFrame(simulate);
+</script>
+
+</body>
+</html>
