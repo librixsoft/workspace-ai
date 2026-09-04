@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title data-i18n="title">Librixsoft — Portafolio</title>
+  <meta name="title" content="Librixsoft — Portafolio" data-i18n="title">
+  <meta name="description" content="Boutique de Software de Primer Nivel para Soluciones de Alto Impacto" data-i18n="description">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Librixsoft — Portafolio" data-i18n="title">
+  <meta property="og:description" content="Boutique de Software de Primer Nivel para Soluciones de Alto Impacto" data-i18n="description">
+  <meta property="og:url" content="https://librixsoft.com/portfolio">
+  <meta property="og:image" content="https://librixsoft.com/portfolio/librix_logo_social.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFFFFF;
+      --surface:#F8F9FA;
+      --ink:#1C232E;
+      --muted:#6B7280;
+      --accent:#D63031;
+      --line:rgba(28,35,46,.1);
+    }
+    *{box-sizing:border-box}
+    html, body{max-width:100%; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+    body{
+      margin:0;
+      touch-action:manipulation;
+      font-family:"Space Grotesk", system-ui, -apple-system, sans-serif;
+      color:var(--ink);
+      background: var(--bg);
+      line-height:1.6;
+    }
+    a.btn-cta{
+      color:#fff;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 24px;
+      border-radius:8px;
+      border:2px solid var(--accent);
+      background:var(--accent);
+      font-weight:600;
+      letter-spacing:.01em;
+      transition: all .2s ease;
+    }
+    a.btn-cta:hover{
+      background:#b71c1c;
+      border-color:#b71c1c;
+      transform:translateY(-1px);
+      box-shadow: 0 4px 14px rgba(214,48,49,.35);
+    }
+    .wrap{max-width:980px; margin:0 auto; padding:48px 24px 80px}
+    header{display:flex; flex-direction:column; gap:16px; padding:32px 0 24px; border-bottom:1px solid var(--line)}
+    .eyebrow{letter-spacing:.18em; text-transform:uppercase; font-size:.72rem; color:var(--accent); font-weight:700}
+    h1{font-family:"Playfair Display", serif; font-size:clamp(2.1rem, 4vw, 3.2rem); line-height:1.05; margin:0; color:var(--ink)}
+    .tagline{font-size:clamp(1.1rem, 1.4vw, 1.4rem); color:var(--muted); max-width:70ch}
+    
+    section{padding:40px 0; border-bottom:1px solid var(--line)}
+    h2{font-size:1.1rem; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); font-weight:700; margin:0 0 18px}
+    
+    .grid-box { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 10px; }
+    .item-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; transition: box-shadow .2s ease; }
+    .item-card:hover { box-shadow: 0 4px 20px rgba(28,35,46,.08); }
+    .item-card strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 1.1rem; }
+
+    .projects{display:grid; gap:24px}
+    .card{
+      background:#FFFFFF;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:32px;
+      box-shadow: 0 1px 3px rgba(28,35,46,.06), 0 4px 16px rgba(28,35,46,.04);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .card:hover{
+      box-shadow: 0 4px 24px rgba(28,35,46,.1), 0 8px 32px rgba(28,35,46,.05);
+      border-color: var(--accent);
+    }
+    .media-grid{ display:flex; flex-direction:column; gap:10px; align-items:center; margin:12px 0; }
+    .media-grid img{
+      width:auto;
+      max-width:min(100%, 640px);
+      height:auto;
+      margin:0 auto;
+      display:block;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#F8F9FA;
+    }
+    .media-grid img.contain{ object-fit:contain; background:transparent; }
+
+    .card h3{ font-family:"Playfair Display", serif; font-size:1.6rem; margin:0 0 4px; color:var(--ink) }
+    .kicker{ color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .meta{color:var(--muted); font-size:.95rem}
+    .divider{height:1px; background:var(--line); margin:14px 0}
+    .badges{display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 8px}
+    .badge{font-size:.78rem; padding:5px 12px; border-radius:6px; background:rgba(214,48,49,.08); color:#b71c1c; font-weight:600; border:1px solid rgba(214,48,49,.2);}
+
+    .lang-switcher { 
+      display: flex; 
+      gap: 4px; 
+      background: var(--surface);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      width: fit-content;
+      margin-bottom: 12px;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 800;
+      width: 40px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: all .24s ease;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .visitor-counter {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+      opacity: 0.85;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="visitor-counter" id="counter-container">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <span id="hit-count">0</span>
+    </div>
+    <header>
+      <div class="lang-switcher">
+        <button class="lang-btn" id="btn-es" onclick="setLanguage('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <div class="eyebrow" data-i18n="slides[0].kicker"></div>
+      <h1 data-i18n="slides[0].h1"></h1>
+      <p class="tagline" data-i18n="slides[0].lede"></p>
+    </header>
+
+    <section id="engineering">
+      <h2 data-i18n="slides[0].eyebrow"></h2>
+      <div class="grid-box" id="overview-grid">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+
+    <section id="trayectoria">
+      <h2 id="trayectoria-title">Proyectos Destacados</h2>
+      <div class="projects" id="projects-list">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2 data-i18n="slides[8].eyebrow"></h2>
+      <div class="grid-box" id="certs-list">
+        <!-- Dynamic content -->
+      </div>
+    </section>
+
+    <footer id="main-footer" data-i18n="slides[8].footer">
+    </footer>
+  </div>
+
+  <script id="translations-data" type="application/json">
+    {
+      "es": {
+        "title": "Librixsoft — Portafolio",
+        "description": "Boutique de Software de Primer Nivel para Soluciones de Alto Impacto",
+        "nav": {
+          "prev": "‹",
+          "next": "›",
+          "aria_prev": "Slide anterior",
+          "aria_next": "Siguiente slide",
+          "aria_dots": "Controles del slider",
+          "aria_dot": "Ir al slide"
+        },
+        "slides": [
+          {
+            "id": "overview",
+            "title": "Librixsoft overview",
+            "kicker": "Portafolio Librixsoft — v1.1",
+            "eyebrow": "Especialidad Estratégica",
+            "h1": "Software de Alto Impacto con Visión Estratégica.",
+            "lede": "Librixsoft transforma ideas de negocio complejas en ecosistemas digitales elegantes, funcionales y escalables. Unimos visión comercial, entendimiento operativo e implementación técnica seria.",
+            "chips": ["Software enterprise", "IA aplicada", "DevOps", "IT/OT", "UX con negocio"],
+            "quote": "Entendemos procesos, rompemos silos, construimos trazabilidad y desplegamos plataformas listas para operar en contextos de misión crítica.",
+            "btn_text": "Conocer Librixsoft",
+            "btn_url": "https://librixsoft.com/",
+            "stats": [
+              {"val": "Ingeniería Centrada en Procesos", "label": "Analizamos las organizaciones como organismos integrados para resolver problemas de raíz."},
+              {"val": "Ruptura de Silos y Trazabilidad", "label": "Damos visibilidad operativa real en cada etapa del flujo de trabajo."},
+              {"val": "Convergencia IT/OT", "full": "Integramos lógica de <strong>PLC Siemens</strong> y software C# a medida para monitoreo de KPIs en tiempo real."}
+            ]
+          },
+          {
+            "id": "balerocms",
+            "title": "BaleroCMS",
+            "kicker": "Producto propio",
+            "eyebrow": "BaleroCMS",
+            "h2": "Framework propietario: intuitivo, modular y seguro.",
+            "lede": "Plataforma desarrollada a medida por Librixsoft que sirve tanto como CMS como framework base.",
+            "badges": ["PHP", "Vue.js", "MySQL"],
+            "quote": "Diseñada para un despliegue rápido y personalización visual sin sacrificar el rendimiento empresarial.",
+            "btn_text": "Ver repositorio",
+            "btn_url": "https://github.com/librixsoft/balerocms/tree/development"
+          },
+          {
+            "id": "gnp",
+            "title": "GNP",
+            "kicker": "Seguros",
+            "eyebrow": "GNP",
+            "h2": "Software de cotización online GNP.",
+            "lede": "Motor de cotización en tiempo real integrado con bases de datos GNP.",
+            "badges": ["React JS", "Spring Boot", "Hibernate"],
+            "quote": "Plataforma avanzada de cotización integrada con el backend de GNP, centralizando datos de clientes y automatizando la gestión para la generación de pólizas.",
+            "btn_text": "Visitar sitio",
+            "btn_url": "https://gnpgastosmedicos.com.mx/"
+          },
+          {
+            "id": "equifax",
+            "title": "Equifax",
+            "kicker": "Finanzas globales",
+            "eyebrow": "Equifax",
+            "h2": "CyberFinancial Cloud de Equifax.",
+            "lede": "Arquitectura global de cobranza de misión crítica.",
+            "badges": ["Angular", "Spring", "Oracle"],
+            "quote": "Una de las plataformas en la nube más robustas para la recuperación de cartera y sistemas financieros internacionales.",
+            "btn_text": "Ver producto",
+            "btn_url": "https://www.equifax.com.mx/empresas/productos/cyberfinancial/"
+          },
+          {
+            "id": "obsd",
+            "title": "OBSD",
+            "kicker": "Industria inteligente",
+            "eyebrow": "OBSD",
+            "h2": "OBSD — ecosistema industrial inteligente.",
+            "lede": "Convergencia IT/OT: integración de PLC y monitoreo industrial.",
+            "badges": ["C#", "Siemens LOGO!", "Modbus TCP", "WPF"],
+            "quote": "Integramos software con <strong>PLCs Siemens</strong> para monitorear ciclos de maquinaria, seguridad de encendido y KPIs de productividad en tiempo real.",
+            "btn_text": "Ver proyecto"
+          },
+          {
+            "id": "bbva",
+            "title": "BBVA",
+            "kicker": "Banca",
+            "eyebrow": "BBVA",
+            "h2": "Ecosistema transaccional BBVA.",
+            "lede": "Optimización web de alta disponibilidad.",
+            "badges": ["Spring", "Arquitectura Cells"],
+            "quote": "Desarrollo y optimización de experiencias web de alto tráfico, enfocadas en simplicidad transaccional y seguridad robusta para banca global.",
+            "btn_text": "Visitar sitio",
+            "btn_url": "https://portal.bbva.mx/informes/novo_access.jsp"
+          },
+          {
+            "id": "oxxo",
+            "title": "Spin by OXXO",
+            "kicker": "Fintech masiva",
+            "eyebrow": "Spin by OXXO",
+            "h2": "Spin by OXXO.",
+            "lede": "Innovación en inclusión financiera con UX ágil.",
+            "badges": ["React Native", "Spring"],
+            "quote": "Contribución técnica al desarrollo y optimización de una super-app financiera líder, diseñada para la bancarización masiva.",
+            "btn_text": "Visitar sitio",
+            "btn_url": "https://spinbyoxxo.com.mx/"
+          },
+          {
+            "id": "prisma",
+            "title": "Prisma",
+            "kicker": "Pagos y APIs",
+            "eyebrow": "Prisma Medios de Pago",
+            "h2": "Wallet — Prisma Medios de Pago.",
+            "lede": "Data lake modular y ecosistema de APIs para Argentina.",
+            "badges": ["Spring Boot", "MongoDB", "AWS Aurora"],
+            "quote": "Ingeniería de capas de API modulares para centralizar pagos, servicios y billeteras dentro de una infraestructura AWS de alto rendimiento.",
+            "btn_text": "Ver API",
+            "btn_url": "https://developers.prismamediosdepago.com/portal/api/catalog/Wallets"
+          },
+          {
+            "id": "certs",
+            "title": "Certificaciones",
+            "kicker": "Cierre",
+            "eyebrow": "Certificaciones y especialidad",
+            "h2": "Capacidad técnica con criterio estratégico.",
+            "lede": "Certificaciones y experiencia que respaldan la ejecución de proyectos complejos y conversaciones de alto nivel.",
+            "certs": [
+              {"title": "Maestría en AWS DevOps", "body": "Experiencia en CI/CD, CodePipeline, CloudFormation y soluciones cloud."},
+              {"title": "Liderazgo ágil", "body": "Especialista en gestión de dependencias entre equipos y escalabilidad ágil."},
+              {"title": "Negociación estratégica", "body": "Certificación en Método Harvard. Experto en gestión de stakeholders complejos."},
+              {"title": "8+ Casos de éxito", "body": "Trayectoria comprobada en banca, seguros e industria de alto nivel."}
+            ],
+            "footer": "© <a href=\"https://librixsoft.com/\" target=\"_blank\" rel=\"noopener\">Librixsoft</a> | Boutique de Software de Primer Nivel"
+          }
+        ]
+      },
+      "en": {
+        "title": "Librixsoft — Portfolio",
+        "description": "Premier Software Boutique for High-Impact Solutions",
+        "nav": {
+          "prev": "‹",
+          "next": "›",
+          "aria_prev": "Previous slide",
+          "aria_next": "Next slide",
+          "aria_dots": "Slider controls",
+          "aria_dot": "Go to slide"
+        },
+        "slides": [
+          {
+            "id": "overview",
+            "title": "Librixsoft overview",
+            "kicker": "Librixsoft Portfolio — v1.1",
+            "eyebrow": "Strategic Expertise",
+            "h1": "High-Impact Software with Strategic Vision.",
+            "lede": "Librixsoft transforms complex business ideas into elegant, functional, and scalable digital ecosystems. We combine commercial vision, operational understanding, and serious technical execution.",
+            "chips": ["Enterprise software", "Applied AI", "DevOps", "IT/OT", "UX with business focus"],
+            "quote": "We understand processes, break silos, build traceability, and deploy platforms ready to operate in mission-critical environments.",
+            "btn_text": "Explore Librixsoft",
+            "btn_url": "https://librixsoft.com/",
+            "stats": [
+              {"val": "Process-First Engineering", "label": "We analyze organizations as integrated systems to solve root problems."},
+              {"val": "Silo Breaking & Traceability", "label": "We deliver true operational visibility at every stage of the workflow."},
+              {"val": "IT/OT Convergence", "full": "We integrate <strong>Siemens PLC</strong> logic and custom C# software for real-time KPI monitoring."}
+            ]
+          },
+          {
+            "id": "balerocms",
+            "title": "BaleroCMS",
+            "kicker": "Own product",
+            "eyebrow": "BaleroCMS",
+            "h2": "Proprietary framework: intuitive, modular, and secure.",
+            "lede": "A platform custom-built by Librixsoft that works both as a CMS and as a base framework.",
+            "badges": ["PHP", "Vue.js", "MySQL"],
+            "quote": "Designed for fast deployment and visual customization without sacrificing performance.",
+            "btn_text": "View repository",
+            "btn_url": "https://github.com/librixsoft/balerocms/tree/development"
+          },
+          {
+            "id": "gnp",
+            "title": "GNP",
+            "kicker": "Insurance",
+            "eyebrow": "GNP",
+            "h2": "GNP online quoting software.",
+            "lede": "A real-time quotation engine integrated with GNP databases.",
+            "badges": ["React JS", "Spring Boot", "Hibernate"],
+            "quote": "An advanced quoting platform integrated with the GNP backend, automating policy generation management.",
+            "btn_text": "Visit site",
+            "btn_url": "https://gnpgastosmedicos.com.mx/"
+          },
+          {
+            "id": "equifax",
+            "title": "Equifax",
+            "kicker": "Global finance",
+            "eyebrow": "Equifax",
+            "h2": "Equifax CyberFinancial Cloud.",
+            "lede": "A global debt collection architecture for mission-critical operations.",
+            "badges": ["Angular", "Spring", "Oracle"],
+            "quote": "One of the most robust cloud platforms for portfolio recovery and international financial systems.",
+            "btn_text": "View product",
+            "btn_url": "https://www.equifax.com.mx/empresas/productos/cyberfinancial/"
+          },
+          {
+            "id": "obsd",
+            "title": "OBSD",
+            "kicker": "Smart industry",
+            "eyebrow": "OBSD",
+            "h2": "OBSD — smart industrial ecosystem.",
+            "lede": "IT/OT convergence: PLC integration and industrial monitoring.",
+            "badges": ["C#", "Siemens LOGO!", "Modbus TCP", "WPF"],
+            "quote": "We integrate software with <strong>Siemens PLCs</strong> to monitor machinery cycles and productivity KPIs.",
+            "btn_text": "View Project"
+          },
+          {
+            "id": "bbva",
+            "title": "BBVA",
+            "kicker": "Banking",
+            "eyebrow": "BBVA",
+            "h2": "BBVA transactional ecosystem.",
+            "lede": "High-availability web optimization.",
+            "badges": ["Spring", "Cells architecture"],
+            "quote": "Development and optimization of high-traffic web experiences focused on simplicity and security.",
+            "btn_text": "Visit site",
+            "btn_url": "https://portal.bbva.mx/informes/novo_access.jsp"
+          },
+          {
+            "id": "oxxo",
+            "title": "Spin by OXXO",
+            "kicker": "Mass-market fintech",
+            "eyebrow": "Spin by OXXO",
+            "h2": "Spin by OXXO.",
+            "lede": "Innovation in financial inclusion with agile UX.",
+            "badges": ["React Native", "Spring"],
+            "quote": "Technical contribution to the development of a leading financial super-app designed for mass banking.",
+            "btn_text": "Visit site",
+            "btn_url": "https://spinbyoxxo.com.mx/"
+          },
+          {
+            "id": "prisma",
+            "title": "Prisma",
+            "kicker": "Payments and APIs",
+            "eyebrow": "Prisma Medios de Pago",
+            "h2": "Wallet — Prisma Medios de Pago.",
+            "lede": "Modular data lake and API ecosystem for Argentina.",
+            "badges": ["Spring Boot", "MongoDB", "AWS Aurora"],
+            "quote": "Engineering of modular API layers to centralize payments and services inside AWS.",
+            "btn_text": "View API",
+            "btn_url": "https://developers.prismamediosdepago.com/portal/api/catalog/Wallets"
+          },
+          {
+            "id": "certs",
+            "title": "Certifications",
+            "kicker": "Closing",
+            "eyebrow": "Certifications and specialization",
+            "h2": "Technical capability with strategic judgment.",
+            "lede": "Certifications and experience that support the execution of complex projects and high-level conversations.",
+            "certs": [
+              {"title": "AWS DevOps Mastery", "body": "Experience in CI/CD, CodePipeline, and fault-tolerant cloud solutions."},
+              {"title": "Agile Leadership", "body": "Specialist in managing inter-team dependencies and agile scaling."},
+              {"title": "Strategic Negotiation", "body": "Harvard Method certified. Expert in complex stakeholder management."},
+              {"title": "8+ Success Stories", "body": "Proven track record in high-level banking, insurance, and industry."}
+            ],
+            "footer": "© <a href=\"https://librixsoft.com/\" target=\"_blank\" rel=\"noopener\">Librixsoft</a> | Premier Software Boutique"
+          }
+        ]
+      }
+    }
+  </script>
+
+  <script>
+    let currentLang = 'es';
+    let translations = {};
+
+    function init() {
+      translations = JSON.parse(document.getElementById('translations-data').textContent);
+      
+      const userLang = 'es'; // Forzamos español por defecto
+      setLanguage(userLang);
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const btn = document.getElementById('btn-' + lang);
+      if (btn) btn.classList.add('active');
+
+      const data = translations[lang];
+      
+      const t = (path) => path.split('.').reduce((obj, key) => {
+        const match = key.match(/(.+)\[(\d+)\]/);
+        if (match) return obj[match[1]][match[2]];
+        return obj && obj[key];
+      }, data);
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = t(key);
+        if (val) el.innerHTML = val;
+      });
+
+      document.title = t('title');
+      
+      renderContent(lang);
+    }
+
+    function renderContent(lang) {
+      const data = translations[lang].slides;
+
+      // Section Titles
+      document.getElementById('trayectoria-title').innerText = lang === 'es' ? 'Proyectos Seleccionados' : 'Selected Projects';
+
+      // Engineering Grid
+      const engGrid = document.getElementById('overview-grid');
+      engGrid.innerHTML = data[0].stats.map(s => `
+        <div class="item-card">
+          <strong>${s.val || ''}</strong>
+          <p class="meta">${s.full || s.label}</p>
+        </div>
+      `).join('');
+
+      // Projects List
+      const projectsList = document.getElementById('projects-list');
+      projectsList.innerHTML = data.slice(1, 8).map(p => `
+        <article class="card">
+          <div class="kicker">${p.kicker}</div>
+          <h3>${p.h2}</h3>
+          <p class="meta">${p.lede}</p>
+          <div class="badges">
+            ${p.badges.map(b => `<span class="badge">${b}</span>`).join('')}
+          </div>
+          <div class="divider"></div>
+          <p>${p.quote}</p>
+          <div class="media-grid">
+            <img src="assets/${p.id}.png" alt="${p.title}">
+          </div>
+          ${p.btn_url ? `<a class="btn-cta" href="${p.btn_url}" target="_blank" rel="noopener">${p.btn_text || 'Ver más'} →</a>` : ''}
+        </article>
+      `).join('');
+
+      // Certs List
+      const certsList = document.getElementById('certs-list');
+      certsList.innerHTML = data[8].certs.map(c => `
+        <div class="item-card">
+          <strong>${c.title}</strong>
+          <p class="meta">${c.body}</p>
+        </div>
+      `).join('');
+    }
+
+    async function updateCounter() {
+      try {
+        const response = await fetch('counter.php');
+        if (response.ok) {
+          const count = await response.text();
+          document.getElementById('hit-count').innerText = count;
+        }
+      } catch (err) {
+        console.error('Counter error:', err);
+      }
+    }
+
+    init();
+    updateCounter();
+  </script>
+</body>
+</html>

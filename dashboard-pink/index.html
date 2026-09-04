@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CYBER//DASHBOARD v3.0 — NEXUS</title>
+<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- SCANLINES OVERLAY -->
+<div class="scanlines"></div>
+
+<!-- CRT CURVATURE VIGNETTE -->
+<div class="crt-vignette"></div>
+
+<!-- BACKGROUND GRID -->
+<div class="bg-grid"></div>
+
+<!-- MATRIX RAIN CANVAS -->
+<canvas id="matrixRain" class="matrix-rain"></canvas>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles"></canvas>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo glitch" data-text="//NK NEXUS">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">//NK NEXUS</span>
+    </div>
+    <button class="toggle-sidebar" id="toggleSidebar">☰</button>
+  </div>
+
+  <!-- SIDEBAR CLOCK -->
+  <div class="sidebar-clock">
+    <span class="clock-time" id="clockTime">00:00:00</span>
+    <span class="clock-date" id="clockDate">2026-08-07</span>
+    <span class="clock-zone">CST // UTC-6</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" data-page="dashboard">
+      <span class="nav-icon">◈</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="#" class="nav-item" data-page="analytics">
+      <span class="nav-icon">◉</span>
+      <span class="nav-label">Analytics</span>
+    </a>
+    <a href="#" class="nav-item" data-page="network">
+      <span class="nav-icon">⬢</span>
+      <span class="nav-label">Network</span>
+    </a>
+    <a href="#" class="nav-item" data-page="systems">
+      <span class="nav-icon">◊</span>
+      <span class="nav-label">Systems</span>
+    </a>
+    <a href="#" class="nav-item" data-page="security">
+      <span class="nav-icon">⬟</span>
+      <span class="nav-label">Security</span>
+    </a>
+    <a href="#" class="nav-item" data-page="logs">
+      <span class="nav-icon">▣</span>
+      <span class="nav-label">Logs</span>
+    </a>
+    <a href="#" class="nav-item" data-page="comms">
+      <span class="nav-icon">⎔</span>
+      <span class="nav-label">Comms Feed</span>
+    </a>
+  </nav>
+
+  <!-- SIDEBAR ENCRYPTION STATUS -->
+  <div class="sidebar-encryption">
+    <div class="enc-header">
+      <span class="enc-icon">🔐</span>
+      <span class="enc-title">ENCRYPTION</span>
+    </div>
+    <div class="enc-detail">AES-256-GCM</div>
+    <div class="enc-key" id="encKeyDisplay">KEY: ****...****</div>
+  </div>
+
+  <!-- SIDEBAR MEMORY WAVEFORM -->
+  <div class="sidebar-waveform">
+    <canvas id="waveCanvas" width="210" height="40"></canvas>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="system-status">
+      <div class="status-dot online"></div>
+      <span class="status-text">SYSTEM ONLINE</span>
+    </div>
+    <div class="version-tag">v3.0.0 // BUILD 12847</div>
+    <div class="fingerprint" id="sysFingerprint">FP: a3f8c...</div>
+  </div>
+</aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="main-content" id="mainContent">
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="top-left">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <span class="page-title">DASHBOARD</span>
+      <span class="breadcrumb">// overview //</span>
+    </div>
+
+    <div class="top-center">
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="SEARCH SYSTEM..." class="search-input" />
+      </div>
+    </div>
+
+    <div class="top-right">
+      <!-- SIGNAL STRENGTH -->
+      <div class="signal-bars">
+        <span class="bar b1"></span>
+        <span class="bar b2"></span>
+        <span class="bar b3"></span>
+        <span class="bar b4"></span>
+        <span class="bar b5"></span>
+      </div>
+
+      <div class="notification-bell">
+        <span class="bell-icon">⚠</span>
+        <span class="notif-badge" id="notifBadge">3</span>
+      </div>
+
+      <!-- SYSTEM UPTIME -->
+      <div class="uptime-display">
+        <span class="uptime-label">UPTIME</span>
+        <span class="uptime-value" id="uptimeValue">00:00:00</span>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar cyber-avatar">
+          <span>L</span>
+        </div>
+        <div class="user-info">
+          <span class="user-name">OPERATOR_01</span>
+          <span class="user-role">ADMIN // CLEARANCE LVL-5</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD CONTENT -->
+  <div class="dashboard-content">
+
+    <!-- STATS ROW — NOW 6 COLUMNS -->
+    <section class="stats-row">
+<div class="cyber-card" data-stat="cpu">
+        <div class="card-corner top-left"></div>
+        <div class="card-corner top-right"></div>
+        <div class="card-corner bottom-left"></div>
+        <div class="card-corner bottom-right"></div>
+        <div class="card-header">
+          <span class="card-icon">⬡</span>
+          <div class="header-info">
+            <span class="card-title">CPU USAGE</span>
+            <span class="card-id">ID: CPU_CORE_01</span>
+          </div>
+          <span class="card-trend up" id="cpuTrend">▲ 2.3%</span>
+        </div>
+        <div class="card-body">
+          <div class="gauge-container">
+            <svg class="cyber-gauge" viewBox="0 0 120 65">
+              <defs>
+                <linearGradient id="neonCyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#0ff;stop-opacity:0.3"/>
+                  <stop offset="50%" style="stop-color:#0ff;stop-opacity:1"/>
+                  <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.3"/>
+                </linearGradient>
+              </defs>
+              <path d="M 10 58 A 50 50 0 0 1 110 58" fill="none" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round"/>
+              <path id="cpuGauge" d="M 10 58 A 50 50 0 0 1 110 58" fill="none" stroke="url(#neonCyanGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="47"/>
+            </svg>
+          </div>
+          <span class="stat-value" id="cpuValue">70%</span>
+          <span class="stat-label">ACTIVE CORES: 8/12 // 3.6 GHz</span>
+        </div>
+      </div>
+
+      <div class="stat-card cyber-card" data-stat="memory">
+        <div class="card-header">
+          <span class="card-icon">◉</span>
+          <span class="card-title">MEMORY</span>
+          <span class="card-trend up" id="memTrend">▲ 1.2%</span>
+        </div>
+        <div class="card-body">
+          <div class="bar-chart-mini" id="memoryBars"></div>
+          <span class="stat-value" id="memValue">12.4 GB</span>
+          <span class="stat-label">OF 32.0 GB // SWAP: 2.1 GB</span>
+        </div>
+      </div>
+
+      <div class="stat-card cyber-card" data-stat="network">
+        <div class="card-header">
+          <span class="card-icon">⬢</span>
+          <span class="card-title">NETWORK I/O</span>
+          <span class="card-trend up" id="netTrend">▲ 5.4%</span>
+        </div>
+        <div class="card-body">
+          <canvas id="networkSparkline" width="200" height="50"></canvas>
+          <span class="stat-value" id="netUp">↑ 2.4 GB/s</span>
+          <span class="stat-label">↓ 8.7 GB/s // PING: 12ms</span>
+        </div>
+      </div>
+
+      <div class="stat-card cyber-card" data-stat="threats">
+        <div class="card-header">
+          <span class="card-icon">⬟</span>
+          <span class="card-title">THREATS</span>
+          <span class="card-trend down" id="threatTrend">▼ 12%</span>
+        </div>
+        <div class="card-body">
+          <div class="threat-meter">
+            <div class="meter-bar outer">
+              <div class="meter-bar inner">
+                <div class="meter-fill critical" id="threatFill"></div>
+              </div>
+            </div>
+          </div>
+          <span class="stat-value warning" id="threatValue">3</span>
+          <span class="stat-label">BLOCKED TODAY // STATUS: MONITORING</span>
+        </div>
+      </div>
+
+      <div class="stat-card cyber-card" data-stat="disk">
+        <div class="card-header">
+          <span class="card-icon">▦</span>
+          <span class="card-title">DISK I/O</span>
+        </div>
+        <div class="card-body">
+          <div class="gauge-container">
+            <svg class="cyber-gauge" viewBox="0 0 120 65">
+              <defs>
+                <linearGradient id="diskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3"/>
+                  <stop offset="100%" style="stop-color:#ff006e;stop-opacity:1"/>
+                </linearGradient>
+              </defs>
+              <path d="M 10 58 A 50 50 0 0 1 110 58" fill="none" stroke="#1a1a2e" stroke-width="6" stroke-linecap="round"/>
+              <path id="diskGauge" d="M 10 58 A 50 50 0 0 1 110 58" fill="none" stroke="url(#diskGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="94"/>
+            </svg>
+          </div>
+          <span class="stat-value" style="color:var(--neon-purple)">34%</span>
+          <span class="stat-label">READ: 420 MB/s // WRITE: 185 MB/s</span>
+        </div>
+      </div>
+
+      <div class="stat-card cyber-card" data-stat="gpu">
+        <div class="card-header">
+          <span class="card-icon">⬣</span>
+          <span class="card-title">GPU RENDER</span>
+        </div>
+        <div class="card-body">
+          <canvas id="gpuViz" width="200" height="50"></canvas>
+          <span class="stat-value" style="color:#ff006e">47%</span>
+          <span class="stat-label">VRAM: 6.1/12 GB // RTX 4080</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MAIN GRID ROW 1 — Network + Log + Comms -->
+    <section class="dashboard-grid grid-main-row">
+
+      <!-- NETWORK MAP (Large) -->
+      <div class="panel cyber-card panel-large network-panel-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title glitch" data-text="// NETWORK_TOPOLOGY">// NETWORK_TOPOLOGY //</h2>
+          <div class="panel-controls">
+            <span class="live-indicator"><span class="live-dot"></span>LIVE</span>
+            <span class="node-count">NODES: 24</span>
+          </div>
+        </div>
+        <div class="panel-body network-panel" id="networkPanelWrap">
+          <canvas id="networkCanvas"></canvas>
+          <!-- Network stats overlay -->
+          <div class="net-stats-overlay">
+            <div class="net-stat-item">
+              <span class="ns-label">PACKETS</span>
+              <span class="ns-value" id="netPackets">14,287/s</span>
+            </div>
+            <div class="net-stat-item">
+              <span class="ns-label">LATENCY</span>
+              <span class="ns-value" style="color:var(--neon-green)" id="netLatency">8ms</span>
+            </div>
+            <div class="net-stat-item">
+              <span class="ns-label">DROPS</span>
+              <span class="ns-value warning" id="netDrops">0.02%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMS FEED -->
+      <div class="panel cyber-card panel-side comms-panel-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title">// ENCRYPTED_COMMS //</h2>
+          <span class="panel-badge encrypted">🔒 AES-256</span>
+        </div>
+        <div class="panel-body comms-panel" id="commsPanel">
+          <!-- Comms injected by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECOND ROW — Chart + Activity Log + Nodes -->
+    <section class="dashboard-grid grid-triple-row">
+
+      <!-- CHART PANEL (2 cols) -->
+      <div class="panel cyber-card panel-large chart-panel-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title">// PERFORMANCE_METRICS //</h2>
+          <div class="chart-controls">
+            <button class="chart-btn active" data-range="1h">1H</button>
+            <button class="chart-btn" data-range="6h">6H</button>
+            <button class="chart-btn" data-range="24h">24H</button>
+            <button class="chart-btn" data-range="7d">7D</button>
+          </div>
+        </div>
+        <div class="panel-body chart-panel" id="mainChartWrap">
+          <canvas id="mainChart"></canvas>
+        </div>
+      </div>
+
+      <!-- ACTIVITY LOG -->
+      <div class="panel cyber-card panel-side log-panel-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title">// SYSTEM_LOGS //</h2>
+          <span class="panel-badge" id="logCount">0 ENTRIES</span>
+        </div>
+        <div class="panel-body log-panel" id="logPanel"></div>
+      </div>
+
+    </section>
+
+    <!-- THIRD ROW — Hex Stream + Security + Processes -->
+    <section class="dashboard-grid grid-triple-row">
+
+      <!-- HEX STREAM -->
+      <div class="panel cyber-card">
+        <div class="panel-header">
+          <h2 class="panel-title">// DATA_STREAM //</h2>
+          <span class="stream-rate" id="streamRate">1.2 TB/s</span>
+        </div>
+        <div class="panel-body hex-panel" id="hexPanel"></div>
+      </div>
+
+      <!-- SECURITY FEED -->
+      <div class="panel cyber-card">
+        <div class="panel-header">
+          <h2 class="panel-title">// SECURITY_FEED //</h2>
+          <span class="sec-status active" id="secStatus">ACTIVE</span>
+        </div>
+        <div class="panel-body security-panel" id="securityPanel"></div>
+      </div>
+
+      <!-- PROCESS MONITOR -->
+      <div class="panel cyber-card">
+        <div class="panel-header">
+          <h2 class="panel-title">// RUNNING_PROCESSES //</h2>
+          <span class="process-count" id="procCount">147</span>
+        </div>
+        <div class="panel-body process-panel" id="processPanel"></div>
+      </div>
+
+    </section>
+
+    <!-- FOURTH ROW — Disk + Nodes -->
+    <section class="dashboard-grid grid-triple-row">
+
+      <!-- FILE SYSTEM -->
+      <div class="panel cyber-card panel-large disk-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title">// DISK_USAGE //</h2>
+          <span class="total-disk">TOTAL: 3.5 TB</span>
+        </div>
+        <div class="panel-body disk-panel" id="diskPanel"></div>
+      </div>
+
+      <!-- NODE STATUS -->
+      <div class="panel cyber-card panel-side nodes-wrap">
+        <div class="panel-header">
+          <h2 class="panel-title">// ACTIVE_NODES //</h2>
+          <span class="online-count" id="onlineCount">5/6 ONLINE</span>
+        </div>
+        <div class="panel-body nodes-panel" id="nodesPanel"></div>
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<!-- GLITCH OVERLAY (triggers periodically) -->
+<div class="glitch-overlay" id="glitchOverlay"></div>
+
+<script src="script.js"></script>
+
+<!-- BOOT SEQUENCE OVERLAY -->
+<div class="boot-overlay" id="bootOverlay">
+  <div class="boot-text">NEXUS v3.0 — INITIALIZING...</div>
+  <div class="boot-bar-track">
+    <div class="boot-bar-fill" id="bootBar"></div>
+  </div>
+</div>
+</body>
+</html>

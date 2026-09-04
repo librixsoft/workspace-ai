@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LibrixSoft — Credenciales Corporativas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- KDE Breeze Sans: use system font stack (Ubuntu → Noto Sans → Cantarell → Segoe UI) as primary,
+     with Inter as fallback for weights not covered by system fonts. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;background:#0F172A;color:#fff}
+
+/* ── Slides Container ── */
+.slides-wrapper{width:100vw;height:100vh;position:relative;perspective:1200px}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;transform:scale(0.92) translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1);pointer-events:none;padding:6vw 5vw}
+.slide.active{opacity:1;transform:scale(1) translateY(0);pointer-events:auto;z-index:10}
+
+/* ── Backgrounds — degradado azul profundo corporativo, 3 colores por slide ── */
+.slide-1{background:linear-gradient(135deg,#0F172A 0%,#1E3A5F 40%,#1E40AF 100%);text-align:center}
+.slide-2{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
+.slide-3{background:linear-gradient(145deg,#0F172A 0%,#1E3A5F 50%,#3B82F6 100%)}
+.slide-4{background:linear-gradient(150deg,#0F172A 0%,#1D4ED8 100%)}
+.slide-5{background:linear-gradient(180deg,#0F172A 0%,#1E3A5F 100%);text-align:center}
+.slide-6{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
+.slide-7{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
+.slide-8{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%)}
+.slide-9{background:linear-gradient(160deg,#0F172A 0%,#1E3A5F 100%);text-align:center}
+
+/* ── Layered Backgrounds (KDE Plasma style) — radial overlays azules sutiles + patrón geométrico GNOME-like ── */
+.slide::after{content:'';position:absolute;inset:0;z-index:-1}
+.slide-1::after{background:radial-gradient(ellipse at 75% 80%,rgba(59,130,246,.06),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px)}
+.slide-2::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-3::after{background:radial-gradient(ellipse at 50% 50%,rgba(59,130,246,.05),transparent 65%),repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) .5px,transparent .5px,transparent 40px)}
+.slide-4::after{background:radial-gradient(ellipse at 20% 90%,rgba(79,70,229,.05),transparent 50%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-5::after{background:radial-gradient(ellipse at 60% 40%,rgba(96,165,250,.03),transparent 60%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-6::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-7::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-8::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+.slide-9::after{background:radial-gradient(ellipse at 25% 20%,rgba(96,165,250,.03),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,rgba(255,255,255,.01) .5px,transparent .5px,transparent 48px)}
+
+/* ── Decorative Elements — KDE Blur Orbs (azules corporativos, muy sutiles) con flotación sutil ── */
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-12px)}50%{transform:translate(-8px,-6px)}75%{transform:translate(-10px,10px)}}
+.slide::before{content:'';position:absolute;border-radius:50%;filter:blur(150px);opacity:.08;pointer-events:none;z-index:-2;animation:orbFloat 8s ease-in-out infinite}
+.slide-1::before{width:600px;height:600px;background:#3B82F6;top:-10%;right:-8%}
+.slide-2::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+.slide-3::before{width:450px;height:450px;background:#3B82F6;top:-8%;left:-6%}
+.slide-4::before{width:700px;height:700px;background:#4F46E5;top:-15%;right:-10%}
+.slide-5::before{width:300px;height:300px;background:#93C5FD;bottom:-10%;left:10%}
+.slide-6::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+.slide-7::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+.slide-8::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+.slide-9::before{width:500px;height:500px;background:#60A5FA;bottom:-10%;left:-5%}
+
+/* Grid overlay — casi invisible */
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;z-index:0}
+
+/* Floating particles — azules tenues */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.particle{position:absolute;width:3px;height:3px;background:rgba(96,165,250,.2);border-radius:50%;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-30px) scale(1.2);opacity:0}}
+
+/* ── Typography ── */
+.slide-tag{font-size:.85rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#93C5FD;margin-bottom:1.5vh;animation:fadeSlideDown .8s ease both}
+.slide-title{font-size:clamp(2.2rem,5vw,4.5rem);font-weight:600;line-height:1.08;text-align:center;letter-spacing:-0.02em;background:linear-gradient(135deg,#fff,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:2vh;animation:fadeSlideDown .8s .15s ease both}
+.slide-subtitle{font-size:clamp(1.1rem,2vw,1.6rem);font-weight:400;color:rgba(255,255,255,.7);text-align:center;line-height:1.7;max-width:800px;margin-bottom:2vh;animation:fadeSlideDown .8s .3s ease both}
+.slide-divider{width:80px;height:3px;background:linear-gradient(90deg,#60A5FA,#3B82F6);border-radius:2px;margin:1.5vh 0;animation:fadeSlideDown .8s .25s ease both}
+
+/* ── Services Grid (slide 6) — Minimalist on dark bg ── */
+.services-grid{display:flex;gap:3vw;width:100%;max-width:1100px;margin-top:3vh}
+.service-item{text-align:center;flex:1;padding:28px 10px;background:none;border:none;transition:all .3s ease;animation:fadeSlideUp .7s ease both}
+.service-item:nth-child(1){animation-delay:.15s}.service-item:nth-child(2){animation-delay:.3s}
+.service-item:nth-child(3){animation-delay:.45s}.service-item:nth-child(4){animation-delay:.6s}
+.service-icon{font-size:2.8rem;margin-bottom:1vh;display:block;filter:grayscale(1) brightness(.9)}
+.service-num{display:none}
+.service-title{font-size:clamp(1.15rem,1.7vw,1.55rem);font-weight:600;color:#fff;line-height:1.3;letter-spacing:-.01em;margin-bottom:.8vh}
+.service-desc{font-size:clamp(.82rem,.95vw,.92rem);color:rgba(255,255,255,.45);line-height:1.7;font-weight:400}
+
+/* ── Team Cards (slide 3) — KDE Plasma Breeze / GNOME Style ── */
+.team-grid{display:flex;gap:3vw;margin-top:3vh;width:100%;max-width:960px;justify-content:center}
+
+.team-card-kde{
+  flex:1;
+  background:none;
+  border:none;
+  padding:36px 28px;
+  text-align:center;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  animation:fadeSlideUp .7s ease both;
+}
+
+.team-card-kde:hover{
+  transform:none;
+}
+
+.team-card-kde:nth-child(1){animation-delay:.2s}
+.team-card-kde:nth-child(2){animation-delay:.35s}
+
+.team-icon-kde{font-size:3rem;margin-bottom:.8vh;display:block;filter:drop-shadow(0 1px 4px rgba(0,0,0,.2))}
+
+.team-number-kde{
+  font-size:clamp(2.8rem,4.5vw,4rem);
+  font-weight:700;
+  line-height:1;
+  margin-bottom:.5vh;
+  background:linear-gradient(135deg,#fff,#93C5FD);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.team-label-kde{
+  font-size:clamp(.9rem,1.3vw,1.1rem);
+  color:rgba(255,255,255,.78);
+  line-height:1.65;
+  font-weight:400;
+}
+
+.team-label-kde strong{
+  display:block;
+  font-size:clamp(.95rem,1.35vw,1.15rem);
+  color:#fff;
+  margin-bottom:.4vh;
+  font-weight:600;
+}
+
+/* Position absolute for ::before pseudo (removed) */
+.team-card-kde{position:relative;overflow:hidden}
+
+/* ── Process Steps (slide 4) — Timeline Minimalista ── */
+.steps{display:flex;gap:2vw;margin-top:4vh;width:100%;max-width:1100px;align-items:center;position:relative;padding:0 calc(var(--step-w, 8px))}
+.steps::before{content:'';position:absolute;top:68px;left:calc(10% + 1vw);right:calc(10% + 1vw);height:2px;background:linear-gradient(90deg,#3B82F6,#60A5FA,#93C5FD);transform:translateY(-50%);z-index:0}
+.step{flex:1;text-align:center;position:relative;z-index:1;padding:48px 12px 0;background:none;border:none;transition:none;animation:fadeSlideUp .7s ease both}
+.step:nth-child(1){animation-delay:.1s}.step:nth-child(2){animation-delay:.25s}
+.step:nth-child(3){animation-delay:.4s}.step:nth-child(4){animation-delay:.55s}
+.step-num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#60A5FA);display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:600;margin:0 auto .8vh;color:#fff}
+.step-title{font-size:clamp(.9rem,1.2vw,1.1rem);font-weight:600;margin-bottom:.4vh;color:#fff}
+.step-desc{font-size:clamp(.75rem,.95vw,.88rem);color:rgba(255,255,255,.55);line-height:1.6;font-weight:400}
+
+/* ── Why Section (slide 7) — Based on slide 2 about-features style ── */
+.why-grid{display:flex;gap:3vw;width:100%;max-width:1050px;margin-top:2vh}
+.why-card{text-align:center;flex:1;background:none;border:none;padding:0;transition:none;animation:fadeSlideUp .7s ease both}
+.why-card:nth-child(1){animation-delay:.2s}.why-card:nth-child(2){animation-delay:.35s}.why-card:nth-child(3){animation-delay:.5s}
+.why-icon{font-size:2.2rem;margin-bottom:.6vh;display:block;filter:grayscale(.3)}
+.why-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:600;margin-bottom:.8vh;color:#fff;line-height:1.35}
+.why-techs{display:flex;flex-wrap:wrap;gap:.4vw;justify-content:center}
+.why-tech{font-size:clamp(.72rem,.88vw,.82rem);color:rgba(96,165,250,.85);font-weight:500;padding:.25vh .5vw;background:none;border:none}
+
+/* ── Clients (slide 8) — Minimalist on dark bg ── */
+.clients-grid{display:flex;gap:3vw;width:100%;max-width:1100px;margin-top:2vh}
+.client-chip{text-align:center;flex:1;background:none;border:none;padding:0;display:flex;flex-direction:column;align-items:center;transition:none;animation:fadeSlideUp .7s ease both}
+.client-chip:nth-child(1){animation-delay:.1s}.client-chip:nth-child(2){animation-delay:.2s}.client-chip:nth-child(3){animation-delay:.3s}
+.client-chip:nth-child(4){animation-delay:.4s}.client-chip:nth-child(5){animation-delay:.5s}.client-chip:nth-child(6){animation-delay:.6s}
+.client-icon{font-size:2.2rem;margin-bottom:.5vh;display:block;filter:grayscale(.3)}
+.client-name{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:600;color:#fff;margin-bottom:.4vh}
+.client-sector{font-size:clamp(.78rem,.92vw,.88rem);color:rgba(255,255,255,.5);font-weight:400}
+
+/* ── CTA (slide 9) ── */
+.cta-title{font-size:clamp(2.5rem,5.5vw,5rem);font-weight:600;letter-spacing:-.02em;color:#fff;margin-bottom:1.5vh;animation:fadeSlideDown .8s ease both}
+.cta-subtitle{font-size:clamp(1.1rem,2vw,1.7rem);font-weight:400;color:rgba(255,255,255,.65);margin-bottom:3vh;animation:fadeSlideDown .8s .2s ease both}
+.contact-list{display:flex;gap:4vw;margin-top:1vh;flex-wrap:wrap;justify-content:center;animation:fadeSlideUp .8s .4s ease both}
+.contact-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.6vh;background:none;border:none;padding:0}
+.contact-icon{font-size:2rem;display:block}
+.contact-label{font-size:.75rem;font-weight:500;color:#93C5FD;letter-spacing:.05em;text-transform:uppercase}
+.contact-value{font-size:clamp(1rem,1.4vw,1.3rem);color:#fff;font-weight:400;text-decoration:none}
+.footer-year{position:absolute;bottom:3vh;left:0;right:0;text-align:center;font-size:.8rem;color:rgba(255,255,255,.3);letter-spacing:3px;font-weight:400}
+
+/* ── Slide 5 special (Services Header) ── */
+.services-header{text-align:center}
+.sh-big{font-size:clamp(1rem,1.8vw,1.6rem);font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:#93C5FD;margin-bottom:2vh;animation:fadeSlideDown .8s ease both}
+.sh-main{font-size:clamp(2.5rem,5vw,4.5rem);font-weight:600;letter-spacing:-0.02em;line-height:1.15;background:linear-gradient(135deg,#fff,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1.5vh;animation:fadeSlideDown .8s .2s ease both}
+.sh-tagline{font-size:clamp(1.2rem,2vw,1.7rem);font-weight:400;color:rgba(255,255,255,.6);margin-bottom:3vh;animation:fadeSlideDown .8s .4s ease both}
+.sh-brand{font-size:clamp(1.1rem,1.5vw,1.4rem);color:#93C5FD;font-weight:500;letter-spacing:.05em;animation:fadeSlideDown .8s .5s ease both}
+
+/* ── Slide 2 special (About) ── */
+.about-text{max-width:900px;text-align:center;margin-bottom:3vh;animation:fadeSlideDown .8s .15s ease both}
+.about-desc{font-size:clamp(.9rem,1.25vw,1.1rem);color:rgba(255,255,255,.7);line-height:1.7;font-weight:400;margin-bottom:2vh}
+.about-features{display:flex;gap:3vw;width:100%;max-width:1050px;margin-top:1vh}
+.about-feat{text-align:center;flex:1;animation:fadeSlideUp .7s ease both}
+.about-feat:nth-child(1){animation-delay:.25s}.about-feat:nth-child(2){animation-delay:.4s}.about-feat:nth-child(3){animation-delay:.55s}
+.about-icon{font-size:2.2rem;margin-bottom:.6vh;display:block}
+.about-feat-title{font-size:clamp(.95rem,1.3vw,1.15rem);font-weight:600;margin-bottom:.5vh;color:#fff}
+.about-feat-desc{font-size:clamp(.8rem,1vw,.92rem);color:rgba(255,255,255,.65);line-height:1.7;font-weight:400}
+
+/* ── Fullscreen button — KDE Plasma Glassmorphism ── */
+.fs-btn{position:fixed;top:2vh;left:3vw;z-index:100;display:flex;align-items:center;gap:.6vw;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:.7vh 1.4vw;cursor:pointer;color:#fff;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:1px;transition:all .35s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(16px) saturate(1.1);white-space:nowrap}
+.fs-btn:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2)}
+
+/* ── Navigation — KDE Plasma Dots & Arrows ── */
+.nav-bar{position:fixed;bottom:2vh;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:1vw;z-index:100}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.12);cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.dot.active{background:#3B82F6;border-color:#fff;width:14px;height:14px;box-shadow:0 0 0 2px rgba(59,130,246,.3)}
+
+.nav-arrows{position:fixed;top:50%;width:100%;display:flex;justify-content:space-between;padding:0 2vw;z-index:100;transform:translateY(-50%);pointer-events:none}
+.arrow{pointer-events:auto;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);color:#fff;font-size:1.4rem}
+.arrow:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.2)}
+
+/* ── Slide counter ── */
+.slide-counter{position:fixed;bottom:2vh;right:3vw;z-index:100;font-size:.9rem;color:#fff;font-weight:500;letter-spacing:2px;background:rgba(255,255,255,.08);padding:.4vh .8vw;border-radius:6px}
+
+/* ── Logo mark (slide 1) — KDE gradient + blue glow ── */
+.logo-mark{width:96px;height:96px;border-radius:18px;background:linear-gradient(135deg,#2563EB,#3B82F6);border:2.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:600;margin-bottom:2.5vh;color:#fff;animation:fadeSlideDown .8s ease both,logoGlow 3s ease-in-out infinite alternate}
+@keyframes logoGlow{0%{box-shadow:0 0 20px rgba(59,130,246,.1),0 0 50px rgba(37,99,235,.05)}100%{box-shadow:0 0 36px rgba(59,130,246,.12),0 0 80px rgba(37,99,235,.08)}}
+
+/* ── Cursor hide in fullscreen — hides OS cursor, mouse events still work ── */
+body.no-cursor *{cursor:none !important}
+
+/* ── Animations ── */
+@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .services-grid,.team-grid,.why-grid,.clients-grid,.about-features,.steps{flex-direction:column;gap:2vh}
+  .contact-list{flex-direction:column;gap:1.5vh}
+  .step,.service-item{padding:2vw}
+  .nav-arrows{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="slides-wrapper" id="slidesWrapper">
+
+<!-- ═══════════ SLIDE 1 — PORTADA ═══════════ -->
+<div class="slide slide-1 active" data-slide="0">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p0"></div>
+  <div class="logo-mark"><span style="font-size:2.5rem;">&lt;/&gt;</span></div>
+  <h1 class="slide-title">CREDENCIALES<br>LibrixSoft</h1>
+  <div class="slide-divider" style="margin:2vh auto"></div>
+  <p class="slide-subtitle">Desarrollo de software a la medida, con talento senior</p>
+  <p style="color:#93C5FD;font-weight:500;margin-top:1.5vh;letter-spacing:.05em;animation:fadeSlideUp .8s .5s ease both">Reunión de discovery · librixsoft.com</p>
+</div>
+
+<!-- ═══════════ SLIDE 2 — QUIÉNES SOMOS ═══════════ -->
+<div class="slide slide-2" data-slide="1">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p1"></div>
+  <span class="slide-tag">Conócenos</span>
+  <h1 class="slide-title">¿Quiénes somos?</h1>
+  <div class="about-text">
+    <p class="about-desc">Somos una consultora de software boutique especializada en el diseño, desarrollo e implementación de soluciones tecnológicas a la medida. Operamos mediante células de desarrollo de alto rendimiento, integrando talento senior para construir sistemas robustos y complejos.</p>
+  </div>
+  <div class="about-features">
+    <div class="about-feat">
+      <span class="about-icon">&lt;/&gt;</span>
+      <div class="about-feat-title">Desarrollo a medida</div>
+      <p class="about-feat-desc">Soluciones tecnológicas diseñadas y construidas específicamente para las necesidades de tu negocio.</p>
+    </div>
+    <div class="about-feat">
+      <span class="about-icon">{ }</span>
+      <div class="about-feat-title">Células de desarrollo</div>
+      <p class="about-feat-desc">Equipos dedicados y escalables que se integran a tu operación y a tu ritmo de entrega.</p>
+    </div>
+    <div class="about-feat">
+      <span class="about-icon">⚡</span>
+      <div class="about-feat-title">B2B Alianzas estratégicas</div>
+      <p class="about-feat-desc">Alianzas estratégicas constantes con otras marcas o corporativos. Estructura de capacidad elástica con especialistas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 3 — NUESTRO EQUIPO ═══════════ -->
+<div class="slide slide-3" data-slide="2">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p2"></div>
+  <span class="slide-tag">Talento</span>
+  <h1 class="slide-title">Nuestro equipo</h1>
+  <p class="slide-subtitle" style="margin-bottom:0">Equipo core propio + red de aliados especializados</p>
+  <div class="team-grid">
+    <div class="team-card-kde">
+      <div class="team-number-kde">7+</div>
+      <p class="team-label-kde"><strong>Ingenieros Senior</strong>Nuestro equipo core, dedicado al desarrollo backend de alta complejidad y a los sistemas más críticos de cada proyecto.</p>
+    </div>
+    <div class="team-card-kde">
+      <div class="team-number-kde">+100</div>
+      <p class="team-label-kde"><strong>Diseñadores UX bajo demanda</strong>A través de nuestra alianza, escalamos el diseño de experiencia de usuario a la medida de cada proyecto o compliance para cuentas triple A.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 4 — CÓMO TRABAJAMOS ═══════════ -->
+<div class="slide slide-4" data-slide="3">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p3"></div>
+  <span class="slide-tag">Metodología</span>
+  <h1 class="slide-title">Cómo trabajamos</h1>
+  <p class="slide-subtitle">Metodología Scrum: iteraciones cortas y entregas continuas</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Sprint Planning</div>
+      <p class="step-desc">Definimos alcance y prioridades de cada iteración.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Daily Stand-up</div>
+      <p class="step-desc">Sincronización diaria del equipo de desarrollo.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Sprint Review</div>
+      <p class="step-desc">Presentamos avances funcionales al cliente.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Retrospectiva</div>
+      <p class="step-desc">Ajustamos y mejoramos el proceso continuamente.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 5 — SERVICIOS HEADER ═══════════ -->
+<div class="slide slide-5" data-slide="4">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p4"></div>
+  <div class="services-header">
+    <span class="sh-big">SERVICIOS 2026</span>
+    <h1 class="sh-main">Software de<br>alto impacto.</h1>
+    <p class="sh-tagline">Para empresas que no pueden fallar.</p>
+    <div class="slide-divider" style="margin:2vh auto"></div>
+    <span class="sh-brand">LibrixSoft</span>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 6 — NUESTROS SERVICIOS ═══════════ -->
+<div class="slide slide-6" data-slide="5">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p5"></div>
+  <span class="slide-tag">Soluciones</span>
+  <h1 class="slide-title">Nuestros Servicios</h1>
+  <p class="slide-subtitle" style="margin-bottom:0;font-size:clamp(.95rem,1.3vw,1.15rem)">Lo que hacemos.</p>
+  <div class="services-grid">
+    <div class="service-item">
+      <span class="service-icon">🏗️</span>
+      <div class="service-title">Aplicaciones web mobile</div>
+      <p class="service-desc">APIs y microservicios de alta disponibilidad.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🤖</span>
+      <div class="service-title">Inteligencia Artificial</div>
+      <p class="service-desc">Automatización y copilotos potenciados por IA.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🔒</span>
+      <div class="service-title">Seguridad aplicada</div>
+      <p class="service-desc">OWASP, hardening y seguridad desde el diseño.</p>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">💳</span>
+      <div class="service-title">Fintech y pagos digitales</div>
+      <p class="service-desc">Banca móvil, wallets y plataformas de pago.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 7 — POR QUÉ LIBRIXSOFT (Stack Tecnológico) ═══════════ -->
+<div class="slide slide-7" data-slide="6">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p6"></div>
+  <span class="slide-tag">Stack</span>
+  <h1 class="slide-title">Tecnología</h1>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">⚙️</span>
+      <div class="why-title">Backend &amp; Enterprise</div>
+      <p class="why-desc">Java 21 · Spring Boot · Kafka · Hibernate · SQL Server · MongoDB</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🖥️</span>
+      <div class="why-title">Frontend &amp; UI</div>
+      <p class="why-desc">Angular · React · TypeScript · JavaScript · HTML5 · CSS3 · Material Design</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">☁️</span>
+      <div class="why-title">DevOps &amp; Cloud</div>
+      <p class="why-desc">Docker · Kubernetes · AWS · GCP · CI/CD · SonarQube · TDD · Scrum</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 8 — EXPERTISE / CLIENTES ═══════════ -->
+<div class="slide slide-8" data-slide="7">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p7"></div>
+  <span class="slide-tag">Trayectoria</span>
+  <h1 class="slide-title">Clientes</h1>
+  <p class="slide-subtitle">Experiencia real en banca, seguros, fintech e industria.</p>
+  <div class="clients-grid">
+    <div class="client-chip">
+      <span class="client-icon">🏦</span>
+      <span class="client-name">BBVA</span>
+      <span class="client-sector">Banca</span>
+    </div>
+    <div class="client-chip">
+      <span class="client-icon">🛡️</span>
+      <span class="client-name">GNP</span>
+      <span class="client-sector">Seguros</span>
+    </div>
+    <div class="client-chip">
+      <span class="client-icon">📊</span>
+      <span class="client-name">Equifax</span>
+      <span class="client-sector">Finanzas</span>
+    </div>
+    <div class="client-chip">
+      <span class="client-icon">💸</span>
+      <span class="client-name">Spin by OXXO</span>
+      <span class="client-sector">Fintech</span>
+    </div>
+    <div class="client-chip">
+      <span class="client-icon">🔑</span>
+      <span class="client-name">Prisma</span>
+      <span class="client-sector">Pagos</span>
+    </div>
+    <div class="client-chip">
+      <span class="client-icon">🌐</span>
+      <span class="client-name">Open Source</span>
+      <span class="client-sector">Comunidad</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SLIDE 9 — CIERRE / CONTACTO ═══════════ -->
+<div class="slide slide-9" data-slide="8">
+  <div class="grid-overlay"></div>
+  <div class="particles" id="p8"></div>
+  <h1 class="cta-title">¿LISTO PARA EMPEZAR?</h1>
+  <p class="cta-subtitle">Construyamos algo que no falle.</p>
+  <div class="contact-list">
+    <div class="contact-item">
+      <span class="contact-icon">🌐</span>
+      <span class="contact-label">Web</span>
+      <a class="contact-value" href="https://www.librixsoft.com">www.librixsoft.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">✉️</span>
+      <span class="contact-label">Email</span>
+      <a class="contact-value" href="mailto:hola@librixsoft.com">hola@librixsoft.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📍</span>
+      <span class="contact-label">Ubicación</span>
+      <span class="contact-value">Ciudad de México</span>
+    </div>
+  </div>
+  <p class="footer-year">librixsoft.com · 2026</p>
+</div>
+
+</div><!-- /slides-wrapper -->
+
+<!-- Navigation -->
+<div class="nav-arrows">
+  <div class="arrow" id="prevBtn" onclick="changeSlide(-1)">‹</div>
+  <div class="arrow" id="nextBtn" onclick="changeSlide(1)">›</div>
+</div>
+<button class="fs-btn" id="fsBtn" onclick="toggleFullscreen()">
+  <span class="fs-icon">⛶</span>
+  <span id="fsLabel">Pantalla Completa</span>
+</button>
+<div class="slide-counter" id="counter">01 / 09</div>
+<div class="nav-bar" id="dots"></div>
+
+<script>
+const TOTAL=9,current={v:0};
+const dots=document.getElementById('dots');
+for(let i=0;i<TOTAL;i++){const d=document.createElement('div');d.className='dot'+(i===0?' active':'');d.onclick=()=>goTo(i);dots.appendChild(d)}
+
+function update(){
+  document.querySelectorAll('.slide').forEach((s,i)=>{s.classList.toggle('active',i===current.v)});
+  document.querySelectorAll('.dot').forEach((d,i)=>{d.classList.toggle('active',i===current.v)});
+  const n=current.v+1;document.getElementById('counter').textContent=String(n).padStart(2,'0')+' / '+TOTAL;
+}
+
+function changeSlide(dir){goTo((current.v+dir+TOTAL)%TOTAL)}
+function goTo(i){if(i!==current.v)current.v=i;update()}
+
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1)});
+
+let touchStart=0;
+document.addEventListener('touchstart',e=>{touchStart=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',e=>{const diff=e.changedTouches[0].clientX-touchStart;if(Math.abs(diff)>50){changeSlide(diff<0?1:-1)}},{passive:true});
+
+function toggleFullscreen(){
+  if(!document.fullscreenElement){
+    document.documentElement.requestFullscreen().catch(()=>{});
+  }else{
+    document.exitFullscreen();
+  }
+}
+document.addEventListener('fullscreenchange',()=>{
+  const inFS=!!document.fullscreenElement;
+  document.body.classList.toggle('no-cursor',inFS);
+  document.getElementById('fsLabel').textContent=inFS?'Salir de Pantalla Completa':'Pantalla Completa';
+  document.querySelector('.fs-icon').innerHTML=inFS?'⛶':'⛶';
+});
+
+// Particles — 9 por slide, movimiento lento vertical
+for(let s=0;s<TOTAL;s++){
+  const c=document.getElementById('p'+s);if(!c)continue;
+  for(let i=0;i<9;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=(14+Math.random()*16)+'s';p.style.animationDelay=Math.random()*12+'s';p.style.width=p.style.height=(2+Math.random()*2)+'px';c.appendChild(p)}
+}
+</script>
+</body>
+</html>

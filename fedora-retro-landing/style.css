@@ -1,0 +1,301 @@
+/* =============================================
+   Fedora Core Linux - Retro Landing Page
+   Style Guide: Windows 2000 / Red Hat Era (2003)
+   ============================================= */
+
+/* === Reset & Base === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body, html {
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    cursor: default;
+    user-select: none;
+}
+
+/* === CRT Scanlines Overlay === */
+#scanlines {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        rgba(0, 0, 0, 0.03) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+}
+
+/* === Blinking cursor === */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+.blink { animation: blink 1s step-end infinite; }
+
+/* === Boot Screen === */
+#boot-screen {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0a2e; /* Deep BIOS blue-black */
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10000;
+    font-family: 'Courier New', 'Lucida Console', monospace;
+}
+
+.fancy-box {
+    border: 2px solid #4a9eff;
+    box-shadow: 0 0 30px rgba(74, 158, 255, 0.3), inset 0 0 60px rgba(74, 158, 255, 0.05);
+}
+
+.fancy-title {
+    background: linear-gradient(to right, #c0392b, #e74c3c, #c0392b);
+    color: #fff; font-weight: bold; font-size: 18px;
+    padding: 4px 16px; letter-spacing: 2px;
+}
+
+.fancy-body {
+    background: #0a0a2e;
+    color: #7dbcff; font-size: 13px; line-height: 2;
+    padding: 20px 30px; width: 640px;
+    white-space: pre-line;
+}
+
+/* === Login Screen === */
+#login-screen {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9000;
+}
+
+.login-box {
+    background: rgba(255,255,255,0.97);
+    border-radius: 8px; padding: 40px; width: 460px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.5);
+    text-align: center;
+}
+
+.login-logo-area h2 {
+    font-family: 'Georgia', serif; color: #c0392b;
+    margin-top: 15px; font-size: 26px; letter-spacing: -1px;
+}
+
+.login-form { margin-top: 25px; }
+.login-form p { font-size: 12px; color: #888; margin-bottom: 15px; }
+.login-form label { display: block; text-align: left; font-weight: bold; font-size: 13px; margin-top: 10px; color: #444; }
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%; padding: 8px 12px; border: 2px inset #999;
+    font-size: 15px; background: #fff; outline: none;
+    font-family: 'Courier New', monospace;
+}
+
+.btn-login {
+    margin-top: 20px; padding: 10px 40px;
+    background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+    border: 2px outset #fff; cursor: pointer; font-size: 15px; font-weight: bold;
+}
+.btn-login:active { border-style: inset; }
+
+/* === Desktop Area === */
+#desktop {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: calc(100% - 35px);
+    background: linear-gradient(to bottom, #2b6cb0 0%, #1a4f8a 40%, #1e3a5f 100%);
+}
+
+/* === Desktop Icons Grid === */
+#desktop-icons {
+    position: absolute; top: 15px; left: 15px;
+    display: flex; flex-direction: column; gap: 8px; z-index: 1;
+}
+
+.desktop-icon {
+    width: 80px; text-align: center; cursor: pointer; padding: 6px 4px; border-radius: 3px;
+    transition: background 0.1s;
+}
+.desktop-icon:hover { background: rgba(74, 158, 255, 0.25); }
+.desktop-icon:active { background: rgba(74, 158, 255, 0.4); }
+
+.icon-img { font-size: 36px; margin-bottom: 4px; display: block; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4)); }
+.desktop-icon span { color: #fff; font-size: 11px; text-shadow: 1px 1px 3px #000, 0 0 8px rgba(0,0,0,0.5); display: block; line-height: 1.2; }
+
+/* === Window Base === */
+.window {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background-color: #f0f0f0; width: min(85vw, 920px); height: min(75vh, 600px);
+    border: 2px solid #000; box-shadow: 4px 4px 15px rgba(0,0,0,0.35);
+    display: flex; flex-direction: column; z-index: 5;
+    min-width: 380px; min-height: 260px;
+}
+
+.window-header {
+    background: linear-gradient(to right, #0a246a 0%, #a6c9f2 15%, #3a6ea5 50%, #0a246a 100%);
+    height: 32px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6px; border-bottom: none; cursor: grab; flex-shrink: 0;
+}
+.window-header:active { cursor: grabbing; }
+
+.window-icon { font-size: 15px; margin-right: 4px; }
+.window-title { color: #fff; font-weight: bold; font-size: 13px; text-shadow: 1px 1px 2px rgba(0,0,0,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; }
+
+.window-controls { display: flex; gap: 4px; }
+.control-btn { width: 22px; height: 22px; background-color: #d0d0d0; border: 1px solid #666; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #000; }
+.control-btn:active { border-style: inset; background-color: #b0b0b0; }
+
+/* Dark header variant (terminal) */
+.window-header-dark {
+    background: linear-gradient(to right, #1a1a2e 0%, #333355 40%, #1a1a2e 100%);
+}
+.window-header-dark .window-title { color: #c8d6e5; }
+
+/* Menubar */
+.window-menubar { display: flex; background-color: #ece9d8; border-bottom: 1px solid #aca899; padding: 2px 4px; font-size: 13px; flex-shrink: 0; }
+.menu-item { padding: 2px 10px; cursor: pointer; color: #000; }
+.menu-item:hover { background-color: #316ac5; color: #fff; }
+
+/* Window Body */
+.window-body { padding: 20px; overflow-y: auto; color: #333; line-height: 1.6; flex-grow: 1; font-size: 14px; background: #fff; }
+
+/* === Terminal Dark Mode === */
+.window-dark .window-body,
+#win-terminal .window-body { background-color: #0a0a0a !important; color: #33ff33 !important; }
+.terminal-body { font-family: 'Courier New', 'Lucida Console', monospace !important; padding: 12px !important; font-size: 14px !important; line-height: 1.5 !important; }
+
+#terminal-output { white-space: pre-wrap; color: #33ff33; margin-bottom: 8px; min-height: 100px; }
+.terminal-input-line { display: flex; align-items: baseline; }
+.prompt { color: #ff6b6b !important; font-weight: bold; }
+#terminal-input { background: transparent; border: none; color: #33ff33; font-family: 'Courier New', monospace; font-size: 14px; outline: none; flex-grow: 1; caret-color: #33ff33; }
+
+/* === ASCII Art Header === */
+.ascii-art-header { text-align: center; color: #c0392b; font-size: 11px; line-height: 1.15; margin-bottom: 10px; white-space: pre; overflow-x: auto; }
+
+.fedora-ascii-art { display: none; } /* Hidden, kept for reference */
+
+/* === Typography inside windows === */
+h1 { font-family: 'Georgia', serif; margin-top: 0; color: #2c3e50; font-size: 28px; margin-bottom: 12px; }
+h2 { font-family: 'Courier New', monospace; border-bottom: 2px solid #ccc; padding-bottom: 6px; margin-top: 28px; font-size: 18px; color: #4a90d9; }
+
+.retro-hr { border: 0; border-top: 1px solid #ddd; margin: 18px 0; }
+.welcome-box, .news-box { background: #f7f9fc; border-left: 4px solid #c0392b; padding: 15px 20px; margin: 16px 0; border-radius: 0 4px 4px 0; }
+.news-item { margin-bottom: 8px; font-size: 14px; }
+
+/* Feature / Link lists */
+.feature-list, .link-list { padding-left: 25px; line-height: 1.9; }
+.feature-list li { margin-bottom: 3px; }
+.link-list a { color: #2071b9; text-decoration: underline; }
+.link-list a:hover { color: #c0392b; }
+
+/* === Tables === */
+.retro-table, table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; margin-top: 8px; }
+.retro-table th, .retro-table td, table th, table td { padding: 7px 10px; text-align: left; border-bottom: 1px solid #ddd; }
+.retro-table thead tr, table thead tr { background-color: #e8edf3; font-weight: bold; font-size: 12px; }
+.retro-table tbody tr:hover, table tbody tr:hover { background-color: #f0f6fc; }
+
+/* === Code Block === */
+.code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px 20px; font-family: 'Courier New', monospace; font-size: 13px; overflow-x: auto; border-radius: 3px; margin-top: 8px; white-space: pre; }
+
+/* === Sys Info === */
+.sys-info { background: #f7f9fc; padding: 20px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 2; border-left: 4px solid #1e4a7a; white-space: pre-wrap; }
+.status-ok { color: green; font-weight: bold; }
+
+/* === Version note === */
+.version-note { margin-top: 25px; padding-top: 15px; border-top: 2px dashed #ccc; font-size: 12px; color: #888; text-align: center; line-height: 1.6; }
+
+/* === Buttons === */
+.action-area { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary, .btn-secondary, .btn-login { padding: 9px 20px; cursor: pointer; font-weight: bold; border-radius: 3px; font-size: 14px; }
+
+.btn-primary { background-color: #c0392b; color: white; border: 2px outset #e74c3c; }
+.btn-primary:hover { background-color: #a93226; }
+.btn-primary:active { border-style: inset; }
+
+.btn-secondary { background-color: #e8e8e8; color: black; border: 2px outset #ffffff; }
+.btn-secondary:hover { background-color: #dcdcdc; }
+.btn-secondary:active { border-style: inset; }
+
+/* === Browser Toolbar === */
+.browser-toolbar { display: flex; align-items: center; gap: 6px; padding: 5px 10px; background: #ece9d8; border-bottom: 1px solid #aca899; font-size: 13px; }
+.toolbar-btn { width: 24px; height: 24px; background: #e8e8e8; border: 1px outset #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #555; }
+.toolbar-btn:active { border-style: inset; }
+.address-label { color: #333; }
+.address-bar { flex-grow: 1; padding: 4px 8px; border: 1px solid #999; font-size: 13px; background: #fff; outline: none; font-family: 'Courier New', monospace; }
+
+.browser-content .window-body { padding: 0 !important; overflow-y: auto !important; }
+.browser-frame { max-width: 720px; margin: 0 auto; padding: 30px 40px; }
+.browser-subtitle { font-style: italic; color: #666; margin-bottom: 15px; }
+.browser-nav-links { display: flex; gap: 5px; margin: 12px 0; flex-wrap: wrap; }
+.browser-nav-links a { background: #f0f0f0; padding: 4px 12px; text-decoration: none !important; border: 1px solid #ccc; font-family: 'Courier New', monospace; font-size: 12px; color: #2071b9; }
+.browser-nav-links a:hover { background: #316ac5; color: #fff; }
+.browser-footer { margin-top: 30px; padding-top: 15px; border-top: 2px solid #eee; text-align: center; color: #aaa; font-size: 11px; }
+
+/* === Taskbar === */
+#taskbar {
+    height: 38px; background-color: #c0c0c0; position: fixed; bottom: 0; left: 0;
+    width: 100%; display: flex; align-items: center; padding: 0 4px;
+    border-top: 2px solid #fff; box-shadow: inset 0 1px 1px rgba(255,255,255,0.6); z-index: 8000;
+}
+
+#start-button {
+    font-weight: bold; padding: 3px 16px 3px 8px; border: 2px outset #fff;
+    background-color: #c0c0c0; color: white; cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 14px; letter-spacing: 0.5px;
+}
+
+/* Windows-style green dot on Fedora start button */
+#start-button::before { content: "🐧"; font-size: 16px; }
+
+#start-button:active, #start-button.active { border-style: inset; background-color: #b0b0b0; }
+
+#taskbar-items { flex-grow: 1; display: flex; gap: 3px; padding-left: 8px; overflow-x: auto; }
+
+.taskbar-item {
+    background-color: #c0c0c0; padding: 4px 12px; font-size: 12px; cursor: pointer; max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 26px; border: none; display: flex; align-items: center; gap: 5px;
+}
+.taskbar-item:hover { background-color: #d4d4d4; }
+.taskbar-item.active { background-color: #b0b0b0; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3); font-weight: bold; }
+
+#system-tray { display: flex; align-items: center; gap: 8px; padding: 0 14px; background-color: #d0d0d0; height: 28px; border-left: 1px solid #999; margin-right: 4px; font-size: 13px; }
+.tray-icon { font-size: 14px; }
+#clock { font-family: 'Courier New', monospace; font-weight: bold; color: #222; }
+
+/* === Start Menu === */
+#start-menu { position: fixed; bottom: 38px; left: 0; width: 320px; z-index: 9500; box-shadow: 4px -4px 12px rgba(0,0,0,0.3); border: 2px solid #888; }
+
+.start-menu-inner { background-color: #fff; overflow: hidden; }
+.start-menu-header { background: linear-gradient(to right, #3a6ea5, #0a246a); color: white; font-weight: bold; padding: 10px 16px; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+.start-menu-header::before { content: "🐧"; font-size: 24px; }
+
+.start-separator { border: none; border-top: 1px solid #ccc; margin: 3px 0; }
+
+.start-menu-list { list-style: none; padding: 6px 0; }
+.start-menu-list li { padding: 8px 20px; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+.start-menu-list li:hover { background-color: #316ac5; color: white; }
+.menu-icon { font-size: 18px; width: 24px; text-align: center; }
+
+/* === Context Menu === */
+#context-menu { position: fixed; min-width: 200px; background: #fff; border: 2px outset #ddd; box-shadow: 3px 3px 8px rgba(0,0,0,0.25); z-index: 9600; padding: 4px 0; font-size: 13px; }
+#context-menu .ctx-item { padding: 6px 20px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+#context-menu .ctx-item:hover { background-color: #316ac5; color: white; }
+#context-menu hr { border: none; border-top: 1px solid #ddd; margin: 2px 0; }
+
+/* === Hidden utility class === */
+.hidden { display: none !important; }
+
+/* === Scrollbar Retro Styling (Webkit) === */
+.window-body::-webkit-scrollbar { width: 16px; }
+.window-body::-webkit-scrollbar-track { background: #f0f0f0; border-left: 1px solid #ccc; }
+.window-body::-webkit-scrollbar-thumb { background-color: #c0c0c0; border: 2px outset #e8e8e8; }
+.window-body::-webkit-scrollbar-button { background-color: #d0d0d0; height: 16px; }
+
+/* === Animations === */
+@keyframes window-open { from { opacity: 0; transform: translate(-50%, -40%) scale(0.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+.window:not(.hidden) { animation: window-open 0.15s ease-out; }
+
+/* === Selection highlight === */
+::selection { background-color: #316ac5; color: white; }
