@@ -76,7 +76,7 @@
     /* Hero */
     .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:80px 0 60px;position:relative}
     @media(max-width:960px){.hero{grid-template-columns:1fr;gap:40px;min-height:auto;padding:100px 0 60px}}
-    .hero-content{display:flex;flex-direction:column;gap:24px;opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .2s,transform .8s cubic-bezier(.22,1,.36,1) .2s}
+    .hero-content{display:flex;flex-direction:column;gap:24px;opacity:0;transform:translateY(48px) scale(0.97);transition:opacity .85s cubic-bezier(.22,1,.36,1) .2s,transform .85s cubic-bezier(.22,1,.36,1) .2s}
     .hero-content.in{opacity:1;transform:none}
     .hero-eyebrow{
       display:inline-flex;align-items:center;gap:8px;
@@ -98,10 +98,7 @@
     .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
 
     /* Bento hero block */
-    .hero-bento{
-      display:grid;grid-template-columns:1fr 1fr;gap:12px;
-      opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .4s,transform .8s cubic-bezier(.22,1,.36,1) .4s;
-    }
+    .hero-bento{display:grid;grid-template-columns:1fr 1fr;gap:12px;opacity:0;transform:translateY(48px) scale(0.97);transition:opacity .85s cubic-bezier(.22,1,.36,1) .4s,transform .85s cubic-bezier(.22,1,.36,1) .4s}
     @media(max-width:960px){.hero-bento{display:none}}
     .hero-bento.in{opacity:1;transform:none}
     .bento-cell{
@@ -246,8 +243,8 @@
     .footer a:hover{color:var(--ink)}
 
     /* Scroll animations */
-    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-    .reveal.in{opacity:1;transform:none}
+    .reveal{opacity:0;transform:translateY(48px) scale(0.97);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+    .reveal.in{opacity:1;transform:translateY(0) scale(1)}
     .reveal-d1{transition-delay:.08s}
     .reveal-d2{transition-delay:.16s}
     .reveal-d3{transition-delay:.24s}
@@ -474,18 +471,18 @@
 
     /* IntersectionObserver reveal */
     const revealElements=document.querySelectorAll('.reveal');
-    const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px 40px 0px'});
+    const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in')}else{e.target.classList.remove('in')}})},{threshold:0.08,rootMargin:'0px 0px 60px 0px'});
     revealElements.forEach(el=>revealObserver.observe(el));
 
     /* Hero animations */
     const heroContent=document.querySelector('.hero-content');
     const heroBento=document.querySelector('.hero-bento');
     if(heroContent){
-      const heroObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroContent.classList.add('in');heroObserver.unobserve(heroContent)}},{threshold:0.15});
+      const heroObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroContent.classList.add('in')}else{heroContent.classList.remove('in')}},{threshold:0.15});
       heroObserver.observe(heroContent);
     }
     if(heroBento){
-      const bentoObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroBento.classList.add('in');bentoObserver.unobserve(heroBento)}},{threshold:0.15});
+      const bentoObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroBento.classList.add('in')}else{heroBento.classList.remove('in')}},{threshold:0.15});
       bentoObserver.observe(heroBento);
     }
 
