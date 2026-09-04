@@ -92,7 +92,7 @@
       line-height:1.05;color:var(--ink);font-weight:800;
     }
     .hero h1 .gradient-text{
-      color:var(--accent-blue);
+      color:var(--ink);
     }
     .hero-tagline{font-size:clamp(1rem,1.3vw,1.2rem);color:var(--ink-secondary);max-width:52ch;line-height:1.7}
     .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
@@ -117,6 +117,17 @@
     .bento-cell:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg)}
     .bento-cell:hover::before{opacity:1}
     .bento-cell.span-2{grid-column:span 2}
+    .bento-cell.no-border{
+      padding:24px;border-radius:var(--radius-lg);
+      background:transparent;border:none;
+      backdrop-filter:none;-webkit-backdrop-filter:none;
+      transition:all .35s ease;position:relative;overflow:hidden;
+    }
+    .bento-cell.no-border .bento-label{font-size:.58rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-tertiary);margin-bottom:4px;position:relative;z-index:1}
+    .bento-cell.no-border .bento-value{font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:clamp(1.5rem,2.2vw,2rem);font-weight:800;color:var(--ink);position:relative;z-index:1;line-height:1}
+    .bento-cell.no-border .bento-sub{font-size:.68rem;color:var(--ink-tertiary);margin-top:4px;position:relative;z-index:1}
+    .bento-cell.no-border:hover{border-color:transparent;box-shadow:none}
+    .bento-cell.no-border:hover::before{opacity:0}
     .bento-cell .bento-label{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-tertiary);margin-bottom:8px;position:relative;z-index:1}
     .bento-cell .bento-value{font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:var(--ink);position:relative;z-index:1;line-height:1}
     .bento-cell .bento-sub{font-size:.85rem;color:var(--ink-secondary);margin-top:8px;position:relative;z-index:1}
@@ -142,11 +153,11 @@
     .section{padding:80px 0}
     @media(max-width:768px){.section{padding:60px 0}}
     .section-header{margin-bottom:48px}
-    .section-label{
-      font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-      color:var(--ink);margin-bottom:12px;
+    .section-label.no-border{
+      font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--ink-tertiary);margin-bottom:12px;
       display:inline-flex;align-items:center;gap:8px;
-      padding:4px 12px;border-radius:999px;background:transparent;border:1px solid var(--line);
+      padding:0;border-radius:0;background:transparent;border:none;
     }
     .section-title{font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--ink);line-height:1.15}
 
@@ -155,16 +166,12 @@
     @media(max-width:768px){.bento-grid{grid-template-columns:1fr}}
     .bento-item{
       padding:32px;border-radius:var(--radius-lg);
-      background:var(--surface);border:1px solid var(--glass-border);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      background:transparent;border:none;
+      backdrop-filter:none;-webkit-backdrop-filter:none;
       transition:all .35s ease;position:relative;overflow:hidden;
     }
-    .bento-item::before{
-      content:'';position:absolute;inset:0;border-radius:var(--radius-lg);
-      background:var(--gradient-card);opacity:0;transition:opacity .35s ease;
-    }
-    .bento-item:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
-    .bento-item:hover::before{opacity:1}
+    .bento-item:hover{box-shadow:none;transform:none}
+    .bento-item:hover::before{opacity:0}
     .bento-item .bento-icon{font-size:2rem;margin-bottom:16px;display:block}
     .bento-item h3{font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:8px;position:relative;z-index:1}
     .bento-item p{font-size:.92rem;color:var(--ink-secondary);line-height:1.65;position:relative;z-index:1}
@@ -219,14 +226,14 @@
     .cert-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .cert-card{
       padding:28px;border-radius:var(--radius-lg);
-      background:var(--surface);border:1px solid var(--glass-border);
-      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      background:transparent;border:none;
+      backdrop-filter:none;-webkit-backdrop-filter:none;
       transition:all .35s ease;display:flex;align-items:flex-start;gap:16px;
     }
-    .cert-card:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-    .cert-icon{font-size:1.8rem;flex-shrink:0}
-    .cert-card h4{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px}
-    .cert-card p{font-size:.85rem;color:var(--ink-secondary);line-height:1.55}
+    .cert-card:hover{box-shadow:none;transform:none}
+    .cert-icon{font-size:1.5rem;flex-shrink:0}
+    .cert-card h4{font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+    .cert-card p{font-size:.78rem;color:var(--ink-secondary);line-height:1.55}
 
     /* Footer */
     .footer{
@@ -293,18 +300,16 @@
         </div>
       </div>
       <div class="hero-bento">
-        <div class="bento-cell span-2">
+        <div class="bento-cell no-border span-2">
           <div class="bento-label">Proyectos entregados</div>
           <div class="bento-value">Enterprise</div>
           <div class="bento-sub">Arquitectura crítica para instituciones financieras globales</div>
         </div>
-        <div class="bento-cell">
-          <div class="bento-icon">&#9733;</div>
+        <div class="bento-cell no-border">
           <div class="bento-label">Stack principal</div>
           <div class="bento-sub">Spring, React, AWS, PHP</div>
         </div>
-        <div class="bento-cell">
-          <div class="bento-icon">&#9881;</div>
+        <div class="bento-cell no-border">
           <div class="bento-label">Enfoque</div>
           <div class="bento-sub">Ingeniería centrada en procesos</div>
         </div>
@@ -313,27 +318,23 @@
 
     <section id="engineering" class="section">
       <div class="section-header reveal">
-        <div class="section-label">Especialidad</div>
+        <div class="section-label no-border">Especialidad</div>
         <h2 class="section-title">Ingeniería con propósito estratégico</h2>
       </div>
       <div class="bento-grid">
         <div class="bento-item wide reveal reveal-d1">
-          <span class="bento-icon">&#9881;</span>
           <h3>Ingeniería Centrada en Procesos</h3>
           <p>Analizamos las organizaciones como organismos integrados para resolver problemas de raíz. Cada sistema se diseña como extensión natural de los flujos operativos reales.</p>
         </div>
         <div class="bento-item reveal reveal-d2">
-          <span class="bento-icon">&#9776;</span>
           <h3>Ruptura de Silos</h3>
           <p>Damos visibilidad operativa real en cada etapa del flujo de trabajo, eliminando brechas entre equipos.</p>
         </div>
         <div class="bento-item reveal reveal-d3">
-          <span class="bento-icon">&#9881;</span>
           <h3>Experiencia en Banca Digital</h3>
           <p>Arquitectura de alta disponibilidad y optimización de experiencias web para instituciones financieras de primer nivel con millones de transacciones diarias.</p>
         </div>
         <div class="bento-item wide reveal reveal-d4">
-          <span class="bento-icon">&#9733;</span>
           <h3>Escalabilidad desde el diseño</h3>
           <p>Cada arquitectura se construye pensando en crecimiento exponencial. No es un afterthought: es el fundamento de cada decisión técnica y de negocio.</p>
         </div>
@@ -435,25 +436,21 @@
 
     <section id="certifications" class="section">
       <div class="section-header reveal">
-        <div class="section-label">Credenciales</div>
+        <div class="section-label no-border">Credenciales</div>
         <h2 class="section-title">Especialidad</h2>
       </div>
       <div class="cert-grid">
         <div class="cert-card reveal reveal-d1">
-          <div class="cert-icon">&#9729;</div>
           <div><h4>Maestr&#237;a en AWS DevOps</h4><p>Experiencia en CI/CD, CodePipeline, CloudFormation y soluciones cloud.</p></div>
         </div>
         <div class="cert-card reveal reveal-d2">
-          <div class="cert-icon">&#9881;</div>
           <div><h4>Liderazgo agil</h4><p>Especialista en gesti&#243;n de dependencias entre equipos y escalabilidad agil.</p></div>
         </div>
         <div class="cert-card reveal reveal-d3">
-          <div class="cert-icon">&#9878;</div>
           <div><h4>Negociaci&#243;n estrat&#233;gica</h4><p>Certificaci&#243;n en M&#233;todo Harvard. Experto en gesti&#243;n de stakeholders complejos.</p></div>
         </div>
         <div class="cert-card reveal reveal-d4">
-          <div class="cert-icon">&#9733;</div>
-          <div><h4>8+ Casos de &#233;xito</h4><p>Trayectoria comprobada en banca, seguros e industria de alto nivel.</p></div>
+          <div><h4>Innovación continua</h4><p>Actualización permanente en tecnologías y metodologías de vanguardia.</p></div>
         </div>
       </div>
     </section>
