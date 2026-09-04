@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fender Amp Studio</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top-bar">
+    <div class="logo">
+      <svg class="fender-logo" viewBox="0 0 200 40" width="160" height="32">
+        <text x="10" y="30" font-family="Georgia, serif" font-size="32" font-weight="bold" fill="#C8A45C" letter-spacing="6">FENDER</text>
+      </svg>
+    </div>
+    <nav class="top-nav">
+      <button class="nav-btn active" data-tab="amps">Amps</button>
+      <button class="nav-btn" data-tab="cabs">Cabs</button>
+      <button class="nav-btn" data-tab="pedals">Pedals</button>
+      <button class="nav-btn" data-tab="fx">Effects</button>
+    </nav>
+    <div class="top-actions">
+      <button class="btn-save" title="Save Rig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17,21 17,13 7,13 7,21"/><polyline points="7,3 7,8 15,8"/></svg>
+      </button>
+      <button class="btn-random" title="Random Rig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A45C" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main-area">
+    <section class="rig-rack" id="rig-rack">
+      <div class="rack-label">YOUR RIG</div>
+      <div class="rack-chain" id="rack-chain">
+        <div class="chain-slot" data-slot="preamp" title="Preamp">
+          <div class="slot-inner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span>Preamp</span>
+          </div>
+        </div>
+        <div class="chain-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20"><polyline points="4,10 10,16 16,4" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+        </div>
+        <div class="chain-slot" data-slot="amp" title="Amp">
+          <div class="slot-inner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="5"/></svg>
+            <span>Amp</span>
+          </div>
+        </div>
+        <div class="chain-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20"><polyline points="4,10 10,16 16,4" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+        </div>
+        <div class="chain-slot" data-slot="cab" title="Cab">
+          <div class="slot-inner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="8" y1="4" x2="8" y2="20"/></svg>
+            <span>Cab</span>
+          </div>
+        </div>
+        <div class="chain-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20"><polyline points="4,10 10,16 16,4" fill="none" stroke="#555" stroke-width="1.5"/></svg>
+        </div>
+        <div class="chain-slot" data-slot="fx" title="Effects">
+          <div class="slot-inner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/></svg>
+            <span>FX</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="amp-display" id="amp-display">
+      <div class="display-header">
+        <h2 class="display-title" id="display-title">Select a Rig</h2>
+        <div class="display-meta" id="display-meta">Choose from the library below</div>
+      </div>
+      <div class="display-body" id="display-body">
+        <div class="amp-faceplate" id="amp-faceplate">
+          <div class="plate-brand">FENDER</div>
+          <div class="plate-model" id="plate-model">—</div>
+          <div class="plate-indicator" id="plate-power">
+            <div class="power-dot off" id="power-dot"></div>
+            <span>POWER</span>
+          </div>
+          <div class="plate-knobs" id="plate-knobs"></div>
+          <div class="plate-switches" id="plate-switches"></div>
+          <div class="plate-speaker" id="plate-speaker"></div>
+          <div class="plate-output" id="plate-output">
+            <div class="output-meter">
+              <div class="meter-bar" id="meter-level"></div>
+              <span class="meter-label">OUTPUT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="library-panel" id="library-panel">
+      <div class="library-header">
+        <h3 class="library-title" id="library-title">Amp Library</h3>
+        <div class="library-search">
+          <input type="text" placeholder="Search rigs..." id="search-input">
+        </div>
+      </div>
+      <div class="library-grid" id="library-grid"></div>
+    </section>
+  </main>
+</div>
+
+<script src="amps-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
