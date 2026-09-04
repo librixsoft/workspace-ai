@@ -16,260 +16,546 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg-warm:#FCFCFD;
-      --surface:#F8F9FA;
-      --ink:#1C232E;
-      --muted:#6B7280;
+      --bg-primary:#F4F6FA;
+      --bg-secondary:#FFFFFF;
+      --bg-tertiary:#EEF1F6;
+      --surface:rgba(255,255,255,0.72);
+      --surface-hover:rgba(255,255,255,0.88);
+      --glass-border:rgba(255,255,255,0.5);
+      --glass-border-hover:rgba(27,58,92,0.3);
+      --ink:#0F1729;
+      --ink-secondary:#4A5568;
+      --ink-tertiary:#718096;
       --accent-navy:#1B3A5C;
-      --accent-navy-light:rgba(27,58,92,.1);
-      --accent-navy-border:rgba(27,58,92,.25);
-      --line:rgba(28,35,46,.1);
+      --accent-navy-deep:#0D1F38;
+      --accent-purple:#6B5CE7;
+      --accent-purple-light:rgba(107,92,231,0.12);
+      --gradient-hero:linear-gradient(135deg,#1B3A5C 0%,#3D5A80 50%,#6B5CE7 100%);
+      --gradient-card:linear-gradient(160deg,rgba(27,58,92,0.04) 0%,rgba(107,92,231,0.04) 100%);
+      --gradient-btn:linear-gradient(135deg,#1B3A5C 0%,#6B5CE7 100%);
+      --line:rgba(15,23,41,0.08);
+      --shadow-sm:0 1px 2px rgba(15,23,41,0.04);
+      --shadow-md:0 4px 16px rgba(15,23,41,0.06);
+      --shadow-lg:0 12px 40px rgba(15,23,41,0.1);
+      --shadow-xl:0 20px 60px rgba(15,23,41,0.12);
+      --shadow-glow:0 0 40px rgba(107,92,231,0.15);
+      --radius-sm:10px;
+      --radius-md:16px;
+      --radius-lg:24px;
+      --radius-xl:32px;
     }
-    *{box-sizing:border-box}
-    html, body{max-width:100%; overflow-x:hidden; -webkit-overflow-scrolling:touch;}
+    [data-theme="dark"]{
+      --bg-primary:#0B0F1A;
+      --bg-secondary:#111827;
+      --bg-tertiary:#1A2035;
+      --surface:rgba(17,24,39,0.72);
+      --surface-hover:rgba(26,32,53,0.88);
+      --glass-border:rgba(255,255,255,0.08);
+      --glass-border-hover:rgba(107,92,231,0.3);
+      --ink:#F1F5F9;
+      --ink-secondary:#94A3B8;
+      --ink-tertiary:#64748B;
+      --accent-navy:#3D5A80;
+      --accent-navy-deep:#1B3A5C;
+      --accent-purple:#8B7CF7;
+      --accent-purple-light:rgba(139,124,247,0.12);
+      --gradient-hero:linear-gradient(135deg,#0D1F38 0%,#1B3A5C 50%,#6B5CE7 100%);
+      --gradient-card:linear-gradient(160deg,rgba(27,58,92,0.08) 0%,rgba(107,92,231,0.08) 100%);
+      --gradient-btn:linear-gradient(135deg,#3D5A80 0%,#8B7CF7 100%);
+      --line:rgba(255,255,255,0.06);
+      --shadow-sm:0 1px 2px rgba(0,0,0,0.2);
+      --shadow-md:0 4px 16px rgba(0,0,0,0.3);
+      --shadow-lg:0 12px 40px rgba(0,0,0,0.4);
+      --shadow-xl:0 20px 60px rgba(0,0,0,0.5);
+      --shadow-glow:0 0 40px rgba(107,92,231,0.25);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
     body{
-      margin:0;
-      touch-action:manipulation;
-      font-family:"Space Grotesk", system-ui, -apple-system, sans-serif;
+      font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;
       color:var(--ink);
-      background: var(--bg-warm);
+      background:var(--bg-primary);
       line-height:1.6;
+      transition:background .4s ease,color .4s ease;
+      overflow-x:hidden;
     }
-    a.btn-cta{
-      color:#fff;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:12px 24px;
-      border-radius:8px;
-      border:2px solid var(--accent-navy);
-      background:var(--accent-navy);
-      font-weight:600;
-      letter-spacing:.01em;
-      transition: all .2s ease;
+    [data-theme="dark"] body{background:var(--bg-primary)}
+
+    /* Background gradient orbs */
+    .bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .bg-orbs .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.12;transition:opacity .6s ease}
+    [data-theme="dark"] .bg-orbs .orb{opacity:.08}
+    .bg-orbs .orb-1{width:600px;height:600px;background:var(--accent-purple);top:-10%;right:-5%;animation:orbFloat 20s ease-in-out infinite}
+    .bg-orbs .orb-2{width:500px;height:500px;background:var(--accent-navy);bottom:10%;left:-8%;animation:orbFloat 25s ease-in-out infinite reverse}
+    .bg-orbs .orb-3{width:400px;height:400px;background:#4ECDC4;top:50%;left:40%;animation:orbFloat 22s ease-in-out infinite 5s}
+    @keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.05)}66%{transform:translate(-20px,30px) scale(.95)}}
+
+    /* Theme toggle */
+    .theme-toggle{
+      position:fixed;top:24px;right:24px;z-index:100;
+      width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-border);
+      background:var(--surface);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:all .3s ease;color:var(--ink);
     }
-    a.btn-cta:hover{
-      background:#132D4F;
-      border-color:#132D4F;
-      transform:translateY(-1px);
-      box-shadow: 0 4px 14px rgba(27,58,92,.35);
+    .theme-toggle:hover{border-color:var(--accent-purple);box-shadow:var(--shadow-glow)}
+    .theme-toggle svg{width:20px;height:20px;transition:transform .3s ease}
+    .theme-toggle:hover svg{transform:rotate(20deg)}
+    .theme-toggle .icon-moon{display:none}
+    [data-theme="dark"] .theme-toggle .icon-sun{display:none}
+    [data-theme="dark"] .theme-toggle .icon-moon{display:block}
+
+    /* Progress bar */
+    .scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;background:var(--gradient-btn);z-index:200;transition:width .1s linear}
+
+    /* Layout */
+    .container{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+    @media(max-width:768px){.container{padding:0 20px}}
+
+    /* Hero */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:80px 0 60px;position:relative}
+    @media(max-width:960px){.hero{grid-template-columns:1fr;gap:40px;min-height:auto;padding:100px 0 60px}}
+    .hero-content{display:flex;flex-direction:column;gap:24px;opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .2s,transform .8s cubic-bezier(.22,1,.36,1) .2s}
+    .hero-content.in{opacity:1;transform:none}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--accent-purple);
+      padding:6px 14px;border-radius:999px;
+      background:var(--accent-purple-light);border:1px solid rgba(107,92,231,0.2);
+      width:fit-content;
     }
+    .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-purple);animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    .hero h1{
+      font-family:"Playfair Display",serif;font-size:clamp(2.4rem,4.5vw,3.8rem);
+      line-height:1.05;color:var(--ink);font-weight:800;
+    }
+    .hero h1 .gradient-text{
+      background:var(--gradient-hero);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero-tagline{font-size:clamp(1rem,1.3vw,1.2rem);color:var(--ink-secondary);max-width:52ch;line-height:1.7}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
 
-    /* Page load transitions */
-    .wrap{opacity:0; transform:translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1) .15s, transform .7s cubic-bezier(.22,1,.36,1) .15s}
-    .wrap.in{opacity:1; transform:translateY(0)}
-    header{opacity:0; transform:translateY(20px); transition: opacity .6s cubic-bezier(.22,1,.36,1) .3s, transform .6s cubic-bezier(.22,1,.36,1) .3s}
-    header.in{opacity:1; transform:translateY(0)}
-    .eyebrow{opacity:0; transform:translateY(12px); transition: opacity .4s ease .1s, transform .4s ease .1s}
-    .eyebrow.in{opacity:1; transform:translateY(0)}
-    .tagline{opacity:0; transform:translateY(16px); transition: opacity .5s ease .2s, transform .5s ease .2s}
-    .tagline.in{opacity:1; transform:translateY(0)}
-    .h1-el{opacity:0; transform:translateY(20px); transition: opacity .55s ease .25s, transform .55s ease .25s}
-    .h1-el.in{opacity:1; transform:translateY(0)}
+    /* Bento hero block */
+    .hero-bento{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;
+      opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .4s,transform .8s cubic-bezier(.22,1,.36,1) .4s;
+    }
+    @media(max-width:960px){.hero-bento{display:none}}
+    .hero-bento.in{opacity:1;transform:none}
+    .bento-cell{
+      padding:24px;border-radius:var(--radius-lg);
+      background:var(--surface);border:1px solid var(--glass-border);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      transition:all .35s ease;position:relative;overflow:hidden;
+    }
+    .bento-cell::before{
+      content:'';position:absolute;inset:0;border-radius:var(--radius-lg);
+      background:var(--gradient-card);opacity:0;transition:opacity .35s ease;
+    }
+    .bento-cell:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg)}
+    .bento-cell:hover::before{opacity:1}
+    .bento-cell.span-2{grid-column:span 2}
+    .bento-cell .bento-label{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-tertiary);margin-bottom:8px;position:relative;z-index:1}
+    .bento-cell .bento-value{font-family:"Playfair Display",serif;font-size:clamp(2rem,3vw,3rem);font-weight:800;color:var(--ink);position:relative;z-index:1;line-height:1}
+    .bento-cell .bento-sub{font-size:.85rem;color:var(--ink-secondary);margin-top:8px;position:relative;z-index:1}
+    .bento-cell .bento-icon{font-size:1.6rem;margin-bottom:8px;display:block;position:relative;z-index:1}
 
-    /* Scroll-triggered transitions */
-    .scroll-animate{opacity:0; transform:translateY(32px); transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1)}
-    .scroll-animate.in{opacity:1; transform:translateY(0)}
-    .scroll-animate-delay-1{transition-delay:.08s}
-    .scroll-animate-delay-2{transition-delay:.16s}
-    .scroll-animate-delay-3{transition-delay:.24s}
-    .scroll-animate.already-in{opacity:1; transform:translateY(0)}
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:14px 28px;border-radius:var(--radius-sm);font-weight:600;font-size:.95rem;
+      text-decoration:none;transition:all .3s ease;cursor:pointer;border:none;font-family:inherit;
+    }
+    .btn-primary{
+      color:#fff;background:var(--gradient-btn);
+      box-shadow:0 4px 16px rgba(27,58,92,0.3);
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(27,58,92,0.4)}
+    .btn-ghost{
+      color:var(--ink);background:var(--surface);border:1px solid var(--glass-border);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    }
+    .btn-ghost:hover{border-color:var(--accent-purple);box-shadow:var(--shadow-md)}
 
-    /* Scroll direction indicator */
-    .scroll-progress{position:fixed; top:0; left:0; width:0; height:3px; background:var(--accent-navy); z-index:100; transition: width .15s linear}
-    .wrap{max-width:980px; margin:0 auto; padding:48px 24px 80px}
-    header{display:flex; flex-direction:column; gap:16px; padding:32px 0 24px; border-bottom:1px solid var(--line)}
-    .eyebrow{letter-spacing:.18em; text-transform:uppercase; font-size:.72rem; color:var(--accent-navy); font-weight:700}
-    h1{font-family:"Playfair Display", serif; font-size:clamp(2.1rem, 4vw, 3.2rem); line-height:1.05; margin:0; color:var(--ink)}
-    .tagline{font-size:clamp(1.1rem, 1.4vw, 1.4rem); color:var(--muted); max-width:70ch}
-    
-    section{padding:40px 0; border-bottom:1px solid var(--line)}
-    h2{font-size:1.1rem; text-transform:uppercase; letter-spacing:.14em; color:var(--accent-navy); font-weight:700; margin:0 0 18px}
-    
-    .grid-box { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 10px; }
-    .item-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; transition: box-shadow .2s ease; }
-    .item-card:hover { box-shadow: 0 4px 20px rgba(28,35,46,.08); }
-    .item-card strong { color: var(--accent-navy); display: block; margin-bottom: 8px; font-size: 1.1rem; }
+    /* Sections */
+    .section{padding:80px 0}
+    @media(max-width:768px){.section{padding:60px 0}}
+    .section-header{margin-bottom:48px}
+    .section-label{
+      font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--accent-purple);margin-bottom:12px;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:4px 12px;border-radius:999px;background:var(--accent-purple-light);
+    }
+    .section-title{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--ink);line-height:1.15}
 
-    .projects{display:grid; gap:24px}
-    .card{
-      background:#FAFBFC;
+    /* Bento Grid - Services */
+    .bento-grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    @media(max-width:768px){.bento-grid{grid-template-columns:1fr}}
+    .bento-item{
+      padding:32px;border-radius:var(--radius-lg);
+      background:var(--surface);border:1px solid var(--glass-border);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      transition:all .35s ease;position:relative;overflow:hidden;
+    }
+    .bento-item::before{
+      content:'';position:absolute;inset:0;border-radius:var(--radius-lg);
+      background:var(--gradient-card);opacity:0;transition:opacity .35s ease;
+    }
+    .bento-item:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
+    .bento-item:hover::before{opacity:1}
+    .bento-item .bento-icon{font-size:2rem;margin-bottom:16px;display:block}
+    .bento-item h3{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:8px;position:relative;z-index:1}
+    .bento-item p{font-size:.92rem;color:var(--ink-secondary);line-height:1.65;position:relative;z-index:1}
+    .bento-item.wide{grid-column:span 2}
+    @media(max-width:768px){.bento-item.wide{grid-column:span 1}}
+
+    /* Projects */
+    .projects-grid{display:grid;gap:24px;grid-template-columns:repeat(2,1fr)}
+    @media(max-width:768px){.projects-grid{grid-template-columns:1fr}}
+    .project-card{
+      border-radius:var(--radius-lg);overflow:hidden;
+      background:var(--surface);border:1px solid var(--glass-border);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      transition:all .4s cubic-bezier(.22,1,.36,1);position:relative;
+    }
+    .project-card:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-xl);transform:translateY(-6px)}
+    .project-media{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--bg-tertiary)}
+    .project-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+    .project-card:hover .project-media img{transform:scale(1.05)}
+    .project-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 40%,rgba(11,15,26,0.85) 100%);
+      display:flex;align-items:flex-end;padding:20px;
+      opacity:0;transition:opacity .4s ease;
+    }
+    .project-card:hover .project-overlay{opacity:1}
+    .project-overlay .btn{font-size:.82rem;padding:10px 20px}
+    .project-body{padding:24px;display:flex;flex-direction:column;gap:10px}
+    .project-kicker{
+      font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--accent-purple);padding:3px 10px;border-radius:999px;
+      background:var(--accent-purple-light);width:fit-content;
+    }
+    .project-body h3{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700;color:var(--ink)}
+    .project-body .project-desc{font-size:.88rem;color:var(--ink-secondary);line-height:1.6}
+    .project-badges{display:flex;flex-wrap:wrap;gap:6px}
+    .project-badge{
+      font-size:.72rem;padding:4px 10px;border-radius:6px;
+      background:var(--bg-tertiary);color:var(--ink-secondary);font-weight:600;
       border:1px solid var(--line);
-      border-radius:16px;
-      padding:32px;
-      box-shadow: 0 1px 3px rgba(28,35,46,.06), 0 4px 16px rgba(28,35,46,.04);
-      display:flex;
-      flex-direction:column;
-      gap:12px;
     }
-    .card:hover{
-      box-shadow: 0 4px 24px rgba(28,35,46,.1), 0 8px 32px rgba(28,35,46,.05);
-      border-color: var(--accent-navy);
+    .project-cta{
+      display:inline-flex;align-items:center;gap:6px;
+      font-size:.85rem;font-weight:600;color:var(--accent-navy);
+      text-decoration:none;padding:8px 0;transition:color .2s ease;
     }
-    .media-grid{ display:flex; flex-direction:column; gap:10px; align-items:center; margin:12px 0; }
-    .media-grid img{
-      width:auto;
-      max-width:min(100%, 640px);
-      height:auto;
-      margin:0 auto;
-      display:block;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:#F3F4F6;
-    }
-    .media-grid img.contain{ object-fit:contain; background:transparent; }
+    .project-cta:hover{color:var(--accent-purple)}
+    .project-cta .arrow{transition:transform .2s ease}
+    .project-cta:hover .arrow{transform:translateX(3px)}
 
-    .card h3{ font-family:"Playfair Display", serif; font-size:1.6rem; margin:0 0 4px; color:var(--ink) }
-    .kicker{ color: var(--accent-navy); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .meta{color:var(--muted); font-size:.95rem}
-    .divider{height:1px; background:var(--line); margin:14px 0}
-    .badges{display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 8px}
-    .badge{font-size:.78rem; padding:5px 12px; border-radius:6px; background:var(--accent-navy-light); color:var(--accent-navy); font-weight:600; border:1px solid var(--accent-navy-border);}
-
-.visitor-counter {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      padding: 4px 10px;
-      border-radius: 999px;
-      width: fit-content;
-      opacity: 0.85;
-      z-index: 10;
+    /* Certifications */
+    .cert-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .cert-card{
+      padding:28px;border-radius:var(--radius-lg);
+      background:var(--surface);border:1px solid var(--glass-border);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+      transition:all .35s ease;display:flex;align-items:flex-start;gap:16px;
     }
+    .cert-card:hover{border-color:var(--glass-border-hover);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+    .cert-icon{font-size:1.8rem;flex-shrink:0}
+    .cert-card h4{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+    .cert-card p{font-size:.85rem;color:var(--ink-secondary);line-height:1.55}
+
+    /* Footer */
+    .footer{
+      padding:48px 0;text-align:center;
+      border-top:1px solid var(--line);margin-top:40px;
+    }
+    .footer-brand{font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:8px}
+    .footer p{font-size:.82rem;color:var(--ink-tertiary)}
+    .footer a{color:var(--accent-navy);text-decoration:none;transition:color .2s}
+    .footer a:hover{color:var(--accent-purple)}
+
+    /* Scroll animations */
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    .reveal.in{opacity:1;transform:none}
+    .reveal-d1{transition-delay:.08s}
+    .reveal-d2{transition-delay:.16s}
+    .reveal-d3{transition-delay:.24s}
+    .reveal-d4{transition-delay:.32s}
+    .reveal-d5{transition-delay:.40s}
+    .reveal-already{opacity:1;transform:none}
+
+    /* Visitor counter */
+    .visitor-counter{
+      position:fixed;top:24px;left:24px;z-index:100;
+      display:flex;align-items:center;gap:6px;
+      font-size:.72rem;font-weight:600;color:var(--ink-secondary);
+      background:var(--surface);border:1px solid var(--glass-border);
+      padding:6px 12px;border-radius:999px;
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      transition:all .3s ease;
+    }
+    .visitor-counter:hover{border-color:var(--accent-purple);box-shadow:var(--shadow-glow)}
+    .visitor-counter svg{width:14px;height:14px;opacity:.6}
+
+    /* Scrollbar */
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:var(--bg-primary)}
+    ::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:var(--ink-tertiary)}
+
+    /* Selection */
+    ::selection{background:var(--accent-purple);color:#fff}
   </style>
 </head>
 <body>
   <div class="scroll-progress" id="scroll-progress"></div>
-  <div class="wrap">
-    <div class="visitor-counter" id="counter-container">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-      <span id="hit-count">0</span>
+  <div class="bg-orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <div class="visitor-counter" id="counter-container">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+    <span id="hit-count">0</span>
+  </div>
+
+  <div class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span class="dot"></span>Portafolio Librixsoft</div>
+        <h1>Software de <span class="gradient-text">Alto Impacto</span> con Visión Estratégica.</h1>
+        <p class="hero-tagline">Transformamos ideas de negocio complejas en ecosistemas digitales elegantes, funcionales y escalables. Unimos visión comercial, entendimiento operativo e implementación técnica seria.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Ver proyectos <span>&darr;</span></a>
+          <a href="#engineering" class="btn btn-ghost">Nuestra especialidad</a>
+        </div>
+      </div>
+      <div class="hero-bento">
+        <div class="bento-cell span-2">
+          <div class="bento-label">Proyectos entregados</div>
+          <div class="bento-value">8+</div>
+          <div class="bento-sub">En banca, seguros y fintech</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-icon">&#9733;</div>
+          <div class="bento-label">Stack principal</div>
+          <div class="bento-sub">Spring, React, AWS, PHP</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-icon">&#9881;</div>
+          <div class="bento-label">Enfoque</div>
+          <div class="bento-sub">Ingeniería centrada en procesos</div>
+        </div>
+      </div>
     </div>
-    <header>
-      <div class="eyebrow">Portafolio Librixsoft — v1.1</div>
-      <h1 class="h1-el">Software de Alto Impacto con Visión Estratégica.</h1>
-      <p class="tagline">Librixsoft transforma ideas de negocio complejas en ecosistemas digitales elegantes, funcionales y escalables. Unimos visión comercial, entendimiento operativo e implementación técnica seria.</p>
-    </header>
 
-    <section id="engineering" class="scroll-animate">
-      <h2>Especialidad Estratégica</h2>
-      <div class="grid-box">
-        <div class="item-card scroll-animate scroll-animate-delay-1"><strong>Ingeniería Centrada en Procesos</strong><p class="meta">Analizamos las organizaciones como organismos integrados para resolver problemas de raíz.</p></div>
-        <div class="item-card scroll-animate scroll-animate-delay-2"><strong>Ruptura de Silos y Trazabilidad</strong><p class="meta">Damos visibilidad operativa real en cada etapa del flujo de trabajo.</p></div>
-        <div class="item-card scroll-animate scroll-animate-delay-3"><strong>Convergencia IT/OT</strong><p class="meta">Integramos lógica de <strong>PLC Siemens</strong> y software C# a medida para monitoreo de KPIs en tiempo real.</p></div>
+    <section id="engineering" class="section">
+      <div class="section-header reveal">
+        <div class="section-label">Especialidad</div>
+        <h2 class="section-title">Ingeniería con propósito estratégico</h2>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-item wide reveal reveal-d1">
+          <span class="bento-icon">&#9881;</span>
+          <h3>Ingeniería Centrada en Procesos</h3>
+          <p>Analizamos las organizaciones como organismos integrados para resolver problemas de raíz. Cada sistema se diseña como extensión natural de los flujos operativos reales.</p>
+        </div>
+        <div class="bento-item reveal reveal-d2">
+          <span class="bento-icon">&#9776;</span>
+          <h3>Ruptura de Silos</h3>
+          <p>Damos visibilidad operativa real en cada etapa del flujo de trabajo, eliminando brechas entre equipos.</p>
+        </div>
+        <div class="bento-item reveal reveal-d3">
+          <span class="bento-icon">&#9881;</span>
+          <h3>Convergencia IT/OT</h3>
+          <p>Integramos lógica de PLC Siemens y software C# a medida para monitoreo de KPIs en tiempo real.</p>
+        </div>
+        <div class="bento-item wide reveal reveal-d4">
+          <span class="bento-icon">&#9733;</span>
+          <h3>Escalabilidad desde el diseño</h3>
+          <p>Cada arquitectura se construye pensando en crecimiento exponencial. No es un afterthought: es el fundamento de cada decisión técnica y de negocio.</p>
+        </div>
       </div>
     </section>
 
-    <section id="trayectoria" class="scroll-animate">
-      <h2>Proyectos Seleccionados</h2>
-      <div class="projects">
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Producto propio</div><h3>BaleroCMS</h3><h3>Framework propietario: intuitivo, modular y seguro.</h3><p class="meta">Plataforma desarrollada a medida por Librixsoft que sirve tanto como CMS como framework base.</p><div class="badges"><span class="badge">PHP</span><span class="badge">Vue.js</span><span class="badge">MySQL</span></div><div class="divider"></div><p>Diseñada para un despliegue rápido y personalización visual sin sacrificar el rendimiento empresarial.</p><div class="media-grid"><img src="assets/balerocms.png" alt="BaleroCMS"></div><a class="btn-cta" href="https://github.com/librixsoft/balerocms/tree/development" target="_blank" rel="noopener">Ver repositorio →</a></article>
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Seguros</div><h3>GNP</h3><h3>Software de cotización online GNP.</h3><p class="meta">Motor de cotización en tiempo real integrado con bases de datos GNP.</p><div class="badges"><span class="badge">React JS</span><span class="badge">Spring Boot</span><span class="badge">Hibernate</span></div><div class="divider"></div><p>Plataforma avanzada de cotización integrada con el backend de GNP, centralizando datos de clientes y automatizando la gestión para la generación de pólizas.</p><div class="media-grid"><img src="assets/gnp.png" alt="GNP"></div><a class="btn-cta" href="https://gnpgastosmedicos.com.mx/" target="_blank" rel="noopener">Visitar sitio →</a></article>
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Finanzas globales</div><h3>Equifax</h3><h3>CyberFinancial Cloud de Equifax.</h3><p class="meta">Arquitectura global de cobranza de misión crítica.</p><div class="badges"><span class="badge">Angular</span><span class="badge">Spring</span><span class="badge">Oracle</span></div><div class="divider"></div><p>Una de las plataformas en la nube más robustas para la recuperación de cartera y sistemas financieros internacionales.</p><div class="media-grid"><img src="assets/equifax.png" alt="Equifax"></div><a class="btn-cta" href="https://www.equifax.com.mx/empresas/productos/cyberfinancial/" target="_blank" rel="noopener">Ver producto →</a></article>
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Banca</div><h3>BBVA</h3><h3>Ecosistema transaccional BBVA.</h3><p class="meta">Optimización web de alta disponibilidad.</p><div class="badges"><span class="badge">Spring</span><span class="badge">Arquitectura Cells</span></div><div class="divider"></div><p>Desarrollo y optimización de experiencias web de alto tráfico, enfocadas en simplicidad transaccional y seguridad robusta para banca global.</p><div class="media-grid"><img src="assets/bbva.png" alt="BBVA"></div><a class="btn-cta" href="https://portal.bbva.mx/informes/novo_access.jsp" target="_blank" rel="noopener">Visitar sitio →</a></article>
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Fintech masiva</div><h3>Spin by OXXO</h3><h3>Spin by OXXO.</h3><p class="meta">Innovación en inclusión financiera con UX ágil.</p><div class="badges"><span class="badge">React Native</span><span class="badge">Spring</span></div><div class="divider"></div><p>Contribución técnica al desarrollo y optimización de una super-app financiera líder, diseñada para la bancarización masiva.</p><div class="media-grid"><img src="assets/oxxo.png" alt="Spin by OXXO"></div><a class="btn-cta" href="https://spinbyoxxo.com.mx/" target="_blank" rel="noopener">Visitar sitio →</a></article>
-        <article class="card scroll-animate scroll-animate-delay-1"><div class="kicker">Pagos y APIs</div><h3>Prisma</h3><h3>Wallet — Prisma Medios de Pago.</h3><p class="meta">Data lake modular y ecosistema de APIs para Argentina.</p><div class="badges"><span class="badge">Spring Boot</span><span class="badge">MongoDB</span><span class="badge">AWS Aurora</span></div><div class="divider"></div><p>Ingeniería de capas de API modulares para centralizar pagos, servicios y billeteras dentro de una infraestructura AWS de alto rendimiento.</p><div class="media-grid"><img src="assets/prisma.png" alt="Prisma"></div><a class="btn-cta" href="https://developers.prismamediosdepago.com/portal/api/catalog/Wallets" target="_blank" rel="noopener">Ver API →</a></article>
+    <section id="projects" class="section">
+      <div class="section-header reveal">
+        <div class="section-label">Proyectos</div>
+        <h2 class="section-title">Proyectos seleccionados</h2>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card reveal reveal-d1">
+          <div class="project-media">
+            <img src="assets/balerocms.png" alt="BaleroCMS" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://github.com/librixsoft/balerocms/tree/development" target="_blank" rel="noopener">Ver repositorio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Producto propio</div>
+            <h3>BaleroCMS</h3>
+            <p class="project-desc">Framework propietario: intuitivo, modular y seguro. Plataforma desarrollada a medida por Librixsoft que sirve tanto como CMS como framework base.</p>
+            <div class="project-badges"><span class="project-badge">PHP</span><span class="project-badge">Vue.js</span><span class="project-badge">MySQL</span></div>
+            <a class="project-cta" href="https://github.com/librixsoft/balerocms/tree/development" target="_blank" rel="noopener">Ver repositorio <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-d2">
+          <div class="project-media">
+            <img src="assets/gnp.png" alt="GNP" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://gnpgastosmedicos.com.mx/" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Seguros</div>
+            <h3>GNP</h3>
+            <p class="project-desc">Motor de cotización en tiempo real integrado con bases de datos GNP. Plataforma avanzada de cotización centralizando datos y automatizando la gestión de pólizas.</p>
+            <div class="project-badges"><span class="project-badge">React JS</span><span class="project-badge">Spring Boot</span><span class="project-badge">Hibernate</span></div>
+            <a class="project-cta" href="https://gnpgastosmedicos.com.mx/" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-d3">
+          <div class="project-media">
+            <img src="assets/equifax.png" alt="Equifax" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://www.equifax.com.mx/empresas/productos/cyberfinancial/" target="_blank" rel="noopener">Ver producto <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Finanzas globales</div>
+            <h3>Equifax</h3>
+            <p class="project-desc">Arquitectura global de cobranza de misi&#243;n cr&#237;tica. Una de las plataformas en la nube m&#225;s robustas para la recuperaci&#243;n de cartera y sistemas financieros internacionales.</p>
+            <div class="project-badges"><span class="project-badge">Angular</span><span class="project-badge">Spring</span><span class="project-badge">Oracle</span></div>
+            <a class="project-cta" href="https://www.equifax.com.mx/empresas/productos/cyberfinancial/" target="_blank" rel="noopener">Ver producto <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-d4">
+          <div class="project-media">
+            <img src="assets/bbva.png" alt="BBVA" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://portal.bbva.mx/informes/novo_access.jsp" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Banca</div>
+            <h3>BBVA</h3>
+            <p class="project-desc">Optimizaci&#243;n web de alta disponibilidad. Desarrollo y optimizaci&#243;n de experiencias web de alto tr&#225;fico, enfocadas en simplicidad transaccional y seguridad robusta.</p>
+            <div class="project-badges"><span class="project-badge">Spring</span><span class="project-badge">Arquitectura Cells</span></div>
+            <a class="project-cta" href="https://portal.bbva.mx/informes/novo_access.jsp" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-d3">
+          <div class="project-media">
+            <img src="assets/oxxo.png" alt="Spin by OXXO" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://spinbyoxxo.com.mx/" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Fintech masiva</div>
+            <h3>Spin by OXXO</h3>
+            <p class="project-desc">Innovaci&#243;n en inclusi&#243;n financiera con UX &#225;gil. Contribuci&#243;n t&#233;cnica al desarrollo y optimizaci&#243;n de una super-app financiera l&#237;der.</p>
+            <div class="project-badges"><span class="project-badge">React Native</span><span class="project-badge">Spring</span></div>
+            <a class="project-cta" href="https://spinbyoxxo.com.mx/" target="_blank" rel="noopener">Visitar sitio <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-d4">
+          <div class="project-media">
+            <img src="assets/prisma.png" alt="Prisma" loading="lazy">
+            <div class="project-overlay">
+              <a class="btn btn-primary" href="https://developers.prismamediosdepago.com/portal/api/catalog/Wallets" target="_blank" rel="noopener">Ver API <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-kicker">Pagos y APIs</div>
+            <h3>Prisma</h3>
+            <p class="project-desc">Wallet &#8212; Prisma Medios de Pago. Data lake modular y ecosistema de APIs para Argentina. Ingenier&#237;a de capas de API modulares en infraestructura AWS.</p>
+            <div class="project-badges"><span class="project-badge">Spring Boot</span><span class="project-badge">MongoDB</span><span class="project-badge">AWS Aurora</span></div>
+            <a class="project-cta" href="https://developers.prismamediosdepago.com/portal/api/catalog/Wallets" target="_blank" rel="noopener">Ver API <span class="arrow">&rarr;</span></a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section id="certifications" class="scroll-animate">
-      <h2>Certificaciones y especialidad</h2>
-      <div class="grid-box">
-        <div class="item-card scroll-animate scroll-animate-delay-1"><strong>Maestría en AWS DevOps</strong><p class="meta">Experiencia en CI/CD, CodePipeline, CloudFormation y soluciones cloud.</p></div>
-        <div class="item-card scroll-animate scroll-animate-delay-2"><strong>Liderazgo ágil</strong><p class="meta">Especialista en gestión de dependencias entre equipos y escalabilidad ágil.</p></div>
-        <div class="item-card scroll-animate scroll-animate-delay-2"><strong>Negociación estratégica</strong><p class="meta">Certificación en Método Harvard. Experto en gestión de stakeholders complejos.</p></div>
-        <div class="item-card scroll-animate scroll-animate-delay-3"><strong>8+ Casos de éxito</strong><p class="meta">Trayectoria comprobada en banca, seguros e industria de alto nivel.</p></div>
+    <section id="certifications" class="section">
+      <div class="section-header reveal">
+        <div class="section-label">Credenciales</div>
+        <h2 class="section-title">Certificaciones y especialidad</h2>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card reveal reveal-d1">
+          <div class="cert-icon">&#9729;</div>
+          <div><h4>Maestr&#237;a en AWS DevOps</h4><p>Experiencia en CI/CD, CodePipeline, CloudFormation y soluciones cloud.</p></div>
+        </div>
+        <div class="cert-card reveal reveal-d2">
+          <div class="cert-icon">&#9881;</div>
+          <div><h4>Liderazgo agil</h4><p>Especialista en gesti&#243;n de dependencias entre equipos y escalabilidad agil.</p></div>
+        </div>
+        <div class="cert-card reveal reveal-d3">
+          <div class="cert-icon">&#9878;</div>
+          <div><h4>Negociaci&#243;n estrat&#233;gica</h4><p>Certificaci&#243;n en M&#233;todo Harvard. Experto en gesti&#243;n de stakeholders complejos.</p></div>
+        </div>
+        <div class="cert-card reveal reveal-d4">
+          <div class="cert-icon">&#9733;</div>
+          <div><h4>8+ Casos de &#233;xito</h4><p>Trayectoria comprobada en banca, seguros e industria de alto nivel.</p></div>
+        </div>
       </div>
     </section>
 
-    <footer id="main-footer" style="text-align:center; padding:24px 0; color:var(--muted); font-size:.85rem">
-      © <a href="https://librixsoft.com/" target="_blank" rel="noopener" style="color:var(--accent-navy); text-decoration:none">Librixsoft</a> | Boutique de Software de Primer Nivel
+    <footer class="footer">
+      <div class="footer-brand">Librixsoft</div>
+      <p>&#169; <a href="https://librixsoft.com/" target="_blank" rel="noopener">Librixsoft</a> &#8212; Boutique de Software de Primer Nivel</p>
     </footer>
   </div>
 
-
   <script>
-    async function updateCounter() {
-      try {
-        const response = await fetch('counter.php');
-        if (response.ok) {
-          const count = await response.text();
-          document.getElementById('hit-count').innerText = count;
-        }
-      } catch (err) {
-        console.error('Counter error:', err);
-      }
-    }
+    /* Theme toggle */
+    const toggle=document.getElementById('theme-toggle');
+    const saved=localStorage.getItem('theme');
+    if(saved){document.documentElement.setAttribute('data-theme',saved)}
+    else if(window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark')}
+    toggle.addEventListener('click',()=>{
+      const current=document.documentElement.getAttribute('data-theme');
+      const next=current==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme',next);
+      localStorage.setItem('theme',next);
+    });
+
+    /* Visitor counter */
+    async function updateCounter(){try{const r=await fetch('counter.php');if(r.ok){const c=await r.text();document.getElementById('hit-count').innerText=c}}catch(e){}}
     updateCounter();
 
-    /* Page load animation */
-    const wrap = document.querySelector('.wrap');
-    const header = document.querySelector('header');
-    const eyebrow = document.querySelector('.eyebrow');
-    const tagline = document.querySelector('.tagline');
-    const h1El = document.querySelector('.h1-el');
+    /* Scroll progress */
+    const progressBar=document.getElementById('scroll-progress');
+    let ticking=false;
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{const s=window.scrollY;const h=document.documentElement.scrollHeight-window.innerHeight;const p=h>0?(s/h)*100:0;progressBar.style.width=p+'%';ticking=false});ticking=true}});
 
-    function triggerLoadAnimations() {
-      wrap.classList.add('in');
-      header.classList.add('in');
-      eyebrow.classList.add('in');
-      tagline.classList.add('in');
-      h1El.classList.add('in');
+    /* IntersectionObserver reveal */
+    const revealElements=document.querySelectorAll('.reveal');
+    const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revealObserver.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px 40px 0px'});
+    revealElements.forEach(el=>revealObserver.observe(el));
+
+    /* Hero animations */
+    const heroContent=document.querySelector('.hero-content');
+    const heroBento=document.querySelector('.hero-bento');
+    if(heroContent){
+      const heroObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroContent.classList.add('in');heroObserver.unobserve(heroContent)}},{threshold:0.15});
+      heroObserver.observe(heroContent);
+    }
+    if(heroBento){
+      const bentoObserver=new IntersectionObserver((entries)=>{if(entries[0].isIntersecting){heroBento.classList.add('in');bentoObserver.unobserve(heroBento)}},{threshold:0.15});
+      bentoObserver.observe(heroBento);
     }
 
-    /* IntersectionObserver for scroll animations */
-    const scrollElements = document.querySelectorAll('.scroll-animate');
-
-    /* Mark elements already in viewport on load */
-    scrollElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        el.classList.add('already-in');
-      }
-    });
-
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-        } else {
-          entry.target.classList.remove('in');
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
-
-    scrollElements.forEach(el => scrollObserver.observe(el));
-
-    /* Scroll progress bar */
-    const progressBar = document.getElementById('scroll-progress');
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollTop = window.scrollY;
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-          progressBar.style.width = scrollPercent + '%';
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-
-    /* Trigger load animations after DOM ready */
-    if (document.readyState === 'complete') {
-      triggerLoadAnimations();
-    } else {
-      window.addEventListener('load', triggerLoadAnimations);
-    }
+    /* Smooth scroll for anchor links */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',(e)=>{const target=document.querySelector(a.getAttribute('href'));if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}})});
   </script>
 </body>
 </html>
