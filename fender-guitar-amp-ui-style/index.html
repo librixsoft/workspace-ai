@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fender Amplitube Style UI</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="logo">
+    <span class="logo-icon">F</span>
+    <span class="logo-text">AMPLITUDE</span>
+  </div>
+  <nav class="header-nav">
+    <button class="nav-btn active" data-section="amps">Amps</button>
+    <button class="nav-btn" data-section="preamps">Pre-Amps</button>
+    <button class="nav-btn" data-section="cabinets">Cabinets</button>
+    <button class="nav-btn" data-section="effects">Effects</button>
+  </nav>
+  <div class="header-right">
+    <div class="signal-meter">
+      <div class="signal-bar" id="signalMeter"></div>
+    </div>
+  </div>
+</header>
+
+<main class="app-main">
+  <!-- AMPS SECTION -->
+  <section class="panel section-amps" id="section-amps">
+    <div class="panel-header">
+      <h2>Amplifiers</h2>
+      <span class="panel-count" id="ampCount">6 models</span>
+    </div>
+    <div class="amps-grid" id="ampsGrid"></div>
+  </section>
+
+  <!-- PRE-AMPS SECTION -->
+  <section class="panel section-preamps hidden" id="section-preamps">
+    <div class="panel-header">
+      <h2>Pre-Amps</h2>
+      <span class="panel-count" id="preampCount">0 models</span>
+    </div>
+    <div class="amps-grid" id="preampsGrid"></div>
+  </section>
+
+  <!-- CABINETS SECTION -->
+  <section class="panel section-cabinets hidden" id="section-cabinets">
+    <div class="panel-header">
+      <h2>Cabinets</h2>
+      <span class="panel-count" id="cabCount">0 models</span>
+    </div>
+    <div class="amps-grid" id="cabinetsGrid"></div>
+  </section>
+
+  <!-- EFFECTS SECTION -->
+  <section class="panel section-effects hidden" id="section-effects">
+    <div class="panel-header">
+      <h2>Effects Rack</h2>
+      <span class="panel-count" id="fxCount">0 slots</span>
+    </div>
+    <div class="effects-grid" id="effectsGrid"></div>
+  </section>
+</main>
+
+<!-- KNOB PANEL -->
+<aside class="knob-panel" id="knobPanel">
+  <div class="knob-panel-header">
+    <h3 id="knobPanelTitle">No Amp Selected</h3>
+    <button class="knob-panel-close" id="knobPanelClose">&times;</button>
+  </div>
+  <div class="knob-section" id="knobSection">
+    <div class="knob-row" id="knobRow"></div>
+  </div>
+  <div class="knob-visual" id="knobVisual">
+    <canvas id="knobCanvas" width="300" height="120"></canvas>
+  </div>
+</aside>
+
+<!-- SELECTED AMP DETAIL -->
+<div class="amp-detail" id="ampDetail">
+  <div class="amp-detail-body">
+    <div class="detail-amp-name" id="detailAmpName">—</div>
+    <div class="detail-amp-desc" id="detailAmpDesc">Select an amplifier to get started</div>
+    <div class="detail-visual">
+      <div class="detail-knob-big" id="detailKnob">
+        <svg viewBox="0 0 120 120" class="detail-knob-svg">
+          <circle cx="60" cy="60" r="56" class="detail-knob-ring"/>
+          <circle cx="60" cy="60" r="44" class="detail-knob-face"/>
+          <line x1="60" y1="60" x2="60" y2="22" class="detail-knob-pointer" id="detailPointer"/>
+          <circle cx="60" cy="60" r="8" class="detail-knob-center"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
