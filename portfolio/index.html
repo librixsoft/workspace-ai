@@ -16,11 +16,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#FFFFFF;
+      --bg-warm:#F9FAFB;
       --surface:#F8F9FA;
       --ink:#1C232E;
       --muted:#6B7280;
-      --accent:#D63031;
+      --accent-navy:#1B3A5C;
+      --accent-navy-light:rgba(27,58,92,.1);
+      --accent-navy-border:rgba(27,58,92,.25);
       --line:rgba(28,35,46,.1);
     }
     *{box-sizing:border-box}
@@ -30,7 +32,7 @@
       touch-action:manipulation;
       font-family:"Space Grotesk", system-ui, -apple-system, sans-serif;
       color:var(--ink);
-      background: var(--bg);
+      background: var(--bg-warm);
       line-height:1.6;
     }
     a.btn-cta{
@@ -41,35 +43,35 @@
       justify-content:center;
       padding:12px 24px;
       border-radius:8px;
-      border:2px solid var(--accent);
-      background:var(--accent);
+      border:2px solid var(--accent-navy);
+      background:var(--accent-navy);
       font-weight:600;
       letter-spacing:.01em;
       transition: all .2s ease;
     }
     a.btn-cta:hover{
-      background:#b71c1c;
-      border-color:#b71c1c;
+      background:#132D4F;
+      border-color:#132D4F;
       transform:translateY(-1px);
-      box-shadow: 0 4px 14px rgba(214,48,49,.35);
+      box-shadow: 0 4px 14px rgba(27,58,92,.35);
     }
     .wrap{max-width:980px; margin:0 auto; padding:48px 24px 80px}
     header{display:flex; flex-direction:column; gap:16px; padding:32px 0 24px; border-bottom:1px solid var(--line)}
-    .eyebrow{letter-spacing:.18em; text-transform:uppercase; font-size:.72rem; color:var(--accent); font-weight:700}
+    .eyebrow{letter-spacing:.18em; text-transform:uppercase; font-size:.72rem; color:var(--accent-navy); font-weight:700}
     h1{font-family:"Playfair Display", serif; font-size:clamp(2.1rem, 4vw, 3.2rem); line-height:1.05; margin:0; color:var(--ink)}
     .tagline{font-size:clamp(1.1rem, 1.4vw, 1.4rem); color:var(--muted); max-width:70ch}
     
     section{padding:40px 0; border-bottom:1px solid var(--line)}
-    h2{font-size:1.1rem; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); font-weight:700; margin:0 0 18px}
+    h2{font-size:1.1rem; text-transform:uppercase; letter-spacing:.14em; color:var(--accent-navy); font-weight:700; margin:0 0 18px}
     
     .grid-box { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 10px; }
     .item-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; transition: box-shadow .2s ease; }
     .item-card:hover { box-shadow: 0 4px 20px rgba(28,35,46,.08); }
-    .item-card strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 1.1rem; }
+    .item-card strong { color: var(--accent-navy); display: block; margin-bottom: 8px; font-size: 1.1rem; }
 
     .projects{display:grid; gap:24px}
     .card{
-      background:#FFFFFF;
+      background:#FAFBFC;
       border:1px solid var(--line);
       border-radius:16px;
       padding:32px;
@@ -80,7 +82,7 @@
     }
     .card:hover{
       box-shadow: 0 4px 24px rgba(28,35,46,.1), 0 8px 32px rgba(28,35,46,.05);
-      border-color: var(--accent);
+      border-color: var(--accent-navy);
     }
     .media-grid{ display:flex; flex-direction:column; gap:10px; align-items:center; margin:12px 0; }
     .media-grid img{
@@ -91,16 +93,16 @@
       display:block;
       border:1px solid var(--line);
       border-radius:12px;
-      background:#F8F9FA;
+      background:#F3F4F6;
     }
     .media-grid img.contain{ object-fit:contain; background:transparent; }
 
     .card h3{ font-family:"Playfair Display", serif; font-size:1.6rem; margin:0 0 4px; color:var(--ink) }
-    .kicker{ color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .kicker{ color: var(--accent-navy); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
     .meta{color:var(--muted); font-size:.95rem}
     .divider{height:1px; background:var(--line); margin:14px 0}
     .badges{display:flex; flex-wrap:wrap; gap:8px; margin:2px 0 8px}
-    .badge{font-size:.78rem; padding:5px 12px; border-radius:6px; background:rgba(214,48,49,.08); color:#b71c1c; font-weight:600; border:1px solid rgba(214,48,49,.2);}
+    .badge{font-size:.78rem; padding:5px 12px; border-radius:6px; background:var(--accent-navy-light); color:var(--accent-navy); font-weight:600; border:1px solid var(--accent-navy-border);}
 
 .visitor-counter {
       position: absolute;
@@ -165,7 +167,7 @@
     </section>
 
     <footer id="main-footer" style="text-align:center; padding:24px 0; color:var(--muted); font-size:.85rem">
-      © <a href="https://librixsoft.com/" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none">Librixsoft</a> | Boutique de Software de Primer Nivel
+      © <a href="https://librixsoft.com/" target="_blank" rel="noopener" style="color:var(--accent-navy); text-decoration:none">Librixsoft</a> | Boutique de Software de Primer Nivel
     </footer>
   </div>
 
