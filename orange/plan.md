@@ -440,3 +440,6 @@ Sombra fuerte: 0 8px 30px rgba(0,0,0,0.15)
 ---
 
 **Nota:** Este plan está diseñado para una landing page completa, profesional y elegante, siguiendo严格 standards de diseño corporativo moderno con la paleta de colores naranja (#FF6B00) sobre fondos blancos predominantes.
+
+=======================
+Creado con Qwen 3.5 9b
