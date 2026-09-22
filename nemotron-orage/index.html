@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nemotron Orage - Soluciones Empresariales</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1e293b;
+      --muted: #64748b;
+      --accent: #f97316;
+      --accent-dark: #ea580c;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Prevent layout shift */
+    .aspect-[4_3] {
+      aspect-ratio: 4 / 3;
+    }
+    
+    /* Smooth transitions */
+    .transition-hover {
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 200ms;
+    }
+    
+    /* Focus state */
+    .focus-visible:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .transition-hover {
+        transition-duration: 0ms !important;
+        transition-delay: 0s !important;
+      }
+    }
+    
+    /* Hover state for stat items */
+    .stat-item:hover .text-muted {
+      color: var(--fg) !important;
+    }
+    
+    /* Glass effect for cards - semitransparent without blur */
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border);
+    }
+    
+    /* Hero text gradient */
+    .gradient-text {
+      background: linear-gradient(to-r, var(--fg), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* CTA button */
+    .cta-btn {
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: background-color 200ms;
+      cursor: pointer;
+    }
+    
+    .cta-btn:hover {
+      background: var(--accent-dark);
+    }
+    
+    .cta-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    
+    /* Stats counter */
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(to-r, var(--fg), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    /* Image overlay */
+    .img-overlay {
+      position: relative;
+    }
+    
+    .img-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, transparent, rgba(255, 255, 255, 0.8));
+      pointer-events: none;
+    }
+    
+    /* Section padding */
+    .section-padding {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    /* Grid patterns */
+    .grid-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 444 444' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23cbd5e1' stroke-width='1' fill='none' d='M0 0h444v444H0V0ZM44 0h396v444H44V0ZM88 0h356v444H88V0ZM132 0h312v444H132V0ZM176 0h268v444H176V0ZM220 0h224v444H220V0ZM264 0h200v444H264V0ZM308 0h136v444H308V0ZM352 0h92v444H352V0Z'/%3E%3C/svg%3E");
+    }
+    
+    /* Noise texture */
+    .noise-texture {
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M0DDwADhgGAWjR9awAAAABJRU5ErkJggg==");
+    }
+    
+    /* Stats animation */
+    .counter {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Orange gradient accent */
+    .orange-gradient {
+      background: linear-gradient(to bottom, #ffedf0, #fbd3e9, #f8bbd0, #f48fb1, #f06292);
+    }
+    
+    /* Nav link active */
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero shapes */
+    .shape-accent {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent);
+      top: -100px;
+      right: -50px;
+    }
+    
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent-dark);
+      bottom: -50px;
+      left: -50px;
+    }
+    
+    /* Service card hover */
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 200ms, box-shadow 200ms;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Counter animation delay */
+    .stat-delay-1 { animation-delay: 0.1s; }
+    .stat-delay-2 { animation-delay: 0.2s; }
+    .stat-delay-3 { animation-delay: 0.3s; }
+    .stat-delay-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar" class="bg-white border-b border-gray-100 rounded-b-md p-4 shadow-sm transition-shadow hover:bg-gray-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16 text-sm md:text-base">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="#" class="font-bold text-lg tracking-tighter text-accent">Nemotron</a>
+      </div>
+      
+      <!-- Link container (nav-links class for JS toggle) -->
+      <div class="hidden md:flex items-center gap-8 nav-links">
+        <a href="#inicio" class="nav-link text-muted hover:text-accent transition-hover">Inicio</a>
+        <a href="#servicios" class="nav-link text-muted hover:text-accent transition-hover">Servicios</a>
+        <a href="#nosotros" class="nav-link text-muted hover:text-accent transition-hover">Nosotros</a>
+        <a href="#contacto" class="nav-link text-muted hover:text-accent transition-hover">Contacto</a>
+      </div>
+      
+      <!-- Mobile burger icon -->
+      <span class="md:hidden">
+        <button class="burger mr-4 text-muted hover:text-accent" id="burger" aria-label="Toggle menú">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6l8 8 8-8M12 4v16M12 0h6" />
+          </svg>
+        </button>
+      </span>
+      
+      <a href="#contacto" class="cta-btn md:block">Contacto</a>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col items-center justify-center overflow-hidden bg-orange-50">
+    <div class="absolute inset-0 w-full">
+      <!-- Gradient background overlay -->
+      <div class="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-400 to-orange-300 opacity-50"></div>
+      
+      <div class="relative z-10 flex flex-col items-center justify-center pt-20 pb-20">
+        <!-- Company name/logo -->
+        <div class="flex flex-col items-center gap-4 mb-12">
+          <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-orange-100 text-orange-600 font-bold text-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V5a2 2 0 012-2h2a2 2 0 012 2v14m-3-3h3m-3 0h3m-5-9h10m0 0v6m0-6v6"/>
+            </svg>
+          </span>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight-orange gradient-text">
+            Nemotron
+          </h1>
+        </div>
+        
+        <!-- Hero headline -->
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-800 leading-relaxed mb-8 text-center">
+          Soluciones integrales de transformación digital para empresas que buscan
+          crecer, escalar y destacar en el mercado competitivo actual.
+        </h2>
+        
+        <!-- CTA group centered at bottom -->
+        <div class="pt-8 pb-8 border-t border-gray-100/50">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2">
+            <a href="#servicios" class="flex items-center gap-2 px-8 py-4 rounded-full bg-orange-600 text-white font-medium text-lg hover:bg-orange-500 transition-all duration-300 shadow-lg shadow-orange-200/20 active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16l-4.37 4.37a2 2 0 01-2.83 0L2 12l1.63-1.63a2 2 0 012.83 0L11 5l4.38 4.38a2 2 0 010 2.83z"/>
+              </svg>
+              Conocer Servicios
+            </a>
+            <a href="#contacto" class="flex items-center gap-2 px-8 py-4 rounded-full border border-orange-300 text-orange-600 font-medium text-lg hover:bg-orange-50 hover:text-orange-800 transition-all duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0-12l4 4m-4-4l4-4"/>
+              </svg>
+              Contacto
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  <!-- CTA Section -->
+  <section class="bg-orange-50 py-20 relative overflow-hidden">
+    <div class="absolute inset-0" style="background: var(--accent); opacity: 0.08;"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative">
+      <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-6 gradient-text">
+        Listo para Transformar tu Negocio?
+      </h2>
+      <p class="text-muted text-lg mb-8 max-w-xl mx-auto">
+        Conversemos sobre cómo podemos ayudarte a que tu empresa crezca y tenga éxito en el panorama digital.
+      </p>
+      <a href="#contacto" class="cta-btn inline-block">Comenzar Ahora</a>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-gray-950 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Nemotron</h3>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li><a href="#" class="hover:text-white transition-hover">Acerca de</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Carreras</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Prensa</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Socios</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Producto</h3>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li><a href="#" class="hover:text-white transition-hover">Características</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Integraciones</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Roadmap</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Precios</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Recursos</h3>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li><a href="#" class="hover:text-white transition-hover">Blog</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Docs</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Webinars</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Casos de Estudio</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Empresa</h3>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li><a href="#" class="hover:text-white transition-hover">Contacto</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Soporte</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Seguridad</a></li>
+            <li><a href="#" class="hover:text-white transition-hover">Privacidad</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-800">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <p>2024 Nemotron. Todos los derechos reservados.</p>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-white transition-transform duration-200" aria-label="Twitter">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.86 4.46a12.83 12.83 0 011.297 2.115c.771.566.98.898.98 1.44s.215.878-.78 1.43c-.78.553-1.11.897-1.44.78-.338-.078-.67-.208-.98-.338a11.89 11.89 0 00-.668 1.017c0 .607.132 1.198.39 1.77a11.86 11.86 0 01-1.057-.021 12.69 12.69 0 00-.681-2.055c-.53-1.366-1.508-2.568-3.02-3.33a12.59 12.59 0 00-1.987-.117m-.606.123c.123-.456.496-.842.99-.999m-.491.289c.242.07.478.106.718.106m1.44.01a3.955 3.955 0 00.777-.242 3.935 3.935 0 00.53-.305 3.93 3.93 0 01.405-.517m-.766 1.536a4.009 4.009 0 01-1.06-1.223c-.168-.384-.33-.768-.492-.992a4.992 4.992 0 01.318-1.045m-.238.766a3.537 3.537 0 01-.602.13 3.535 3.535 0 11-1.098-1.218m.689.624a3.36 3.36 0 011.092-1.024c1.176 0 2.24.626 2.978 1.309a3.09 3.09 0 01.758.367m-.451.012a.59.59 0 00-.427.056.59.59 0 01-.203.02m.61.123a1.676 1.676 0 01.542-.063 1.677 1.677 0 01.135.051m-.359-.038a.59.59 0 01-.12-.012.59.59 0 01-.088-.002"/>
+              </svg>
+            </a>
+            <a href="#" class="hover:text-white transition-transform duration-200" aria-label="LinkedIn">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 7a5 5 0 100 10 5 5 0 000-10zM8 7a2 2 0 11-2-2 2 2 0 012 2zM12 14a3 3 0 100-6 3 3 0 000 6z"/>
+              </svg>
+            </a>
+            <a href="#" class="hover:text-white transition-transform duration-200" aria-label="Instagram">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m-4-2v8m0-8v8m-6-9h18M7 20h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </a>
+            <a href="#" class="hover:text-white transition-transform duration-200" aria-label="YouTube">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0zM10 8c.5.5 1 .5 1.5 0l3-3m0 0c.5.5 1 .5 1.5 0l-3-3m3 3l-3 3m0 0l-3 3m1.294-3.293a3 3 0 11-4.243 4.243M10 11V7.209a3 3 0 00-1.605-2.595M20 2l2-4H6l2 4m8.975-.061a11.039 11.039 0 01-.387-.985l.005-.003c-.217-.083-.455-.13-.678-.13-.223 0-.462.046-.61.13m.299-.01a7.309 7.309 0 00-.407-.36c-.049-.114-.07-.23-.05-.352a7.307 7.307 0 01.331-1.121l.005-.003c.134-.21.31-.42.42-.605.113-.177.16-.366.133-.56a4.096 4.096 0 01.28-.357m9.048-1.319c-.203-.278-.42-.545-.658-.781a7.013 7.013 0 00-.285-.366l-.003-.002c-.025-.007-.05-.016-.075-.019m-1.113-.178a3.54 3.54 0 01-.462-.099c-.128 0-.254.02-.37.1a.633.633 0 00-.118.299l-.006.006c-.139.02-.269.022-.408.013a19.75 19.75 0 00-1.093-.131c-.005-.003-.01-.006-.014-.007"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scroll reveal -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Counter animation
+      const counters = document.querySelectorAll('.stat-number');
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const duration = 2000;
+        
+        const updateCounter = () => {
+          const current = +counter.innerText;
+          const increment = target / (duration / 16);
+          counter.innerText = Math.min(current + increment, target).toFixed(0);
+          if (current < target) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.innerText = target + (target > 100 ? '+' : '');
+          }
+        };
+      });
+      
+      // Scroll reveal with IntersectionObserver
+      const reveals = document.querySelectorAll('.glass, .stat-number');
+      
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      reveals.forEach(reveal => {
+        reveal.style.opacity = '0';
+        reveal.style.transform = 'translateY(20px)';
+        reveal.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        revealObserver.observe(reveal);
+      });
+    });
+  </script>
+</body>
+</html>
