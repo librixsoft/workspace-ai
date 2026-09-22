@@ -18,6 +18,13 @@ body {
 .navbar-container {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-container {
+    flex: 1;
+    text-align: center;
 }
 
 .logo {
@@ -25,7 +32,7 @@ body {
     font-weight: 700;
     color: #FF6B35; /* Naranja corporativo principal */
     text-decoration: none;
-    margin: 0 1rem;
+    margin: 0;
 }
 
 .navbar-menu {
@@ -34,6 +41,8 @@ body {
     padding: 0;
     display: flex;
     gap: 1.5rem;
+    justify-content: flex-end; /* Alinea los links a la derecha */
+    flex-direction: row;
 }
 
 .navbar-menu li a {
