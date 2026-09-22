@@ -1,330 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Modern landing page for Boris Multi-Agent AI platform">
-    <meta name="author" content="Boris AI">
-    <title>Boris Multi-Agent - AI Solutions Platform</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>Landing Page - Boris AI</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="navbar">
-        <nav class="nav-container">
-            <div class="nav-brand">
-                <a href="#" aria-label="Boris Multi-Agent Home">
-                    <span class="brand-icon">🤖</span>
-                    <span class="brand-name">Boris AI</span>
-                </a>
-            </div>
-            <button class="navbar-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <nav class="navbar-nav">
-                <li class="nav-item">
-                    <a href="#hero" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#features" class="nav-link">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#footer" class="nav-link">Contact</a>
-                </li>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">Boris AI</a>
+            <ul class="navbar-menu">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#about">Acerca de</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
-            <div class="nav-actions">
-                <a href="#demo" class="btn btn-outline">Try Demo</a>
-                <a href="#contact" class="btn btn-primary">Get Started</a>
-            </div>
-        </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero-header">
+        <div class="hero-container">
+            <h1>Boris AI: Tu asistente de desarrollo autónomo</h1>
+            <p>Programa, automatiza y resuelve problemas de forma eficiente.</p>
+            <a href="#contact" class="hero-btn">Contáctanos</a>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span>🚀 New: AI-Powered Automation</span>
-                </div>
-                <h1 class="hero-title">
-                    Transform Your Business with <span class="gradient-text">Intelligent AI</span>
-                </h1>
-                <p class="hero-description">
-                    Discover the power of multi-agent artificial intelligence. 
-                    Automate workflows, analyze data, and drive growth with Boris AI's cutting-edge platform.
-                </p>
-                <div class="hero-cta">
-                    <a href="#features" class="btn btn-primary btn-large">Explore Features</a>
-                    <a href="#demo" class="btn btn-outline btn-large">Watch Video</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">10K+</span>
-                        <span class="stat-label">Active Users</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50M+</span>
-                        <span class="stat-label">Tasks Completed</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">4.9</span>
-                        <span class="stat-label">User Rating</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-image-placeholder">
-                    <div class="placeholder-icon">📊</div>
-                    <div class="placeholder-text">
-                        <h3>AI Analytics Dashboard</h3>
-                        <p>Real-time insights from multi-agent collaboration</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Features</span>
-                <h2 class="section-title">Everything You Need to <span class="gradient-text">Succeed</span></h2>
-                <p class="section-description">
-                    Our comprehensive suite of AI-powered features helps you automate, analyze, and grow your business.
-                </p>
-            </div>
+    <!-- Secciones -->
+    <section id="features">
+        <div class="section-container">
+            <h2>Características principales</h2>
             <div class="features-grid">
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>⚡</span>
-                    </div>
-                    <h3 class="feature-title">Automated Workflows</h3>
-                    <p class="feature-description">
-                        Create intelligent workflows that handle repetitive tasks automatically. 
-                        Save time and reduce errors with our smart automation engine.
-                    </p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>🤖</span>
-                    </div>
-                    <h3 class="feature-title">Multi-Agent Collaboration</h3>
-                    <p class="feature-description">
-                        Deploy multiple AI agents that work together seamlessly. 
-                        Each agent has specialized skills and they collaborate to achieve complex goals.
-                    </p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>📈</span>
-                    </div>
-                    <h3 class="feature-title">Predictive Analytics</h3>
-                    <p class="feature-description">
-                        Leverage machine learning to predict trends and make data-driven decisions. 
-                        Gain insights you didn't know you needed.
-                    </p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>🔒</span>
-                    </div>
-                    <h3 class="feature-title">Enterprise Security</h3>
-                    <p class="feature-description">
-                        Bank-grade encryption and compliance features ensure your data stays protected. 
-                        SOC 2 certified with GDPR compliance built-in.
-                    </p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>🎯</span>
-                    </div>
-                    <h3 class="feature-title">Custom AI Models</h3>
-                    <p class="feature-description">
-                        Train custom models tailored to your specific business needs. 
-                        Our platform supports fine-tuning and deployment of proprietary models.
-                    </p>
-                </article>
-                <article class="feature-card">
-                    <div class="feature-icon">
-                        <span>🚀</span>
-                    </div>
-                    <h3 class="feature-title">Real-Time Integration</h3>
-                    <p class="feature-description">
-                        Connect with your existing tools and APIs in real-time. 
-                        Our platform integrates with over 500+ popular business applications.
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">About</span>
-                <h2 class="section-title">Who Is <span class="gradient-text">Boris AI</span>?</h2>
-                <p class="section-description">
-                    We're building the future of business intelligence with advanced AI technology.
-                </p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Boris AI is a pioneering force in artificial intelligence, bringing together a team of 
-                        visionary engineers, data scientists, and AI researchers dedicated to transforming 
-                        how businesses leverage machine learning and automation.
-                    </p>
-                    <p>
-                        Founded in 2023, we started with a simple mission: to make AI accessible and powerful 
-                        for businesses of all sizes. Today, we've grown into a platform that serves thousands 
-                        of companies across industries, from startups to Fortune 500 enterprises.
-                    </p>
-                    <p>
-                        What sets us apart is our focus on practical, real-world applications of AI. 
-                        We don't just build cutting-edge technology; we build solutions that deliver 
-                        measurable business value and help our clients achieve their goals faster and more efficiently.
-                    </p>
-                    <blockquote class="quote">
-                        "Boris AI has transformed the way our team operates. The multi-agent system has 
-                        automated 70% of our manual processes, saving us countless hours every week."
-                        <footer class="quote-footer">- Sarah Chen, CTO at TechFlow</footer>
-                    </blockquote>
+                <div class="feature-item">
+                    <h3>Autonomía</h3>
+                    <p>Actúa sin intervención constante.</p>
                 </div>
-                <div class="about-visual">
-                    <div class="about-image-placeholder">
-                        <div class="placeholder-icon">👥</div>
-                        <div class="placeholder-text">
-                            <h3>Team & Innovation</h3>
-                            <p>Our diverse team of experts</p>
-                        </div>
-                    </div>
+                <div class="feature-item">
+                    <h3>Precisión</h3>
+                    <p>Genera código de alta calidad y funcional.</p>
                 </div>
-            </div>
-            <div class="about-stats">
-                <div class="stat">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Industry Partners</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">200+</span>
-                    <span class="stat-label">Employee Count</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">$50M+</span>
-                    <span class="stat-label">Value Created</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">15</span>
-                    <span class="stat-label">Countries Served</span>
+                <div class="feature-item">
+                    <h3>Eficiencia</h3>
+                    <p>Optimiza tareas y reduce tiempos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call-to-Action Section -->
-    <section id="contact" class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Transform Your Business?</h2>
-                <p class="cta-description">
-                    Join thousands of companies already using Boris AI to automate workflows, 
-                    analyze data, and drive growth.
-                </p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-large">Get Started Free</a>
-                    <a href="#demo" class="btn btn-outline btn-large">Schedule Demo</a>
-                </div>
-            </div>
+    <section id="about">
+        <div class="section-container">
+            <h2>Acerca de Boris AI</h2>
+            <p>Boris es un agente de desarrollo autónomo que corre localmente en tu máquina. Es directo, conciso y sin rodeos. Programa, automatiza y resuelve problemas técnicos de forma eficiente.</p>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer id="footer" class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" aria-label="Boris AI Home">
-                        <span class="brand-icon">🤖</span>
-                        <span class="brand-name">Boris AI</span>
-                    </a>
-                    <p class="footer-description">
-                        Empowering businesses with intelligent AI solutions. 
-                        Automate, analyze, and grow faster.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Twitter">🐦</a>
-                        <a href="#" aria-label="LinkedIn">💼</a>
-                        <a href="#" aria-label="GitHub">🐙</a>
-                        <a href="#" aria-label="Discord">💬</a>
-                    </div>
-                </div>
-                <div class="footer-nav">
-                    <h4 class="footer-title">Product</h4>
-                    <nav class="footer-links">
-                        <a href="#features">Features</a>
-                        <a href="#pricing">Pricing</a>
-                        <a href="#api">API Documentation</a>
-                        <a href="#integrations">Integrations</a>
-                        <a href="#roadmap">Roadmap</a>
-                    </nav>
-                </div>
-                <div class="footer-nav">
-                    <h4 class="footer-title">Company</h4>
-                    <nav class="footer-links">
-                        <a href="#about">About Us</a>
-                        <a href="#careers">Careers</a>
-                        <a href="#blog">Blog</a>
-                        <a href="#press">Press</a>
-                        <a href="#contact">Contact</a>
-                    </nav>
-                </div>
-                <div class="footer-nav">
-                    <h4 class="footer-title">Resources</h4>
-                    <nav class="footer-links">
-                        <a href="#help">Help Center</a>
-                        <a href="#docs">Documentation</a>
-                        <a href="#guides">Guides</a>
-                        <a href="#community">Community</a>
-                        <a href="#support">Support</a>
-                    </nav>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="copyright">
-                    &copy; 2024 Boris AI. All rights reserved. Privacy Policy | Terms of Service | Cookie Policy
-                </p>
-            </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Boris AI. Todos los derechos reservados.</p>
+            <p>Diseñado con <span class="corporate-color">boris-ai granite 8b</span></p>
         </div>
     </footer>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" aria-hidden="true">
-        <button class="mobile-nav-toggle" aria-label="Toggle mobile navigation">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-        <nav class="mobile-nav-menu">
-            <a href="#hero" class="mobile-nav-link">Home</a>
-            <a href="#features" class="mobile-nav-link">Features</a>
-            <a href="#about" class="mobile-nav-link">About</a>
-            <a href="#contact" class="mobile-nav-link">Contact</a>
-            <a href="#demo" class="mobile-nav-link">Try Demo</a>
-            <a href="#contact" class="mobile-nav-link btn btn-primary">Get Started</a>
-        </nav>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" aria-label="Scroll to top" hidden>
-        <span>↑</span>
-    </button>
-
 </body>
 </html>
