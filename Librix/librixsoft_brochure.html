@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>LibrixSoft — Brochure 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #faf8f4;
+    --ink: #1a1a1a;
+    --ink-light: #4a4a4a;
+    --warm-gray: #8a8580;
+    --accent-r: #d4442c;
+    --accent-b: #1b3d6f;
+    --gold: #c9952b;
+    --rule-thin: 0.5px solid var(--ink);
+    --rule-thick: 2px solid var(--ink);
+  }
+
+  @page { size: A4; margin: 0; }
+  @media screen { html,body { background: #e0ddd7; } }
+
+  html, body {
+    font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 210mm;
+    margin: 0 auto;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    background: var(--cream);
+  }
+  .page:last-child { page-break-after: avoid; }
+
+  .page-inner {
+    position: absolute;
+    top: 16mm; left: 16mm; right: 16mm; bottom: 14mm;
+  }
+
+  .pgno {
+    position: absolute;
+    bottom: 8mm;
+    right: 16mm;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 2px;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+  }
+  .pgbrand {
+    position: absolute;
+    bottom: 8mm;
+    left: 16mm;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 2px;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+  }
+
+  /* === TYPOGRAPHY === */
+  .tag {
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 10mm;
+  }
+  .tag::before {
+    content: '';
+    display: inline-block;
+    width: 10mm;
+    height: 1.5px;
+    background: var(--accent-r);
+    vertical-align: middle;
+    margin-right: 3mm;
+  }
+
+  .h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 32pt; font-weight: 900; color: var(--ink); line-height: 1.08; letter-spacing: -1.5px; }
+  .h1 em { font-style: italic; font-weight: 400; color: var(--accent-r); }
+  .h1 .line { display: block; }
+
+  .h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 20pt; font-weight: 700; color: var(--ink); line-height: 1.2; letter-spacing: -0.5px; }
+  .h2 em { font-style: italic; font-weight: 400; }
+
+  .h3 { font-family: 'Space Grotesk', sans-serif; font-size: 11pt; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
+  .p { font-size: 9.5pt; line-height: 1.75; color: var(--ink-light); }
+  .p strong { font-weight: 600; color: var(--ink); }
+  .p.lead { font-family: 'Playfair Display', Georgia, serif; font-size: 14pt; font-weight: 400; line-height: 1.55; color: var(--ink); }
+
+  /* === COVER === */
+  .cover-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5mm;
+    background: var(--accent-r);
+  }
+  .cover-frame {
+    position: absolute;
+    top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+    border: 1px solid var(--ink);
+  }
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+  }
+  .cover-cell { padding: 12mm; display: flex; flex-direction: column; justify-content: center; }
+  .cover-cell:nth-child(2) { background: var(--ink); color: var(--cream); }
+  .cover-cell:nth-child(3) { border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+  .cover-cell:nth-child(4) { border-top: 1px solid var(--ink); }
+
+  .cover-brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--accent-r);
+    margin-bottom: 6mm;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26pt;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  .cover-title em { font-style: italic; font-weight: 400; color: var(--accent-r); }
+  .cover-eyebrow {
+    font-size: 8pt;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 8mm;
+  }
+  .cover-dark-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18pt;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.35;
+    font-style: italic;
+  }
+  .cover-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 80pt;
+    font-weight: 700;
+    color: rgba(250,248,244,0.06);
+    line-height: 1;
+    position: absolute;
+    right: 12mm;
+    bottom: 10mm;
+  }
+
+  /* === NUMBERS === */
+  .num-row {
+    display: flex;
+    gap: 5mm;
+    margin-top: 10mm;
+  }
+  .num-box {
+    flex: 1;
+    padding-top: 5mm;
+    border-top: 2px solid var(--accent-r);
+  }
+  .num-box.gold { border-top-color: var(--gold); }
+  .num-box .n {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30pt;
+    font-weight: 700;
+    color: var(--accent-r);
+    line-height: 1;
+  }
+  .num-box.gold .n { color: var(--gold); }
+  .num-box .lbl {
+    font-size: 7pt;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 2mm;
+  }
+
+  /* === QUOTE === */
+  .pull-quote {
+    margin-top: 10mm;
+    padding: 6mm 0 6mm 6mm;
+    border-left: 3px solid var(--accent-r);
+  }
+  .pull-quote .label {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-r);
+    margin-bottom: 3mm;
+  }
+  .pull-quote .text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 10pt;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--ink-light);
+  }
+
+  /* === SERVICE PANELS === */
+  .svc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-top: 5mm;
+  }
+  .svc-panel {
+    padding: 6mm;
+    border: 1px solid rgba(26,26,26,0.1);
+    position: relative;
+    transition: none;
+  }
+  .svc-panel::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 18mm;
+    height: 3px;
+    background: var(--accent-r);
+  }
+  .svc-panel .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--warm-gray);
+    letter-spacing: 2px;
+    margin-bottom: 3mm;
+  }
+  .svc-panel h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2mm;
+    letter-spacing: -0.2px;
+  }
+  .svc-panel p {
+    font-size: 8.5pt;
+    line-height: 1.55;
+    color: var(--ink-light);
+    margin-bottom: 3mm;
+  }
+  .svc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+  }
+  .svc-tags span {
+    font-size: 6.5pt;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 1mm 2.5mm;
+    border: 1px solid rgba(26,26,26,0.15);
+    color: var(--ink-light);
+  }
+  .svc-tags span.accent { border-color: var(--accent-r); color: var(--accent-r); }
+
+  /* === SUBSERVICE LIST === */
+  .sub-list { margin-top: 3mm; }
+  .sub-list .sub-item {
+    font-size: 6.5pt; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 1mm 2.5mm; margin-bottom: 1.5mm; margin-right: 1.5mm; display: inline-block;
+    border: 1px solid rgba(26,26,26,0.12); color: var(--ink-light);
+  }
+
+  /* === SECTORS === */
+  .sector-block {
+    margin-bottom: 6mm;
+  }
+  .sector-block .s-header {
+    display: flex;
+    align-items: baseline;
+    gap: 4mm;
+    margin-bottom: 2mm;
+  }
+  .sector-block .s-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48pt;
+    font-weight: 900;
+    color: var(--accent-r);
+    line-height: 1;
+    font-style: italic;
+  }
+  .sector-block.s-gold .s-letter { color: var(--gold); }
+  .sector-block .s-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .sector-block .s-desc {
+    font-size: 9pt;
+    line-height: 1.65;
+    color: var(--ink-light);
+    margin-bottom: 2mm;
+  }
+  .sector-block .s-desc strong { color: var(--ink); }
+  .client-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+  }
+  .client-strip span {
+    font-size: 6pt;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1mm 2.5mm;
+    border: 1px solid rgba(26,26,26,0.1);
+    color: var(--warm-gray);
+  }
+
+  /* === WHY GRID === */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4mm;
+    margin-top: 6mm;
+  }
+  .why-item {
+    padding: 5mm 4mm;
+    border-top: 2px solid var(--accent-r);
+  }
+  .why-item h3 {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2mm;
+  }
+  .why-item p {
+    font-size: 8pt;
+    line-height: 1.55;
+    color: var(--ink-light);
+  }
+
+  /* === TECH COLUMNS === */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4mm;
+    margin-top: 4mm;
+  }
+  .tech-col h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 2px solid var(--accent-r);
+  }
+  .tech-col .tech-tag {
+    display: block;
+    font-size: 8pt;
+    padding: 2mm 0;
+    color: var(--ink-light);
+    border-bottom: 1px solid rgba(26,26,26,0.06);
+  }
+  .tech-col .tech-tag:last-child { border-bottom: none; }
+
+  /* === BACK COVER === */
+  .back-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5mm;
+    background: var(--accent-b);
+  }
+  .back-frame {
+    position: absolute;
+    top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+    border: 1px solid var(--ink);
+  }
+  .back-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .back-huge {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 56pt;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 6mm;
+  }
+  .back-huge em { font-style: italic; font-weight: 400; color: var(--accent-r); }
+  .back-sub {
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--ink-light);
+    max-width: 120mm;
+    margin-bottom: 8mm;
+  }
+  .back-contact {
+    display: flex;
+    gap: 10mm;
+    margin-bottom: 8mm;
+  }
+  .back-contact-item {
+    font-size: 9pt;
+  }
+  .back-contact-item strong { font-weight: 700; color: var(--ink); }
+  .back-btn-wrap { margin-top: 4mm; }
+  .back-btn {
+    display: inline-block;
+    padding: 4mm 16mm;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+  }
+  .back-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 100pt;
+    font-weight: 700;
+    color: rgba(26,26,26,0.03);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 — COVER ================= -->
+<div class="page">
+  <div class="cover-stripe"></div>
+  <div class="cover-frame"></div>
+  <div class="cover-grid">
+    <div class="cover-cell">
+      <div class="cover-brand">LibrixSoft</div>
+      <div class="cover-title">Software a <em>medida</em></div>
+      <div class="cover-eyebrow">Dossier de Servicios &mdash;</div>
+    </div>
+    <div class="cover-cell" style="position:relative;">
+      <div class="cover-dark-text">Ingenier&iacute;a, desarrollo<br>de software y ciberseguridad.</div>
+      <div class="cover-year">26</div>
+    </div>
+    <div class="cover-cell" style="border-top:1px solid var(--ink); border-left:1px solid var(--ink);">
+      <div style="font-size:7.5pt; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--warm-gray); margin-bottom:3mm;">Servicios</div>
+      <div style="display:flex; flex-wrap:wrap; gap:2mm;">
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">CRMs</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">Marketplaces</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">E-commerce</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">Banking</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">Pentesting</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">Kubernetes</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">Terraform</span>
+        <span style="font-size:6.5pt; font-weight:600; padding:1mm 2mm; border:1px solid rgba(26,26,26,0.15); color:var(--warm-gray);">IoT/ERP</span>
+      </div>
+    </div>
+    <div class="cover-cell" style="border-top:1px solid var(--ink);">
+      <div style="font-size:7.5pt; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--accent-r); margin-bottom:3mm;">Modelo</div>
+      <div style="font-size:9pt; line-height:1.65; color:var(--ink-light);">B2B &bull; POD Especializado &bull; Entrega por Hitos &bull; Senior Directo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PAGE 2 — QUIENES SOMOS ================= -->
+<div class="page">
+  <div class="page-inner">
+    <div class="tag">Quienes Somos</div>
+    <div class="h1">
+      <span class="line">Transformamos ideas</span>
+      <span class="line">en <em>software funcional.</em></span>
+    </div>
+
+    <p class="lead" style="margin-top:5mm;">LibrixSoft act&uacute;a como tu brazo de ingenier&iacute;a: resolvemos la parte t&eacute;cnica para que tu equipo se enfoque en lo que mejor sabe hacer.</p>
+
+    <p class="p" style="margin-top:4mm;">Trabajamos por entregables e hitos medibles. Tu empresa conserva el rol de product owner y la relaci&oacute;n contractual con el cliente final; LibrixSoft act&uacute;a como brazo ejecutor. Este modelo ya est&aacute; en operaci&oacute;n con m&uacute;ltiples empresas que buscan escalar su capacidad de desarrollo sin invertir en infraestructura propia.</p>
+
+    <div class="num-row">
+      <div class="num-box">
+        <div class="n">10+</div>
+        <div class="lbl">A&ntilde;os de Experiencia</div>
+      </div>
+      <div class="num-box gold">
+        <div class="n">6</div>
+        <div class="lbl">L&iacute;neas de Servicio</div>
+      </div>
+      <div class="num-box">
+        <div class="n">2</div>
+        <div class="lbl">Sectores Estrat&eacute;gicos</div>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <div class="label">Trayectoria Comprobada</div>
+      <div class="text">Arquitectura entregada para Spin (OXXO), Prisma Bank, BBVA, Banorte, Equifax, GNP Seguros, HP y las plataformas globales de Alsea.</div>
+    </div>
+  </div>
+  <div class="pgbrand">LibrixSoft</div>
+  <div class="pgno">02</div>
+</div>
+
+<!-- ================= PAGE 3 — SERVICIOS ================= -->
+<div class="page">
+  <div class="page-inner">
+    <div class="tag">01 — Servicios</div>
+    <div class="h2">Nuestras <em>Capacidades</em></div>
+
+    <div class="svc-layout">
+      <div class="svc-panel">
+        <div class="num">01</div>
+        <h3>Plataformas Web</h3>
+        <p>Aplicaciones empresariales robustas, escalables y de alto rendimiento.</p>
+        <div class="sub-list">
+          <span class="sub-item">CRMs Personalizados</span>
+          <span class="sub-item">Portales Corporativos</span>
+          <span class="sub-item">Marketplaces</span>
+          <span class="sub-item">E-commerce</span>
+          <span class="sub-item">Dashboards de Analytics</span>
+          <span class="sub-item">Plataformas Educativas</span>
+          <span class="sub-item">CMS Headless</span>
+          <span class="sub-item">ERPs Personalizados</span>
+          <span class="sub-item">Sistemas de Tickets</span>
+          <span class="sub-item">Chatbots con IA</span>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="num">02</div>
+        <h3>Desarrollo M&oacute;vil</h3>
+        <p>Nativas y multiplataforma para iOS y Android.</p>
+        <div class="sub-list">
+          <span class="sub-item">React Native</span>
+          <span class="sub-item">Flutter</span>
+          <span class="sub-item">PWA</span>
+          <span class="sub-item">Notificaciones Push y SMS</span>
+          <span class="sub-item">CRM con WhatsApp Business</span>
+          <span class="sub-item">AppSec Mobile</span>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="num">03</div>
+        <h3>Digital Banking</h3>
+        <p>Core financiero, pasarelas de pago y billeteras digitales.</p>
+        <div class="sub-list">
+          <span class="sub-item">Wallets Digitales</span>
+          <span class="sub-item">Banca Digital</span>
+          <span class="sub-item">Gateways de Pago</span>
+          <span class="sub-item">Multi-monedas</span>
+          <span class="sub-item">Sistemas de Suscripciones</span>
+          <span class="sub-item">Integraciones con SAP</span>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="num">04</div>
+        <h3>Ciberseguridad</h3>
+        <p>Auditor&iacute;as OWASP, hardening, cifrado y monitoreo continuo.</p>
+        <div class="sub-list">
+          <span class="sub-item">JWT y OAuth</span>
+          <span class="sub-item">Pentesting Web</span>
+          <span class="sub-item">SAST y DAST</span>
+          <span class="sub-item">Zero Trust</span>
+          <span class="sub-item">API Security Gateway</span>
+          <span class="sub-item">ISO 27001</span>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="num">05</div>
+        <h3>Dise&ntilde;o UI/UX</h3>
+        <p>Design systems, prototipado e investigaci&oacute;n centrada en datos.</p>
+        <div class="sub-list">
+          <span class="sub-item">Design Systems</span>
+          <span class="sub-item">Prototyping</span>
+          <span class="sub-item">User Research</span>
+          <span class="sub-item">Portales Corporativos</span>
+          <span class="sub-item">Marketplaces</span>
+          <span class="sub-item">Dashboards de Analytics</span>
+        </div>
+      </div>
+      <div class="svc-panel">
+        <div class="num">06</div>
+        <h3>DevOps &amp; Cloud</h3>
+        <p>CI/CD, Kubernetes, IaC y monitorizaci&oacute;n 24/7.</p>
+        <div class="sub-list">
+          <span class="sub-item">Kubernetes</span>
+          <span class="sub-item">Serverless</span>
+          <span class="sub-item">CloudWatch</span>
+          <span class="sub-item">Terraform</span>
+          <span class="sub-item">Backup Automatizado</span>
+          <span class="sub-item">Pipelines CI/CD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pgbrand">LibrixSoft</div>
+  <div class="pgno">03</div>
+</div>
+
+<!-- ================= PAGE 4 — STACK ================= -->
+<div class="page">
+  <div class="page-inner">
+    <div class="tag">02 — Stack Tecnol&oacute;gico</div>
+    <div class="h2">Tecnolog&iacute;as que <em>Dominamos</em></div>
+
+    <p class="p" style="margin-top:3mm; margin-bottom:0;">No imponemos una tecnolog&iacute;a &uacute;nica. Seleccionamos cada stack seg&uacute;n el problema de negocio.</p>
+
+    <div class="tech-grid" style="margin-top:6mm;">
+      <div class="tech-col">
+        <h3>Backend</h3>
+        <span class="tech-tag">Java Enterprise</span>
+        <span class="tech-tag">Spring Boot</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">AWS Lambda</span>
+        <span class="tech-tag">Bash</span>
+      </div>
+      <div class="tech-col">
+        <h3>Frontend &amp; M&oacute;vil</h3>
+        <span class="tech-tag">Angular 17+</span>
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Redux</span>
+        <span class="tech-tag">Angular Material</span>
+        <span class="tech-tag">React Native</span>
+        <span class="tech-tag">Flutter</span>
+      </div>
+      <div class="tech-col">
+        <h3>Datos &amp; Mensajer&iacute;a</h3>
+        <span class="tech-tag">Oracle</span>
+        <span class="tech-tag">SQL Server</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">JPA / Hibernate</span>
+        <span class="tech-tag">Kafka</span>
+      </div>
+      <div class="tech-col">
+        <h3>Nube &amp; DevOps</h3>
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">Azure</span>
+        <span class="tech-tag">GCP</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">Kubernetes</span>
+        <span class="tech-tag">Jenkins</span>
+        <span class="tech-tag">GitLab CI</span>
+        <span class="tech-tag">GitHub Actions</span>
+      </div>
+    </div>
+  </div>
+  <div class="pgbrand">LibrixSoft</div>
+  <div class="pgno">04</div>
+</div>
+
+<!-- ================= PAGE 5 — SECTORES + POR QUÉ ================= -->
+<div class="page">
+  <div class="page-inner">
+    <div class="tag">03 — Sectores</div>
+    <div class="h2">Experiencia Sectorial <em>Estrat&eacute;gica</em></div>
+
+    <div class="sector-block" style="margin-top:6mm;">
+      <div class="s-header">
+        <div class="s-letter">F</div>
+        <div class="s-title">Fintech &amp; Banca</div>
+      </div>
+      <p class="s-desc">Arquitectura para <strong>Spin por OXXO</strong>, <strong>Prisma Bank (Argentina)</strong>, <strong>BBVA (Per&uacute; / M&eacute;xico)</strong> y <strong>Banorte</strong>.</p>
+      <div class="client-strip"><span>Spin</span><span>OXXO</span><span>Prisma Bank</span><span>BBVA</span><span>Banorte</span></div>
+    </div>
+
+    <div class="sector-block s-gold">
+      <div class="s-header">
+        <div class="s-letter">E</div>
+        <div class="s-title">Empresarial &amp; Seguros</div>
+      </div>
+      <p class="s-desc">Soluciones para <strong>Equifax (EE.UU.)</strong>, <strong>GNP Seguros</strong>, <strong>HP</strong> y plataformas globales de <strong>Alsea</strong> — Starbucks, Domino's y Burger King a nivel mundial.</p>
+      <div class="client-strip"><span>Equifax</span><span>GNP Seguros</span><span>HP</span><span>Alsea</span><span>Starbucks</span><span>Domino's</span><span>Burger King</span></div>
+    </div>
+
+    <div class="tag" style="margin-top:10mm;">04 — Modelo de Trabajo</div>
+    <div class="h2" style="font-size:15pt;">Por qu&eacute; POD Especializado B2B</div>
+
+    <div class="why-grid" style="margin-top:4mm;">
+      <div class="why-item">
+        <h3>Involucramiento Senior Directo</h3>
+        <p>Arquitecto Senior dedicado como punto de contacto — sin traspasos ni tiempo de aprendizaje junior.</p>
+      </div>
+      <div class="why-item">
+        <h3>Cero Sobrecarga Administrativa</h3>
+        <p>Modelo contractual C2C / B2B. Entrega pura de ingenier&iacute;a.</p>
+      </div>
+      <div class="why-item">
+        <h3>Impacto Inmediato</h3>
+        <p>Onboarding r&aacute;pido, enfoque en resultados — desde el d&iacute;a uno, c&oacute;digo listo para producci&oacute;n.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pgbrand">LibrixSoft</div>
+  <div class="pgno">05</div>
+</div>
+
+<!-- ================= PAGE 6 — BACK COVER ================= -->
+<div class="page">
+  <div class="back-stripe"></div>
+  <div class="back-frame"></div>
+  <div class="back-content">
+    <div class="back-year">26</div>
+    <div class="back-huge">Crezcamos <em>juntos</em></div>
+    <p class="back-sub">Conversemos sobre c&oacute;mo LibrixSoft puede potenciar tu equipo de ingenier&iacute;a.</p>
+
+    <div class="back-contact">
+      <div class="back-contact-item"><strong>hola@librixsoft.com</strong></div>
+      <div class="back-contact-item"><strong>librixsoft.com</strong></div>
+    </div>
+
+    <div class="back-btn-wrap">
+      <a class="back-btn" href="https://librixsoft.com/portfolio/">Ver Portfolio &rarr;</a>
+    </div>
+  </div>
+  <div class="pgbrand">LibrixSoft</div>
+  <div class="pgno">06</div>
+</div>
+
+</body>
+</html>

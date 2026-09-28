@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Granite 8B 4.2 - Modelo de lenguaje de última generación</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --gray-dark: #333333;
+      --gray-light: #777777;
+      --orange-primary: #ff6b35;
+      --orange-accent: #d95e1b;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: var(--white);
+      color: var(--gray-dark);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--orange-primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .container {
+      width: min(90%, 1200px);
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--gray-dark);
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--gray-dark);
+      border-bottom: 2px solid var(--orange-primary);
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--gray-dark);
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .hero {
+      position: relative;
+      height: 70vh;
+      min-height: 400px;
+      background: linear-gradient(135deg, #f9f9f9 0%, #f9f9f9 60%, rgba(255, 107, 53, 0.1) 60%, rgba(255, 107, 53, 0.1) 100%);
+      color: var(--white);
+      text-align: center;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--gray-dark);
+    }
+    .btn {
+      display: inline-block;
+      background-color: var(--orange-primary);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      margin: 1rem 0;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: var(--orange-accent);
+    }
+    .section {
+      padding: 3rem 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: var(--gray-dark);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card h4 {
+      margin-bottom: 0.8rem;
+      color: var(--gray-dark);
+    }
+    .card p {
+      margin-bottom: 1rem;
+      color: var(--gray-light);
+    }
+    .testimonials {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+    .testimonial {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+    .testimonial blockquote {
+      font-style: italic;
+      color: var(--gray-dark);
+      margin: 1rem 0;
+      border-left: 3px solid var(--orange-primary);
+    }
+    .testimonial-author {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .testimonial-author span {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+    }
+    .footer {
+      background-color: var(--gray-light);
+      color: var(--gray-dark);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .footer p {
+      margin-bottom: 1rem;
+    }
+    .footer a {
+      color: var(--orange-primary);
+    }
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>Granite 8B 4.2</h1>
+    <p>Modelo de lenguaje de última generación, optimizado para eficiencia, precisión y rendimiento empresarial.</p>
+    <button class="btn">Descubrir más</button>
+  </div>
+
+  <div class="container">
+    <section class="section">
+      <h2>Sobre nosotros</h2>
+      <p>Granite 8B 4.2 es una arquitectura de lenguaje de gran tamaño desarrollada con estándares corporativos de calidad, seguridad y desempeño. Diseñado para empresas que requieren fiabilidad, velocidad y exactitud en la generación de contenido, respuestas a consultas y automatización inteligente. El modelo combina una experiencia de usuario fluida con un rendimiento optimizado para entornos empresariales.</p>
+    </section>
+
+    <section class="section">
+      <h2>Características principales</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h4>Precisión empresarial</h4>
+          <p>Alta calidad en generación de texto, respuestas a preguntas y generación creativa, alineado con estándares corporativos.</p>
+        </div>
+        <div class="card">
+          <h4>Rendimiento optimizado</h4>
+          <p>Procesamiento rápido y eficiente incluso con textos largos y consultas complejas.</p>
+        </div>
+        <div class="card">
+          <h4>Seguridad integrada</h4>
+          <p>Medidas de privacidad y seguridad desde el diseño, adecuado para entornos empresariales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Casos de uso</h2>
+      <p>Granite 8B 4.2 es ideal para:</p>
+      <ul>
+        <li>Respuestas a consultas internas y soporte tecnológico</li>
+        <li>Generación automatizada de documentos ejecutivos y reportes</li>
+        <li>Asistentes de escritura y edición para equipos creativos</li>
+        <li>Chatbots empresariales con tono profesional y confiable</li>
+        <li>Resumen y análisis de documentos técnicos y legales</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Testimonios</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <blockquote>Granite 8B 4.2 ha mejorado significativamente la velocidad de nuestras respuestas internas. Los resultados son precisos y el tiempo de generación es rápido.</blockquote>
+          <div class="testimonial-author">— Ana Martínez, Director de Operaciones</div>
+        </div>
+        <div class="testimonial">
+          <blockquote>Integrar Granite 8B 4.2 fue sencillo. La interfaz empresarial y los colores corporativos (naranja claro sobre blanco) se alinean perfectamente con nuestra marca.</blockquote>
+          <div class="testimonial-author">— Luis Gómez, CTO</div>
+        </div>
+        <div class="testimonial">
+          <blockquote>La precisión del modelo es impresionante para nuestro uso de generación de documentos ejecutivos. No necesitamos revisiones extensas.</blockquote>
+          <div class="testimonial-author">— Carmen Torres, Gerente de Contenido</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Equipo</h2>
+      <p>Equipo interno dedicado a la mejora continua, seguridad y soporte empresarial. Todos los colores de marca están alineados con nuestro sistema visual corporativo.</p>
+      <div class="grid-3">
+        <div class="card">
+          <h4>Equipo de Ingeniería</h4>
+          <p>Diseñadores y desarrolladores enfocados en rendimiento, elegancia y usabilidad empresarial.</p>
+        </div>
+        <div class="card">
+          <h4>Equipo de Seguridad</h4>
+          <p>Especialistas en privacidad, cumplimiento y pruebas de penetración.</p>
+        </div>
+        <div class="card">
+          <h4>Soporte Empresarial</h4>
+          <p>Asistencia dedicada para implementación, integración y consultas técnicas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Contacto</h2>
+      <p>Para más información, soporte o integración empresarial, contáctanos:</p>
+      <p>correo: soporte@granite.ai <br>tel: +34 600 123 456</p>
+      <button class="btn">Contáctanos</button>
+    </section>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Granite AI. Todos los derechos reservados.</p>
+    <p>Diseño corporativo: fondo blanco, colores naranja (#ff6b35) y naranja suave (-#d95e1b) para elementos destacados.</p>
+  </div>
+</body>
+</html>

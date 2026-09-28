@@ -1,0 +1,146 @@
+/* Corporate Naranja Branding - Minimal Professional Landing */
+
+/* Base Colors */
+:root {
+  --primaryColor: #FF6347;      /* Accent/primary naranja */
+  --secondaryColor: #FFCC33;       /* Secondary naranja */
+  --accentColor: #FF9400;          /* Accent highlight */
+  --textColor: #333333;             /* Primary text */
+  --backgroundColor: #FFFFFF;      /* White background */
+  --primaryTextColor: #333333;   /* For headers */
+  --borderColor: #cccccc;
+}
+
+/* Typography */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+header h1 {
+  color: var(--primaryTextColor);
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+header p {
+  color: var(--primaryTextColor);
+  font-size: 16px;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  color: var(--primaryTextColor);
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+.hero p {
+  color: var(--primaryTextColor);
+  font-size: 16px;
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--secondaryColor);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #e0b88a;
+}
+
+/* Sections */
+section {
+  margin-bottom: 25px;
+}
+
+section h3 {
+  color: var(--primaryTextColor);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Feature list styling */
+section.features ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.hero button {
+  background-color: var(--primaryColor);
+}
+
+/* Contact form styling */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.contact form input,
+.contact form button {
+  padding: 8px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.contact form input {
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.contact form button {
+  background-color: var(--primaryColor);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.contact form button:hover {
+  background-color: #e0a86a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  header {
+    font-size: 14px;
+  }
+  .hero {
+    padding: 15px;
+  }
+  .hero h2 {
+    font-size: 18px;
+  }
+}

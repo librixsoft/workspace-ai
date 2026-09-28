@@ -1,8 +1,8 @@
 Hola equipo,
 
-Mi nombre es Anibal Gomez, Gerente de Proyectos de TI & Tech Lead en LibrixSoft, firma especializada en ingeniería de software y ciberseguridad, con sede en la CDMX.
+Mi nombre es Anibal Gomez, CEO en LibrixSoft, firma especializada en ingeniería de software y ciberseguridad, con sede en la CDMX.
 
-Llegamos a ustedes a partir de su actividad reciente en LinkedIn y quería aprovechar para presentarles brevemente nuestra firma.
+Llegamos a ustedes a partir de su actividad reciente en LinkedIn, vimos que estan buscando desarrolladores y quería aprovechar para presentarles brevemente nuestra firma.
 
 En LibrixSoft contamos con experiencia en desarrollo de software, arquitectura, cloud y ciberseguridad, y hemos colaborado en proyectos para empresas multinacionales y entornos empresariales de alta exigencia.
 
@@ -15,7 +15,6 @@ Nos gustaría conocer un poco más sobre su empresa, sus proyectos actuales y lo
 Saludos,
 
 Anibal Gomez
-Gerente de Proyectos de TI & Tech Lead
 LibrixSoft
 
 +52 55 27 65 11 74

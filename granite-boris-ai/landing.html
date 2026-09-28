@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landing Page - Granite Boris AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Granite Boris AI</h1>
+    <p>Landing Page for Autonomous AI Development</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Welcome to our Landing Page</h2>
+      <p>A complete, professional landing page built with corporate naranja branding.</p>
+      <button onclick="showSection('features')">Explore Features</button>
+      <button onclick="showSection('contact')">Get Started</button>
+    </section>
+
+    <section id="features" class="section">
+      <h3>Key Features</h3>
+      <ul>
+        <li>Intelligent, autonomous AI development</li>
+        <li>Robust project structure</li>
+        <li>Multi-agent task delegation</li>
+        <li>Professional corporate styling</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section">
+      <h3>Contact Us</h3>
+      <form>
+        <label>
+          Name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function showSection(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
+</body>
+</html>
