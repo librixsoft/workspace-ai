@@ -8,7 +8,7 @@ Nuestra cartera
 
 Wallets Digitales, Banca Digital, Gateways de Pago, Multi-monedas, CRMs Personalizados, Integraciones SAP, Pentesting Web, JWT y OAuth, Kubernetes, Serverless, Zero Trust, CMS Headless, Chatbots con IA, ERPs Personalizados, CRM con WhatsApp Business, Integraciones Zoho y Odoo, y más.
 
-Les invito a explorar cómo podemos sumarnos a su crecimiento, o bien compartirnos el contacto con el área de compras o partnerships. 
+Quisieramos explorar cómo podemos sumarnos a su crecimiento, o bien compartirnos el contacto con el área de compras o partnerships. 
 
 Podriamos agendar una llamada de 15 minutos para compartir nuestra propuesta?
 
