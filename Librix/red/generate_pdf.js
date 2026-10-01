@@ -28,7 +28,7 @@ if (!existsSync(chromePath)) {
 console.log('🚀 Compilando HTML a PDF vectorial de 1 sola página...');
 
 try {
-  const cmd = `"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${pdfPath}" "file://${htmlPath}"`;
+  const cmd = `"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-background --print-to-pdf="${pdfPath}" "file://${htmlPath}"`;
   execSync(cmd);
   
   if (existsSync(pdfPath)) {
