@@ -51,6 +51,9 @@
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
+    page-break-before: avoid;
+    page-break-after: avoid;
+    page-break-inside: avoid;
   }
 
   /* === BACKGROUND EFFECTS === */
@@ -88,6 +91,9 @@
     max-width: 100%;
     margin: 0 auto;
     padding: 8rem 0 2rem;
+    page-break-before: avoid;
+    page-break-after: avoid;
+    page-break-inside: avoid;
   }
 
   /* === HERO === */
@@ -102,6 +108,7 @@
     z-index: 1;
     opacity: 1;
     transform: none;
+    page-break-inside: avoid;
   }
 
   .section-tag {
@@ -158,6 +165,7 @@
     z-index: 1;
     opacity: 1;
     transform: none;
+    page-break-inside: avoid;
   }
 
   .dashboard-panel {
@@ -386,6 +394,7 @@
     align-items: center;
     gap: 1.5rem;
     margin: 2rem 0 3rem;
+    page-break-inside: avoid;
   }
 
   .stat-item {
@@ -462,6 +471,7 @@
 
   .capability-block {
     text-align: center;
+    page-break-inside: avoid;
   }
 
   .capability-name {
@@ -2437,7 +2447,10 @@
     margin: 0;
     /* TODO: calcular el alto de forma automatica */
     /* Custom height to fit dossier content cleanly without excess bottom margin or page breaks */
-    size: 210mm 1675mm;
+    size: A4;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-primary);
   }
 
   @media print {
