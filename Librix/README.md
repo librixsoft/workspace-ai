@@ -50,5 +50,5 @@ Si prefieres ejecutar el comando directamente desde la terminal de macOS:
 
 El archivo `librixsoft_brochure_v2 2.html` incluye reglas de impresión integradas:
 
-- **Página continua:** La regla `@page` define las dimensiones exactas (`210mm x 1190mm`) para que el PDF termine justo al finalizar el footer sin dejar espacios negros sobrantes al final.
+- **Página continua:** La regla `@page` define las dimensiones exactas (`210mm x 1675mm`) para que el PDF termine justo al finalizar el footer en una sola página continua sin cortes ni espacios sobrantes.
 - **Visibilidad y Colores:** Las reglas `@media print` desactivan capas flotantes desbordantes (`.bg-blur`), fuerzan la visibilidad de elementos interactivos (`opacity: 1`) y aseguran el renderizado exacto de los colores oscuros (`-webkit-print-color-adjust: exact`).

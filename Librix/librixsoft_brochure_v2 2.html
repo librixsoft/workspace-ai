@@ -2180,8 +2180,9 @@
 
   @page {
     margin: 0;
-    /* Custom height to fit dossier content cleanly without excess bottom margin */
-    size: 210mm 1050mm;
+    /* TODO: calcular el alto de forma automatica */
+    /* Custom height to fit dossier content cleanly without excess bottom margin or page breaks */
+    size: 210mm 1675mm;
   }
 
   @media print {
@@ -2212,9 +2213,21 @@
     }
 
     /* Fijar anchos estrictos para PDF — layout de escritorio sin responsive */
-    .demo-inline-body, .demo-terminal, .mobile-frame {
+    .demo-inline-body, .demo-terminal {
       width: 500px !important;
       max-width: 500px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .demo-mobile {
+      width: 280px !important;
+      max-width: 280px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .mobile-frame {
+      width: 280px !important;
+      max-width: 280px !important;
       margin-left: auto !important;
       margin-right: auto !important;
     }
@@ -2225,23 +2238,24 @@
     }
     .stats-row {
       display: flex !important;
-      flex-direction: row !important;
-      justify-content: center !important;
-      gap: 3rem !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 1.5rem !important;
       margin: 2rem 0 3rem !important;
     }
     .stat-item {
-      flex: 1 !important;
+      width: 100% !important;
       text-align: center !important;
     }
     .tech-grid {
       display: flex !important;
-      flex-direction: row !important;
-      justify-content: center !important;
+      flex-direction: column !important;
+      align-items: center !important;
       gap: 2rem !important;
+      margin-bottom: 3rem !important;
     }
     .tech-col {
-      flex: 1 !important;
+      width: 100% !important;
       text-align: center !important;
     }
     .sectors-grid {
