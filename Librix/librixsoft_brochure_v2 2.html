@@ -526,156 +526,135 @@
     overflow-x: auto;
   }
 
-  /* === DASHBOARD === */
+  /* === CMS EDITOR DEMO === */
 
-  .demo-dashboard {
+  .demo-cms {
     font-family: 'Inter', sans-serif;
+    max-width: 500px;
   }
 
-  .dash-header {
+  .cms-topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 0;
-    margin-bottom: 0.75rem;
+    padding: 5px 10px;
+    background: rgba(168,85,247,0.04);
     border-bottom: 1px solid var(--border-subtle);
   }
 
-  .dash-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.55rem;
-    color: #666;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .dash-time {
+  .cms-topbar-title {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.5rem;
     color: var(--text-muted);
-  }
-
-  .dash-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .dash-metric {
-    text-align: center;
-  }
-
-  .dash-ring {
-    position: relative;
-    width: 56px;
-    height: 56px;
-    margin: 0 auto 0.35rem;
-  }
-
-  .dash-progress-ring {
-    width: 56px;
-    height: 56px;
-  }
-
-  .dash-ring-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .dash-ring-value {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-bright);
-    line-height: 1;
-  }
-
-  .dash-metric-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.55rem;
-    color: var(--text-tertiary);
-    text-align: center;
-    line-height: 1.2;
-  }
-
-  .dash-alerts {
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .dash-alerts-titlebar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.4rem 0;
-    margin-bottom: 0.25rem;
-  }
-
-  .dash-alerts-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.5rem;
-    color: #444;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
   }
 
-  .dash-alerts-badge {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.45rem;
-    color: var(--purple-critical);
-    background: rgba(168,85,247,0.1);
-    padding: 1px 6px;
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-  }
-
-  .dash-alerts-list {
+  .cms-topbar-right {
     display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .dash-alert-row {
-    display: flex;
-    align-items: center;
     gap: 5px;
-    padding: 0.3rem 0;
-    border-top: 1px solid var(--border-subtle);
   }
 
-  .dash-alert-sev {
+  .cms-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.4rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .cms-btn-publish {
+    color: #fff;
+    background: rgba(168,85,247,0.3);
+    border: 1px solid var(--border-purple);
+  }
+
+  .cms-btn-preview {
+    color: var(--text-tertiary);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .cms-body {
+    background: #000;
+    padding: 10px;
+  }
+
+  .cms-toolbar {
     display: flex;
     align-items: center;
-    gap: 4px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.45rem;
-    color: var(--text-tertiary);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    flex-shrink: 0;
+    gap: 2px;
+    padding: 3px 6px;
+    background: rgba(168,85,247,0.06);
+    border: 1px solid var(--border-purple);
+    border-radius: 3px;
+    margin-bottom: 8px;
   }
 
-  .dash-alert-msg {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--text-secondary);
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .dash-alert-time {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.45rem;
+  .cms-tool {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    font-size: 0.35rem;
     color: var(--text-muted);
-    flex-shrink: 0;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .cms-tool.active-tool {
+    color: var(--purple-critical);
+    background: rgba(168,85,247,0.12);
+  }
+
+  .cms-tool-sep {
+    width: 1px;
+    height: 10px;
+    background: var(--border-subtle);
+    margin: 0 2px;
+  }
+
+  .cms-editor-area {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 140px;
+  }
+
+  .cms-editor-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+  }
+
+  .cms-editor-meta {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .cms-editor-line {
+    font-size: 0.4rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+
+  .cms-editor-line:last-child {
+    margin-bottom: 0;
+  }
+
+  .cms-editor-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 0.8em;
+    background: var(--purple-critical);
+    vertical-align: text-bottom;
+    margin-left: 1px;
   }
 
   /* === TERMINAL === */
@@ -2340,73 +2319,37 @@
 
   <div class="capabilities-list">
 
-    <!-- Plataformas Web — Dashboard Demo -->
+    <!-- Plataformas Web — WYSIWYG Editor Demo -->
     <div class="capability-block animate-in delay-3">
       <div class="capability-name">Plataformas <em>Web</em></div>
       <div class="capability-desc">Aplicaciones empresariales robustas, escalables y de alto rendimiento.</div>
       <div class="demo-inline">
         <div class="demo-inline-header">
-          <span class="demo-inline-label">Dashboard</span>
+          <span class="demo-inline-label">WYSIWYG Editor</span>
           <span class="demo-inline-status" style="color:var(--green-live)">●</span>
         </div>
-        <div class="demo-inline-body demo-dashboard">
-          <div class="dash-header">
-            <span class="dash-status"><span class="status-dot"></span>LIVE MONITORING</span>
-            <span class="dash-time">2026</span>
-          </div>
-          <div class="dash-metrics">
-            <div class="dash-metric">
-              <div class="dash-ring">
-                <svg viewBox="0 0 36 36" class="dash-progress-ring">
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="100 100" stroke-dashoffset="10" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                </svg>
-                <div class="dash-ring-content"><span class="dash-ring-value">90%</span></div>
-              </div>
-              <span class="dash-metric-label">Proyectos IA con fallos</span>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-ring">
-                <svg viewBox="0 0 36 36" class="dash-progress-ring">
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="100 100" stroke-dashoffset="5.6" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                </svg>
-                <div class="dash-ring-content"><span class="dash-ring-value">9.4</span></div>
-              </div>
-              <span class="dash-metric-label">CVSS promedio CVE</span>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-ring">
-                <svg viewBox="0 0 36 36" class="dash-progress-ring">
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#6b21a8" stroke-width="2" stroke-dasharray="100 100" stroke-dashoffset="52" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                </svg>
-                <div class="dash-ring-content"><span class="dash-ring-value">48h</span></div>
-              </div>
-              <span class="dash-metric-label">Horas al primer exploit</span>
-            </div>
-            <div class="dash-metric">
-              <div class="dash-ring">
-                <svg viewBox="0 0 36 36" class="dash-progress-ring">
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2"/>
-                  <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="100 100" stroke-dashoffset="27" stroke-linecap="round" transform="rotate(-90 18 18)"/>
-                </svg>
-                <div class="dash-ring-content"><span class="dash-ring-value">73%</span></div>
-              </div>
-              <span class="dash-metric-label">XSS evitables</span>
+        <div class="demo-cms">
+          <div class="cms-topbar">
+            <span class="cms-topbar-title">editor.librixsoft.com</span>
+            <div class="cms-topbar-right">
+              <span class="cms-btn cms-btn-preview">Vista previa</span>
+              <span class="cms-btn cms-btn-publish">Publicar</span>
             </div>
           </div>
-          <div class="dash-alerts">
-            <div class="dash-alerts-titlebar">
-              <span class="dash-alerts-title">THREAT FEED</span>
-              <span class="dash-alerts-badge">5 active</span>
+          <div class="cms-body">
+            <div class="cms-toolbar">
+              <span class="cms-tool active-tool">T</span>
+              <span class="cms-tool-sep"></span>
+              <span class="cms-tool">&#9633;</span>
+              <span class="cms-tool">&#9671;</span>
+              <span class="cms-tool-sep"></span>
+              <span class="cms-tool">&#9776;</span>
             </div>
-            <div class="dash-alerts-list">
-              <div class="dash-alert-row"><span class="dash-alert-sev"><span class="sev-dot" style="background:#a855f7"></span>CRITICAL</span><span class="dash-alert-msg">SQLi en query concatenada</span><span class="dash-alert-time">0s</span></div>
-              <div class="dash-alert-row"><span class="dash-alert-sev"><span class="sev-dot" style="background:#7c3aed"></span>HIGH</span><span class="dash-alert-msg">XSS sin sanitize en input</span><span class="dash-alert-time">+12s</span></div>
-              <div class="dash-alert-row"><span class="dash-alert-sev"><span class="sev-dot" style="background:#7c3aed"></span>HIGH</span><span class="dash-alert-msg">JWT sin expiry definido</span><span class="dash-alert-time">+18s</span></div>
-              <div class="dash-alert-row"><span class="dash-alert-sev"><span class="sev-dot" style="background:#6b21a8"></span>MEDIUM</span><span class="dash-alert-msg">DoS sin rate limiting</span><span class="dash-alert-time">+24s</span></div>
-              <div class="dash-alert-row"><span class="dash-alert-sev"><span class="sev-dot" style="background:#6b21a8"></span>MEDIUM</span><span class="dash-alert-msg">CSRF token ausente en POST</span><span class="dash-alert-time">+31s</span></div>
+            <div class="cms-editor-area">
+              <div class="cms-editor-title">Creando experiencias digitales</div>
+              <div class="cms-editor-meta">Editor · <span style="color:var(--purple-critical)">Borrador</span></div>
+              <div class="cms-editor-line">Plataforma empresarial robusta, escalable y de alto rendimiento.</div>
+              <div class="cms-editor-line">Arquitectura modular con microservicios independientes.<span class="cms-editor-cursor"></span></div>
             </div>
           </div>
         </div>
