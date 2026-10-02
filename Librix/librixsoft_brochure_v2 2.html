@@ -531,6 +531,7 @@
   .demo-cms {
     font-family: 'Inter', sans-serif;
     max-width: 500px;
+    width: 500px;
   }
 
   .cms-topbar {
@@ -544,7 +545,7 @@
 
   .cms-topbar-title {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.55rem;
     color: var(--text-muted);
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -557,7 +558,7 @@
 
   .cms-btn {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.4rem;
+    font-size: 0.5rem;
     padding: 2px 6px;
     border-radius: 3px;
     letter-spacing: 0.05em;
@@ -599,7 +600,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 2px;
-    font-size: 0.35rem;
+    font-size: 0.45rem;
     color: var(--text-muted);
     background: rgba(255,255,255,0.02);
   }
@@ -625,20 +626,20 @@
   }
 
   .cms-editor-title {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 3px;
   }
 
   .cms-editor-meta {
-    font-size: 0.35rem;
+    font-size: 0.5rem;
     color: var(--text-muted);
     margin-bottom: 8px;
   }
 
   .cms-editor-line {
-    font-size: 0.4rem;
+    font-size: 0.55rem;
     color: var(--text-tertiary);
     line-height: 1.5;
     margin-bottom: 3px;
@@ -1821,15 +1822,139 @@
 
   .car-tel-ok { background: var(--green-live); }
 
-  /* Demo: Kubernetes */
-  .demo-k8s { font-family: 'Share Tech Mono', monospace; }
-  .demo-k8s-node {
-    display: flex; align-items: center; gap: 8px; padding: 4px 0;
-    font-size: 0.6rem; border-bottom: 1px solid var(--border-subtle);
+  /* CRM Pipeline Table */
+  .demo-crm-pipeline {
+    font-family: 'Inter', sans-serif;
+    max-width: 500px;
+    width: 500px;
   }
-  .demo-k8s-status { width: 6px; height: 6px; border-radius: 50%; }
-  .demo-k8s-name { flex: 1; color: var(--text-secondary); }
-  .demo-k8s-meta { color: var(--text-muted); font-size: 0.5rem; }
+
+  .crm-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(168,85,247,0.04);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .crm-header-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .crm-header-right {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  .crm-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 6px;
+  }
+
+  .crm-board-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 6px;
+  }
+
+  .crm-board-col-header {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.4rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 0 5px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .crm-board-count {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
+  .crm-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+    padding: 5px;
+    margin-top: 4px;
+  }
+
+  .crm-card-header {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  .crm-card-avatar {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(168,85,247,0.4), rgba(124,58,237,0.2));
+    flex-shrink: 0;
+  }
+
+  .crm-card-name {
+    font-size: 0.4rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .crm-card-company {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+
+  .crm-card-amount {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.45rem;
+    color: var(--text-tertiary);
+  }
+
+  .crm-card-won .crm-card-amount {
+    color: #44ff44;
+  }
+
+  .crm-card-tag {
+    display: inline-block;
+    font-size: 0.3rem;
+    padding: 1px 3px;
+    border-radius: 2px;
+    margin-top: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .crm-card-tag.urgent {
+    color: #ff5f57;
+    background: rgba(255,95,87,0.12);
+  }
+
+  .crm-card-tag.normal {
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .crm-board-col:last-child .crm-card {
+    border-left: 2px solid #44ff44;
+  }
 
   /* Demo: Pentest */
   .demo-pentest { font-family: 'Share Tech Mono', monospace; }
@@ -2636,20 +2761,58 @@
       </div>
     </div>
 
-    <!-- ERPs — K8s Demo -->
+    <!-- CRMs & ERPs — Pipeline CRM Demo -->
     <div class="capability-block animate-in delay-4">
       <div class="capability-name">CRMs &amp; <em>ERPs</em></div>
       <div class="capability-desc">Sistemas embebidos y ERPs a medida.</div>
       <div class="demo-inline">
         <div class="demo-inline-header">
-          <span class="demo-inline-label">Kubernetes Cluster</span>
+          <span class="demo-inline-label">Pipeline</span>
           <span class="demo-inline-status" style="color:var(--green-live)">●</span>
         </div>
-        <div class="demo-inline-body demo-k8s">
-          <div class="demo-k8s-node"><span class="demo-k8s-status" style="background:#44ff44"></span><span class="demo-k8s-name">eks-control-plane</span><span class="demo-k8s-meta">8 vCPU 32GB</span></div>
-          <div class="demo-k8s-node"><span class="demo-k8s-status" style="background:#44ff44"></span><span class="demo-k8s-name">worker-node-01</span><span class="demo-k8s-meta">4 vCPU 16GB</span></div>
-          <div class="demo-k8s-node"><span class="demo-k8s-status" style="background:#44ff44"></span><span class="demo-k8s-name">worker-node-02</span><span class="demo-k8s-meta">4 vCPU 16GB</span></div>
-          <div class="demo-k8s-node"><span class="demo-k8s-status" style="background:var(--gold-accent)"></span><span class="demo-k8s-name">worker-node-03</span><span class="demo-k8s-meta">2 vCPU 8GB [SA]</span></div>
+        <div class="demo-crm-pipeline">
+          <div class="crm-header">
+            <span class="crm-header-title">CRM — Pipeline</span>
+            <span class="crm-header-right">Oct 2026</span>
+          </div>
+          <div class="crm-board">
+            <div class="crm-board-col">
+              <div class="crm-board-col-header">Lead <span class="crm-board-count">1</span></div>
+              <div class="crm-card">
+                <div class="crm-card-header"><div class="crm-card-avatar"></div><span class="crm-card-name">Ana García</span></div>
+                <div class="crm-card-company">TechCorp MX</div>
+                <div class="crm-card-amount">$180,000</div>
+                <div class="crm-card-tag urgent">URGENTE</div>
+              </div>
+            </div>
+            <div class="crm-board-col">
+              <div class="crm-board-col-header">Propuesta <span class="crm-board-count">1</span></div>
+              <div class="crm-card">
+                <div class="crm-card-header"><div class="crm-card-avatar"></div><span class="crm-card-name">Laura Ortiz</span></div>
+                <div class="crm-card-company">DataFlow S.A.</div>
+                <div class="crm-card-amount">$520,000</div>
+                <div class="crm-card-tag normal">En curso</div>
+              </div>
+            </div>
+            <div class="crm-board-col">
+              <div class="crm-board-col-header">Negociación <span class="crm-board-count">1</span></div>
+              <div class="crm-card">
+                <div class="crm-card-header"><div class="crm-card-avatar"></div><span class="crm-card-name">Roberto Méndez</span></div>
+                <div class="crm-card-company">FinTech Latam</div>
+                <div class="crm-card-amount">$340,000</div>
+                <div class="crm-card-tag urgent">Alto valor</div>
+              </div>
+            </div>
+            <div class="crm-board-col">
+              <div class="crm-board-col-header">Cerrado <span class="crm-board-count">1</span></div>
+              <div class="crm-card crm-card-won">
+                <div class="crm-card-header"><div class="crm-card-avatar"></div><span class="crm-card-name">Diego Ríos</span></div>
+                <div class="crm-card-company">Cloud9</div>
+                <div class="crm-card-amount">$890,000</div>
+                <div class="crm-card-tag normal">✓ Ganado</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2693,48 +2856,7 @@
               <span class="wr-sla-dot"></span>
             </div>
           </div>
-          <div class="wr-kpi-row">
-            <div class="wr-kpi">
-              <div class="wr-kpi-value">99.99%</div>
-              <div class="wr-kpi-label">Uptime Global</div>
-              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:99.99%;background:var(--green-live)"></div></div>
-            </div>
-            <div class="wr-kpi">
-              <div class="wr-kpi-value">47ms</div>
-              <div class="wr-kpi-label">Latencia Media</div>
-              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:20%;background:var(--purple-critical)"></div></div>
-            </div>
-            <div class="wr-kpi">
-              <div class="wr-kpi-value">2.4M</div>
-              <div class="wr-kpi-label">Req/hora</div>
-              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:82%;background:var(--purple-high)"></div></div>
-            </div>
-            <div class="wr-kpi">
-              <div class="wr-kpi-value">0</div>
-              <div class="wr-kpi-label">Incidentes</div>
-              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:0%;background:var(--green-live)"></div></div>
-            </div>
-          </div>
           <div class="wr-mid">
-            <div class="wr-pulse-section">
-              <div class="wr-section-label">DEPLOY FLOW</div>
-              <div class="wr-pulse-row">
-                <div class="wr-pulse-step active"><span>PLAN</span></div>
-                <div class="wr-pulse-connector"></div>
-                <div class="wr-pulse-step active"><span>BUILD</span></div>
-                <div class="wr-pulse-connector"></div>
-                <div class="wr-pulse-step active"><span>TEST</span></div>
-                <div class="wr-pulse-connector"></div>
-                <div class="wr-pulse-step current"><span>DEPLOY</span></div>
-                <div class="wr-pulse-connector"></div>
-                <div class="wr-pulse-step"><span>MONITOR</span></div>
-              </div>
-              <div class="wr-deploy-stats">
-                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">147</span><span class="wr-deploy-stat-lbl">Deployments Hoy</span></div>
-                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">1.2s</span><span class="wr-deploy-stat-lbl">Deploy Time</span></div>
-                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">100%</span><span class="wr-deploy-stat-lbl">Success Rate</span></div>
-              </div>
-            </div>
             <div class="wr-charts">
               <div class="wr-chart-panel">
                 <div class="wr-panel-title">REQUESTS / MIN</div>
