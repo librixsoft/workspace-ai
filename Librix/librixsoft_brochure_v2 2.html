@@ -2,10 +2,27 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>LibrixSoft — Dossier 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Open+Sans:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 <style>
+  /*
+   * =====================================================================
+   * ⚠️  PROHIBIDO CREAR ESTILOS RESPONSIVE (@media screen, max-width,
+   *     min-width, etc.) EN ESTE ARCHIVO.
+   *
+   *     Este HTML se utiliza EXCLUSIVAMENTE para generar un PDF.
+   *     Los media queries responsive NO tienen efecto en PDF y
+   *     provocan inconsistencias en el layout.
+   *
+   *     Solo se permiten:
+   *       - @page  (configuración de página para PDF)
+   *       - @media print  (ajustes de impresión/PDF)
+   *       - @keyframes  (animaciones CSS)
+   *
+   *     NO agregar: @media screen, @media (max-width: ...),
+   *                 @media (min-width: ...), @media (prefers-*), etc.
+   * =====================================================================
+   */
   :root {
     --bg-primary: #000;
     --bg-dashboard: #0a0a0a;
@@ -2161,20 +2178,6 @@
     transform: none;
   }
 
-  /* === REDUCED MOTION === */
-
-  @media (prefers-reduced-motion: reduce) {
-    .lx-hero, .overview-dashboard {
-      opacity: 1 !important;
-      transform: none !important;
-      transition-delay: 0s !important;
-    }
-    .status-dot {
-      animation: none !important;
-      opacity: 1 !important;
-    }
-  }
-
   @page {
     margin: 0;
     /* Custom height to fit dossier content cleanly without excess bottom margin */
@@ -2278,37 +2281,7 @@
     }
   }
 
-  /* === RESPONSIVE (SOLO PANTALLA) === */
-
-  @media screen and (max-width: 768px) {
-    .capabilities-list { grid-template-columns: 1fr; }
-    .dash-metrics { grid-template-columns: repeat(2, 1fr); }
-    .tech-grid { flex-direction: column; align-items: center; }
-    .stats-row { flex-direction: column; align-items: center; }
-    .sectors-grid { flex-direction: column; align-items: center; }
-    .why-grid { justify-items: center; }
-    .capability-matrix { grid-template-columns: 1fr; }
-
-    .circular-progress, .progress-ring { width: 64px; height: 64px; }
-    .progress-value { font-size: 0.9rem; }
-    .metric-label { font-size: 0.62rem; }
-
-    .alerts-titlebar { padding: 0.65rem 1rem; }
-    .alert-row { padding: 0.65rem 1rem; flex-wrap: wrap; }
-    .alert-message { font-size: 0.65rem; white-space: normal; flex: 1; }
-
-    .lx-carousel { min-height: auto; padding: 1.5rem 1.5rem; }
-    .lx-slide-title { font-size: 1.2rem; }
-    .lx-slide-desc { font-size: 0.85rem; }
-
-    .sectors-grid { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
-
-    .stat-value { font-size: 2rem; }
-
-    .cta-contact { flex-direction: column; gap: 0.5rem; }
-  }
-  /* No responsive rules — all layouts fixed */
+  /* ⚠️ NO agregar @media screen / responsive aquí — este archivo es solo para PDF */
 </style>
 </head>
 <body>
