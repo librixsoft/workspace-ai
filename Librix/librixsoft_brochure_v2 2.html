@@ -734,58 +734,449 @@
   }
 
   /* PWA */
-  .demo-pwa {
+  /* === DEMO MOBILE APP === */
+
+  .demo-mobile {
     font-family: 'Inter', sans-serif;
+    max-width: 320px;
+    margin: 0 auto;
   }
-  .demo-pwa-header-bar {
-    background: rgba(255,255,255,0.03);
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin-bottom: 8px;
+
+  .mobile-frame {
+    background: #0d0d0d;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
   }
-  .demo-pwa-url {
+
+  .mobile-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-status-time {
     font-family: 'Share Tech Mono', monospace;
     font-size: 0.55rem;
-    color: var(--text-muted);
+    color: var(--text-tertiary);
   }
-  .demo-pwa-screens {
+
+  .mobile-status-icons {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .mobile-status-icons svg {
+    width: 9px;
+    height: 9px;
+    stroke: var(--text-tertiary);
+    fill: none;
+    stroke-width: 2;
+  }
+
+  .mobile-app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-app-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .mobile-app-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple-critical), var(--purple-high));
+  }
+
+  .mobile-greeting {
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .mobile-greeting-label {
+    font-size: 0.55rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 2px;
+  }
+
+  .mobile-greeting-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .mobile-balance-card {
+    margin: 8px 14px;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(124,58,237,0.1));
+    border: 1px solid var(--border-purple);
+    border-radius: 12px;
+  }
+
+  .balance-label {
+    font-size: 0.5rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .balance-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .balance-change {
+    font-size: 0.55rem;
+    color: var(--green-live);
+    margin-top: 4px;
+  }
+
+  .mobile-quick-actions {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-subtle);
   }
-  .demo-pwa-screen {
+
+  .quick-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 2px;
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: 8px;
-    padding: 10px 4px;
+  }
+
+  .quick-action-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: rgba(168,85,247,0.15);
+  }
+
+  .quick-action-icon svg {
+    width: 12px;
+    height: 12px;
+    stroke: var(--purple-critical);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .quick-action-label {
+    font-size: 0.45rem;
+    color: var(--text-tertiary);
     text-align: center;
-    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .mobile-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px 6px;
+  }
+
+  .mobile-section-title {
+    font-size: 0.6rem;
+    font-weight: 600;
     color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .mobile-section-link {
+    font-size: 0.5rem;
+    color: var(--purple-critical);
+  }
+
+  .mobile-transactions {
+    padding: 0 14px 10px;
+  }
+
+  .tx-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+  }
+
+  .tx-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tx-icon-green { background: rgba(68,255,68,0.1); }
+  .tx-icon-red { background: rgba(193,27,5,0.1); }
+  .tx-icon-blue { background: rgba(96,165,250,0.1); }
+
+  .tx-icon svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  .tx-icon-green svg { stroke: var(--green-live); }
+  .tx-icon-red svg { stroke: var(--red-accent); }
+  .tx-icon-blue svg { stroke: #60a5fa; }
+
+  .tx-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tx-name {
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: var(--text-bright);
+    line-height: 1.2;
+  }
+
+  .tx-meta {
+    font-size: 0.45rem;
+    color: var(--text-muted);
+  }
+
+  .tx-amount {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .tx-amount-pos { color: var(--green-live); }
+  .tx-amount-neg { color: var(--red-accent); }
+
+  .mobile-bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0 10px;
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(0,0,0,0.4);
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .nav-item svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--text-muted);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .nav-item.active svg {
+    stroke: var(--purple-critical);
+  }
+
+  .nav-item-label {
+    font-size: 0.4rem;
+    color: var(--text-muted);
+  }
+
+  .nav-item.active .nav-item-label {
+    color: var(--purple-critical);
+  }
+
+  /* === DEMO UI/UX WATCH === */
+
+  .demo-watch {
+    font-family: 'Inter', sans-serif;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  .watch-frame {
+    background: linear-gradient(180deg, #1a1a1a, #111);
+    border-radius: 36px;
+    width: 220px;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+  }
+
+  .watch-dial {
+    width: 196px;
+    height: 196px;
+    border-radius: 32px;
+    background: #000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    min-height: 80px;
-    box-sizing: border-box;
-    width: 100%;
+    position: relative;
+    overflow: hidden;
   }
-  .demo-pwa-icon {
+
+  .watch-crown {
+    position: absolute;
+    right: -10px;
+    top: 35%;
+    width: 8px;
+    height: 50px;
+    background: linear-gradient(180deg, #4a4a4a, #2a2a2a);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.6), inset 0 0 2px rgba(255,255,255,0.1);
+  }
+
+  .watch-complications {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+  }
+
+  .watch-comp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .watch-comp-icon {
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 2px;
+  }
+
+  .watch-comp-icon svg {
     width: 20px;
     height: 20px;
-    margin: 0 auto;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
   }
-  .demo-pwa-screen span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    display: block;
-    width: 100%;
-    text-align: center;
-    line-height: 1.2;
+
+  .watch-comp-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .watch-comp-label {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+
+  .heart-val {
+    color: #ff4444;
+  }
+
+  .heart-val svg { stroke: #ff4444; }
+
+  .bpm-val {
+    color: var(--text-bright);
+  }
+
+  .bpm-val svg { stroke: var(--text-bright); }
+
+  .streak-val {
+    color: var(--gold-accent);
+  }
+
+  .streak-val svg { stroke: var(--gold-accent); }
+
+  .oxygen-val {
+    color: #60a5fa;
+  }
+
+  .oxygen-val svg { stroke: #60a5fa; }
+
+  .watch-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+  }
+
+  .watch-time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    z-index: 2;
+  }
+
+  .watch-status {
+    position: absolute;
+    bottom: 16%;
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .status-dot-sm {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--green-live);
+    display: inline-block;
   }
 
   /* === DEMO DASHBOARD === */
@@ -890,6 +1281,512 @@
   .demo-analytics-name { font-size: 0.55rem; color: var(--text-tertiary); width: 60px; }
   .demo-analytics-bar-bg { flex: 1; height: 6px; background: var(--bg-card); border-radius: 3px; overflow: hidden; }
   .demo-analytics-bar-fill { height: 100%; border-radius: 3px; }
+
+  /* Metrics — War Room */
+  .demo-war-room { font-family: 'Inter', sans-serif; }
+
+  .wr-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .wr-topbar-left { display: flex; flex-direction: column; gap: 2px; }
+  .wr-topbar-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.12em;
+  }
+  .wr-topbar-sub {
+    font-size: 0.45rem;
+    color: var(--text-muted);
+  }
+  .wr-topbar-right { display: flex; align-items: center; gap: 8px; }
+  .wr-sla-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--green-live);
+    background: rgba(68,255,68,0.06);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .wr-sla-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-live);
+    animation: pulseGreen 2s ease infinite;
+  }
+
+  .wr-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .wr-kpi { display: flex; flex-direction: column; gap: 4px; }
+  .wr-kpi-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+  .wr-kpi-label {
+    font-size: 0.45rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .wr-kpi-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--bg-card);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .wr-kpi-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .wr-mid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .wr-pulse-section { padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--border-subtle); }
+  .wr-section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  .wr-pulse-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0.5rem;
+  }
+  .wr-pulse-step {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+  }
+  .wr-pulse-step.active {
+    background: rgba(168,85,247,0.15);
+    border-color: var(--border-purple);
+    color: var(--purple-critical);
+  }
+  .wr-pulse-step.current {
+    background: var(--purple-critical);
+    border-color: var(--purple-critical);
+    color: #fff;
+    animation: pulsePurple 1.5s ease infinite;
+  }
+  @keyframes pulsePurple {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(168,85,247,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(168,85,247,0); }
+  }
+  .wr-pulse-connector {
+    width: 16px;
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 0 2px;
+  }
+  .wr-pulse-connector.active {
+    background: var(--purple-critical);
+    opacity: 0.3;
+  }
+  .wr-deploy-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.4rem 0;
+  }
+  .wr-deploy-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .wr-deploy-stat-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--purple-critical);
+  }
+  .wr-deploy-stat-lbl {
+    font-size: 0.4rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .wr-charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .wr-chart-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .wr-chart-panel-small { padding: 0; }
+  .wr-panel-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .wr-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    gap: 3px;
+    height: 100px;
+  }
+  .wr-bar {
+    width: 100%;
+    min-width: 8px;
+    border-radius: 3px 3px 0 0;
+    opacity: 0.7;
+  }
+  .wr-bars-labels {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 3px;
+    font-size: 0.35rem;
+    color: var(--text-muted);
+  }
+  .wr-gauges {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+  }
+  .wr-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .wr-gauge-ring {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 4px solid var(--bg-card);
+    border-top-color: var(--gauge-color);
+    border-right-color: var(--gauge-color);
+    position: relative;
+  }
+  .wr-gauge-val {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+  .wr-gauge-lbl {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .wr-alerts { padding: 0.75rem 0.5rem; }
+  .wr-events { display: flex; flex-direction: column; gap: 4px; }
+  .wr-event {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 6px;
+    background: var(--bg-card);
+    border-radius: 5px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+  }
+  .wr-event-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .wr-event-ok { background: var(--green-live); }
+  .wr-event-warn { background: var(--gold-accent); }
+  .wr-event-text { flex: 1; color: var(--text-secondary); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wr-event-time { color: var(--text-muted); flex-shrink: 0; }
+
+  /* Smart Car Dashboard */
+  .demo-car-dashboard { font-family: 'Inter', sans-serif; }
+
+  .car-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(0,0,0,0.3);
+  }
+  .car-topbar-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--purple-critical);
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+  .car-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .car-topbar-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.45rem;
+    color: var(--green-live);
+    background: rgba(68,255,68,0.06);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+  .car-topbar-time {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-muted);
+  }
+
+  .car-dashboard {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.5rem;
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    align-items: center;
+    justify-items: center;
+  }
+
+  .car-gauge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .car-gauge-main {
+    width: 130px;
+    height: 130px;
+  }
+
+  .car-gauge-rpm {
+    width: 110px;
+    height: 110px;
+  }
+
+  .gauge-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gauge-svg-small {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gauge-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gauge-number {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .gauge-unit {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .gauge-center-small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gauge-number-sm {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .gauge-unit-sm {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .gauge-ring {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .car-stats-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .car-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .car-stat-label {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .car-stat-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .car-stat-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .car-stat-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .car-services {
+    padding: 0.75rem 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .car-services-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.45rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .car-services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .car-service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .car-service-icon { font-size: 1rem; }
+
+  .car-service-label {
+    font-size: 0.35rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .car-service-value {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  .car-telemetry {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .car-tel-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .car-tel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 6px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.5rem;
+  }
+
+  .car-tel-label { color: var(--text-secondary); }
+
+  .car-tel-value {
+    color: var(--text-muted);
+    font-size: 0.45rem;
+  }
+
+  .car-tel-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .car-tel-ok { background: var(--green-live); }
 
   /* Demo: Kubernetes */
   .demo-k8s { font-family: 'Share Tech Mono', monospace; }
@@ -1275,22 +2172,11 @@
     }
 
     /* Fijar anchos estrictos para PDF — layout de escritorio sin responsive */
-    .demo-inline-body, .demo-terminal {
+    .demo-inline-body, .demo-terminal, .mobile-frame {
       width: 500px !important;
       max-width: 500px !important;
       margin-left: auto !important;
       margin-right: auto !important;
-    }
-    .demo-pwa-screens {
-      display: grid !important;
-      grid-template-columns: repeat(4, 1fr) !important;
-      gap: 8px !important;
-      width: 100% !important;
-    }
-    .demo-pwa-screen {
-      width: 100% !important;
-      flex: none !important;
-      min-height: 70px !important;
     }
     .dash-metrics {
       display: grid !important;
@@ -1359,7 +2245,6 @@
 
   @media screen and (max-width: 768px) {
     .capabilities-list { grid-template-columns: 1fr; }
-    .demo-pwa-screens { grid-template-columns: repeat(2, 1fr); }
     .dash-metrics { grid-template-columns: repeat(2, 1fr); }
     .tech-grid { flex-direction: column; align-items: center; }
     .stats-row { flex-direction: column; align-items: center; }
@@ -1401,8 +2286,9 @@
     <div class="section-tag">
       <span class="section-tag-tag">LibrixSoft</span>
     </div>
-    <h1 class="lx-title">Transformamos ideas<br>en software <em>funcional</em></h1>
+    <h1 class="lx-title">Transformamos ideas<br>en software <em>funcional</em></h1><br>
     <p class="lx-sub">Impulsamos a agencias y empresas a escalar sus plataformas mediante ingeniería de software de alto impacto. Destrabamos cuellos de botella y resolvemos la complejidad técnica en sistemas críticos.<br><br>Auditamos, blindamos y fortificamos sistemas vulnerables —incluyendo código generado por Inteligencia Artificial— transformando soluciones frágiles en arquitectura robusta, segura y lista para producción. Actuamos como tu brazo especializado de ejecución por entregables e hitos medibles, permitiendo que tu equipo mantenga la visión estratégica mientras nosotros garantizamos la potencia técnica.</p>
+    <p class="lx-sub" style="margin-top:1.5rem;">La mayoría de las empresas no fallan por falta de visión — fallan por incapacidad técnica para ejecutarla. Proyectos que mueren en la planificación. Plataformas que se quiebran al escalar. Códigos que nadie se atreve a tocar. LibrixSoft llega ahí — donde la idea choca con la complejidad.</p>
   </div>
 
   <!-- STATS -->
@@ -1512,13 +2398,249 @@
           <span class="demo-inline-label">PWA App</span>
           <span class="demo-inline-status" style="color:var(--green-live)">●</span>
         </div>
-        <div class="demo-inline-body demo-pwa">
-          <div class="demo-pwa-header-bar"><span class="demo-pwa-url">app.librixsoft.com/dashboard</span></div>
-          <div class="demo-pwa-screens">
-            <div class="demo-pwa-screen"><span class="demo-pwa-icon"><svg class="demo-pwa-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></span><span>Stats</span></div>
-            <div class="demo-pwa-screen"><span class="demo-pwa-icon"><svg class="demo-pwa-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-4-2-4-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span><span>Alerts</span></div>
-            <div class="demo-pwa-screen"><span class="demo-pwa-icon"><svg class="demo-pwa-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><span>Profile</span></div>
-            <div class="demo-pwa-screen"><span class="demo-pwa-icon"><svg class="demo-pwa-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span>Config</span></div>
+        <div class="demo-mobile">
+          <div class="mobile-frame">
+            <div class="mobile-status-bar">
+              <span class="mobile-status-time">9:41</span>
+              <div class="mobile-status-icons">
+                <svg viewBox="0 0 24 24"><path d="M1 8l6 6-6 6V8z"/><path d="M5 4l8 8-8 8V4z"/><path d="M9 2l10 10L9 22V2z"/></svg>
+                <svg viewBox="0 0 24 24"><rect x="2" y="6" width="18" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/></svg>
+              </div>
+            </div>
+            <div class="mobile-app-header">
+              <span class="mobile-app-title">LibrixPay</span>
+              <div class="mobile-app-avatar"></div>
+            </div>
+            <div class="mobile-greeting">
+              <div class="mobile-greeting-label">Hola,</div>
+              <div class="mobile-greeting-name">Usuario</div>
+            </div>
+            <div class="mobile-balance-card">
+              <div class="balance-label">Saldo disponible</div>
+              <div class="balance-value">$48,392.50</div>
+              <div class="balance-change">▲ +12.4% este mes</div>
+            </div>
+            <div class="mobile-quick-actions">
+              <div class="quick-action">
+                <div class="quick-action-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                <span class="quick-action-label">Enviar</span>
+              </div>
+              <div class="quick-action">
+                <div class="quick-action-icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+                <span class="quick-action-label">Recibir</span>
+              </div>
+              <div class="quick-action">
+                <div class="quick-action-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg></div>
+                <span class="quick-action-label">Tarjetas</span>
+              </div>
+              <div class="quick-action">
+                <div class="quick-action-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                <span class="quick-action-label">Invertir</span>
+              </div>
+            </div>
+            <div class="mobile-section-header">
+              <span class="mobile-section-title">Movimientos</span>
+              <span class="mobile-section-link">Ver todo</span>
+            </div>
+            <div class="mobile-transactions">
+              <div class="tx-row">
+                <div class="tx-icon tx-icon-green" style="background:rgba(168,85,247,0.1)"><svg viewBox="0 0 24 24" style="stroke:var(--purple-critical)"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                <div class="tx-info">
+                  <div class="tx-name">Depósito recibido</div>
+                  <div class="tx-meta">Hoy, 14:32</div>
+                </div>
+                <div class="tx-amount tx-amount-pos" style="color:var(--purple-critical)">+$2,400</div>
+              </div>
+              <div class="tx-row">
+                <div class="tx-icon tx-icon-red" style="background:rgba(168,85,247,0.1)"><svg viewBox="0 0 24 24" style="stroke:var(--purple-critical)"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                <div class="tx-info">
+                  <div class="tx-name">Pago servicio</div>
+                  <div class="tx-meta">Ayer, 09:15</div>
+                </div>
+                <div class="tx-amount tx-amount-neg" style="color:var(--purple-critical)">-$850</div>
+              </div>
+              <div class="tx-row">
+                <div class="tx-icon tx-icon-blue" style="background:rgba(168,85,247,0.1)"><svg viewBox="0 0 24 24" style="stroke:var(--purple-critical)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="tx-info">
+                  <div class="tx-name">Transferencia</div>
+                  <div class="tx-meta">30 Sep, 18:47</div>
+                </div>
+                <div class="tx-amount tx-amount-neg" style="color:var(--purple-critical)">-$320</div>
+              </div>
+            </div>
+            <div class="mobile-bottom-nav">
+              <div class="nav-item active">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="nav-item-label">Inicio</span>
+              </div>
+              <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-4-2-4-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <span class="nav-item-label">Alertas</span>
+              </div>
+              <div class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span class="nav-item-label">Perfil</span>
+              </div>
+              <div class="nav-item">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51A1.65 1.65 0 0 0 15 4.68V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1.51 1A1.65 1.65 0 0 0 19.4 9H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span class="nav-item-label">Ajustes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APIs & Microservicios — Smart Car Dashboard -->
+    <div class="capability-block animate-in delay-4">
+      <div class="capability-name">APIs &amp; <em>Microservicios</em></div>
+      <div class="capability-desc">Gateways, service mesh y orquestación. El tablero digital de un auto inteligente conectado a la nube en tiempo real.</div>
+      <div class="demo-inline">
+        <div class="demo-inline-header">
+          <span class="demo-inline-label">Car Dashboard</span>
+          <span class="demo-inline-status" style="color:var(--green-live)">●</span>
+        </div>
+        <div class="demo-car-dashboard">
+          <div class="car-topbar">
+            <span class="car-topbar-title">LIBRIX CONNECT</span>
+            <div class="car-topbar-right">
+              <span class="car-topbar-badge">5G</span>
+              <span class="car-topbar-badge">GPS</span>
+              <span class="car-topbar-time">9:41</span>
+            </div>
+          </div>
+          <div class="car-dashboard">
+            <!-- Velocimetro -->
+            <div class="car-gauge car-gauge-speed">
+              <div class="car-gauge-ring car-gauge-main">
+                <svg viewBox="0 0 200 200" class="gauge-svg">
+                  <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="8" stroke-dasharray="398 135" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(135 100 100)"/>
+                  <circle cx="100" cy="100" r="85" fill="none" stroke="var(--purple-critical)" stroke-width="8" stroke-dasharray="398 135" stroke-dashoffset="120" stroke-linecap="round" transform="rotate(135 100 100)"/>
+                </svg>
+                <div class="gauge-center">
+                  <div class="gauge-number">127</div>
+                  <div class="gauge-unit">km/h</div>
+                </div>
+              </div>
+            </div>
+            <!-- Tacometro / RPM -->
+            <div class="car-gauge car-gauge-rpm">
+              <div class="car-gauge-ring">
+                <svg viewBox="0 0 120 120" class="gauge-svg-small">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="6" stroke-dasharray="235 78" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(135 60 60)"/>
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--purple-high)" stroke-width="6" stroke-dasharray="235 78" stroke-dashoffset="160" stroke-linecap="round" transform="rotate(135 60 60)"/>
+                </svg>
+                <div class="gauge-center-small">
+                  <div class="gauge-number-sm">2.4</div>
+                  <div class="gauge-unit-sm">RPM x1000</div>
+                </div>
+              </div>
+            </div>
+            <!-- Stats column -->
+            <div class="car-stats-col">
+              <div class="car-stat">
+                <div class="car-stat-label">AUTONOMÍA</div>
+                <div class="car-stat-value">412 km</div>
+                <div class="car-stat-bar"><div class="car-stat-fill" style="width:82%;background:var(--green-live)"></div></div>
+              </div>
+              <div class="car-stat">
+                <div class="car-stat-label">TEMP MOTOR</div>
+                <div class="car-stat-value">92°C</div>
+                <div class="car-stat-bar"><div class="car-stat-fill" style="width:55%;background:var(--gold-accent)"></div></div>
+              </div>
+              <div class="car-stat">
+                <div class="car-stat-label">PRESIÓN NEUMÁTICOS</div>
+                <div class="car-stat-value" style="font-size:0.65rem;">FL 32 / FR 32 / RL 30 / RR 30</div>
+                <div class="car-stat-bar"><div class="car-stat-fill" style="width:90%;background:var(--purple-critical)"></div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Connected Services -->
+          <div class="car-services">
+            <div class="car-services-title">SERVICIOS CONECTADOS</div>
+            <div class="car-services-grid">
+              <div class="car-service-card">
+                <div class="car-service-icon">🌡️</div>
+                <div class="car-service-label">Clima</div>
+                <div class="car-service-value">22°C</div>
+              </div>
+              <div class="car-service-card">
+                <div class="car-service-icon">📍</div>
+                <div class="car-service-label">GPS</div>
+                <div class="car-service-value">Navegando</div>
+              </div>
+              <div class="car-service-card">
+                <div class="car-service-icon">🔋</div>
+                <div class="car-service-label">Batería</div>
+                <div class="car-service-value">87%</div>
+              </div>
+              <div class="car-service-card">
+                <div class="car-service-icon">🛡️</div>
+                <div class="car-service-label">OTA Update</div>
+                <div class="car-service-value">v4.2 ✓</div>
+              </div>
+            </div>
+          </div>
+          <!-- API Telemetry -->
+          <div class="car-telemetry">
+            <div class="car-services-title">API TELEMETRÍA EN VIVO</div>
+            <div class="car-tel-rows">
+              <div class="car-tel-row"><span class="car-tel-label">VEHICLE_DATA</span><span class="car-tel-value">12ms</span><span class="car-tel-dot car-tel-ok"></span></div>
+              <div class="car-tel-row"><span class="car-tel-label">SENSOR_STREAM</span><span class="car-tel-value">8ms</span><span class="car-tel-dot car-tel-ok"></span></div>
+              <div class="car-tel-row"><span class="car-tel-label">GPS_UPDATE</span><span class="car-tel-value">3ms</span><span class="car-tel-dot car-tel-ok"></span></div>
+              <div class="car-tel-row"><span class="car-tel-label">FIRMWARE_CHECK</span><span class="car-tel-value">24ms</span><span class="car-tel-dot car-tel-ok"></span></div>
+              <div class="car-tel-row"><span class="car-tel-label">CLOUD_SYNC</span><span class="car-tel-value">15ms</span><span class="car-tel-dot car-tel-ok"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI/UX — Watch Demo -->
+    <div class="capability-block animate-in delay-4">
+      <div class="capability-name">UI/UX <em>Design</em></div>
+      <div class="capability-desc">Interfaces centradas en el usuario — wearables, salud, y experiencias que enamoran.</div>
+      <div class="demo-inline">
+        <div class="demo-inline-header">
+          <span class="demo-inline-label">Watch OS</span>
+          <span class="demo-inline-status" style="color:var(--green-live)">●</span>
+        </div>
+        <div class="demo-watch">
+          <div class="watch-frame">
+            <div class="watch-crown"></div>
+            <div class="watch-dial">
+              <div class="watch-complications">
+                <div class="watch-comp">
+                  <div class="watch-comp-icon heart-val">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                  <div class="watch-comp-value heart-val">72</div>
+                  <div class="watch-comp-label">BPM</div>
+                </div>
+                <div class="watch-comp">
+                  <div class="watch-comp-icon bpm-val">
+                    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                  <div class="watch-comp-value bpm-val">1.2h</div>
+                  <div class="watch-comp-label">Sueño</div>
+                </div>
+                <div class="watch-comp">
+                  <div class="watch-comp-icon streak-val">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  </div>
+                  <div class="watch-comp-value streak-val">847</div>
+                  <div class="watch-comp-label">Pasos</div>
+                </div>
+                <div class="watch-comp">
+                  <div class="watch-comp-icon oxygen-val">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+                  </div>
+                  <div class="watch-comp-value oxygen-val">98%</div>
+                  <div class="watch-comp-label">O2</div>
+                </div>
+              </div>
+              <div class="watch-time">9:41</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1582,10 +2704,10 @@
       </div>
     </div>
 
-    <!-- IoT & ERP — K8s Demo -->
+    <!-- ERPs — K8s Demo -->
     <div class="capability-block animate-in delay-4">
       <div class="capability-name">CRMs &amp; <em>ERPs</em></div>
-      <div class="capability-desc">Sistemas embebidos, dispositivos IoT y ERPs a medida.</div>
+      <div class="capability-desc">Sistemas embebidos y ERPs a medida.</div>
       <div class="demo-inline">
         <div class="demo-inline-header">
           <span class="demo-inline-label">Kubernetes Cluster</span>
@@ -1615,6 +2737,113 @@
           <div class="demo-analytics-line"><span class="demo-analytics-name">/api/orders</span><div class="demo-analytics-bar-bg"><div class="demo-analytics-bar-fill" style="width:65%;background:#6b21a8"></div></div></div>
           <div class="demo-analytics-line"><span class="demo-analytics-name">/api/products</span><div class="demo-analytics-bar-bg"><div class="demo-analytics-bar-fill" style="width:45%;background:#a855f7"></div></div></div>
           <div class="demo-analytics-line"><span class="demo-analytics-name">/api/payments</span><div class="demo-analytics-bar-bg"><div class="demo-analytics-bar-fill" style="width:30%;background:#7c3aed"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics — Vertical Bars -->
+    <div class="capability-block animate-in delay-5">
+      <div class="capability-name">Performance <em>Metrics</em></div>
+      <div class="capability-desc">Métricas de infraestructura, despliegues y uptime en tiempo real.</div>
+      <div class="demo-inline">
+        <div class="demo-inline-header">
+          <span class="demo-inline-label">War Room</span>
+          <span class="demo-inline-status" style="color:var(--green-live)">●</span>
+        </div>
+        <div class="demo-war-room">
+          <div class="wr-topbar">
+            <div class="wr-topbar-left">
+              <span class="wr-topbar-title">INFRASTRUCTURE COMMAND CENTER</span>
+              <span class="wr-topbar-sub">Real-time monitoring • Last heartbeat: just now</span>
+            </div>
+            <div class="wr-topbar-right">
+              <span class="wr-sla-badge">SLA 99.99%</span>
+              <span class="wr-sla-dot"></span>
+            </div>
+          </div>
+          <div class="wr-kpi-row">
+            <div class="wr-kpi">
+              <div class="wr-kpi-value">99.99%</div>
+              <div class="wr-kpi-label">Uptime Global</div>
+              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:99.99%;background:var(--green-live)"></div></div>
+            </div>
+            <div class="wr-kpi">
+              <div class="wr-kpi-value">47ms</div>
+              <div class="wr-kpi-label">Latencia Media</div>
+              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:20%;background:var(--purple-critical)"></div></div>
+            </div>
+            <div class="wr-kpi">
+              <div class="wr-kpi-value">2.4M</div>
+              <div class="wr-kpi-label">Req/hora</div>
+              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:82%;background:var(--purple-high)"></div></div>
+            </div>
+            <div class="wr-kpi">
+              <div class="wr-kpi-value">0</div>
+              <div class="wr-kpi-label">Incidentes</div>
+              <div class="wr-kpi-bar"><div class="wr-kpi-fill" style="width:0%;background:var(--green-live)"></div></div>
+            </div>
+          </div>
+          <div class="wr-mid">
+            <div class="wr-pulse-section">
+              <div class="wr-section-label">DEPLOY FLOW</div>
+              <div class="wr-pulse-row">
+                <div class="wr-pulse-step active"><span>PLAN</span></div>
+                <div class="wr-pulse-connector"></div>
+                <div class="wr-pulse-step active"><span>BUILD</span></div>
+                <div class="wr-pulse-connector"></div>
+                <div class="wr-pulse-step active"><span>TEST</span></div>
+                <div class="wr-pulse-connector"></div>
+                <div class="wr-pulse-step current"><span>DEPLOY</span></div>
+                <div class="wr-pulse-connector"></div>
+                <div class="wr-pulse-step"><span>MONITOR</span></div>
+              </div>
+              <div class="wr-deploy-stats">
+                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">147</span><span class="wr-deploy-stat-lbl">Deployments Hoy</span></div>
+                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">1.2s</span><span class="wr-deploy-stat-lbl">Deploy Time</span></div>
+                <div class="wr-deploy-stat"><span class="wr-deploy-stat-val">100%</span><span class="wr-deploy-stat-lbl">Success Rate</span></div>
+              </div>
+            </div>
+            <div class="wr-charts">
+              <div class="wr-chart-panel">
+                <div class="wr-panel-title">REQUESTS / MIN</div>
+                <div class="wr-bars">
+                  <div class="wr-bar" style="height:40px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:65px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:80px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:55px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:90px;background:var(--purple-high)"></div>
+                  <div class="wr-bar" style="height:75px;background:var(--purple-high)"></div>
+                  <div class="wr-bar" style="height:95px;background:var(--green-live)"></div>
+                  <div class="wr-bar" style="height:85px;background:var(--green-live)"></div>
+                  <div class="wr-bar" style="height:70px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:60px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:50px;background:var(--purple-critical)"></div>
+                  <div class="wr-bar" style="height:88px;background:var(--purple-high)"></div>
+                </div>
+                <div class="wr-bars-labels">
+                  <span>-11m</span><span>-10m</span><span>-9m</span><span>-8m</span><span>-7m</span><span>-6m</span><span>-5m</span><span>-4m</span><span>-3m</span><span>-2m</span><span>-1m</span><span>NOW</span>
+                </div>
+              </div>
+              <div class="wr-chart-panel wr-chart-panel-small">
+                <div class="wr-panel-title">CPU / MEM</div>
+                <div class="wr-gauges">
+                  <div class="wr-gauge"><div class="wr-gauge-ring" style="--gauge-color:var(--purple-critical);--gauge-val:72"><div class="wr-gauge-fill"></div></div><div class="wr-gauge-val">72%</div><div class="wr-gauge-lbl">CPU</div></div>
+                  <div class="wr-gauge"><div class="wr-gauge-ring" style="--gauge-color:var(--purple-high);--gauge-val:48"><div class="wr-gauge-fill"></div></div><div class="wr-gauge-val">48%</div><div class="wr-gauge-lbl">MEM</div></div>
+                  <div class="wr-gauge"><div class="wr-gauge-ring" style="--gauge-color:var(--green-live);--gauge-val:12"><div class="wr-gauge-fill"></div></div><div class="wr-gauge-val">12%</div><div class="wr-gauge-lbl">DISK</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="wr-alerts">
+              <div class="wr-panel-title">SYSTEM EVENTS</div>
+              <div class="wr-events">
+                <div class="wr-event"><span class="wr-event-dot wr-event-ok"></span><span class="wr-event-text">Deploy v3.2.1 completed</span><span class="wr-event-time">0s</span></div>
+                <div class="wr-event"><span class="wr-event-dot wr-event-ok"></span><span class="wr-event-text">Health check: all nodes OK</span><span class="wr-event-time">+2s</span></div>
+                <div class="wr-event"><span class="wr-event-dot wr-event-warn"></span><span class="wr-event-text">Auto-scale triggered: +2 instances</span><span class="wr-event-time">+5s</span></div>
+                <div class="wr-event"><span class="wr-event-dot wr-event-ok"></span><span class="wr-event-text">SSL cert renewed for *.librixsoft.com</span><span class="wr-event-time">+12s</span></div>
+                <div class="wr-event"><span class="wr-event-dot wr-event-ok"></span><span class="wr-event-text">Cache invalidated: edge nodes synced</span><span class="wr-event-time">+18s</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
