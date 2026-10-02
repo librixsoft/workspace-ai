@@ -1058,27 +1058,23 @@
 
   .demo-watch {
     font-family: 'Inter', sans-serif;
-    max-width: 220px;
+    max-width: 160px;
     margin: 0 auto;
   }
 
   .watch-frame {
-    background: linear-gradient(180deg, #1a1a1a, #111);
-    border-radius: 36px;
-    width: 220px;
-    height: 220px;
+    width: 160px;
+    height: 160px;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
   }
 
   .watch-dial {
-    width: 196px;
-    height: 196px;
-    border-radius: 32px;
+    width: 160px;
+    height: 160px;
     background: #000;
     display: flex;
     flex-direction: column;
@@ -1086,6 +1082,9 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
+    border-radius: 30px;
+    border: 0.5px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 20px rgba(255,255,255,0.08), inset 0 0 15px rgba(255,255,255,0.03);
   }
 
   .watch-crown {
@@ -1105,7 +1104,7 @@
     grid-template-rows: 1fr 1fr;
     width: 100%;
     height: 100%;
-    padding: 14px;
+    padding: 16px;
     box-sizing: border-box;
   }
 
@@ -1186,7 +1185,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Share Tech Mono', monospace;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: #fff;
     letter-spacing: 0.04em;
@@ -1307,6 +1306,158 @@
   .demo-bank-number { font-size: 1.25rem; font-weight: 600; color: var(--text-bright); letter-spacing: 0.24em; margin: 1.5rem 0; text-align: center; text-shadow: 0 0 12px rgba(59,130,246,0.35); }
   .demo-bank-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
   .demo-bank-name { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.12em; }
+
+  /* Demo: Wallets Digitales */
+  .demo-wallet { font-family: 'Inter', sans-serif; }
+  .demo-wallet-app {
+    background: linear-gradient(145deg, #110a22 0%, #0a0618 100%);
+    border: 1px solid rgba(168,85,247,0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 16px 48px rgba(100,20,180,0.35);
+  }
+  .demo-wallet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .demo-wallet-brand {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--purple-critical);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .demo-wallet-icon-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+  }
+  .demo-wallet-balance-card {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.18);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .demo-wallet-bal-label {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+  .demo-wallet-bal-amount {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+  .demo-wallet-bal-amount .bal-currency {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .demo-wallet-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .demo-wallet-action {
+    flex: 1;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 0.65rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .demo-wallet-action-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+  }
+  .wa-send { background: rgba(68,255,68,0.12); color: var(--green-live); }
+  .wa-receive { background: rgba(168,85,247,0.12); color: var(--purple-critical); }
+  .wa-request { background: rgba(124,110,98,0.12); color: var(--gold-accent); }
+  .wa-topup { background: rgba(59,130,246,0.12); color: #3b82f6; }
+  .demo-wallet-action-label {
+    font-size: 0.45rem;
+    color: var(--text-tertiary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .demo-wallet-transactions {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 0.75rem;
+  }
+  .demo-wallet-tx-title {
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .demo-wallet-tx-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .demo-wallet-tx-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    flex-shrink: 0;
+  }
+  .tx-send-ico { background: rgba(68,255,68,0.08); color: #33cc33; }
+  .tx-receive-ico { background: rgba(168,85,247,0.08); color: var(--purple-critical); }
+  .tx-topup-ico { background: rgba(59,130,246,0.08); color: #3b82f6; }
+  .demo-wallet-tx-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .demo-wallet-tx-name {
+    font-size: 0.55rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .demo-wallet-tx-date {
+    font-size: 0.4rem;
+    color: var(--text-muted);
+  }
+  .demo-wallet-tx-amount {
+    font-size: 0.6rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .tx-neg { color: #ff6b6b; }
+  .tx-pos { color: var(--green-live); }
 
   /* Demo: Dashboard Analytics */
   .demo-analytics { font-family: 'Share Tech Mono', monospace; }
@@ -2663,9 +2814,7 @@
           <span class="demo-inline-status" style="color:var(--green-live)">●</span>
         </div>
         <div class="demo-watch">
-          <div class="watch-frame">
-            <div class="watch-crown"></div>
-            <div class="watch-dial">
+          <div class="watch-dial">
               <div class="watch-complications">
                 <div class="watch-comp">
                   <div class="watch-comp-icon heart-val">
@@ -2698,7 +2847,6 @@
               </div>
               <div class="watch-time">9:41</div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -2712,18 +2860,65 @@
           <span class="demo-inline-label">Digital Banking</span>
           <span class="demo-inline-status" style="color:var(--green-live)">●</span>
         </div>
-        <div class="demo-inline-body demo-bank">
-            <div class="demo-bank-card-vis">
-            <div class="demo-bank-card-top">
-              <div class="demo-bank-chip"></div>
-              <div class="demo-bank-logo">LibrixPay</div>
+        <div class="demo-inline-body demo-bank" style="padding:1rem;font-family:'Share Tech Mono',monospace;background:linear-gradient(135deg,#0d1b3e,#060e24);border-radius:16px;border:1px solid rgba(30,80,180,0.35);min-height:260px;display:flex;flex-direction:column;justify-content:space-between">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <div style="width:44px;height:32px;background:linear-gradient(135deg,#d4af37,#6e5c38);border-radius:6px;border:1px solid rgba(255,255,255,0.25)"></div>
+              <span style="font-size:0.95rem;font-weight:700;color:var(--purple-critical);letter-spacing:0.18em;text-transform:uppercase">LibrixPay</span>
             </div>
-            <div class="demo-bank-number">4821 •••• •••• 7634</div>
-            <div class="demo-bank-bottom">
-              <div class="demo-bank-name">Carlos M.</div>
-              <div class="demo-bank-name">09/28</div>
+            <div style="font-size:1.25rem;font-weight:600;color:var(--text-bright);letter-spacing:0.24em;margin:1.5rem 0;text-align:center;text-shadow:0 0 12px rgba(59,130,246,0.35)">4821 •••• •••• 7634</div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-end">
+              <span style="font-size:0.75rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.12em">Carlos M.</span>
+              <span style="font-size:0.75rem;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.12em">09/28</span>
             </div>
-          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wallets Digitales — Elegant Minimal UI -->
+    <div class="capability-block animate-in delay-4">
+      <div class="capability-name">Wallets <em>Digitales</em></div>
+      <div class="capability-desc">P2P, recargas, transacciones en tiempo real y balance en vivo.</div>
+      <div class="demo-inline">
+        <div class="demo-inline-header">
+          <span class="demo-inline-label">Wallet</span>
+          <span class="demo-inline-status" style="color:var(--green-live)">●</span>
+        </div>
+        <div class="demo-inline-body" style="padding:1.25rem;display:flex;flex-direction:column;gap:1.25rem">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:0.55rem;font-weight:600;color:#888;letter-spacing:0.15em;text-transform:uppercase">LibrixPay</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><text x="9" y="12.5" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif" font-weight="700">$</text></svg>
+            </div>
+            <div>
+              <div style="font-size:0.45rem;color:#555;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.25rem">Balance disponible</div>
+              <div style="font-size:1.3rem;font-weight:700;color:var(--text-primary);letter-spacing:-0.02em">$24,580.00 <span style="font-size:0.65rem;font-weight:500;color:var(--text-secondary);letter-spacing:0.06em">USD</span></div>
+            </div>
+            <div style="display:flex;gap:0.5rem">
+              <div style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:0.55rem 0.4rem;display:flex;flex-direction:column;align-items:center;gap:0.25rem">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 6l4-4 4 4" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:0.35rem;color:#444;text-transform:uppercase;letter-spacing:0.05em">Enviar</span>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:0.55rem 0.4rem;display:flex;flex-direction:column;align-items:center;gap:0.25rem">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12V2M3 8l4 4 4-4" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:0.35rem;color:#444;text-transform:uppercase;letter-spacing:0.05em">Recibir</span>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:0.55rem 0.4rem;display:flex;flex-direction:column;align-items:center;gap:0.25rem">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M5 4l-3 3 3 3M9 10l3-3-3-3" stroke="#666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:0.35rem;color:#444;text-transform:uppercase;letter-spacing:0.05em">Solicitar</span>
+              </div>
+            </div>
+            <div style="border-top:1px solid var(--border-subtle);padding-top:0.6rem">
+              <div style="font-size:0.4rem;color:#444;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.4rem">Movimientos</div>
+              <div style="display:flex;align-items:center;gap:0.4rem;padding:0.3rem 0;border-top:1px solid var(--border-subtle)">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 9V1M2 4l3-3 3 3" stroke="#33cc33" stroke-width="1.1" stroke-linecap="round"/></svg>
+                <span style="flex:1;font-size:0.45rem;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Transfer a Juan P.</span>
+                <span style="font-size:0.45rem;color:#ff6b6b;font-weight:600">-$1,200</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.4rem;padding:0.3rem 0;border-top:1px solid var(--border-subtle)">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M2 4l3 3 3-3" stroke="var(--purple-critical)" stroke-width="1.1" stroke-linecap="round"/></svg>
+                <span style="flex:1;font-size:0.45rem;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Recibido de Maria S.</span>
+                <span style="font-size:0.45rem;color:var(--green-live);font-weight:600">+$3,500</span>
+              </div>
+            </div>
         </div>
       </div>
     </div>
