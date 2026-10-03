@@ -5,7 +5,3 @@ Todos los proyectos en esta carpeta son demos y experimentos con modelos de IA l
 ## Requisitos
 
 - [Boris AI](https://github.com/librixsoft/boris-ai) — Agente de IA para correr modelos locales
-
-## Proyectos
-
-- [NVIDIA Nemotron Lighting Demo](./nvidia-nemotron-lighting-demo/)
