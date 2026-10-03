@@ -103,8 +103,8 @@ async def generate_pdf(html_path: str, output_path: str) -> None:
 
 def main() -> None:
     script_dir = Path(__file__).parent.resolve()
-    html_path = sys.argv[1] if len(sys.argv) > 1 else str(script_dir / "librixsoft_brochure_v2 2.html")
-    output_path = sys.argv[2] if len(sys.argv) > 2 else str(script_dir / "librixsoft_brochure_v2.pdf")
+    html_path = sys.argv[1] if len(sys.argv) > 1 else str(script_dir / "librixsoft_brochure.html")
+    output_path = sys.argv[2] if len(sys.argv) > 2 else str(script_dir / "librixsoft_brochure.pdf")
 
     if not Path(html_path).exists():
         print(f"[ERROR] HTML file not found: {html_path}", file=sys.stderr)
