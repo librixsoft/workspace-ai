@@ -111,6 +111,49 @@
     page-break-inside: avoid;
   }
 
+  .nvidia-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .nvidia-badge {
+    position: static;
+    width: 140px;
+    height: auto;
+    object-fit: contain;
+    z-index: 100;
+  }
+
+  .nvidia-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .nvidia-recognition {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin-top: 2rem;
+    display: block;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .section-tag {
     display: flex;
     align-items: center;
@@ -2599,6 +2642,10 @@
 <div class="bg-blur"></div>
 <div class="bg-dots"></div>
 
+<div class="nvidia-container">
+  <img class="nvidia-badge" src="nvidia-inception-program-badge-rgb-for-screen-dark.svg" alt="NVIDIA Inception Badge" />
+</div>
+
 <div class="brochure-section">
 
   <!-- HERO -->
@@ -2609,6 +2656,7 @@
     <h1 class="lx-title">Transformamos ideas<br>en software <em>funcional</em></h1>
     <p class="hero-kicker">Ingeniería senior para escalar plataformas críticas y blindar código generado con IA.</p>
     <p class="lx-sub">Impulsamos a agencias y empresas a escalar sus plataformas con ingeniería de software de alto impacto: destrabamos cuellos de botella y resolvemos la complejidad técnica en sistemas críticos.<br><br>Auditamos, blindamos y fortificamos sistemas vulnerables —incluyendo código generado por Inteligencia Artificial— y los convertimos en arquitectura robusta, segura y lista para producción.<br><br>Actuamos como tu brazo especializado de ejecución, por entregables e hitos medibles: tu equipo mantiene la visión estratégica y nosotros garantizamos la potencia técnica.</p>
+    <p class="nvidia-recognition">En 2026, NVIDIA reconoció a LibrixSoft como parte del NVIDIA Inception Program, seleccionando entre las startups tecnológicas más innovativas del programa global.</p></p>
   </div>
 
   <!-- STATS -->
