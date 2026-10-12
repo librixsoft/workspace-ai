@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.boris</groupId>
+    <artifactId>tamboui-dashboard</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>TamboUI Dashboard</name>
+    <description>Terminal dashboard using TamboUI framework</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tamboui.version>0.5.0</tamboui.version>
+    </properties>
+
+    <dependencies>
+        <!-- TamboUI Core -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-core</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI Toolkit -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-toolkit</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI TUI -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-tui</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI Widgets -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-widgets</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI CSS -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-css</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI Panama Backend -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-panama-backend</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+        
+        <!-- TamboUI Annotations -->
+        <dependency>
+            <groupId>dev.tamboui</groupId>
+            <artifactId>tamboui-annotations</artifactId>
+            <version>${tamboui.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>com.boris.dashboard.DashboardApp</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
