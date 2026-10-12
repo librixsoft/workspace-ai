@@ -23,15 +23,19 @@ java-lanterna/
 
 Este proyecto está configurado con Lanterna XS (Extra Small) - una versión optimizada para entornos con recursos limitados.
 
-## Uso Básico
+## Cómo Ejecutar
 
+### Con Maven
 ```bash
-# Compilar el proyecto
-mvn compile
-
-# Ejecutar el Dashboard
-mvn exec:java -Dexec.mainClass=com.example.Dashboard
+mvn compile exec:java -Dexec.mainClass="Dashboard"
 ```
+
+### Con el script incluido
+```bash
+./run.sh
+```
+
+Requiere: Java 8+ y Maven 3.x
 
 ## Dashboard
 
@@ -58,3 +62,7 @@ La aplicación incluye un dashboard visual con:
 ## Licencia
 
 MIT
+
+---
+
+**Creado con Boris AI** — Agente autónomo de desarrollo. Generado de forma inteligente, sin intervención manual.
