@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page - NVIDIA AWS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            min-height: 100vh;
+            color: #e0e7ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Glassmorphism navbar */
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #e0e7ff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .active a {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar .active a::after {
+            background-color: #ffffff;
+        }
+
+        .navbar .item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .navbar a {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+        }
+
+        header h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Glassmorphism hero */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(30, 30, 50, 0.8);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #e0e7ff, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: rgba(45, 55, 72, 0.8);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            background: rgba(45, 55, 72, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.3);
+        }
+
+        /* Section styles */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 35px;
+            font-size: 2rem;
+            color: #e0e7ff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Features grid */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .feature {
+            flex: 1 0 280px;
+            min-width: 260px;
+            padding: 30px 20px;
+            background: rgba(30, 30, 50, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #e0e7ff;
+        }
+
+        .feature p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        .feature img {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 15px;
+            background: #1a1a3e;
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .feature {
+                flex: 1 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Cards with glass effect */
+        .card {
+            background: rgba(30, 30, 50, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* CTA section */
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(30, 30, 50, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #e0e7ff;
+        }
+
+        .cta p {
+            color: #a0aec0;
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            background: rgba(15, 15, 35, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="item"><a href="#home">Inicio</a></div>
+                <div class="item"><a href="#features">Características</a></div>
+                <div class="item"><a href="#contact">Contáctanos</a></div>
+            </nav>
+            <h1>Nueva Landing Page</h1>
+            <p>Soluciones tecnológicas modernas</p>
+        </div>
+    </header>
+    
+    <div class="hero">
+        <div class="container">
+            <h1>Bienvenidos a la página de lanzamiento</h1>
+            <p>Soluciones avanzadas de IA en la nube de AWS con NVIDIA.</p>
+            <a href="#features" class="btn">Ver Características</a>
+        </div>
+    </div>
+    
+    <section id="features">
+        <div class="container">
+            <h2>Nuestras Características</h2>
+            <div class="features">
+                <div class="feature">
+                    <img src="https://via.placeholder.com/80x80.png" alt="Feature 1">
+                    <h3>IA Potente</h3>
+                    <p>Modelos de IA avanzada optimizados para NVIDIA GPUs.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://via.placeholder.com/80x80.png" alt="Feature 2">
+                    <h3>Nube AWS</h3>
+                    <p>Capacidad escalable en la nube de AWS con aceleración NVIDIA.</p>
+                </div>
+                <div class="feature">
+                    <img src="https://via.placeholder.com/80x80.png" alt="Feature 3">
+                    <h3>Experiencia de Usuario</h3>
+                    <p>Diseño limpio y responsive para todos los dispositivos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NVIDIA AWS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cyberpunk - Boris</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a1a; /* negro más profundo */
+            color: #a0e0ff; /* azul-claro suave */
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        /* Particle rain overlay (CSS + tiny JS) */
+        .particle-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 1;
+        }
+        .neon-line {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #00eaff; /* cyan más brillante */
+            pointer-events: none;
+        }
+        .neon-line-2 {
+            top: 45%;
+            width: 100%;
+            height: 1px;
+            background-color: #ff2a9d; /* magenta neón fuerte */
+            pointer-events: none;
+        }
+        .neon-line-3 {
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #00eaff;
+            pointer-events: none;
+        }
+        .neon-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+        .neon-glow-cyan {
+            background: linear-gradient(to bottom, transparent, #00eaff 30%, #00eaff 70%, transparent);
+            background-size: 400% 400%;
+        }
+        .neon-glow-magenta {
+            background: linear-gradient(to bottom, transparent, #ff2a9d 30%, #ff2a9d 70%, transparent);
+            background-size: 400% 400%;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 2;
+        }
+        .panel {
+            background-color: #1a1a2e;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.9);
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 850px;
+            border: 1px solid #1a1a2e;
+        }
+        .header {
+            background-color: #1a1a2e;
+            color: #00eaff; /* cyan neón en header */
+            font-size: 26px;
+            font-weight: bold;
+            padding: 18px 25px;
+            border-bottom: 1px solid #1a1a2e;
+            text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+            margin-bottom: 15px;
+        }
+        .status {
+            font-size: 17px;
+            margin: 20px 0;
+            color: #88ffff; /* azul-claro suave */
+            font-weight: 500;
+        }
+        .controls {
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .btn {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2a2a3f;
+            color: #00eaff;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        .btn:hover {
+            background-color: #3a3a4d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+        .panel-inner {
+            padding: 25px;
+            background-color: #1a1a2e;
+            border-radius: 12px;
+        }
+        .info-box {
+            background-color: #1c1c30;
+            border-left: 3px solid #ff2a9d;
+            padding: 18px;
+            margin-bottom: 22px;
+            border-radius: 8px;
+        }
+        .tag {
+            background-color: #1e1a2b;
+            color: #00eaff;
+            padding: 6px 10px;
+            border-radius: 25px;
+            font-size: 11px;
+            margin: 8px 0;
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 4px #00eaff;
+        }
+        .glow {
+            text-shadow: 0 0 6px #00eaff, 0 0 12px #00eaff;
+        }
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .cyber-item {
+            background-color: #0e0e1a;
+            border-radius: 10px;
+            padding: 14px;
+            box-shadow: 0 0 12px rgba(0, 238, 255, 0.35);
+            border: 1px solid #00eaff;
+            transition: all 0.25s;
+        }
+        .cyber-item:hover {
+            background-color: #0b0c1c;
+            box-shadow: 0 0 18px rgba(0, 238, 255, 0.5);
+            transform: translateY(-3px);
+        }
+        .cyber-item:active {
+            background-color: #07080c;
+        }
+        .data-spark {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #00eaff;
+            margin-top: 8px;
+            text-align: center;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+        .cyber-indicator {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #ff2a9d; /* magenta neón fuerte */
+            margin-top: 6px;
+            text-align: center;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        .cyber-alert {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #ff66cc; /* coral neón */
+            margin-top: 10px;
+            text-align: center;
+            padding: 3px 10px;
+            border-radius: 5px;
+            background-color: rgba(255, 0, 255, 0.08);
+            white-space: nowrap;
+        }
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: #1a1a2e;
+            color: #77aaff;
+            font-size: 11px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-shadow: 0 0 6px #00eaff;
+            pointer-events: none;
+        }
+        /* Matrix-style text effect classes */
+        .matrix-text {
+            font-family: 'Courier New', monospace;
+            font-size: 9px;
+            color: #00eaff;
+            opacity: 0.6;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
+            white-space: nowrap;
+        }
+        .cyber-text {
+            font-size: 16px;
+            color: #ffffff70;
+        }
+        /* Particle style for rain effect */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 4px;
+            background: #00eaff;
+            opacity: 0.5;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle rain overlay -->
+    <div class="particle-rain"></div>
+    <div class="neon-line"></div>
+    <div class="neon-line-2"></div>
+    <div class="neon-line-3"></div>
+    <div class="neon-glow neon-glow-cyan"></div>
+    <div class="neon-glow neon-glow-magenta"></div>
+
+    <script>
+        // Minimal particle rain effect (no canvas for simplicity)
+        document.addEventListener('DOMContentLoaded', function() {
+            const rainContainer = document.querySelector('.particle-rain');
+            if (!rainContainer) return;
+
+            // Create simple particles as divs with falling animation
+            for (let i = 0; i < 80; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random starting position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 10 + '%';
+                particle.style.width = '2px';
+                particle.style.height = '4px';
+                particle.style.background = '#00eaff';
+                particle.style.opacity = Math.random() * 0.6 + 0.2;
+                
+                // Random speed
+                particle.style.transition = 'opacity 3s linear, bottom 10s linear';
+                particle.style.bottom = '0%';
+                
+                rainContainer.appendChild(particle);
+            }
+
+            // Update particles every frame
+            setInterval(() => {
+                rainContainer.querySelectorAll('.particle').forEach(p => {
+                    const bottom = parseFloat(p.style.bottom) || 0;
+                    const opacity = parseFloat(p.style.opacity) || 0.2;
+                    
+                    // Animate downward and fade out
+                    p.style.bottom = (bottom + 1.5 + Math.random() * 3) + '%';
+                    p.style.opacity = opacity - 0.0003;
+                    
+                    if (parseFloat(p.style.opacity) < 0.01) {
+                        // Reset particle
+                        p.style.bottom = '0%';
+                        p.style.opacity = 0.2;
+                    }
+                });
+            }, 33);
+        });
+    </script>
+
+    <div class="container">
+        <div class="panel">
+            <div class="header cyber-text">🔒 DASHBOARD CYBERPUNK</div>
+            <div class="status glow">Online | Boris-Granite v8B | Modo: Hacker</div>
+            
+            <div class="panel-inner">
+                <div class="info-box">
+                    <h3>📊 Datos Rápidos</h3>
+                    <p><strong>Usuario:</strong> <span class="tag">lastprophet</span></p>
+                    <p><strong>Espacio:</strong> /boris-granite-8b</p>
+                    <p><strong>Fondo:</strong> #0a0a1a (negro cyberpunk)</p>
+                    <p><strong>Colores principales:</strong> #00eaff (cyan neón) + #ff2a9d (magenta)</p>
+                </div>
+                
+                <!-- Cyberpunk grid elements -->
+                <div class="cyber-grid">
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">💻 CPU</h4>
+                        <div class="data-spark">98% | 4.2GHz</div>
+                        <div class="cyber-indicator">High</div>
+                        <div class="matrix-text">#7a2d8c</div>
+                    </div>
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">🔌 ENERGÍA</h4>
+                        <div class="data-spark">87% | 120W</div>
+                        <div class="cyber-indicator">Optimal</div>
+                        <div class="matrix-text">#2a9d8f</div>
+                    </div>
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">📡 CONEXIÓN</h4>
+                        <div class="data-spark">99% | 5G</div>
+                        <div class="cyber-indicator">Secure</div>
+                        <div class="matrix-text">#e76f51</div>
+                    </div>
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">🔐 SEGURIDAD</h4>
+                        <div class="data-spark">100% | Auth2FA</div>
+                        <div class="cyber-indicator">Locked</div>
+                        <div class="matrix-text">#1b268b</div>
+                    </div>
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">⚡ LOAD</h4>
+                        <div class="data-spark">Real-time: 3.2ms</div>
+                        <div class="cyber-alert">Load < 70% (Normal)</div>
+                        <div class="matrix-text">#f1c40f</div>
+                    </div>
+                    <div class="cyber-item">
+                        <h4 class="cyber-text">🔧 DEBUG</h4>
+                        <div class="data-spark">Debug: On</div>
+                        <div class="cyber-indicator">Dev</div>
+                        <div class="matrix-text">#e74c3c</div>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <button class="btn">Acción 1</button>
+                    <button class="btn">Acción 2</button>
+                    <button class="btn">Modo Hack</button>
+                    <button class="btn">Cerrar Sesión</button>
+                    <button class="btn" style="background-color: #ff66cc;">Modo Neon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="footer">
+    <p class="cyber-text">Dashboard Cyberpunk — Boris AI | Fondo negro | Colores futuristas gris/amarillo</p>
+</div>
+</body>
+</html>
