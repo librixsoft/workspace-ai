@@ -4,3 +4,23 @@
 venv/
 __pycache__/
 *.pyc
+
+# Java/Maven
+/target/
+*.class
+*.jar
+dependency-reduced-pom.xml
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node.js
+node_modules/
+
+# Logs
+*.log
