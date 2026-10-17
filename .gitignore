@@ -6,9 +6,9 @@ __pycache__/
 *.pyc
 
 # Java/Maven
-/target/
-*.class
-*.jar
+**/target/
+**/*.class
+**/*.jar
 dependency-reduced-pom.xml
 
 # IDEs
