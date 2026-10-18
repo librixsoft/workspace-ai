@@ -1,0 +1,12 @@
+# Build outputs
+target/
+
+# Boris AI cache
+.boris/
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
