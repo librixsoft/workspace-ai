@@ -1,12 +1,4 @@
-# Build outputs
-target/
 
-# Boris AI cache
+# Boris AI cached repos
 .boris/
-
-# IDE
-.idea/
-*.iml
-
-# OS
-.DS_Store
+target

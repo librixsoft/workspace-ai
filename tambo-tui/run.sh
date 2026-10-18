@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "=== Building tambo-tui dashboard-demo ==="
-mvn clean compile package -q
+echo "=== Building TambouUI Dashboard ==="
+mvn clean compile package
 
-echo "=== Starting application ==="
-java -jar target/dashboard-demo-1.0.0.jar
+echo ""
+echo "=== Starting Dashboard ==="
+java -jar target/tamboui-dashboard-1.0-SNAPSHOT.jar
