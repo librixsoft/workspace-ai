@@ -1,0 +1,1 @@
+WilliamAGH/tui4j creame un dashboard sencillo,  el repo de github es https://github.com/WilliamAGH/tui4j guardalo en /Users/lastprophet/Documents/workspaces-ai/tui4j (estrictamente en esta carpeta) tui4j no cambies de carpeta 
