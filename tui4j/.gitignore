@@ -1,0 +1,6 @@
+
+# Boris AI cached repos
+.boris/
+
+# Maven build output
+target/
