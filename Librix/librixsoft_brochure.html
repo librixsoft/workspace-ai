@@ -123,7 +123,7 @@
 
   .nvidia-badge {
     position: static;
-    width: 140px;
+    width: 180px;
     height: auto;
     object-fit: contain;
     z-index: 100;
@@ -163,6 +163,31 @@
   }
 
   .section-tag::before { display: none; }
+
+  .section-logo {
+    display: block;
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .logo-x {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--purple-critical);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
 
   .section-tag-tag {
     font-family: 'Share Tech Mono', monospace;
@@ -2642,16 +2667,16 @@
 <div class="bg-blur"></div>
 <div class="bg-dots"></div>
 
-<div class="nvidia-container">
-  <img class="nvidia-badge" src="nvidia-inception-program-badge-rgb-for-screen-dark.svg" alt="NVIDIA Inception Badge" />
-</div>
+
 
 <div class="brochure-section">
 
   <!-- HERO -->
   <div class="lx-hero" id="brochureHero">
-    <div class="section-tag">
-      <span class="section-tag-tag">LibrixSoft</span>
+    <div class="logo-row">
+      <img class="section-logo" src="librix_logo_doc.png" alt="LibrixSoft" />
+      <span class="logo-x">x</span>
+      <img class="nvidia-badge" src="nvidia-inception-program-badge-rgb-for-screen-dark.svg" alt="NVIDIA Inception Badge" />
     </div>
     <h1 class="lx-title">Transformamos ideas<br>en software <em>funcional</em></h1>
     <p class="hero-kicker">Ingeniería senior para escalar plataformas críticas y blindar código generado con IA.</p>
