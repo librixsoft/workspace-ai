@@ -4,6 +4,8 @@ Mi nombre es Anibal Gomez, CEO en LibrixSoft, firma especializada en ingeniería
 
 Llegamos a ustedes a partir de su actividad reciente en LinkedIn, vimos que estan buscando desarrolladores y quería aprovechar para presentarles brevemente nuestra firma.
 
+Hoy en día somos parte de la red de startups tecnológicas de NVIDIA Inception, conformada por startups que desarrollan tecnología de punta en inteligencia artificial, lo cual creemos podria aportar muchisimo valor a su empresa. Actualmente apoyamos agencias y empresas en crecimiento con soluciones de tecnología. 
+
 En LibrixSoft contamos con experiencia en desarrollo de software, arquitectura, cloud y ciberseguridad, y hemos colaborado en proyectos para empresas multinacionales y entornos empresariales de alta exigencia.
 
 Nuestro objetivo es apoyar a empresas que enfrentan retos técnicos o proyectos de software que requieren experiencia especializada, trabajando de manera conjunta con sus equipos para diseñar y ejecutar soluciones a la medida.

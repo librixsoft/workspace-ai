@@ -2,7 +2,7 @@ Hola,
 
 Mi nombre es Anibal Gomez y dirijo la empresa LibrixSoft, empresa dedicada a desarrollo, ingenieria y ciberseguridad. Notamos que su empresa ha estado creciendo de manera impresionante y nos gustaría participar en su próxima ronda de inversión como su aliado tecnológico.
 
-Hoy en día somos parte de la red de startups tecnológicas de NVIDIA Inception, conformada por startups que desarrollan tecnología de punta en inteligencia artificial a nivel global, lo cual creemos podria aportar muchisimo valor a su empresa. Actualmente apoyamos agencias y empresas en crecimiento con soluciones de tecnología. 
+Hoy en día somos parte de la red de startups tecnológicas de NVIDIA Inception, conformada por startups que desarrollan tecnología de punta en inteligencia artificial, lo cual creemos podria aportar muchisimo valor a su empresa. Actualmente apoyamos agencias y empresas en crecimiento con soluciones de tecnología. 
 
 Nuestra cartera
 
