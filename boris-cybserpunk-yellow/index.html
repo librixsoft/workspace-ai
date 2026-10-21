@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>CYBERPUNK — NEON RACER</title>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-ring">
+            <div class="loader-ring-inner"></div>
+        </div>
+        <p class="loader-text">INITIALIZING</p>
+    </div>
+
+    <!-- Scanlines overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Particles Canvas -->
+    <canvas class="particles-canvas" id="particles"></canvas>
+
+    <!-- Corner Decorations -->
+    <div class="corner-deco corner-deco--tl"></div>
+    <div class="corner-deco corner-deco--tr"></div>
+    <div class="corner-deco corner-deco--bl"></div>
+    <div class="corner-deco corner-deco--br"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <span class="logo-cyber">CYBER</span><span class="logo-glitch">PUNK</span>
+            </a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#" class="nav__link">Models</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Specs</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Store</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Experience</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav__toggle">
+                <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Hero -->
+    <main class="main">
+        <div class="home grid">
+            <!-- Vertical Title -->
+            <h1 class="home__title" data-text="NEON RACER">NEON RACER</h1>
+
+            <!-- Cyberpunk Car SVG -->
+            <div class="home__img" id="car-container">
+                <svg class="cyber-car-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Body gradient -->
+                        <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#0f3460;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+                        </linearGradient>
+                        <!-- Neon line gradient -->
+                        <linearGradient id="neonLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#EFD50C;stop-opacity:0" />
+                            <stop offset="30%" style="stop-color:#EFD50C;stop-opacity:1" />
+                            <stop offset="70%" style="stop-color:#ff6600;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#EFD50C;stop-opacity:0" />
+                        </linearGradient>
+                        <!-- Underglow gradient -->
+                        <linearGradient id="underglowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#EFD50C;stop-opacity:0" />
+                            <stop offset="50%" style="stop-color:#EFD50C;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#EFD50C;stop-opacity:0" />
+                        </linearGradient>
+                        <!-- Headlight beam -->
+                        <linearGradient id="beamGrad" x1="0%" y1="50%" x2="100%" y2="50%">
+                            <stop offset="0%" style="stop-color:#EFD50C;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#EFD50C;stop-opacity:0" />
+                        </linearGradient>
+                        <!-- Glow filters -->
+                        <filter id="neonGlow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="strongGlow">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- ===== CAR BODY ===== -->
+                    <!-- Main body silhouette -->
+                    <path d="M 90,310 L 120,270 L 190,240 L 340,225 L 510,228 L 630,255 L 690,300 L 730,315 L 730,340 L 710,350 L 90,350 L 70,340 L 70,325 Z"
+                          fill="url(#bodyGrad)" stroke="#EFD50C" stroke-width="2" filter="url(#neonGlow)"/>
+                    
+                    <!-- Roof / canopy -->
+                    <path d="M 230,245 L 310,220 L 480,222 L 510,245 Z"
+                          fill="#080818" stroke="#00f0ff" stroke-width="1.5" filter="url(#neonGlow)" opacity="0.9"/>
+                    
+                    <!-- Window divider -->
+                    <line x1="370" y1="222" x2="380" y2="245" stroke="#EFD50C" stroke-width="1.5" opacity="0.6"/>
+
+                    <!-- ===== WHEELS ===== -->
+                    <!-- Front wheel -->
+                    <circle cx="175" cy="345" r="38" fill="#0a0a1a" stroke="#EFD50C" stroke-width="2.5" filter="url(#neonGlow)"/>
+                    <circle cx="175" cy="345" r="25" fill="#0d0d20" stroke="#ff6600" stroke-width="2"/>
+                    <circle cx="175" cy="345" r="12" fill="#1a1a2e" stroke="#EFD50C" stroke-width="1.5" opacity="0.8"/>
+                    <circle cx="175" cy="345" r="4" fill="#EFD50C" filter="url(#neonGlow)"/>
+                    <!-- Wheel spokes -->
+                    <line x1="175" y1="320" x2="175" y2="333" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="175" y1="357" x2="175" y2="370" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="150" y1="345" x2="163" y2="345" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="187" y1="345" x2="200" y2="345" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    
+                    <!-- Rear wheel -->
+                    <circle cx="635" cy="345" r="38" fill="#0a0a1a" stroke="#EFD50C" stroke-width="2.5" filter="url(#neonGlow)"/>
+                    <circle cx="635" cy="345" r="25" fill="#0d0d20" stroke="#ff6600" stroke-width="2"/>
+                    <circle cx="635" cy="345" r="12" fill="#1a1a2e" stroke="#EFD50C" stroke-width="1.5" opacity="0.8"/>
+                    <circle cx="635" cy="345" r="4" fill="#EFD50C" filter="url(#neonGlow)"/>
+                    <!-- Wheel spokes -->
+                    <line x1="635" y1="320" x2="635" y2="333" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="635" y1="357" x2="635" y2="370" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="610" y1="345" x2="623" y2="345" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+                    <line x1="647" y1="345" x2="660" y2="345" stroke="#EFD50C" stroke-width="1" opacity="0.5"/>
+
+                    <!-- ===== NEON UNDERGLOW ===== -->
+                    <ellipse cx="405" cy="355" rx="290" ry="4" fill="url(#underglowGrad)" filter="url(#strongGlow)" opacity="0.5"/>
+
+                    <!-- ===== HEADLIGHTS ===== -->
+                    <!-- Main headlight -->
+                    <ellipse cx="710" cy="308" rx="18" ry="10" fill="#EFD50C" filter="url(#neonGlow)" opacity="0.95"/>
+                    <ellipse cx="710" cy="308" rx="8" ry="4" fill="#fff" filter="url(#neonGlow)" opacity="1"/>
+                    <!-- Headlight beam -->
+                    <polygon points="728,300 800,280 800,340 728,315" fill="url(#beamGrad)" opacity="0.3"/>
+                    
+                    <!-- ===== TAIL LIGHTS ===== -->
+                    <rect x="68" y="295" width="22" height="12" rx="2" fill="#ff006e" filter="url(#neonGlow)" opacity="0.9"/>
+                    <rect x="65" y="312" width="18" height="8" rx="2" fill="#ff006e" filter="url(#neonGlow)" opacity="0.7"/>
+                    <!-- Tail light trail -->
+                    <rect x="40" y="298" width="25" height="6" rx="2" fill="#ff006e" opacity="0.3" filter="url(#neonGlow)"/>
+
+                    <!-- ===== SIDE NEON LINES ===== -->
+                    <line x1="240" y1="275" x2="560" y2="270" stroke="url(#neonLineGrad)" stroke-width="1.5" filter="url(#neonGlow)"/>
+                    <line x1="280" y1="288" x2="520" y2="286" stroke="#ff6600" stroke-width="1" opacity="0.4" filter="url(#neonGlow)"/>
+                    
+                    <!-- ===== SPOILER ===== -->
+                    <path d="M 70,285 L 45,265 L 90,258 L 115,275 Z" fill="#1a1a2e" stroke="#EFD50C" stroke-width="1.5" filter="url(#neonGlow)"/>
+                    <line x1="55" y1="270" x2="100" y2="263" stroke="#ff006e" stroke-width="1" filter="url(#neonGlow)"/>
+
+                    <!-- ===== FRONT GRILLE ===== -->
+                    <path d="M 700,310 L 725,315 L 725,330 L 700,335 Z" fill="#0a0a1a" stroke="#EFD50C" stroke-width="1" opacity="0.6"/>
+                    <line x1="705" y1="318" x2="705" y2="332" stroke="#EFD50C" stroke-width="0.5" opacity="0.4"/>
+                    <line x1="710" y1="317" x2="710" y2="333" stroke="#EFD50C" stroke-width="0.5" opacity="0.4"/>
+                    <line x1="715" y1="316" x2="715" y2="334" stroke="#EFD50C" stroke-width="0.5" opacity="0.4"/>
+
+                    <!-- ===== GLOW TRAIL (behind car) ===== -->
+                    <line x1="60" y1="350" x2="30" y2="350" stroke="#EFD50C" stroke-width="2" filter="url(#neonGlow)" opacity="0.3"/>
+                    <line x1="50" y1="350" x2="20" y2="350" stroke="#EFD50C" stroke-width="1" filter="url(#neonGlow)" opacity="0.2"/>
+                </svg>
+            </div>
+
+            <!-- Info panel -->
+            <div class="home__information">
+                <h2 class="home__subtitle">
+                    <span class="subtitle-prefix">MODEL</span>
+                    <span class="subtitle-accent">X-77 PHANTOM</span>
+                </h2>
+                <p class="home__description">
+                    Neural-linked hypercar with quantum-drive propulsion. 
+                    The streets of Neo-Tokyo bow before its fury.
+                </p>
+            </div>
+
+            <!-- Spec Boxes -->
+            <div class="box">
+                <div class="box__content box__medium">
+                    <ion-icon name="flash-outline" class="icon-box"></ion-icon>
+                    <h3 class="box__medium-title inline" data-target="2.1">0</h3>
+                    <span class="box__medium-description block">Sec.</span>
+                    <span class="box__medium-detail">0-100 km/h</span>
+                </div>
+
+                <div class="box__smalls">
+                    <div class="box__content box__small">
+                        <ion-icon name="speed-outline" class="icon-box icon-box--small"></ion-icon>
+                        <h3 class="box__small-title inline" data-target="485">0</h3>
+                        <span class="box__small-description block">km/h</span>
+                        <span class="box__small-detail">Top Speed</span>
+                    </div>
+                    <div class="box__content box__small">
+                        <ion-icon name="flash-done-outline" class="icon-box icon-box--small"></ion-icon>
+                        <h3 class="box__small-title inline" data-target="12000">0</h3>
+                        <span class="box__small-description block">r.p.m</span>
+                        <span class="box__small-detail">Power</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
