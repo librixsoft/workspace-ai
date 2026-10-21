@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEMOTRON BOLT | Sistema de IA NVIDIA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #050505;
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', 'Segoe UI', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Glow effects */
+        .glow-text {
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 40px #ffd700;
+        }
+
+        .glow-border {
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), inset 0 0 15px rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-cyber {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: #ffd700;
+            border: 1px solid #ffd700;
+            padding: 16px 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-cyber:hover {
+            background: #ffd700;
+            color: #050505;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-cyber:hover::before {
+            left: 100%;
+        }
+
+        .btn-cyber:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #ffd700;
+            border: 1px solid #888;
+            padding: 16px 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background: #ffd700;
+            color: #050505;
+            border: 1px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Background grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .grid-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
+            z-index: -1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.8));
+            border-bottom: 1px solid #ffd700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c0c0c0;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffd700;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.8),
+                rgba(10, 10, 10, 0.95)
+            );
+            border-bottom: 2px solid #ffd700;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.1);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(
+                circle,
+                rgba(255, 215, 0, 0.15) 0%,
+                transparent 70%
+            );
+            transform: translate(50%, -50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            margin-bottom: 32px;
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 0 0 20px #ffd700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Tech Grid Section */
+        .tech-section {
+            padding: 100px 20px;
+            background: #080808;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 16px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .section-header p {
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid #333;
+            padding: 40px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #ffd700;
+            transition: width 0.3s;
+        }
+
+        .tech-card:hover {
+            border: 1px solid #ffd700;
+            background: rgba(30, 30, 30, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .tech-card:hover::before {
+            width: 100%;
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+            color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .tech-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .tech-card p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 20px;
+            background: #050505;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid #333;
+            padding: 40px 24px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border: 1px solid #ffd700;
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.1);
+        }
+
+        .feature-number {
+            width: 40px;
+            height: 40px;
+            background: #ffd700;
+            color: #050505;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            text-align: center;
+            border-top: 2px solid #ffd700;
+            border-bottom: 2px solid #ffd700;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect width=%22200%22 height=%22200%22 fill=%22none%22 stroke=%22%23ffd700%22 stroke-width=%222%22 rx=%2250%22 ry=%2250%22/%3E%3C/svg%3E');
+            background-size: 200px 200px;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            color: #ffd700;
+            margin-bottom: 16px;
+        }
+
+        .cta-content p {
+            color: #c0c0c0;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            background: #020202;
+            border-top: 1px solid #ffd700;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ffd700, transparent);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            background: #ffd700;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                padding: 40px;
+                border-bottom: 1px solid #ffd700;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 12px 0;
+                font-size: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="scanline"></div>
+
+    <nav>
+        <div class="logo">
+            <span class="cursor">&gt;</span> NEMOTRON
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">INICIO</a></li>
+            <li><a href="#tecnologia">TECNOLOGÍA</a></li>
+            <li><a href="#caracteristicas">CARACTERÍSTICAS</a></li>
+            <li><a href="#contacto">CONTACTO</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle">☰</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">NVIDIA Nemotron Bolt</span>
+            <h1 class="glow-text">Sistema de Lenguaje<br>de Gran Escala</h1>
+            <p>Un modelo de lenguaje desarrollado por NVIDIA optimizado para rendimiento, razonamiento y comprensión de lenguaje natural de vanguardia.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn-cyber">OBTENER ACCESO</a>
+                <a href="#tecnologia" class="btn-outline">VER TECNOLOGÍA</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-section" id="tecnologia">
+        <div class="section-header">
+            <h2>Tecnología</h2>
+            <p>Arquitectura avanzada de NVIDIA para inteligencia artificial</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">⚡</div>
+                <h3>Optimizado por NVIDIA</h3>
+                <p>Arquitectura basada en el modelo Nemotron de NVIDIA, diseñado para máximo rendimiento en inferencia.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🧠</div>
+                <h3>Razonamiento Avanzado</h3>
+                <p>Capacidades mejoradas de razonamiento, resolución de problemas complejos y lógica multietapa.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🌐</div>
+                <h3>Escalabilidad</h3>
+                <p>Inferencia optimizada para ejecutar en entornos distribuidos con baja latencia.</p>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">🔒</div>
+                <h3>Seguridad</h3>
+                <p>Alineación y seguridad integradas en el diseño del modelo para uso responsable.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="caracteristicas">
+        <div class="section-header">
+            <h2>Características</h2>
+            <p>Lo que hace único a Nemotron Bolt</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-number">01</div>
+                <h3>Baja Latencia</h3>
+                <p>Optimizado para inferencia en tiempo real con tiempos de respuesta mínimos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">02</div>
+                <h3>Contexto Extendido</h3>
+                <p>Capacidad para procesar largos contextos manteniendo coherencia y precisión.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">03</div>
+                <h3>Multilingüe</h3>
+                <p>Soporte avanzado para múltiples idiomas con comprensión cultural.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-number">04</div>
+                <h3>API Completa</h3>
+                <p>Integración sencilla mediante REST API con documentación completa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contacto">
+        <div class="cta-content">
+            <h2>¿Listo para comenzar?</h2>
+            <p>Accede al poder de Nemotron Bolt y transforma tu desarrollo con IA.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-cyber">SOLICITAR ACCESO</a>
+                <a href="#" class="btn-outline">DOCUMENTACIÓN</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 NEMOTRON BOLT - NVIDIA AI Platform</p>
+        <div>
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">Documentación</a>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scanline effect animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const scanline = document.querySelector('.scanline');
+            scanline.style.animation = 'scanline 3s linear infinite';
+        });
+    </script>
+</body>
+</html>
