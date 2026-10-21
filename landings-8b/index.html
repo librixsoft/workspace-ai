@@ -1,85 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assets/css/styles.css">
-        <title>Landing page lamborghini</title>
-    </head>
-    <body id="body">
-        <header class="header">
-            <nav class="nav container">
-                <a href="#" class="nav__logo">
-                    Lamborghini
-                </a>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamborghini - Beyond the Limit</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader__logo">
+            <svg viewBox="0 0 200 60" class="preloader__svg">
+                <text x="10" y="45" font-family="Orbitron" font-weight="900" font-size="32" fill="#EFD50C">LAMBORGHINI</text>
+            </svg>
+        </div>
+        <div class="preloader__line"></div>
+    </div>
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="" class="nav__link">Models</a></li>
-                        <li class="nav__item"><a href="" class="nav__link">Brand</a></li>
-                        <li class="nav__item"><a href="" class="nav__link">Store</a></li>
-                        <li class="nav__item"><a href="" class="nav__link">Experience</a></li>
-                    </ul>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navegación -->
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="#" class="nav__brand">
+                <span class="nav__brand-icon">
+                    <svg viewBox="0 0 40 40" width="40" height="40">
+                        <polygon points="20,2 38,38 2,38" fill="none" stroke="#EFD50C" stroke-width="2"/>
+                    </svg>
+                </span>
+                <span class="nav__brand-text">LAMBORGHINI</span>
+            </a>
+
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#hero" class="nav__link active">Home</a></li>
+                <li><a href="#models" class="nav__link">Models</a></li>
+                <li><a href="#heritage" class="nav__link">Heritage</a></li>
+                <li><a href="#technology" class="nav__link">Technology</a></li>
+                <li><a href="#configure" class="nav__link nav__link--cta">Configure</a></li>
+            </ul>
+
+            <button class="nav__hamburger" id="navToggle" aria-label="Menu">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu__close" id="mobileClose">✕</button>
+        <ul class="mobile-menu__links">
+            <li><a href="#hero" class="mobile-menu__link">Home</a></li>
+            <li><a href="#models" class="mobile-menu__link">Models</a></li>
+            <li><a href="#heritage" class="mobile-menu__link">Heritage</a></li>
+            <li><a href="#technology" class="mobile-menu__link">Technology</a></li>
+            <li><a href="#configure" class="mobile-menu__link mobile-menu__link--cta">Configure Yours</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="hero">
+            <div class="hero__bg-gradient"></div>
+            <div class="hero__noise"></div>
+
+            <div class="hero__content">
+                <div class="hero__tag">
+                    <span class="hero__tag-line"></span>
+                    <span>HURACÁN EVO</span>
                 </div>
 
-                <div class="nav__toggle" id="nav__toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+                <h1 class="hero__title">
+                    <span class="hero__title-line" data-text="BEYOND">BEYOND</span>
+                    <span class="hero__title-line hero__title-line--accent" data-text="THE LIMIT">THE LIMIT</span>
+                </h1>
+
+                <p class="hero__subtitle">
+                    The V10 naturally aspirated engine delivers 640 CV of pure Italian passion.
+                    Experience performance that transcends the ordinary.
+                </p>
+
+                <div class="hero__actions">
+                    <a href="#models" class="btn btn--primary">
+                        <span>Explore Models</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#heritage" class="btn btn--outline">
+                        <span>Discover Heritage</span>
+                    </a>
                 </div>
-            </nav>
-        </header>
+            </div>
 
-        <main class="main container">
-            <div class="home grid">
-                <h1 class="home__title">LAMBORGHINI</h1>
+            <!-- Hero Car Image -->
+            <div class="hero__car">
+                <div class="hero__car-glow"></div>
+                <img src="assets/img/lamborghini.png" alt="Lamborghini Huracán" class="hero__car-img">
+            </div>
 
+            <!-- Stats flotantes -->
+            <div class="hero__stats">
+                <div class="stat-card stat-card--left">
+                    <div class="stat-card__value" data-count="2.9">0</div>
+                    <div class="stat-card__unit">seconds</div>
+                    <div class="stat-card__label">0-100 km/h</div>
+                </div>
+                <div class="stat-card stat-card--right">
+                    <div class="stat-card__value" data-count="325">0</div>
+                    <div class="stat-card__unit">km/h</div>
+                    <div class="stat-card__label">Top Speed</div>
+                </div>
+            </div>
 
-                <div class="home__img">
-                    <img src="assets/img/lamborghini.png" alt="">
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-indicator__line"></div>
+                <span class="scroll-indicator__text">SCROLL</span>
+            </div>
+        </section>
+
+        <!-- MODELS SECTION -->
+        <section class="models" id="models">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-header__tag">THE LINEUP</span>
+                    <h2 class="section-header__title">CHOOSE YOUR <span class="accent">LEGEND</span></h2>
                 </div>
 
-
-                <div class="home__information">
-                    <h2 class="home__subtitle">LAMBORGHINI<br>GALLARDO LP560</h2>
-                    <p class="home__description">Lorem ipsum dolor sit amet consect  adipiscing elit, commodo tristique id quisque lobortis facilisi feugiat</p>
-                </div>
-
-
-                <div class="box">
-                    <div class="box__content box__medium">
-                        <ion-icon name="speedometer-outline" class="icon-box"></ion-icon>
-                        <h3 class="box__medium-title inline">3.7</h3>
-                        <span class="box__medium-description block">Sec.</span>
-                        <span class="box__medium-detail">0-100 km/h</span>
+                <div class="models-grid">
+                    <div class="model-card" data-model="huracan">
+                        <div class="model-card__img-wrapper">
+                            <div class="model-card__shine"></div>
+                            <div class="model-card__placeholder">
+                                <svg viewBox="0 0 400 200" class="model-card__svg">
+                                    <polygon points="50,150 100,50 300,50 350,150" fill="none" stroke="#EFD50C" stroke-width="1"/>
+                                    <circle cx="120" cy="150" r="20" fill="none" stroke="#EFD50C" stroke-width="1"/>
+                                    <circle cx="280" cy="150" r="20" fill="none" stroke="#EFD50C" stroke-width="1"/>
+                                    <text x="175" y="110" font-family="Orbitron" font-size="14" fill="#EFD50C">HURACÁN</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="model-card__info">
+                            <h3>HURACÁN EVO</h3>
+                            <p class="model-card__desc">640 CV V10 • RWD/AWD • 325 km/h</p>
+                            <a href="#" class="model-card__btn">Configure →</a>
+                        </div>
                     </div>
 
-
-                    <div>
-                        <div class="box__content box__small">
-                            <ion-icon name="trending-up-outline" class="icon-box icon-box--small"></ion-icon>
-                            <h3 class="box__small-title inline">325</h3>
-                            <span class="box__small-description block">km/h</span>
-                            <span class="box__small-detail">Top Speed</span>
+                    <div class="model-card" data-model="aventador">
+                        <div class="model-card__img-wrapper">
+                            <div class="model-card__shine"></div>
+                            <div class="model-card__placeholder">
+                                <svg viewBox="0 0 400 200" class="model-card__svg">
+                                    <polygon points="50,150 80,40 320,40 350,150" fill="none" stroke="#ED4C50" stroke-width="1"/>
+                                    <circle cx="110" cy="150" r="20" fill="none" stroke="#ED4C50" stroke-width="1"/>
+                                    <circle cx="290" cy="150" r="20" fill="none" stroke="#ED4C50" stroke-width="1"/>
+                                    <text x="160" y="100" font-family="Orbitron" font-size="12" fill="#ED4C50">AVENTADOR</text>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="box__content box__small">
-                            <ion-icon name="car-sport-outline" class="icon-box icon-box--small"></ion-icon>
-                            <h3 class="box__small-title inline">8.000</h3>
-                            <span class="box__small-description block">r.p.m</span>
-                            <span class="box__small-detail">Power</span>
+                        <div class="model-card__info">
+                            <h3>AVENTADOR S</h3>
+                            <p class="model-card__desc">740 CV V12 • AWD • 350 km/h</p>
+                            <a href="#" class="model-card__btn">Configure →</a>
+                        </div>
+                    </div>
+
+                    <div class="model-card" data-model="urus">
+                        <div class="model-card__img-wrapper">
+                            <div class="model-card__shine"></div>
+                            <div class="model-card__placeholder">
+                                <svg viewBox="0 0 400 200" class="model-card__svg">
+                                    <polygon points="30,150 70,30 330,30 370,150" fill="none" stroke="#fff" stroke-width="1"/>
+                                    <circle cx="100" cy="150" r="22" fill="none" stroke="#fff" stroke-width="1"/>
+                                    <circle cx="300" cy="150" r="22" fill="none" stroke="#fff" stroke-width="1"/>
+                                    <text x="155" y="95" font-family="Orbitron" font-size="12" fill="#fff">URUS</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="model-card__info">
+                            <h3>URUS</h3>
+                            <p class="model-card__desc">650 CV V8 Twin-Turbo • AWD • 305 km/h</p>
+                            <a href="#" class="model-card__btn">Configure →</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </section>
 
+        <!-- HERITAGE SECTION -->
+        <section class="heritage" id="heritage">
+            <div class="container">
+                <div class="heritage__grid">
+                    <div class="heritage__content">
+                        <span class="section-header__tag">SINCE 1963</span>
+                        <h2 class="heritage__title">BORN FROM <span class="accent">PASSION</span></h2>
+                        <p class="heritage__text">
+                            Ferruccio Lamborghini set out to create the perfect grand touring car, 
+                            and in doing so, created an empire. From the bull-shaped emblem to the 
+                            angular, aggressive designs, every Lamborghini carries the DNA of its 
+                            founder's unyielding pursuit of perfection.
+                        </p>
+                        <div class="heritage__timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-item__year">1963</div>
+                                <div class="timeline-item__event">Company founded in Sant'Agata</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-item__year">1966</div>
+                                <div class="timeline-item__event">Miura debuts — first supercar</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-item__year">1974</div>
+                                <div class="timeline-item__event">Countach prototype revealed</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-item__year">2023</div>
+                                <div class="timeline-item__event">Hybrid era begins</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="heritage__visual">
+                        <div class="heritage__visual-inner">
+                            <div class="heritage__visual-accent"></div>
+                            <div class="heritage__visual-lines">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- ICONOS -->
-        <script  type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <!-- TECHNOLOGY SECTION -->
+        <section class="technology" id="technology">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-header__tag">INNOVATION</span>
+                    <h2 class="section-header__title">ENGINEERED FOR <span class="accent">EXCELLENCE</span></h2>
+                </div>
 
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <div class="tech-card__icon">
+                            <svg viewBox="0 0 60 60" width="60" height="60">
+                                <circle cx="30" cy="30" r="25" fill="none" stroke="#EFD50C" stroke-width="1.5"/>
+                                <text x="30" y="35" text-anchor="middle" font-family="Orbitron" font-size="16" fill="#EFD50C">V10</text>
+                            </svg>
+                        </div>
+                        <h3 class="tech-card__title">NATURALLY ASPIRATED V10</h3>
+                        <p class="tech-card__desc">640 CV at 8,000 rpm with a screaming redline at 8,500 rpm. The most refined V10 engine Lamborghini has ever created.</p>
+                    </div>
 
-        <!-- GSAP -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
+                    <div class="tech-card">
+                        <div class="tech-card__icon">
+                            <svg viewBox="0 0 60 60" width="60" height="60">
+                                <polygon points="30,5 55,50 5,50" fill="none" stroke="#ED4C50" stroke-width="1.5"/>
+                                <text x="30" y="38" text-anchor="middle" font-family="Orbitron" font-size="10" fill="#ED4C50">LDVI</text>
+                            </svg>
+                        </div>
+                        <h3 class="tech-card__title">LDVI SYSTEM</h3>
+                        <p class="tech-card__desc">Lamborghini Dinamica Veicolo Integrata predicts driver inputs and controls all vehicle systems in milliseconds.</p>
+                    </div>
 
-        <!-- MAIN -->
-        <script src="assets/js/main.js"></script>
-    </body>
+                    <div class="tech-card">
+                        <div class="tech-card__icon">
+                            <svg viewBox="0 0 60 60" width="60" height="60">
+                                <rect x="5" y="10" width="50" height="40" rx="5" fill="none" stroke="#EFD50C" stroke-width="1.5"/>
+                                <text x="30" y="35" text-anchor="middle" font-family="Orbitron" font-size="8" fill="#EFD50C">AERO</text>
+                            </svg>
+                        </div>
+                        <h3 class="tech-card__title">ACTIVE AERODYNAMICS</h3>
+                        <p class="tech-card__desc">ALA 2.0 — Lamborghini Dinamica Veicolo Integrazione 2.0 actively manages airflow for maximum downforce.</p>
+                    </div>
+
+                    <div class="tech-card">
+                        <div class="tech-card__icon">
+                            <svg viewBox="0 0 60 60" width="60" height="60">
+                                <circle cx="30" cy="30" r="25" fill="none" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="30" cy="30" r="15" fill="none" stroke="#fff" stroke-width="1"/>
+                                <text x="30" y="34" text-anchor="middle" font-family="Orbitron" font-size="7" fill="#fff">AWD</text>
+                            </svg>
+                        </div>
+                        <h3 class="tech-card__title">AWD TORQUE VECTORING</h3>
+                        <p class="tech-card__desc">Electronic rear axle differential and torque vectoring ensure optimal grip in every driving condition.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta" id="configure">
+            <div class="cta__bg"></div>
+            <div class="container">
+                <div class="cta__content">
+                    <h2 class="cta__title">READY TO <span class="accent">TRANSCEND</span>?</h2>
+                    <p class="cta__subtitle">Configure your dream Lamborghini or visit your nearest dealer.</p>
+                    <div class="cta__actions">
+                        <a href="#" class="btn btn--primary btn--large">
+                            <span>Configure Now</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="btn btn--outline btn--large">
+                            <span>Find a Dealer</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <span class="nav__brand-icon">
+                        <svg viewBox="0 0 40 40" width="30" height="30">
+                            <polygon points="20,2 38,38 2,38" fill="none" stroke="#EFD50C" stroke-width="2"/>
+                        </svg>
+                    </span>
+                    <span>LAMBORGHINI</span>
+                    <p class="footer__tagline">The art of performance since 1963.</p>
+                </div>
+                <div class="footer__links">
+                    <h4>Models</h4>
+                    <ul>
+                        <li><a href="#">Huracán</a></li>
+                        <li><a href="#">Aventador</a></li>
+                        <li><a href="#">Urus</a></li>
+                        <li><a href="#">Revuelto</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="#">Heritage</a></li>
+                        <li><a href="#">Motorsport</a></li>
+                        <li><a href="#">Musei</a></li>
+                        <li><a href="#">Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer__links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2024 Automobili Lamborghini S.p.A. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
 </html>
