@@ -1,1 +1,1 @@
-/Users/lastprophet/.m2/repository/com/googlecode/lanterna/lanterna/3.0.0/lanterna-3.0.0.jar
+/Users/lastprophet/.m2/repository/com/googlecode/lanterna/lanterna/3.1.5/lanterna-3.1.5.jar

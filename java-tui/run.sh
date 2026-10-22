@@ -10,4 +10,4 @@ echo "=== Empaquetando el JAR ==="
 mvn package -q
 
 echo "=== Ejecutando la aplicación ==="
-java -cp "target/classes:$(cat classpath.txt)" -ea com.example.HelloWorld
+java -cp "target/classes:$(cat classpath.txt)" -ea com.example.Dashboard

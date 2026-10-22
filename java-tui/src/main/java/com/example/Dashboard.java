@@ -1,28 +1,25 @@
 package com.example;
 
 import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalFacade;
-import com.googlecode.lanterna.TerminalSession;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.terminal.TerminalScreen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.ansi.AnsiTerminal;
 
 public class Dashboard {
 
     public static void main(String[] args) {
         try {
-            // Create terminal session
-            Terminal terminal = AnsiTerminal.createTerminal();
-            TerminalSession terminalSession = TerminalFacade.createTerminalSession(terminal, "Dashboard");
-            
-            // Create screen
+            // Create terminal using the Lanterna 3.x factory
+            Terminal terminal = new DefaultTerminalFactory().createTerminal();
+
+            // Create screen (replaces the removed TerminalFacade/TerminalSession)
             Screen screen = new TerminalScreen(terminal);
             screen.startScreen();
-            screen.doResizeIfRequired();
+            screen.doResizeIfNecessary();
 
             // Get text graphics for drawing
             TextGraphics textGraphics = screen.newTextGraphics();
@@ -34,7 +31,7 @@ public class Dashboard {
             textGraphics.setCharacter(25, 13, 'l');
             textGraphics.setCharacter(25, 14, 'o');
             textGraphics.putString(26, 14, ", World!", SGR.BOLD);
-            
+
             // Draw horizontal line
             for (int x = 10; x < 50; x++) {
                 textGraphics.setCharacter(x, 16, '=');
@@ -42,19 +39,21 @@ public class Dashboard {
 
             // Draw status information
             textGraphics.putString(15, 18, "Lanterna Java TUI Demo", SGR.BOLD);
-            textGraphics.putString(15, 20, "Press any key to exit", SGR.DIM);
+            textGraphics.putString(15, 20, "Press any key to exit");
 
-            // Event loop
+            // Refresh so the drawing is visible before blocking on input
+            screen.refresh();
+
+            // Event loop: readInput() blocks until a key is pressed
             while (true) {
                 KeyStroke key = screen.readInput();
-                if (key != null && key.getKeyType() == KeyType.EOF) {
+                if (key == null) {
+                    continue;
+                }
+                if (key.getKeyType() == KeyType.EOF) {
                     break;
                 }
-                if (key != null && key.getKeyType() != KeyType.EOF) {
-                    break;
-                }
-                Thread.sleep(100);
-                screen.doResizeIfRequired();
+                break;
             }
 
             // Cleanup
