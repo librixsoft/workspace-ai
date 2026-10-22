@@ -1,3 +1,6 @@
 
 # Boris AI context and downloaded repos
 .boris/
+
+# Maven build output
+/target/
