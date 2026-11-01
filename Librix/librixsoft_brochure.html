@@ -806,7 +806,7 @@
 
   .demo-agent-term {
     font-family: 'Share Tech Mono', monospace;
-    background: #0e0b08;
+    background: #0e080b;
     border-radius: 6px;
     overflow: hidden;
     font-size: 0.5rem;
@@ -823,12 +823,12 @@
     gap: 7px;
     padding: 10px 14px;
     background: #111118;
-    border-bottom: 1px solid rgba(255,149,111,0.15);
+    border-bottom: 1px solid rgba(68,255,68,0.15);
   }
 
   .agent-titlebar-text {
     font-size: 0.5rem;
-    color: #ff956f;
+    color: var(--green-live);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-left: 8px;
@@ -837,7 +837,7 @@
   .agent-status {
     margin-left: auto;
     font-size: 0.5rem;
-    color: #ff956f;
+    color: var(--green-live);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -856,7 +856,7 @@
   }
 
   .agent-line-prompt {
-    color: #ff956f;
+    color: var(--green-live);
   }
 
   .agent-line-cmd {
@@ -868,15 +868,15 @@
   }
 
   .agent-line-ok {
-    color: #ff956f;
+    color: var(--green-live);
   }
 
   .agent-line-warn {
-    color: #ff956f;
+    color: var(--green-live);
   }
 
   .agent-line-tool {
-    color: #ff956f;
+    color: var(--green-live);
   }
 
   .agent-line-result {
@@ -885,17 +885,17 @@
 
   .agent-tool-tag {
     display: inline-block;
-    background: rgba(255,149,111,0.08);
-    border: 1px solid rgba(255,149,111,0.2);
+    background: rgba(68,255,68,0.08);
+    border: 1px solid rgba(68,255,68,0.2);
     border-radius: 2px;
     padding: 1px 5px;
     font-size: 0.5rem;
-    color: #ff956f;
+    color: var(--green-live);
   }
 
   .agent-result-box {
-    background: rgba(255,149,111,0.04);
-    border: 1px solid rgba(255,149,111,0.12);
+    background: rgba(68,255,68,0.04);
+    border: 1px solid rgba(68,255,68,0.12);
     border-radius: 2px;
     padding: 3px 6px;
     margin: 2px 0;
@@ -905,7 +905,7 @@
   }
 
   .agent-result-key {
-    color: #ff956f;
+    color: var(--green-live);
     font-weight: 600;
   }
 
@@ -913,7 +913,7 @@
     display: inline-block;
     width: 4px;
     height: 0.9em;
-    background: #ff956f;
+    background: var(--green-live);
     vertical-align: text-bottom;
     animation: agentBlink 1s step-end infinite;
   }
@@ -925,12 +925,12 @@
 
   .agent-model-tag {
     display: inline-block;
-    background: rgba(255,149,111,0.12);
-    border: 1px solid rgba(255,149,111,0.25);
+    background: rgba(68,255,68,0.12);
+    border: 1px solid rgba(68,255,68,0.25);
     border-radius: 2px;
     padding: 1px 6px;
     font-size: 0.4rem;
-    color: #ff956f;
+    color: var(--green-live);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-left: 6px;
@@ -3296,11 +3296,11 @@
     </div>
 
     <div class="capability-block animate-in delay-5">
-      <div class="capability-name">Agent <em>IA</em></div>
+      <div class="capability-name">Agentic <em>IA</em></div>
       <div class="capability-desc">Agentes autónomos con IA local, modelos open-weights, tool calls, planificación iterativa y ejecución en terminal — simulando agentes modernos trabajando con modelos de inferencia en edge.</div>
       <div class="demo-inline">
         <div class="demo-inline-header">
-          <span class="demo-inline-label">Agente IA en ejecución</span>
+          <span class="demo-inline-label">Agentic IA en ejecución</span>
           <span class="demo-inline-status" style="color:var(--green-live)">● Activo</span>
         </div>
         <div class="demo-agent-term">
@@ -3308,15 +3308,16 @@
             <span class="term-dot red"></span>
             <span class="term-dot yellow"></span>
             <span class="term-dot green"></span>
-            <span class="agent-titlebar-text">librix-agent — claude-code</span>
+            <span class="agent-titlebar-text">agentic ia — claude-code</span>
           </div>
           <div class="agent-content">
-            <div class="agent-line" style="color:#ff956f;white-space:pre;line-height:1.2">     ___               </div>
-            <div class="agent-line" style="color:#ff956f;white-space:pre;line-height:1.2">    /   \              </div>
-            <div class="agent-line" style="color:#ff956f;white-space:pre;line-height:1.2">   | ^   |   AGENT IA  </div>
-            <div class="agent-line" style="color:#ff956f;white-space:pre;line-height:1.2">   | ___ |  LOCAL      </div>
-            <div class="agent-line" style="color:#ff956f;white-space:pre;line-height:1.2">    \___/              </div>
-            <div class="agent-line" style="color:#777">[nemotron-32b • 90k ctx • agentic mode]</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  ╔═══╦═══╗</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  ║ ▣ ║ ▣ ║</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  ╚═══╩═══╝</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  ┌─────────────────────┐</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  │  welcome to         │</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  │  agentic ia         │</div>
+            <div class="agent-line" style="white-space:pre;line-height:1.2;color:var(--green-live)">  └─────────────────────┘</div>
             <div class="agent-line"><span class="agent-line-prompt">$</span> <span class="agent-line-cmd">librix-agent run --scope /api</span></div>
             <div class="agent-line"><span class="agent-line-tool">[tool_call]</span> <span class="agent-tool-tag">read_dir</span> /api/search</div>
             <div class="agent-result-box"><span class="agent-result-key">4 files | 3 .py | 1 .json</span></div>
