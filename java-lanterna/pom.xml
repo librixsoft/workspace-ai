@@ -32,7 +32,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.dashboard.DashboardApp</mainClass>
+                                <mainClass>com.dashboard.MusicPlayer</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -50,7 +50,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.dashboard.DashboardApp</mainClass>
+                        <mainClass>com.dashboard.MusicPlayer</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
