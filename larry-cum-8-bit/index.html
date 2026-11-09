@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Larry Cum - 8 Bit Adventure</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  background: #0a0a2e;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#gameContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a2e;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#uiOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#startScreen, #gameOverScreen, #winScreen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(10, 10, 46, 0.95);
+  padding: 40px;
+  border-radius: 8px;
+  pointer-events: auto;
+}
+#startScreen h1 {
+  font-size: 48px;
+  color: #39ff14;
+  text-shadow: 4px 4px 0 #006600, 6px 6px 0 #003300;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+#startScreen h2 {
+  font-size: 18px;
+  color: #ff6b6b;
+  margin-bottom: 30px;
+}
+.menu-text {
+  font-size: 16px;
+  color: #00ff88;
+  line-height: 2;
+  margin-bottom: 20px;
+}
+.btn {
+  background: #39ff14;
+  color: #0a0a2e;
+  border: none;
+  padding: 15px 40px;
+  font-size: 22px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+}
+.btn:active { transform: scale(0.98); }
+#gameOverScreen h1 {
+  font-size: 42px;
+  color: #ff3333;
+  text-shadow: 3px 3px 0 #660000;
+  margin-bottom: 15px;
+}
+#winScreen h1 {
+  font-size: 36px;
+  color: #39ff14;
+  text-shadow: 3px 3px 0 #006600;
+  margin-bottom: 15px;
+}
+.score-display {
+  font-size: 24px;
+  color: #ffff00;
+  margin-bottom: 20px;
+}
+#hud {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  display: none;
+  justify-content: space-between;
+  color: #39ff14;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000;
+  pointer-events: none;
+  z-index: 10;
+}
+#hud span { background: rgba(10,10,46,0.7); padding: 4px 10px; border-radius: 4px; }
+#mobileControls {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: auto;
+  z-index: 10;
+}
+.mobile-btn {
+  width: 70px;
+  height: 70px;
+  background: rgba(57, 255, 20, 0.25);
+  border: 2px solid #39ff14;
+  border-radius: 50%;
+  color: #39ff14;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.mobile-btn:active { background: rgba(57, 255, 20, 0.5); }
+</style>
+</head>
+<body>
+
+<div id="gameContainer">
+  <canvas id="gameCanvas"></canvas>
+  <div id="hud">
+    <span id="hudScore">SCORE: 0</span>
+    <span id="hudLevel">LEVEL: 1</span>
+    <span id="hudLives">LIVES: 3</span>
+  </div>
+  <div id="uiOverlay">
+    <div id="startScreen">
+      <h1>LARRY CUM</h1>
+      <h2>8-BIT ADVENTURE</h2>
+      <div class="menu-text">
+        Ayuda a Larry a llegar al OVO<br>
+        Esquiva los anticonceptivos!<br>
+        <br>
+        CONTROLES:<br>
+        A/D o Flechas: Moverse<br>
+        ESPACIO: Disparar escudo
+      </div>
+      <button class="btn" id="startBtn">JUGAR</button>
+    </div>
+    <div id="gameOverScreen">
+      <h1>GAME OVER</h1>
+      <div class="score-display" id="finalScore">Score: 0</div>
+      <div class="menu-text">Larry no llego al ovulo...</div>
+      <button class="btn" id="restartBtn">REINTENTAR</button>
+    </div>
+    <div id="winScreen">
+      <h1>LUCHA!</h1>
+      <div class="score-display" id="winScore">Score: 0</div>
+      <div class="menu-text">Llego al ovulo! Larry triunfo!</div>
+      <button class="btn" id="nextLevelBtn">SIGUIENTE NIVEL</button>
+    </div>
+  </div>
+  <div id="mobileControls">
+    <div class="mobile-btn" id="btnLeft">&#9664;</div>
+    <div class="mobile-btn" id="btnRight">&#9654;</div>
+  </div>
+</div>
+
+<script src="_snds.js"></script>
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let GAME_W = window.innerWidth;
+let GAME_H = window.innerHeight;
+canvas.width = GAME_W;
+canvas.height = GAME_H;
+
+const container = document.getElementById('gameContainer');
+
+function resizeCanvas() {
+  GAME_W = window.innerWidth;
+  GAME_H = window.innerHeight;
+  canvas.width = GAME_W;
+  canvas.height = GAME_H;
+  canvas.style.width = '100vw';
+  canvas.style.height = '100vh';
+  canvas.style.left = '0px';
+  canvas.style.top = '0px';
+
+  if (typeof player !== 'undefined' && player) {
+    player.baseSpeed = Math.max(5, Math.min(10, GAME_W / 140));
+    if (!activePowerup || activePowerup.name !== 'speed') {
+      player.speed = player.baseSpeed;
+    }
+    player.x = Math.max(0, Math.min(GAME_W - player.w, player.x));
+    player.y = GAME_H - 150;
+  }
+  if (typeof gameState !== 'undefined' && gameState === 'playing') {
+    initBgStars();
+    initSideElements();
+  }
+}
+
+const hud = document.getElementById('hud');
+const hudScore = document.getElementById('hudScore');
+const hudLevel = document.getElementById('hudLevel');
+const hudLives = document.getElementById('hudLives');
+const startScreen = document.getElementById('startScreen');
+const gameOverScreen = document.getElementById('gameOverScreen');
+const winScreen = document.getElementById('winScreen');
+const finalScoreEl = document.getElementById('finalScore');
+const winScoreEl = document.getElementById('winScore');
+const startBtn = document.getElementById('startBtn');
+const restartBtn = document.getElementById('restartBtn');
+const nextLevelBtn = document.getElementById('nextLevelBtn');
+const mobileControls = document.getElementById('mobileControls');
+const btnLeft = document.getElementById('btnLeft');
+const btnRight = document.getElementById('btnRight');
+
+const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ('ontouchstart' in window);
+if (isMobile) { mobileControls.style.display = 'flex'; }
+
+const PIXEL = 4;
+function drawPixelRect(x, y, w, h, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(Math.floor(x), Math.floor(y), w, h);
+}
+
+function drawPixelCircle(cx, cy, r, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(Math.floor(cx), Math.floor(cy), r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+const OBSTACLE_TYPES = [
+  { name: 'condom', color: '#e8e8ff', stripeColor: '#aabbff', w: 40, h: 16, speed: 2.2, points: 10, draw: drawCondom },
+  { name: 'syringe', color: '#39ff14', accentColor: '#00aa00', w: 14, h: 48, speed: 2.8, points: 15, draw: drawSyringe },
+  { name: 'pill', color: '#ff6b9d', accentColor: '#cc4488', w: 28, h: 14, speed: 1.8, points: 10, draw: drawPill },
+  { name: 'IUD', color: '#6666cc', accentColor: '#4444aa', w: 32, h: 32, speed: 3.0, points: 25, draw: drawIUD },
+  { name: 'diaphragm', color: '#ffaa44', w: 56, h: 20, speed: 1.5, points: 20, draw: drawDiaphragm },
+  { name: 'fries', color: '#ffcc00', accentColor: '#cc8800', w: 36, h: 40, speed: 2.5, points: 15, draw: drawFries },
+];
+
+const POWERUP_TYPES = [
+  { name: 'shield', color: '#00ccff', duration: 300, draw: drawShieldPowerup },
+  { name: 'speed', color: '#ff6600', duration: 240, draw: drawSpeedPowerup },
+  { name: 'multi', color: '#ff00ff', duration: 300, draw: drawMultiPowerup },
+];
+
+let gameState = 'start';
+let score = 0;
+let lives = 3;
+let level = 1;
+let player = null;
+let obstacles = [];
+let powerups = [];
+let playerBullets = [];
+let particles = [];
+let bgStars = [];
+let sideElements = [];
+let shakeTimer = 0;
+let shakeIntensity = 0;
+let lastShotTime = 0;
+const SHOT_COOLDOWN = 250;
+let spawnTimer = 0;
+let spawnRate = 90;
+let bgOffset = 0;
+let powerupTimer = 0;
+let activePowerup = null;
+let powerupEndTime = 0;
+let levelProgress = 0;
+let levelTarget = 1000;
+let flashTimer = 0;
+let flashColor = '';
+
+function initBgStars() {
+  bgStars = [];
+  const count = Math.max(60, Math.floor((GAME_W * GAME_H) / 4500));
+  for (let i = 0; i < count; i++) {
+    bgStars.push({
+      x: Math.random() * GAME_W,
+      y: Math.random() * GAME_H,
+      size: Math.random() * 2 + 1,
+      speed: (Math.random() * 0.5 + 0.3) * Math.max(1, GAME_H / 720),
+      brightness: Math.random() * 0.5 + 0.5
+    });
+  }
+}
+
+function resetPlayer() {
+  const pSpeed = Math.max(5, Math.min(10, GAME_W / 140));
+  player = {
+    x: GAME_W / 2 - 20,
+    y: GAME_H - 150,
+    w: 40,
+    h: 44,
+    speed: pSpeed,
+    baseSpeed: pSpeed,
+    moveLeft: false,
+    moveRight: false,
+    invincible: 0,
+    tailPhase: 0
+  };
+}
+
+function startGame() {
+  score = 0;
+  lives = 3;
+  level = 1;
+  levelTarget = 1000;
+  levelProgress = 0;
+  resetPlayer();
+  obstacles = [];
+  powerups = [];
+  playerBullets = [];
+  particles = [];
+  activePowerup = null;
+  spawnRate = 80;
+  spawnTimer = 0;
+  powerupTimer = 0;
+  flashTimer = 0;
+  sideElements = [];
+  initBgStars();
+  initSideElements();
+  gameState = 'playing';
+  startScreen.style.display = 'none';
+  gameOverScreen.style.display = 'none';
+  winScreen.style.display = 'none';
+  hud.style.display = 'flex';
+  updateHud();
+}
+
+function nextLevel() {
+  level++;
+  levelTarget = 1000 + (level - 1) * 500;
+  levelProgress = 0;
+  spawnRate = Math.max(20, 80 - (level - 1) * 8);
+  obstacles = [];
+  powerups = [];
+  playerBullets = [];
+  resetPlayer();
+  activePowerup = null;
+  powerupTimer = 0;
+  gameState = 'playing';
+  winScreen.style.display = 'none';
+  hud.style.display = 'flex';
+  updateHud();
+}
+
+function updateHud() {
+  hudScore.textContent = 'SCORE: ' + score;
+  hudLevel.textContent = 'LEVEL: ' + level;
+  hudLives.textContent = 'LIVES: ' + lives;
+}
+
+function drawCondom(x, y, w, h) {
+  const s = PIXEL;
+  drawPixelRect(x + 2, y, w - 4, h, '#d0d0ff');
+  drawPixelRect(x + 2, y + h - 3, w - 4, 3, '#6666aa');
+  for (let i = x + 6; i < x + w - 6; i += 8) {
+    drawPixelRect(i, y + 2, 4, h - 4, '#8888cc');
+  }
+  drawPixelCircle(x + w / 2, y + h / 2, 3, '#ffffff');
+}
+
+function drawSyringe(x, y, w, h) {
+  const s = PIXEL;
+  drawPixelRect(x + 2, y, w - 4, h, '#22cc22');
+  drawPixelRect(x, y - 6, w, 8, '#666');
+  drawPixelRect(x + w / 2 - 1, y - 14, 2, 10, '#aaa');
+  drawPixelRect(x + 2, y + 10, w - 4, h - 14, '#44ff44');
+  drawPixelRect(x + 1, y + h - 4, w - 2, 4, '#11aa11');
+}
+
+function drawPill(x, y, w, h) {
+  const halfW = Math.floor(w / 2);
+  drawPixelRect(x, y, halfW, h, '#ff88aa');
+  drawPixelRect(x + halfW, y, halfW, h, '#ffffff');
+  drawPixelCircle(x + w / 2, y + h / 2, 3, '#ff4466');
+}
+
+function drawIUD(x, y, w, h) {
+  drawPixelRect(x + w / 2 - 3, y, 6, h, '#6666cc');
+  drawPixelRect(x, y, w, 6, '#6666cc');
+  drawPixelRect(x + 4, y + h - 6, w - 8, 6, '#4444aa');
+  drawPixelCircle(x + 4, y + 3, 3, '#8888ff');
+  drawPixelCircle(x + w - 4, y + 3, 3, '#8888ff');
+}
+
+function drawDiaphragm(x, y, w, h) {
+  for (let dx = 0; dx < w; dx += 4) {
+    const wave = Math.sin(dx * 0.15) * 3;
+    drawPixelRect(x + dx, y + wave, 4, h, '#ffaa44');
+  }
+  drawPixelRect(x + 4, y + 2, w - 8, h - 4, '#ff8822');
+}
+
+function drawFries(x, y, w, h) {
+  const colors = ['#ffcc00', '#ff9900', '#ff6600'];
+  for (let i = 0; i < 5; i++) {
+    const fx = x + i * 7 + 1;
+    drawPixelRect(fx, y, 5, h, colors[i % 3]);
+    drawPixelRect(fx, y, 5, 4, '#ffee44');
+  }
+  drawPixelRect(x, y + h - 4, w, 4, '#cc4400');
+}
+
+function drawPenis(x, y, w, h, phase) {
+  const shaftW = Math.floor(w * 0.45);
+  const shaftX = x + (w - shaftW) / 2;
+  const shaftColor = '#ff9988';
+  const veinColor = '#ff7766';
+  const headR = Math.floor(w * 0.28);
+  const headX = x + w / 2;
+  const headY = y + headR;
+  const ballR = Math.floor(w * 0.18);
+  drawPixelRect(shaftX, y + headR, shaftW, h - headR, shaftColor);
+  drawPixelRect(shaftX + 2, y + headR + 4, shaftW - 8, 2, veinColor);
+  drawPixelRect(shaftX + 4, y + headR + 12, shaftW - 12, 2, veinColor);
+  drawPixelCircle(headX, headY, headR, '#ff8877');
+  drawPixelCircle(headX, headY, headR - 2, '#ffa090');
+  const ballY = y + h - ballR;
+  drawPixelCircle(x + w * 0.25, ballY, ballR, shaftColor);
+  drawPixelCircle(x + w * 0.75, ballY, ballR, shaftColor);
+  drawPixelCircle(x + w * 0.25 + 1, ballY + 1, ballR - 1, '#ffa090');
+  drawPixelCircle(x + w * 0.75 + 1, ballY + 1, ballR - 1, '#ffa090');
+  if (Math.sin(phase) > 0.5) {
+    drawPixelCircle(headX + headR + 4, headY - 2, 2, '#ff4444');
+  }
+}
+
+function drawVagina(x, y, w, h, phase) {
+  const lipColor = '#cc4466';
+  const innerColor = '#882244';
+  const darkColor = '#551133';
+  const clitR = 3;
+  const clitX = x + w / 2;
+  const clitY = y + h * 0.18;
+  const upperLabY = y + h * 0.25;
+  const lowerLabY = y + h * 0.75;
+  drawPixelRect(x + w * 0.15, upperLabY, w * 0.7, h * 0.55, innerColor);
+  drawPixelRect(x + w * 0.25, upperLabY + 3, w * 0.5, h * 0.5, darkColor);
+  drawPixelRect(x + w * 0.35, upperLabY + 6, w * 0.3, h * 0.45, '#441122');
+  const wave1 = Math.sin(phase) * 2;
+  const wave2 = Math.sin(phase + 1.5) * 2;
+  drawPixelRect(x + Math.floor(wave1), upperLabY - 2, 4, h * 0.6, lipColor);
+  drawPixelRect(x + w - Math.floor(wave1) - 4, upperLabY - 2, 4, h * 0.6, lipColor);
+  drawPixelRect(x + Math.floor(wave2), lowerLabY + h * 0.5 - 2, 4, h * 0.3, lipColor);
+  drawPixelRect(x + w - Math.floor(wave2) - 4, lowerLabY + h * 0.5 - 2, 4, h * 0.3, lipColor);
+  drawPixelCircle(clitX, clitY, clitR, '#ee6688');
+  drawPixelCircle(clitX, clitY, clitR - 1, '#ff8899');
+}
+
+function drawTwoHandsFucking(x, y, w, h, phase) {
+  const handColor = '#ffcc99';
+  const thumbColor = '#eebb88';
+  const wristW = Math.floor(w * 0.35);
+  const topHandX = x + w * 0.05;
+  const topHandY = y + 2;
+  drawPixelRect(topHandX, topHandY, w * 0.5, h * 0.3, handColor);
+  drawPixelRect(topHandX + w * 0.05, topHandY, w * 0.45, h * 0.25, thumbColor);
+  for (let f = 0; f < 4; f++) {
+    const fx = topHandX + w * 0.08 + f * w * 0.1;
+    drawPixelRect(fx, topHandY + h * 0.08, w * 0.08, h * 0.15, handColor);
+  }
+  const botHandX = x + w * 0.45;
+  const botHandY = y + h * 0.65;
+  const botWave = Math.sin(phase) * 2;
+  drawPixelRect(botHandX - botWave, botHandY, w * 0.55, h * 0.35, handColor);
+  drawPixelRect(botHandX - botWave + w * 0.02, botHandY + w * 0.02, w * 0.5, h * 0.3, thumbColor);
+  for (let f = 0; f < 4; f++) {
+    const fx = botHandX - botWave + w * 0.05 + f * w * 0.1;
+    drawPixelRect(fx, botHandY + h * 0.05, w * 0.08, h * 0.12, handColor);
+  }
+  drawPixelRect(x + w * 0.3, y + h * 0.35, w * 0.4, h * 0.3, '#ff9988');
+  drawPixelRect(x + w * 0.35, y + h * 0.4, w * 0.3, h * 0.2, '#ffaa99');
+}
+
+function drawSemenDrip(x, y, w, h, phase) {
+  const dripColor = '#ffffee';
+  const glowColor = 'rgba(255,255,238,0.3)';
+  ctx.fillStyle = glowColor;
+  drawPixelCircle(x + w / 2, y + h / 2, w * 0.6, glowColor);
+  drawPixelCircle(x + w / 2, y + h * 0.15, 8, dripColor);
+  const dripW = 4 + Math.floor(Math.sin(phase * 0.7) * 2);
+  drawPixelRect(x + w / 2 - dripW / 2, y + h * 0.15 + 8, dripW, h * 0.5, dripColor);
+  drawPixelCircle(x + w / 2, y + h * 0.65, 6, dripColor);
+  drawPixelRect(x + w / 2 - 3, y + h * 0.65 + 6, 6, h * 0.15, dripColor);
+  drawPixelCircle(x + w / 2 + 1, y + h * 0.72, 2, '#ffffcc');
+}
+
+function drawButt(x, y, w, h, phase) {
+  const skinColor = '#ffcc99';
+  const shadowColor = '#eebb88';
+  const wave = Math.sin(phase) * 1;
+  const buttY = y + h * 0.1;
+  const buttH = h * 0.8;
+  drawPixelCircle(x + w * 0.3, buttY + buttH * 0.5, w * 0.3, skinColor);
+  drawPixelCircle(x + w * 0.7, buttY + buttH * 0.5, w * 0.3, skinColor);
+  drawPixelCircle(x + w * 0.3 + wave, buttY + buttH * 0.5 - 2, w * 0.28, shadowColor);
+  drawPixelCircle(x + w * 0.7 + wave, buttY + buttH * 0.5 - 2, w * 0.28, shadowColor);
+  drawPixelRect(x + w * 0.15, buttY, w * 0.7, buttH * 0.3, skinColor);
+  drawPixelCircle(x + w * 0.5, buttY + buttH * 0.8, w * 0.15, shadowColor);
+  drawPixelCircle(x + w * 0.5, buttY + buttH * 0.8 - 1, w * 0.1, '#ddaa77');
+}
+
+function initSideElements() {
+  sideElements = [];
+  const types = ['penis', 'penis', 'penis', 'vagina', 'vagina', 'hands', 'drip', 'butt'];
+  const leftCount = Math.floor((GAME_H / 65));
+  const rightCount = Math.floor((GAME_H / 65));
+
+  for (let i = 0; i < leftCount; i++) {
+    const typeIdx = Math.floor(Math.random() * types.length);
+    const type = types[typeIdx];
+    const yPos = i * 75 + Math.random() * 20;
+    sideElements.push({
+      x: 0,
+      y: yPos,
+      w: type === 'drip' ? 30 : (type === 'hands' ? 50 : 45),
+      h: type === 'drip' ? 60 : (type === 'butt' ? 50 : 45),
+      type: type,
+      phase: Math.random() * Math.PI * 2,
+      bobSpeed: 0.015 + Math.random() * 0.02,
+      scale: 0.6 + Math.random() * 0.6
+    });
+  }
+
+  for (let i = 0; i < rightCount; i++) {
+    const typeIdx = Math.floor(Math.random() * types.length);
+    const type = types[typeIdx];
+    const yPos = i * 75 + Math.random() * 20;
+    sideElements.push({
+      x: GAME_W - (type === 'drip' ? 30 : (type === 'hands' ? 50 : 45)),
+      y: yPos,
+      w: type === 'drip' ? 30 : (type === 'butt' ? 50 : 45),
+      h: type === 'drip' ? 60 : (type === 'butt' ? 50 : 45),
+      type: type,
+      phase: Math.random() * Math.PI * 2,
+      bobSpeed: 0.015 + Math.random() * 0.02,
+      scale: 0.6 + Math.random() * 0.6
+    });
+  }
+}
+
+function drawLarry(x, y, w, h) {
+  const phase = player.tailPhase;
+  const headX = Math.floor(x + w / 2);
+  const headY = Math.floor(y + 8);
+  const headR = 14;
+  const tailStartX = headX;
+  const tailStartY = headY + headR - 2;
+  const segments = 14;
+  const tailLen = segments * 3;
+  ctx.save();
+  ctx.beginPath();
+  let pathX = tailStartX;
+  let pathY = tailStartY;
+  ctx.moveTo(pathX, pathY);
+  for (let i = 1; i <= segments; i++) {
+    const t = i / segments;
+    pathX = tailStartX + Math.sin(phase + t * 3.5) * (6 + t * 6);
+    pathY = tailStartY + t * tailLen;
+    ctx.lineTo(pathX, pathY);
+  }
+  ctx.strokeStyle = '#c8c8e8';
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+  ctx.strokeStyle = '#e0e0f0';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  const tipX = tailStartX + Math.sin(phase + 3.5) * 12;
+  const tipY = tailStartY + tailLen;
+  drawPixelCircle(tipX, tipY, 3, '#d8d8f0');
+  const glowR = 8 + Math.sin(phase * 2) * 2;
+  ctx.globalAlpha = 0.2;
+  drawPixelCircle(headX, headY, headR + 4, '#8888ff');
+  ctx.globalAlpha = 1;
+  drawPixelCircle(headX, headY, headR, '#ffffff');
+  drawPixelCircle(headX, headY, headR - 3, '#e8e8ff');
+  drawPixelCircle(headX, headY, headR - 5, '#ffffff');
+  const eyeLX = headX - 5;
+  const eyeLY = headY - 3;
+  const eyeRX = headX + 5;
+  const eyeRY = headY - 3;
+  drawPixelCircle(eyeLX, eyeLY, 4, '#ffffff');
+  drawPixelCircle(eyeRX, eyeRY, 4, '#ffffff');
+  const pupilOffX = Math.sin(phase) * 0.5;
+  const pupilOffY = Math.cos(phase * 0.7) * 0.3;
+  drawPixelCircle(eyeLX + pupilOffX - 1, eyeLY + pupilOffY, 2, '#222244');
+  drawPixelCircle(eyeRX + pupilOffX + 1, eyeRY + pupilOffY, 2, '#222244');
+  drawPixelCircle(eyeLX + pupilOffX - 1, eyeLY + pupilOffY - 1, 0.8, '#ffffff');
+  drawPixelCircle(eyeRX + pupilOffX + 1, eyeRY + pupilOffY - 1, 0.8, '#ffffff');
+  const mouthY = headY + 5;
+  const mouthOpen = Math.sin(phase * 0.5) * 0.5 + 0.5;
+  ctx.fillStyle = '#222';
+  ctx.beginPath();
+  ctx.ellipse(headX, mouthY, 5 * mouthOpen + 2, 2 * mouthOpen + 1, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#cc4444';
+  ctx.beginPath();
+  ctx.ellipse(headX, mouthY + 1, 3 * mouthOpen + 1, mouthOpen, 0, 0, Math.PI * 2);
+  ctx.fill();
+  const cheekR = 4;
+  ctx.globalAlpha = 0.3;
+  drawPixelCircle(headX - headR + 2, headY + 4, cheekR, '#ff8888');
+  drawPixelCircle(headX + headR - 2, headY + 4, cheekR, '#ff8888');
+  ctx.globalAlpha = 1;
+  if (activePowerup && activePowerup.name === 'shield') {
+    ctx.strokeStyle = 'rgba(0, 204, 255, 0.5)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(headX, headY, headR + 6 + Math.sin(Date.now() * 0.01) * 2, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawShieldPowerup(x, y, size) {
+  drawPixelCircle(x, y, size, '#00ccff');
+  drawPixelCircle(x, y, size - 4, '#66eeff');
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '12px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('S', x, y + 4);
+}
+
+function drawSpeedPowerup(x, y, size) {
+  drawPixelCircle(x, y, size, '#ff6600');
+  drawPixelCircle(x, y, size - 4, '#ff9944');
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '10px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('>>', x - 6, y + 4);
+}
+
+function drawMultiPowerup(x, y, size) {
+  drawPixelCircle(x, y, size, '#ff00ff');
+  drawPixelCircle(x, y, size - 4, '#ff66ff');
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '10px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('x3', x - 8, y + 4);
+}
+
+function drawOvule(x, y, size, phase) {
+  const pulse = Math.sin(phase) * 3;
+  ctx.globalAlpha = 0.15;
+  drawPixelCircle(x, y, size + 10 + pulse, '#ffccdd');
+  ctx.globalAlpha = 0.25;
+  drawPixelCircle(x, y, size + 6, '#ffbbdd');
+  ctx.globalAlpha = 1;
+  drawPixelCircle(x, y, size, '#ffccdd');
+  drawPixelCircle(x - 2, y - 2, size - 4, '#ffeedd');
+  drawPixelCircle(x + 3, y + 3, size - 8, '#ffbbcc');
+  const nucR = Math.max(2, size * 0.3);
+  drawPixelCircle(x, y, nucR, '#ee6688');
+  drawPixelCircle(x, y, nucR - 1, '#cc4466');
+  for (let i = 0; i < 6; i++) {
+    const ang = (i / 6) * Math.PI * 2 + phase * 0.3;
+    const px = x + Math.cos(ang) * (size * 0.6);
+    const py = y + Math.sin(ang) * (size * 0.6);
+    drawPixelCircle(px, py, 1.5, '#ff99aa');
+  }
+}
+
+function spawnOvule() {
+  const minX = 40;
+  const maxX = Math.max(minX + 20, GAME_W - 80);
+  powerups.push({
+    x: minX + Math.random() * (maxX - minX),
+    y: -20,
+    size: 14,
+    type: 'ovule',
+    speed: 1.2 * Math.max(1, GAME_H / 720),
+    pulse: 0
+  });
+}
+
+function spawnObstacle() {
+  const typeIdx = Math.min(
+    Math.floor(Math.random() * Math.min(OBSTACLE_TYPES.length, 2 + level)),
+    OBSTACLE_TYPES.length - 1
+  );
+  const type = OBSTACLE_TYPES[typeIdx];
+  const speedMult = 1 + (level - 1) * 0.15;
+  const speedScale = Math.max(1, GAME_H / 720);
+  const minX = 40;
+  const maxX = Math.max(minX + 20, GAME_W - type.w - 40);
+  obstacles.push({
+    x: minX + Math.random() * (maxX - minX),
+    y: -type.h,
+    w: type.w,
+    h: type.h,
+    type: type,
+    speed: type.speed * speedMult * speedScale,
+    rotation: 0,
+    rotSpeed: (Math.random() - 0.5) * 0.05
+  });
+}
+
+function spawnPowerup() {
+  const typeIdx = Math.floor(Math.random() * POWERUP_TYPES.length);
+  const type = POWERUP_TYPES[typeIdx];
+  const minX = 40;
+  const maxX = Math.max(minX + 20, GAME_W - 40);
+  powerups.push({
+    x: minX + Math.random() * (maxX - minX),
+    y: -20,
+    size: 12,
+    type: type,
+    speed: 1.5 * Math.max(1, GAME_H / 720),
+    pulse: 0
+  });
+}
+
+function addParticles(x, y, color, count, spread) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * spread + 1;
+    particles.push({
+      x: x,
+      y: y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 30 + Math.random() * 20,
+      maxLife: 30 + Math.random() * 20,
+      color: color,
+      size: Math.random() * 4 + 2
+    });
+  }
+}
+
+function addExplosion(x, y, color) {
+  addParticles(x, y, color, 12, 3);
+  addParticles(x, y, '#ffff88', 6, 2);
+}
+
+function checkCollision(ax, ay, aw, ah, bx, by, bw, bh) {
+  return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+}
+
+function usePowerup(pu) {
+  const endTime = 300;
+  if (pu.type.name === 'shield') {
+    activePowerup = pu.type;
+    player.invincible = endTime;
+    addParticles(player.x + player.w / 2, player.y + player.h / 2, '#00ccff', 20, 4);
+  } else if (pu.type.name === 'speed') {
+    activePowerup = pu.type;
+    player.speed = (player.baseSpeed || 5) * 1.6;
+    player.invincible = endTime;
+  } else if (pu.type.name === 'multi') {
+    activePowerup = pu.type;
+    playSound('multiActivate');
+    score += Math.floor(score * 0.5);
+    addParticles(player.x + player.w / 2, player.y, '#ff00ff', 15, 3);
+  }
+}
+
+function update() {
+  if (gameState !== 'playing') return;
+
+  if (player.invincible > 0) player.invincible--;
+
+  bgOffset += 0.5;
+
+  player.tailPhase += 0.15;
+
+  const spd = player.speed;
+  if (player.moveLeft) player.x -= spd;
+  if (player.moveRight) player.x += spd;
+  player.x = Math.max(0, Math.min(GAME_W - player.w, player.x));
+
+  for (let i = bgStars.length - 1; i >= 0; i--) {
+    const star = bgStars[i];
+    star.y += star.speed;
+    if (star.y > GAME_H) {
+      star.y = -2;
+      star.x = Math.random() * GAME_W;
+    }
+  }
+
+  spawnTimer += Math.max(1, GAME_W / 480);
+  if (spawnTimer >= spawnRate) {
+    spawnObstacle();
+    spawnTimer = 0;
+  }
+
+  powerupTimer += Math.max(1, GAME_W / 480);
+  if (powerupTimer >= 600) {
+    spawnPowerup();
+    powerupTimer = 0;
+  }
+
+  if (Math.random() < (0.003 + level * 0.001) * Math.max(1, GAME_W / 480)) {
+    spawnOvule();
+  }
+
+  for (let i = obstacles.length - 1; i >= 0; i--) {
+    const obs = obstacles[i];
+    obs.y += obs.speed;
+    obs.rotation += obs.rotSpeed;
+    if (obs.y > GAME_H + 60) {
+      obstacles.splice(i, 1);
+      levelProgress += 5;
+      score += 5;
+      continue;
+    }
+    if (player.invincible <= 0) {
+      const hitMargin = 6;
+      if (checkCollision(
+        player.x + hitMargin, player.y + hitMargin,
+        player.w - hitMargin * 2, player.h - hitMargin * 2,
+        obs.x + 4, obs.y + 4,
+        obs.w - 8, obs.h - 8
+      )) {
+        if (activePowerup && activePowerup.name === 'shield') {
+          addExplosion(obs.x + obs.w / 2, obs.y + obs.h / 2, '#00ccff');
+          obstacles.splice(i, 1);
+          activePowerup = null;
+          player.invincible = 0;
+          continue;
+        }
+        lives--;
+        playSound('playerHit');
+        player.invincible = 120;
+        addExplosion(player.x + player.w / 2, player.y + player.h / 2, '#ff4444');
+        shakeTimer = 15;
+        shakeIntensity = 6;
+        flashTimer = 10;
+        flashColor = 'rgba(255,0,0,0.3)';
+        obstacles.splice(i, 1);
+        if (lives <= 0) {
+          playSound('gameOver');
+          gameState = 'gameover';
+          hud.style.display = 'none';
+          gameOverScreen.style.display = 'flex';
+          finalScoreEl.textContent = 'Score: ' + score;
+          continue;
+        }
+        updateHud();
+      }
+    }
+  }
+
+  for (let i = powerups.length - 1; i >= 0; i--) {
+    const pu = powerups[i];
+    pu.y += pu.speed;
+    pu.pulse += 0.1;
+    if (pu.y > GAME_H + 30) {
+      powerups.splice(i, 1);
+      continue;
+    }
+    if (checkCollision(
+      player.x, player.y, player.w, player.h,
+      pu.x - pu.size, pu.y - pu.size,
+      pu.size * 2, pu.size * 2
+    )) {
+      if (pu.type === 'ovule') {
+        lives++;
+        playSound('ovule');
+        addParticles(pu.x, pu.y, '#ffccdd', 15, 3);
+        addParticles(pu.x, pu.y, '#ff8899', 8, 2);
+        flashTimer = 8;
+        flashColor = 'rgba(255,200,220,0.3)';
+      } else {
+        usePowerup(pu);
+        playSound('powerup');
+        addParticles(pu.x, pu.y, pu.type.color, 10, 3);
+      }
+      powerups.splice(i, 1);
+      updateHud();
+      continue;
+    }
+  }
+
+  for (let i = playerBullets.length - 1; i >= 0; i--) {
+    const b = playerBullets[i];
+    b.y -= (b.speed || 8);
+    if (b.y < -10) {
+      playerBullets.splice(i, 1);
+      continue;
+    }
+    for (let j = obstacles.length - 1; j >= 0; j--) {
+      const obs = obstacles[j];
+      if (checkCollision(b.x, b.y, 6, 12, obs.x, obs.y, obs.w, obs.h)) {
+        addExplosion(obs.x + obs.w / 2, obs.y + obs.h / 2, '#ffaa00');
+        playSound('hit');
+        score += obs.type.points;
+        levelProgress += obs.type.points;
+        obstacles.splice(j, 1);
+        playerBullets.splice(i, 1);
+        updateHud();
+        break;
+      }
+    }
+  }
+
+  if (shakeTimer > 0) shakeTimer--;
+  if (flashTimer > 0) flashTimer--;
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.05;
+    p.life--;
+    if (p.life <= 0) particles.splice(i, 1);
+  }
+
+  if (levelProgress >= levelTarget) {
+    gameState = 'win';
+    playSound('levelWin');
+    hud.style.display = 'none';
+    winScreen.style.display = 'flex';
+    winScoreEl.textContent = 'Score: ' + score;
+  }
+
+  updateHud();
+}
+
+function drawBackground() {
+  const grad = ctx.createLinearGradient(0, 0, 0, GAME_H);
+  grad.addColorStop(0, '#0a0a2e');
+  grad.addColorStop(1, '#1a0a3e');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, GAME_W, GAME_H);
+
+  if (bgStars.length === 0) initBgStars();
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  bgStars.forEach(star => {
+    const alpha = star.brightness * (0.5 + 0.5 * Math.sin(Date.now() * 0.003 + star.x));
+    ctx.globalAlpha = alpha;
+    drawPixelRect(star.x, star.y, star.size, star.size, '#ffffff');
+  });
+  ctx.globalAlpha = 1;
+
+  if (sideElements.length === 0) initSideElements();
+  sideElements.forEach(el => {
+    el.phase += el.bobSpeed;
+    const bobY = Math.sin(el.phase) * 3;
+    el.y += bobY;
+    if (el.y > GAME_H + 60) el.y = -60;
+    if (el.y < -60) el.y = GAME_H + 60;
+    const drawW = Math.floor(el.w * el.scale);
+    const drawH = Math.floor(el.h * el.scale);
+    if (el.type === 'penis') {
+      drawPenis(el.x, el.y, drawW, drawH, el.phase);
+    } else if (el.type === 'vagina') {
+      drawVagina(el.x, el.y, drawW, drawH, el.phase);
+    } else if (el.type === 'hands') {
+      drawTwoHandsFucking(el.x, el.y, drawW, drawH, el.phase);
+    } else if (el.type === 'drip') {
+      drawSemenDrip(el.x, el.y, drawW, drawH, el.phase);
+    } else if (el.type === 'butt') {
+      drawButt(el.x, el.y, drawW, drawH, el.phase);
+    }
+  });
+}
+
+function drawTargetOvule() {
+  const ovuleY = GAME_H - 50;
+  const pulse = Math.sin(Date.now() * 0.005) * 3;
+  ctx.fillStyle = 'rgba(255, 180, 200, 0.3)';
+  ctx.beginPath();
+  ctx.arc(GAME_W / 2, ovuleY, 40 + pulse, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#ffbbcc';
+  ctx.beginPath();
+  ctx.arc(GAME_W / 2, ovuleY, 30 + pulse * 0.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#ff8899';
+  ctx.beginPath();
+  ctx.arc(GAME_W / 2, ovuleY, 15, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#cc4466';
+  ctx.beginPath();
+  ctx.arc(GAME_W / 2, ovuleY, 6, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function draw() {
+  ctx.save();
+
+  if (shakeTimer > 0) {
+    const sx = (Math.random() - 0.5) * shakeIntensity;
+    const sy = (Math.random() - 0.5) * shakeIntensity;
+    ctx.translate(sx, sy);
+  }
+
+  drawBackground();
+
+  if (gameState === 'playing' || gameState === 'win') {
+    drawTargetOvule();
+
+    powerups.forEach(pu => {
+      const glow = Math.sin(pu.pulse) * 3;
+      ctx.fillStyle = 'rgba(255,255,255,0.15)';
+      ctx.beginPath();
+      ctx.arc(pu.x, pu.y, pu.size + 6 + glow, 0, Math.PI * 2);
+      ctx.fill();
+      if (pu.type === 'ovule') {
+        drawOvule(pu.x, pu.y, pu.size, pu.pulse);
+      } else {
+        pu.type.draw(pu.x - pu.size, pu.y - pu.size, pu.size * 2, pu.size * 2);
+      }
+    });
+
+    obstacles.forEach(obs => {
+      ctx.save();
+      ctx.translate(obs.x + obs.w / 2, obs.y + obs.h / 2);
+      ctx.rotate(obs.rotation);
+      ctx.translate(-(obs.x + obs.w / 2), -(obs.y + obs.h / 2));
+      obs.type.draw(obs.x, obs.y, obs.w, obs.h);
+      ctx.restore();
+    });
+
+    playerBullets.forEach(b => {
+      drawPixelRect(b.x + 1, b.y, 4, 12, '#00ccff');
+      drawPixelRect(b.x + 2, b.y - 2, 2, 4, '#66eeff');
+    });
+
+    if (player.invincible <= 0 || Math.floor(player.invincible / 4) % 2 === 0) {
+      drawLarry(player.x, player.y, player.w, player.h);
+    }
+
+    particles.forEach(p => {
+      const alpha = p.life / p.maxLife;
+      ctx.globalAlpha = alpha;
+      drawPixelRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size, p.color);
+    });
+    ctx.globalAlpha = 1;
+
+    if (flashTimer > 0) {
+      ctx.fillStyle = flashColor;
+      ctx.fillRect(0, 0, GAME_W, GAME_H);
+    }
+
+    ctx.fillStyle = 'rgba(57, 255, 20, 0.8)';
+    ctx.font = 'bold 14px monospace';
+    ctx.textAlign = 'center';
+    const progBarW = Math.min(320, Math.floor(GAME_W * 0.5));
+    const prog = Math.min(levelProgress / levelTarget, 1);
+    ctx.fillStyle = 'rgba(0,0,0,0.5)';
+    ctx.fillRect(GAME_W / 2 - progBarW / 2, GAME_H - 30, progBarW, 12);
+    if (prog > 0) {
+      ctx.fillStyle = '#39ff14';
+      ctx.fillRect(GAME_W / 2 - progBarW / 2, GAME_H - 30, progBarW * prog, 12);
+    }
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '10px monospace';
+    ctx.fillText('LLEGADA AL OVULO', GAME_W / 2, GAME_H - 34);
+  }
+
+  ctx.restore();
+}
+
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+function handleKeyDown(e) {
+  if (!player) return;
+  if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') player.moveLeft = true;
+  if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') player.moveRight = true;
+  if (e.key === ' ' || e.code === 'Space') {
+    e.preventDefault();
+    shoot();
+  }
+}
+
+function handleKeyUp(e) {
+  if (!player) return;
+  if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') player.moveLeft = false;
+  if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') player.moveRight = false;
+}
+
+function shoot() {
+  if (gameState !== 'playing' || !player) return;
+  const now = Date.now();
+  if (now - lastShotTime < SHOT_COOLDOWN) return;
+  lastShotTime = now;
+  playSound('shoot');
+  const bulletSpeed = Math.max(9, Math.round(GAME_H / 75));
+  playerBullets.push({
+    x: player.x + player.w / 2 - 3,
+    y: player.y,
+    speed: bulletSpeed
+  });
+  if (activePowerup && activePowerup.name === 'multi') {
+    playerBullets.push({
+      x: player.x + player.w / 2 - 18,
+      y: player.y,
+      speed: bulletSpeed
+    });
+    playerBullets.push({
+      x: player.x + player.w / 2 + 12,
+      y: player.y,
+      speed: bulletSpeed
+    });
+  }
+}
+
+function resetActivePowerup() {
+  activePowerup = null;
+  if (player) player.speed = player.baseSpeed || 5;
+  if (player) player.invincible = 0;
+}
+
+document.addEventListener('keydown', handleKeyDown);
+document.addEventListener('keyup', handleKeyUp);
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+startBtn.addEventListener('click', () => { playSound('start'); startGame(); });
+restartBtn.addEventListener('click', () => { playSound('start'); startGame(); });
+nextLevelBtn.addEventListener('click', () => {
+  resetActivePowerup();
+  playSound('start');
+  nextLevel();
+});
+
+btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); if (player) player.moveLeft = true; });
+btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); if (player) player.moveLeft = false; });
+btnLeft.addEventListener('mousedown', () => { if (player) player.moveLeft = true; });
+btnLeft.addEventListener('mouseup', () => { if (player) player.moveLeft = false; });
+btnLeft.addEventListener('mouseleave', () => { if (player) player.moveLeft = false; });
+
+btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); if (player) player.moveRight = true; });
+btnRight.addEventListener('touchend', (e) => { e.preventDefault(); if (player) player.moveRight = false; });
+btnRight.addEventListener('mousedown', () => { if (player) player.moveRight = true; });
+btnRight.addEventListener('mouseup', () => { if (player) player.moveRight = false; });
+btnRight.addEventListener('mouseleave', () => { if (player) player.moveRight = false; });
+
+canvas.addEventListener('touchstart', (e) => { e.preventDefault(); shoot(); });
+canvas.addEventListener('click', () => { shoot(); });
+
+startScreen.style.display = 'flex';
+gameLoop();
+</script>
+</body>
+</html>
